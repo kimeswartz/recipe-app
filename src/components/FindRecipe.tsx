@@ -11,6 +11,7 @@ const RecipeSearch: React.FC = () => {
   const [recipe, setRecipe] = useState<RecipeInterface | null>(null);
   const [error, setError] = useState<string>("");
 
+
   const handleSearch = async () => {
     setError(""); // Reset error message
     try {
@@ -65,8 +66,4 @@ const RecipeSearch: React.FC = () => {
   );
 };
 
-<<<<<<< HEAD
 export default RecipeSearch;
-=======
-export default RecipeSearch;
->>>>>>> d32348786b9b46f70a540931719b7d303ebdf41a
