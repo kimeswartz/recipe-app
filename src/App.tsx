@@ -1,4 +1,3 @@
-
 import "./App.css";
 import DataDisplay from "./components/DisplayRecipes";
 import UploadRecipeComponent from "./components/UploadRecipe";
@@ -14,6 +13,8 @@ function App() {
         <RecipeSearch />
         <UploadRecipeComponent />
         <DataDisplay />
+        <CategorySearch />
+
       </div>
 
     </>

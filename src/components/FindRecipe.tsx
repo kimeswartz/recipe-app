@@ -65,8 +65,4 @@ const RecipeSearch: React.FC = () => {
   );
 };
 
-<<<<<<< HEAD
 export default RecipeSearch;
-=======
-export default RecipeSearch;
->>>>>>> d32348786b9b46f70a540931719b7d303ebdf41a
