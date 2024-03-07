@@ -8,6 +8,7 @@ import { RecipeInterface } from "../interfaces/RecipeInterface";
 const UploadRecipeComponent = () => {
   
   const [recipeData, setRecipeData] = useState<RecipeInterface>({
+    _id: "",
     title: "",
     description: "",
     ratings: [], // (Assuming ratings is an array of numbers)
@@ -87,6 +88,7 @@ const UploadRecipeComponent = () => {
    
       // Reset vårt formulär efter submitted
       setRecipeData({
+        _id: "",
         title: "",
         description: "",
         ratings: [],
@@ -114,6 +116,7 @@ const UploadRecipeComponent = () => {
       <h1>Upload Recipe</h1>
       <form onSubmit={handleSubmit}>
         {/* Add form fields for other properties in RecipeInterface */}
+
         <label>
           Title:
           <input
@@ -133,6 +136,20 @@ const UploadRecipeComponent = () => {
             onChange={handleInputUpdate}
           />
         </label>
+
+        <label>
+          Image URL:
+          <input
+            type="text"
+            name="imageUrl"
+            value={recipeData.imageUrl}
+            onChange={handleInputUpdate}
+          />
+        </label>
+
+
+
+
 
         <label>
         Time in mins:
@@ -163,7 +180,6 @@ const UploadRecipeComponent = () => {
             onChange={handleInputUpdate}
           />
         </label>
-
 
         <br />
         
