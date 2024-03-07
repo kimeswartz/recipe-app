@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
 
@@ -36,7 +36,7 @@ const DisplayRecipes = () => {
       <h1>Display Recipes</h1>
       <ul>
         {recipeData.map((recipe) => (
-          <li key={recipe._id}>
+          <li key={recipe.title}>
             <img src={recipe.imageUrl} alt={recipe.title} />
             <h2>{recipe.title}</h2>
             <p>{recipe.description}</p>

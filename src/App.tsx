@@ -1,22 +1,21 @@
-import { useState } from "react";
+
 import "./App.css";
 import DataDisplay from "./components/DisplayRecipes";
 import UploadRecipeComponent from "./components/UploadRecipe";
-import RecipeSearch from "./components/FindRecipe";
+import CategorySearch from "./components/CategorySearch";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
     <>
       <div className="card">
-        <h1>Kims Branch</h1>
-        <RecipeSearch />
-        <UploadRecipeComponent />
-        <DataDisplay />
-      </div>
+          <UploadRecipeComponent />
+          <DataDisplay />
+          <CategorySearch />
+        </div>
+
     </>
-  );
+  )
 }
 
-export default App;
+export default App
