@@ -17,15 +17,20 @@ const RecipeSearch: React.FC = () => {
       const response = await axios.get(
         `https://sti-java-grupp4-s4yjx9.reky.se/recipes?title=${encodeURIComponent(searchTerm)}`
       );
-
   
       if (response.data.length > 0) {
-
-        // Assuming the API returns an array of recipes
-        setRecipe(response.data[0]); // Assuming you want to display the first matching recipe
+        // Find the recipe that exactly matches the search term
+        const matchingRecipe = response.data.find((recipe: { title: string; }) => recipe.title === searchTerm);
+  
+        if (matchingRecipe) {
+          setRecipe(matchingRecipe);
+        } else {
+          setRecipe(null);
+          setError("No exact match found for the given search term.");
+        }
       } else {
         setRecipe(null);
-        setError("No recipe found for the given search term.");
+        setError("No recipes found for the given search term.");
       }
     } catch (error) {
       console.error("Error fetching recipe:", error);
