@@ -114,6 +114,7 @@ const UploadRecipeComponent = () => {
       <h1>Upload Recipe</h1>
       <form onSubmit={handleSubmit}>
         {/* Add form fields for other properties in RecipeInterface */}
+
         <label>
           Title:
           <input
@@ -133,6 +134,20 @@ const UploadRecipeComponent = () => {
             onChange={handleInputUpdate}
           />
         </label>
+
+        <label>
+          Image URL:
+          <input
+            type="text"
+            name="imageUrl"
+            value={recipeData.imageUrl}
+            onChange={handleInputUpdate}
+          />
+        </label>
+
+
+
+
 
         <label>
         Time in mins:
@@ -163,7 +178,6 @@ const UploadRecipeComponent = () => {
             onChange={handleInputUpdate}
           />
         </label>
-
 
         <br />
         
