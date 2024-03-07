@@ -8,6 +8,7 @@ import { RecipeInterface } from "../interfaces/RecipeInterface";
 const UploadRecipeComponent = () => {
   
   const [recipeData, setRecipeData] = useState<RecipeInterface>({
+    _id: "",
     title: "",
     description: "",
     ratings: [], // (Assuming ratings is an array of numbers)
