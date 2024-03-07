@@ -88,6 +88,7 @@ const UploadRecipeComponent = () => {
    
       // Reset vårt formulär efter submitted
       setRecipeData({
+        _id: "",
         title: "",
         description: "",
         ratings: [],
