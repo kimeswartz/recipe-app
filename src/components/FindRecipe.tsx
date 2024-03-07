@@ -15,13 +15,14 @@ const RecipeSearch: React.FC = () => {
     setError(""); // Reset error message
     try {
       const response = await axios.get(
-        `https://sti-java-grupp4-s4yjx9.reky.se/recipes/${encodeURIComponent(
-          searchTerm
-        )}`
+        `https://sti-java-grupp4-s4yjx9.reky.se/recipes?title=${encodeURIComponent(searchTerm)}`
       );
 
-      if (response.data) {
-        setRecipe(response.data);
+  
+      if (response.data.length > 0) {
+
+        // Assuming the API returns an array of recipes
+        setRecipe(response.data[0]); // Assuming you want to display the first matching recipe
       } else {
         setRecipe(null);
         setError("No recipe found for the given search term.");
@@ -31,6 +32,7 @@ const RecipeSearch: React.FC = () => {
       setError("Failed to fetch recipe. Please try again later.");
     }
   };
+  
 
   return (
     <div>
