@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { RecipeInterface } from "../interfaces/RecipeInterface";
-
+import { UploadRecipeInterface } from "../interfaces/UploadInterface";
 
 // Funktion med useState som håller våra värden från recipe interface.
 // uppdaterar App varje gång recipeData uppdateras.
 const UploadRecipeComponent = () => {
   
-  const [recipeData, setRecipeData] = useState<RecipeInterface>({
-    _id: "",
+  const [recipeData, setRecipeData] = useState<UploadRecipeInterface>({
+    
     title: "",
     description: "",
     ratings: [], // (Assuming ratings is an array of numbers)
@@ -79,7 +78,7 @@ const UploadRecipeComponent = () => {
 
     try {
       // URL baserad på vår api, post med axios.
-      const response = await axios.post<RecipeInterface>(
+      const response = await axios.post<UploadRecipeInterface>(
         "https://sti-java-grupp4-s4yjx9.reky.se/recipes",
         recipeData
       );
@@ -88,7 +87,7 @@ const UploadRecipeComponent = () => {
    
       // Reset vårt formulär efter submitted
       setRecipeData({
-        _id: "",
+     
         title: "",
         description: "",
         ratings: [],
@@ -146,10 +145,6 @@ const UploadRecipeComponent = () => {
             onChange={handleInputUpdate}
           />
         </label>
-
-
-
-
 
         <label>
         Time in mins:
