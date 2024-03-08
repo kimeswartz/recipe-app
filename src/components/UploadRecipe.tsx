@@ -25,6 +25,12 @@ const UploadRecipeComponent = () => {
     ],
   });
 
+  // ==========> FRÅGOR <==========
+  /**
+   * Varför används inte denna funktion som i DisplayRecipes -> const [recipeData, setRecipe] = useState<RecipeInterface[]>([]);
+   */
+  // ==============================
+
   // Funktion till att spara användarens input från formulärsfältet.
   // name och value refererar till vårt interface API- fält. name: description, osv.
   // ...updateData möjliggör att uppdatera ett värde i receptet.
@@ -37,13 +43,10 @@ const UploadRecipeComponent = () => {
     }));
   };
 
-
-
   // Funktion till att uppdatera objektet ingredients som är en del av vår array.
   // Låter användaren lägga till värden kopplat till varje ingridients.
   // setRecipeData är vår useState funktion, som uppdaterar recipeData
   // ...prevData skapar en "ytlig" kopia av ingridients och ersätter med uppdaterade värden.
-
   const handleIngredientInput = (index: number, field: string, value: any) => {
   
     setRecipeData((prevData) => {
@@ -61,6 +64,9 @@ const UploadRecipeComponent = () => {
   };
 
 
+
+  
+// ======>> DEN HÄR SKULLE JAG VILJA FÅ FÖRKLARAD <<======
   // Funktion till att addera ingridiener till vårt objekt 'ingridients'
   const addIngredient = () => {
     setRecipeData((prevData) => ({
@@ -72,12 +78,14 @@ const UploadRecipeComponent = () => {
   };
 
 
+
+
   // Funktion som hanterar form data
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     try {
-      // URL baserad på vår api, post med axios.
+      // URL baserad på vår api (Grupp 4), "post" tar vi oss hjälp med axios.
       const response = await axios.post<RecipeInterface>(
         "https://sti-java-grupp4-s4yjx9.reky.se/recipes",
         recipeData
@@ -85,8 +93,9 @@ const UploadRecipeComponent = () => {
 
       console.log("POST request successful", response.data);
    
-      // Reset vårt formulär efter submitted
+      // Resetar/Återställer vårt formulär efter vi skickar in vår information --> "Submit" <--
       setRecipeData({
+        id: "", // JAG ÄNDRADE
         title: "",
         description: "",
         ratings: [],
@@ -103,12 +112,17 @@ const UploadRecipeComponent = () => {
           },
         ],
       });
-    } catch (error) {
+    } catch (error) { // Om det blir fel med att återställa formuläret efter "Submit "får vi ett felmeddelande i konsolen
       console.error("Error submitting data:", error);
     }
   };
 
   
+
+
+  /*
+  Allt som sker inom return paranteserna () är det användaren ser när vi kör applikationen
+  */
   return (
     <div>
       <h1>Upload Recipe</h1>
@@ -116,103 +130,48 @@ const UploadRecipeComponent = () => {
         {/* Add form fields for other properties in RecipeInterface */}
         <label>
           Title:
-          <input
-            type="text"
-            name="title"
-            value={recipeData.title}
-            onChange={handleInputUpdate}
-          />
+          <input type="text" name="title" value={recipeData.title} onChange={handleInputUpdate} />
         </label>
-
         <label>
         Description:
-          <input
-            type="text"
-            name="description"
-            value={recipeData.description}
-            onChange={handleInputUpdate}
-          />
+          <input type="text" name="description" value={recipeData.description} onChange={handleInputUpdate} />
         </label>
-
         <label>
         Time in mins:
-          <input
-            type="number"
-            name="timeInMins"
-            value={recipeData.timeInMins}
-            onChange={handleInputUpdate}
-          />
+          <input type="number" name="timeInMins" value={recipeData.timeInMins} onChange={handleInputUpdate} />
         </label>
-
         <label>
         Category:
-          <input
-            type="text"
-            name="categories"
-            value={recipeData.categories}
-            onChange={handleInputUpdate}
-          />
+          <input type="text" name="categories" value={recipeData.categories} onChange={handleInputUpdate} />
         </label>
-
         <label>
         Instructions:
-          <input
-            type="text"
-            name="instructions"
-            value={recipeData.instructions}
-            onChange={handleInputUpdate}
-          />
+          <input type="text" name="instructions" value={recipeData.instructions} onChange={handleInputUpdate} />
         </label>
 
-
         <br />
-        
+
         {/* Ingridienser */}
         <h2>Ingredients</h2>
         {recipeData.ingredients.map((ingredient, index) => (
           <div key={index}>
-          
             <label>
               Ingredient Name:
-              <input
-                type="text"
-                value={ingredient.name}
-                onChange={(e) =>
-                  handleIngredientInput(index, "name", e.target.value)
-                }
-              />
+              <input type="text" value={ingredient.name} onChange={(e) => handleIngredientInput(index, "name", e.target.value)} />
             </label>
-         
             <label>
               Amount:
-              <input
-                type="number"
-                value={ingredient.amount}
-                onChange={(e) =>
-                  handleIngredientInput(index, "amount", +e.target.value)
-                }
-              />
+              <input type="number" value={ingredient.amount} onChange={(e) => handleIngredientInput(index, "amount", +e.target.value)} />
             </label>
-         
             <label>
               Unit:
-              <input
-                type="text"
-                value={ingredient.unit}
-                onChange={(e) =>
-                  handleIngredientInput(index, "unit", e.target.value)
-                }
-              />
+              <input type="text" value={ingredient.unit} onChange={(e) => handleIngredientInput(index, "unit", e.target.value)} />
             </label>
-
           </div>
         ))}
 
-        <button type="button" onClick={addIngredient}>
-          Add Ingredient
-        </button>
+        <button type="button" onClick={addIngredient}>Add Ingredient</button>
         {/* Slutet på ingridienser */}
-        
         <button type="submit">Submit</button>
       </form>
     </div>

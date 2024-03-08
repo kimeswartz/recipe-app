@@ -13,3 +13,10 @@ export interface RecipeInterface {
       unit: string;
     }[];
 }
+
+
+/*
+FRÅGOR
+1. Varför används -> []
+2. Behöver vi inte id: string;
+*/
