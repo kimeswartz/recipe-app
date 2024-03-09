@@ -1,4 +1,5 @@
 export interface RecipeInterface {
+    _id: string;
     title: string;
     description: string;
     ratings: number[]; // Assuming ratings is an array of numbers

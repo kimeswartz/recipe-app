@@ -10,12 +10,11 @@ import { RecipeInterface } from "../interfaces/RecipeInterface";
   // ==========> Börja med din PATCH metod här <==========
   // KOLLA PÅ ANDREES PUT-METOD I KLASSENS TODO APPLIKATION
 
-  const hej = 23;
   const [recipeData, setRecipe] = useState<RecipeInterface[]>([]);
   const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
 
   const updateRecipe = async (recipeId: string) => {
-    const recipeUpdate = recipeData.find((recipe) => recipe.id === recipeId)
+    const recipeUpdate = recipeData.find((recipe) => recipe._id === recipeId)
 
     if(!recipeUpdate) {
       return
@@ -30,7 +29,7 @@ import { RecipeInterface } from "../interfaces/RecipeInterface";
     if(response.status === 200) {
       const updateRecipeAfterRequest = recipeData.map((existingRecipe) => {
 
-        if(existingRecipe.id !== recipeId) return existingRecipe
+        if(existingRecipe._id !== recipeId) return existingRecipe
 
         return {
           ...existingRecipe

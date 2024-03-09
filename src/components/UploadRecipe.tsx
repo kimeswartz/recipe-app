@@ -8,6 +8,7 @@ import { RecipeInterface } from "../interfaces/RecipeInterface";
 const UploadRecipeComponent = () => {
   
   const [recipeData, setRecipeData] = useState<RecipeInterface>({
+    _id: "",
     title: "",
     description: "",
     ratings: [], // (Assuming ratings is an array of numbers)
@@ -95,7 +96,7 @@ const UploadRecipeComponent = () => {
    
       // Resetar/Återställer vårt formulär efter vi skickar in vår information --> "Submit" <--
       setRecipeData({
-        id: "", // JAG ÄNDRADE
+        _id: "",
         title: "",
         description: "",
         ratings: [],
@@ -128,6 +129,7 @@ const UploadRecipeComponent = () => {
       <h1>Upload Recipe</h1>
       <form onSubmit={handleSubmit}>
         {/* Add form fields for other properties in RecipeInterface */}
+
         <label>
           Title:
           <input type="text" name="title" value={recipeData.title} onChange={handleInputUpdate} />
@@ -136,6 +138,20 @@ const UploadRecipeComponent = () => {
         Description:
           <input type="text" name="description" value={recipeData.description} onChange={handleInputUpdate} />
         </label>
+        <label>
+          Image URL:
+          <input
+            type="text"
+            name="imageUrl"
+            value={recipeData.imageUrl}
+            onChange={handleInputUpdate}
+          />
+        </label>
+
+
+
+
+
         <label>
         Time in mins:
           <input type="number" name="timeInMins" value={recipeData.timeInMins} onChange={handleInputUpdate} />
