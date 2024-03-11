@@ -2,16 +2,15 @@ import { useState } from "react";
 import axios from "axios";
 
 const DeleteRecipe = () => {
-  const [recipeId, setRecipeId] = useState();
+  const [recipeId, setRecipeId] = useState("");
 
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
         `https://sti-java-grupp4-s4yjx9.reky.se/recipes/${recipeId}`
       );
-      if (response.status === 200) {
+      if (response.status === 204) {
         console.log("Recipe deleted successfully");
-        alert("DELETED");
       }
     } catch (error) {
       console.error("Error deleting recipe:", error);
