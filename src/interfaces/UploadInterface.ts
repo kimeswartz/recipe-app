@@ -1,5 +1,4 @@
-export interface RecipeInterface {
-    _id: string;
+export interface UploadRecipeInterface {
     title: string;
     description: string;
     ratings: number[]; // Assuming ratings is an array of numbers
