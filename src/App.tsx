@@ -1,8 +1,10 @@
 import { useState } from "react";
 import DataDisplay from "./components/DisplayRecipes";
 import UploadRecipeComponent from "./components/UploadRecipe";
+<<<<<<< HEAD
+import RecipeSearch from "./components/SearchRecipe";
+=======
 import CategorySearch from "./components/CategorySearch";
-import ReviewComponent from './components/ReviewComponent';
 
 function App() {
   const [selectedRecipeId, setSelectedRecipeId] = useState<string | null>(null); 
@@ -21,11 +23,18 @@ function App() {
   return (
     <>
       <div className="card">
+<<<<<<< HEAD
+          <RecipeSearch/>
+          <UploadRecipeComponent />
+          <DataDisplay />
+        </div>
+=======
         <UploadRecipeComponent />
         <DataDisplay onSelectRecipe={onSelectRecipe} />
         <CategorySearch onSelectRecipe={onSelectRecipe} /> 
         {selectedRecipeId && <ReviewComponent recipeId={selectedRecipeId} />}
       </div>
+
     </>
   );
 }
