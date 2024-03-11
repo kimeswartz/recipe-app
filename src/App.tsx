@@ -1,9 +1,7 @@
 import { useState } from "react";
 import DataDisplay from "./components/DisplayRecipes";
 import UploadRecipeComponent from "./components/UploadRecipe";
-<<<<<<< HEAD
 import RecipeSearch from "./components/SearchRecipe";
-=======
 import CategorySearch from "./components/CategorySearch";
 
 function App() {
@@ -23,18 +21,12 @@ function App() {
   return (
     <>
       <div className="card">
-<<<<<<< HEAD
-          <RecipeSearch/>
-          <UploadRecipeComponent />
-          <DataDisplay />
-        </div>
-=======
+        <RecipeSearch/>
         <UploadRecipeComponent />
         <DataDisplay onSelectRecipe={onSelectRecipe} />
         <CategorySearch onSelectRecipe={onSelectRecipe} /> 
         {selectedRecipeId && <ReviewComponent recipeId={selectedRecipeId} />}
       </div>
-
     </>
   );
 }
