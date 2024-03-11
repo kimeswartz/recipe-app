@@ -18,3 +18,38 @@
   margin-right: 10px;
 }
 
+.recipe-card{
+  display: flex;
+  position: relative;
+  height: 200px;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.hidden-title{
+  display: flex;
+  position: absolute;
+  visibility: hidden;
+}
+
+.display-recipe-img{
+  height: 200px;
+  width: 200px;
+}
+
+.all-recipe{
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  width: 1080px;
+}
+
+.recipe-card:hover .display-recipe-img{
+  filter: opacity(50%);
+}
+
+.recipe-card:hover .hidden-title{
+  visibility: visible;
+}
