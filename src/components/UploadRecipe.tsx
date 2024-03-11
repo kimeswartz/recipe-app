@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { RecipeInterface } from "../interfaces/RecipeInterface";
-
+import { UploadRecipeInterface } from "../interfaces/UploadInterface";
 
 // Funktion med useState som håller våra värden från recipe interface.
 // uppdaterar App varje gång recipeData uppdateras.
 const UploadRecipeComponent = () => {
   
-  const [recipeData, setRecipeData] = useState<RecipeInterface>({
+  const [recipeData, setRecipeData] = useState<UploadRecipeInterface>({
+    
     title: "",
     description: "",
     ratings: [], // (Assuming ratings is an array of numbers)
@@ -78,7 +78,7 @@ const UploadRecipeComponent = () => {
 
     try {
       // URL baserad på vår api, post med axios.
-      const response = await axios.post<RecipeInterface>(
+      const response = await axios.post<UploadRecipeInterface>(
         "https://sti-java-grupp4-s4yjx9.reky.se/recipes",
         recipeData
       );
@@ -87,6 +87,7 @@ const UploadRecipeComponent = () => {
    
       // Reset vårt formulär efter submitted
       setRecipeData({
+     
         title: "",
         description: "",
         ratings: [],
@@ -114,6 +115,7 @@ const UploadRecipeComponent = () => {
       <h1>Upload Recipe</h1>
       <form onSubmit={handleSubmit}>
         {/* Add form fields for other properties in RecipeInterface */}
+
         <label>
           Title:
           <input
@@ -130,6 +132,16 @@ const UploadRecipeComponent = () => {
             type="text"
             name="description"
             value={recipeData.description}
+            onChange={handleInputUpdate}
+          />
+        </label>
+
+        <label>
+          Image URL:
+          <input
+            type="text"
+            name="imageUrl"
+            value={recipeData.imageUrl}
             onChange={handleInputUpdate}
           />
         </label>
@@ -163,7 +175,6 @@ const UploadRecipeComponent = () => {
             onChange={handleInputUpdate}
           />
         </label>
-
 
         <br />
         
