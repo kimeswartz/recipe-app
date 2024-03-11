@@ -6,7 +6,7 @@ import { RecipeInterface } from "../interfaces/RecipeInterface";
 // Funktion med useState som håller våra värden från recipe interface.
 // uppdaterar App varje gång recipeData uppdateras.
 const UploadRecipeComponent = () => {
-  
+
   const [recipeData, setRecipeData] = useState<RecipeInterface>({
     _id: "",
     title: "",
@@ -16,7 +16,7 @@ const UploadRecipeComponent = () => {
     timeInMins: 0,
     categories: [],
     instructions: [],
-  
+
     ingredients: [
       {
         name: "",
@@ -34,7 +34,7 @@ const UploadRecipeComponent = () => {
     const { name, value } = event.target;
 
     setRecipeData((updateData) => ({
-      ...updateData,[name]: value,
+      ...updateData, [name]: value,
     }));
   };
 
@@ -46,7 +46,7 @@ const UploadRecipeComponent = () => {
   // ...prevData skapar en "ytlig" kopia av ingridients och ersätter med uppdaterade värden.
 
   const handleIngredientInput = (index: number, field: string, value: any) => {
-  
+
     setRecipeData((prevData) => {
       const updatedIngredients = [...prevData.ingredients];
       updatedIngredients[index] = {
@@ -85,7 +85,7 @@ const UploadRecipeComponent = () => {
       );
 
       console.log("POST request successful", response.data);
-   
+
       // Reset vårt formulär efter submitted
       setRecipeData({
         _id: "",
@@ -96,7 +96,7 @@ const UploadRecipeComponent = () => {
         timeInMins: 0,
         categories: [],
         instructions: [],
-  
+
         ingredients: [
           {
             name: "",
@@ -110,7 +110,7 @@ const UploadRecipeComponent = () => {
     }
   };
 
-  
+
   return (
     <div>
       <h1>Upload Recipe</h1>
@@ -128,7 +128,7 @@ const UploadRecipeComponent = () => {
         </label>
 
         <label>
-        Description:
+          Description:
           <input
             type="text"
             name="description"
@@ -152,7 +152,7 @@ const UploadRecipeComponent = () => {
 
 
         <label>
-        Time in mins:
+          Time in mins:
           <input
             type="number"
             name="timeInMins"
@@ -162,7 +162,7 @@ const UploadRecipeComponent = () => {
         </label>
 
         <label>
-        Category:
+          Category:
           <input
             type="text"
             name="categories"
@@ -172,7 +172,7 @@ const UploadRecipeComponent = () => {
         </label>
 
         <label>
-        Instructions:
+          Instructions:
           <input
             type="text"
             name="instructions"
@@ -182,12 +182,12 @@ const UploadRecipeComponent = () => {
         </label>
 
         <br />
-        
+
         {/* Ingridienser */}
         <h2>Ingredients</h2>
         {recipeData.ingredients.map((ingredient, index) => (
           <div key={index}>
-          
+
             <label>
               Ingredient Name:
               <input
@@ -198,7 +198,7 @@ const UploadRecipeComponent = () => {
                 }
               />
             </label>
-         
+
             <label>
               Amount:
               <input
@@ -209,7 +209,7 @@ const UploadRecipeComponent = () => {
                 }
               />
             </label>
-         
+
             <label>
               Unit:
               <input
@@ -228,7 +228,7 @@ const UploadRecipeComponent = () => {
           Add Ingredient
         </button>
         {/* Slutet på ingridienser */}
-        
+
         <button type="submit">Submit</button>
       </form>
     </div>
