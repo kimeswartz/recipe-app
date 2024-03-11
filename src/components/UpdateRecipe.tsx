@@ -10,6 +10,7 @@ import { RecipeInterface } from "../interfaces/RecipeInterface";
   const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
 
 
+  // Hämtar alla recept i vår databas
   const getAllRecipes = async () => {
     try {
       const response = await axios.get(`${URL}/recipes`)
@@ -25,7 +26,7 @@ import { RecipeInterface } from "../interfaces/RecipeInterface";
 
 
 
-  // Den här funktionen vill jag ska uppdatera den valda receptet
+  // {ATT GÖRA} => Den här funktionen vill jag ska uppdatera den valda receptet
   const findRecipesById = async () => {
     try {
       const response = await axios.get(`${URL}/recipes/{recipeId}`)
