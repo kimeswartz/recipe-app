@@ -23,6 +23,7 @@
   position: relative;
   height: 200px;
   width: 200px;
+  margin: 10px 20px 10px 20px;
   justify-content: center;
   align-items: center;
   cursor: pointer;
@@ -41,9 +42,9 @@
 
 .all-recipe{
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   flex-wrap: wrap;
-  width: 1080px;
+  margin-top: 50px;
 }
 
 .recipe-card:hover .display-recipe-img{
