@@ -4,7 +4,7 @@ import { UploadRecipeInterface } from "../interfaces/UploadInterface";
 
 // Funktion med useState som håller våra värden från recipe interface.
 // uppdaterar App varje gång recipeData uppdateras.
-const UploadRecipeComponent = () => {
+const UploadRecipe = () => {
   
   const [recipeData, setRecipeData] = useState<UploadRecipeInterface>({
     
@@ -230,4 +230,4 @@ const UploadRecipeComponent = () => {
   );
 };
 
-export default UploadRecipeComponent;
+export default UploadRecipe;
