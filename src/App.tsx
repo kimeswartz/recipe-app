@@ -1,25 +1,24 @@
-
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import DisplayRecipes from "./components/DisplayRecipes";
-import DisplayOneRecipe from "./components/DisplayOneRecipe";
-import RecipePageContent from "./pages/recipePage";
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./pages/home";
+import "./App.css";
+import DataDisplay from "./components/DisplayRecipes";
+import UploadRecipeComponent from "./components/UploadRecipe";
+import RecipeSearch from "./components/SearchRecipe";
+import CategorySearch from "./components/CategorySearch";
+import DeleteRecipe from "./components/DeleteRecipe";
+import ReviewComponent from "./components/ReviewComponent";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/" element={<DisplayRecipes />} />
-        <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
-        <Route path="/recipePage" element={<RecipePageContent />} />
-      </Routes>
-    </Router>
+    <>
+      <div className="card">
+        <RecipeSearch />
+        <UploadRecipeComponent />
+        <DataDisplay />
+        <CategorySearch />
+        <DeleteRecipe />
+        <ReviewComponent /> 
+      </div>
+    </>
   );
 }
 
 export default App;
-
-
