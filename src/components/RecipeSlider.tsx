@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Slider from 'react-slick';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import Slider from 'react-slick'; 
+import 'slick-carousel/slick/slick.css'; 
+import 'slick-carousel/slick/slick-theme.css'; 
+import { PiArrowSquareLeftFill,PiArrowSquareRightFill } from "react-icons/pi";
 import { SearchInterface } from '../interfaces/SearchInterface';
+
 
 const RecipeSlider: React.FC = () => {
   const [randomRecipes, setRandomRecipes] = useState<SearchInterface[]>([]);
@@ -23,6 +25,25 @@ const RecipeSlider: React.FC = () => {
     }
   };
 
+
+  const CustomPrevArrow = (props: any) => {
+    const { onClick } = props;
+    return (
+      <div className="custom-prev-arrow" onClick={onClick}>
+        <PiArrowSquareLeftFill size={50}/> {/* Använd egna ikonen för att representera pilen till vänster */}
+      </div>
+    );
+  };
+  
+  const CustomNextArrow = (props: any) => {
+    const { onClick } = props;
+    return (
+      <div className="custom-next-arrow" onClick={onClick}>
+        <PiArrowSquareRightFill size={50}/> {/* Använd egna ikonen för att representera pilen till höger */}
+      </div>
+    );
+  };
+
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -31,6 +52,9 @@ const RecipeSlider: React.FC = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 1500,
+    prevArrow: <CustomPrevArrow />, // Använd anpassade komponenter för pilarna
+    nextArrow: <CustomNextArrow />
+    
   };
 
   return (
@@ -38,15 +62,16 @@ const RecipeSlider: React.FC = () => {
       <h2>Random Recipes</h2>
       {randomRecipes.length > 0 && (
         <Slider {...sliderSettings}>
-          {randomRecipes.map((recipe) => (
-            <div key={recipe.id}>
+          {randomRecipes.map((recipe) => 
+            <div key={recipe.id} className='image-slide'>
               <img
                 src={recipe.imageUrl}
                 alt={recipe.title}
                 title={recipe.title} 
               />
+              <div className='cover'>{recipe.title}</div>
             </div>
-          ))}
+          )}
         </Slider>
       )}
     </div>

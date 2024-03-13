@@ -18,3 +18,48 @@
   margin-right: 10px;
 }
 
+.image-slide{
+  position: relative;
+  overflow: hidden;
+}
+
+.cover{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  font-size: 30px;
+  font-style: oblique;
+  cursor: pointer;
+}
+
+.image-slide:hover .cover {
+  opacity: 1;
+
+}
+
+
+.custom-prev-arrow, .custom-next-arrow {
+  position: absolute; 
+  top: 50%; 
+  transform: translateY(-50%);  
+  cursor: pointer; 
+  color: grey;
+}
+
+.custom-prev-arrow {
+  left: -50px; 
+}
+
+.custom-next-arrow {
+  right: -50px; 
+}
