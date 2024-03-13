@@ -279,7 +279,7 @@ const UploadRecipe = () => {
         </button>
         {/* Slutet på ingridienser */}
 
-        <button type="submit">Submit</button>
+        <button type="submit">Submit recipe to database</button>
       </form>
     </div>
   );
