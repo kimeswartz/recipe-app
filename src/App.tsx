@@ -4,6 +4,7 @@ import UploadRecipeComponent from "./components/UploadRecipe";
 import RecipeSearch from "./components/SearchRecipe";
 import CategorySearch from "./components/CategorySearch";
 import DeleteRecipe from "./components/DeleteRecipe";
+import RecipeSlider from "./components/RecipeSlider";
 
 function App() {
 
@@ -11,6 +12,7 @@ function App() {
     <>
       <div className="card">
         <RecipeSearch/>
+        <RecipeSlider/>
         <UploadRecipeComponent />
         <DataDisplay />
         <CategorySearch />

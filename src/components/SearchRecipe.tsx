@@ -43,7 +43,7 @@ const  RecipeSearch =()=> {
     );
     setFilteredRecipes(filtered);
   };
-  
+
   return (
     <div className='search-div'>
         <form className='search-form' onSubmit={handleSearch}>
