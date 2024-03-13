@@ -66,7 +66,6 @@ const UploadRecipeComponent = () => {
 
 
   
-// ======>> DEN HÄR SKULLE JAG VILJA FÅ FÖRKLARAD <<======
   // Funktion till att addera ingridiener till vårt objekt 'ingridients'
   const addIngredient = () => {
     setRecipeData((prevData) => ({
@@ -128,14 +127,24 @@ const UploadRecipeComponent = () => {
       <h1>Upload Recipe</h1>
       <form onSubmit={handleSubmit}>
         {/* Add form fields for other properties in RecipeInterface */}
-
+    
         <label>
           Title:
-          <input type="text" name="title" value={recipeData.title} onChange={handleInputUpdate} />
+          <input 
+          type="text" 
+          name="title" 
+          value={recipeData.title} 
+          onChange={handleInputUpdate} 
+          />
         </label>
         <label>
         Description:
-          <input type="text" name="description" value={recipeData.description} onChange={handleInputUpdate} />
+          <input 
+          type="text" 
+          name="description" 
+          value={recipeData.description} 
+          onChange={handleInputUpdate} 
+          />
         </label>
         <label>
           Image URL:
@@ -146,18 +155,32 @@ const UploadRecipeComponent = () => {
             onChange={handleInputUpdate}
           />
         </label>
-
         <label>
         Time in mins:
-          <input type="number" name="timeInMins" value={recipeData.timeInMins} onChange={handleInputUpdate} />
+          <input 
+          type="number" 
+          name="timeInMins" 
+          value={recipeData.timeInMins} 
+          onChange={handleInputUpdate} 
+          />
         </label>
         <label>
         Category:
-          <input type="text" name="categories" value={recipeData.categories} onChange={handleInputUpdate} />
+          <input 
+          type="text" 
+          name="categories" 
+          value={recipeData.categories} 
+          onChange={handleInputUpdate} 
+          />
         </label>
         <label>
         Instructions:
-          <input type="text" name="instructions" value={recipeData.instructions} onChange={handleInputUpdate} />
+          <input 
+          type="text" 
+          name="instructions" 
+          value={recipeData.instructions} 
+          onChange={handleInputUpdate} 
+          />
         </label>
 
         <br />
