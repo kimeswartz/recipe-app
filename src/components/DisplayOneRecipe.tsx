@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
+
 import "../styling/styles.css";
 
 const DisplayOneRecipe: React.FC = () => {
@@ -27,41 +30,84 @@ const DisplayOneRecipe: React.FC = () => {
   if (!recipe) return <div>Loading...</div>;
 
   return (
-
-
     <div className="recipe-container">
       <div className="header-container">
+        <div className="text-container">
+          <h1>{recipe.title}</h1>
+          <p>{recipe.description}</p>
 
-<div className="text-container">
-<h1>{recipe.title}</h1>
-        <p>{recipe.description}</p>
-        <p>Tid: {recipe.timeInMins} minutes</p>
+          <div className="time-review-section">
+            <div className="info-container">
+              <div className="info-tag">
+                <p>
+                  <FontAwesomeIcon icon={faClock} className="clock-icon" />{" "}
+                  {recipe.timeInMins} Minuter
+                </p>
+              </div>
+            </div>
+
+            <div className="info-container">
+              <div className="info-tag">
+                <p>
+                  <FontAwesomeIcon icon={faStar} className="star-icon" /> 3/5
+                  Betyg
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="img-container">
+          <img src={recipe.imageUrl} alt={recipe.title} />
+        </div>
+      </div>
+
+
+
+
+<div className="ingredients-container">
+
+
+
+
+
+<div className="upper">
+<h2>Du behöver:</h2>
 </div>
 
-<div className="img-container">
-<img src={recipe.imageUrl} alt={recipe.title} />
-</div>
+<div className="lower">
+
+
+
+
+<div className="centered-tags">
+        <ul className="list-objects">
+          {recipe.ingredients.map((ingredient, index) => (
+            <li key={index} className="ingredient-name">
+              {ingredient.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+
+      </div>
+     
+  
+        
+        </div>
 
  
 
-      </div>
 
-      <div className="tag-section">
 
-      <h2>Du behöver</h2>
-      <ul className="list-objects">
-        {recipe.ingredients.map((ingredient, index) => (
 
-          <li key={index} className="ingredient-name">
-            {ingredient.name}
-          </li>
+      <div className="instructions-section">
 
-        ))}
-      </ul>
+    <div className="ingredients-wrapper">
 
-      </div>
 
-            <h2>Ingridienser</h2>
+      <h2>Ingridienser</h2>
       <ul>
         {recipe.ingredients.map((ingredient, index) => (
           <li key={index}>
@@ -70,21 +116,23 @@ const DisplayOneRecipe: React.FC = () => {
         ))}
       </ul>
 
+      </div>
+
+      <div className="instructions-wrapper">
+
       <h2>Gör såhär</h2>
       <ol>
         {recipe.instructions.map((instruction, index) => (
           <li key={index}>{instruction}</li>
         ))}
       </ol>
-      <h2>Kategori</h2>
-      <ul>
-        {recipe.categories.map((category, index) => (
-          <li key={index}>{category}</li>
-        ))}
-      </ul>
+
+      </div>
+
+      </div>
+
+
     </div>
-
-
   );
 };
 
