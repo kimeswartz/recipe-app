@@ -196,16 +196,6 @@ const UploadRecipe = () => {
           />
         </label>
 
-        <label>
-          Category:
-          <input
-            type="text"
-            name="categories"
-            value={recipeData.categories}
-            onChange={handleInputUpdate}
-          />
-        </label>
-
         <br />
 
         
