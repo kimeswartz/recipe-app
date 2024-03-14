@@ -1,10 +1,27 @@
 import { RecipeInterface } from "../interfaces/RecipeInterface";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
-interface DisplayOneRecipeProps {
-    recipe: RecipeInterface;
-}
+const DisplayOneRecipe: React.FC = () => {
 
-const DisplayOneRecipe = ({ recipe }: DisplayOneRecipeProps) => {
+    const { recipeId } = useParams();
+    const [recipe, setRecipe] = useState<RecipeInterface | null>(null);
+
+    useEffect(() => {
+        const fetchRecipe = async () => {
+        try {
+            const response = await fetch(
+            `https://sti-java-grupp4-s4yjx9.reky.se/recipes/${recipeId}`
+            );
+            const data: RecipeInterface = await response.json();
+            setRecipe(data);
+        } catch (error) {
+            console.error("Error fetching recipe:", error);
+        }
+        };
+
+    fetchRecipe();
+  }, [recipeId]);
 
     if (!recipe) return <div>Loading...</div>;
 
