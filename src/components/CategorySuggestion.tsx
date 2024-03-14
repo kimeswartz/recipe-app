@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { categoryInterface } from '../interfaces/CategoryInterface';
 import { RecipeInterface } from '../interfaces/RecipeInterface';
 
