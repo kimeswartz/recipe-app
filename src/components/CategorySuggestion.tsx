@@ -1,66 +1,62 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { categoryInterface } from '../interfaces/CategoryInterface';
-import { RecipeInterface } from '../interfaces/RecipeInterface';
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { categoryInterface } from "../interfaces/CategoryInterface";
 
 const CategorySuggestion = () => {
-    const URL = 'https://sti-java-grupp4-s4yjx9.reky.se';
-    const [categoryList, setCategoryList] = useState<categoryInterface[]>([]);
-    const [recipeList, setRecipeList] = useState<RecipeInterface[]>([]);
-    const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
+  const [categoryList, setCategoryList] = useState<categoryInterface[]>([]);
+  const navigate = useNavigate();
 
-    //Runs once to grab all categories
-    useEffect(() => {
-        getAllCategories();
-    }, []);
+  // Runs once to grab all categories
+  useEffect(() => {
+    getAllCategories();
+  }, []);
 
-    const getAllCategories = async () => {
-        try {
-            const response = await axios.get(`${URL}/categories`);
+  // Gets all the categories from the api
+  const getAllCategories = async () => {
+    try {
+      const response = await axios.get(`${URL}/categories`);
 
-            if (response.status === 200) {
-                setCategoryList(response.data);
-            }
-        } catch (error) {
-            console.error('error fetching categories: ', error);
-            setCategoryList([]);
-        }
-    };
+      if (response.status === 200) {
+        setCategoryList(response.data);
+      }
+    } catch (error) {
+      console.error("error fetching categories: ", error);
+      setCategoryList([]);
+    }
+  };
 
-    const handleCategoryClick = async (categoryName: string) => {
-        setSelectedCategory(categoryName);
-        await findRecipesByCategory(categoryName);
-    };
+  // When clicked this function navigates to a different page with the specific category clicked
+  const handleCategoryClick = async (categoryName: string) => {
+    navigate(`/category/${categoryName}`);
+  };
 
-    const findRecipesByCategory = async (categoryName: string) => {
-        try {
-            const response = await axios.get(`${URL}/categories/${categoryName}/recipes`);
-            if (response.status === 200) {
-                setRecipeList(response.data);
-            }
-        } catch (error) {
-            console.error('Error fetching category:', error);
-            setRecipeList([]);
-        }
-    };
-
-    return (
-        <div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))', gap: '10px' }}>
-                {categoryList.map((category, index) => (
-                    <div key={index} onClick={() => handleCategoryClick(category.name)} style={{ backgroundColor: 'lightblue', padding: '10px', border: '1px solid gray', borderRadius: '5px', cursor: 'pointer' }}>
-                        {category.name}
-                    </div>
-                ))}
-            </div>
-            <h3>Recipes from {selectedCategory}</h3>
-            <ul>
-                {recipeList.map((recipe, index) => (
-                    <li key={index}>{recipe.title}</li>
-                ))}
-            </ul>
+  return (
+    <div
+      style={{
+        display: "grid",
+        gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
+        gap: "10px",
+      }}
+    >
+      {categoryList.map((category, index) => (
+        <div
+          key={index}
+          onClick={() => handleCategoryClick(category.name)}
+          style={{
+            backgroundColor: "lightblue",
+            padding: "10px",
+            border: "1px solid gray",
+            borderRadius: "5px",
+            cursor: "pointer",
+          }}
+        >
+          {category.name}
         </div>
-    );
+      ))}
+    </div>
+  );
 };
 
 export default CategorySuggestion;
