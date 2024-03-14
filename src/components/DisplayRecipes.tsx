@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
 
 const DisplayRecipes = () => {
+
+  // Uppdaterar listan med recept [recipeData] med hjälp av useState-hook, med funktionen setRecipe.
+  // Denna hook representerar en lista med objekt (innehållande recept), som matchar vår interface (Som i sin tur matchar vårt API).
   const [recipeData, setRecipe] = useState<RecipeInterface[]>([]);
 
   useEffect(() => {

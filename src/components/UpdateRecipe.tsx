@@ -36,9 +36,6 @@ const UploadRecipe = () => {
     }));
   };
 
-
-
-
   // Funktion till att uppdatera objektet ingredients som är en del av vår array.
   // Låter användaren lägga till värden kopplat till varje ingridients.
   // setRecipeData är vår useState funktion, som uppdaterar recipeData
@@ -123,16 +120,14 @@ const UploadRecipe = () => {
     }
   };
 
-
   // Present för våra kategorier
   const presetCategories = ["Breakfast", "Party", "Dinner", "Vegetarian"];
-
 
   // Funktion till att hantera inmatning av kategories.
   const handleCategoryChange = (selectedCategory: string) => {
     setRecipeData((prevData) => {
       let updatedCategories;
-  
+
       // Om kategorin redan är vald, ta bort den, annars lägg till den
       if (prevData.categories.includes(selectedCategory)) {
         updatedCategories = prevData.categories.filter(
@@ -141,7 +136,7 @@ const UploadRecipe = () => {
       } else {
         updatedCategories = [...prevData.categories, selectedCategory];
       }
-  
+
       return {
         ...prevData,
         categories: updatedCategories,
@@ -197,22 +192,19 @@ const UploadRecipe = () => {
 
         <br />
 
-        
-
         {/*Category*/}
-      <h2>Välj kategorier</h2>
-      {presetCategories.map((category, index) => (
-        <label key={index}>
-          <input
-          type="checkbox"
-          value={category}
-          checked={recipeData.categories.includes(category)} // Kontrollerar om kategorin redan är vald
-          onChange={(e) => handleCategoryChange(e.target.value)} //Hanterar checkbox- ändringen
-          />
-          {category}
-        </label>
-      ))}
-
+        <h2>Välj kategorier</h2>
+        {presetCategories.map((category, index) => (
+          <label key={index}>
+            <input
+              type="checkbox"
+              value={category}
+              checked={recipeData.categories.includes(category)} // Kontrollerar om kategorin redan är vald
+              onChange={(e) => handleCategoryChange(e.target.value)} //Hanterar checkbox- ändringen
+            />
+            {category}
+          </label>
+        ))}
 
         {/*Intructions*/}
         <h2>Instructions</h2>

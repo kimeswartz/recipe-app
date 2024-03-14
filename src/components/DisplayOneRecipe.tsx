@@ -5,7 +5,7 @@ import { RecipeInterface } from "../interfaces/RecipeInterface";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
 
-import "../styling/styles.css";
+import "../styling/styleRecipePage.css";
 
 const DisplayOneRecipe: React.FC = () => {
   const { recipeId } = useParams();
@@ -27,7 +27,7 @@ const DisplayOneRecipe: React.FC = () => {
     fetchRecipe();
   }, [recipeId]);
 
-  if (!recipe) return <div>Loading...</div>;
+  if (!recipe) return <div>Hämtar recept...</div>;
 
   return (
     <div className="recipe-container">
@@ -62,76 +62,49 @@ const DisplayOneRecipe: React.FC = () => {
         </div>
       </div>
 
-
-
-
-<div className="ingredients-container">
-
-
-
-
-
-<div className="upper">
-<h2>Du behöver:</h2>
-</div>
-
-<div className="lower">
-
-
-
-
-<div className="centered-tags">
-        <ul className="list-objects">
-          {recipe.ingredients.map((ingredient, index) => (
-            <li key={index} className="ingredient-name">
-              {ingredient.name}
-            </li>
-          ))}
-        </ul>
-      </div>
-
-
-      </div>
-     
-  
-        
+      <div className="ingredients-container">
+        <div className="upper">
+          <h2>Du behöver...</h2>
         </div>
 
- 
-
-
-
+        <div className="lower">
+          <div className="centered-tags">
+            <ul className="list-objects">
+              {recipe.ingredients.map((ingredient, index) => (
+                <li key={index} className="ingredient-name">
+                  {ingredient.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
 
       <div className="instructions-section">
+        <div className="ingredients-wrapper">
+          <div className="centered-mobile">
+            <h2>Ingridienser</h2>
+            <ul>
+              {recipe.ingredients.map((ingredient, index) => (
+                <li key={index}>
+                  {ingredient.amount} {ingredient.unit} {ingredient.name}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
 
-    <div className="ingredients-wrapper">
-
-
-      <h2>Ingridienser</h2>
-      <ul>
-        {recipe.ingredients.map((ingredient, index) => (
-          <li key={index}>
-            {ingredient.amount} {ingredient.unit} {ingredient.name}
-          </li>
-        ))}
-      </ul>
-
+        <div className="instructions-wrapper">
+          <div className="centered-mobile">
+            <h2>Gör såhär</h2>
+            <ol>
+              {recipe.instructions.map((instruction, index) => (
+                <li key= {index} className="to-do-step"> {instruction} </li>
+              ))}
+            </ol>
+          </div>
+        </div>
       </div>
-
-      <div className="instructions-wrapper">
-
-      <h2>Gör såhär</h2>
-      <ol>
-        {recipe.instructions.map((instruction, index) => (
-          <li key={index}>{instruction}</li>
-        ))}
-      </ol>
-
-      </div>
-
-      </div>
-
-
     </div>
   );
 };
