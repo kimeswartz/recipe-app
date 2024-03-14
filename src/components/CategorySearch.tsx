@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { categoryInterface } from "../interfaces/CategoryInterface";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
 
+import "../styling/category_search_style.css"
+
 const CategorySearch = () => {
 
   const URL = 'https://sti-java-grupp4-s4yjx9.reky.se'
