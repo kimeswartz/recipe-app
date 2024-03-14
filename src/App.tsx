@@ -5,13 +5,6 @@ import { RecipeInterface } from "./interfaces/RecipeInterface";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import DisplayOneRecipe from "./components/DisplayOneRecipe";
-import DataDisplay from "./components/DisplayRecipes";
-import UploadRecipeComponent from "./components/UploadRecipe";
-import RecipeSearch from "./components/SearchRecipe";
-import CategorySearch from "./components/CategorySearch";
-import UpdateRecipe from "./components/UpdateRecipe";
-import DeleteRecipe from "./components/DeleteRecipe";
-import ReviewComponent from "./components/ReviewComponent";
 
 function App() {
 
@@ -40,7 +33,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          {recipeData.map((recipe) => (<Route path={`/Recipes/:recipeName/:recipe_Id`} element={<DisplayOneRecipe recipe={recipe} />} key={recipe._id} />))}
+          {recipeData.map((recipe) => (<Route path={`/Recipes/${recipe._id}-${encodeURIComponent(recipe.title)}`} element={<DisplayOneRecipe recipe={recipe} />} key={recipe._id} />))}
         </Routes>
       </Router>
     </>
