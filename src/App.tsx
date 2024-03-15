@@ -1,22 +1,20 @@
+import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-import DisplayRecipes from "./components/DisplayRecipes";
+import Home from "./pages/Homepage";
 import DisplayOneRecipe from "./components/DisplayOneRecipe";
-import RecipePageContent from "./pages/recipePage";
-import Navbar from "./components/Navbar/Navbar";
-import Home from "./pages/home";
+import OldHomepage from "./pages/OldHomepage";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home/>} />
-        <Route path="/" element={<DisplayRecipes />} />
-        <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
-        <Route path="/recipePage" element={<RecipePageContent />} />
-      </Routes>
-    </Router>
+    <>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/testSite" element={<OldHomepage />}/>
+          <Route path="/Recipe/:recipeId" element={<DisplayOneRecipe />}/>
+        </Routes>
+      </Router>
+    </>
   );
 }
 

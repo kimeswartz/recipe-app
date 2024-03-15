@@ -4,8 +4,10 @@ import { UploadRecipeInterface } from "../interfaces/UploadInterface";
 
 // Funktion med useState som håller våra värden från recipe interface.
 // uppdaterar App varje gång recipeData uppdateras.
-const UploadRecipe = () => {
+const UploadRecipeComponent = () => {
+
   const [recipeData, setRecipeData] = useState<UploadRecipeInterface>({
+
     title: "",
     description: "",
     ratings: [], // (Assuming ratings is an array of numbers)
@@ -31,8 +33,7 @@ const UploadRecipe = () => {
     const { name, value } = event.target;
 
     setRecipeData((updateData) => ({
-      ...updateData,
-      [name]: value,
+      ...updateData, [name]: value,
     }));
   };
 
@@ -44,6 +45,7 @@ const UploadRecipe = () => {
   // setRecipeData är vår useState funktion, som uppdaterar recipeData
   // ...prevData skapar en "ytlig" kopia av ingridients och ersätter med uppdaterade värden.
   const handleIngredientInput = (index: number, field: string, value: any) => {
+
     setRecipeData((prevData) => {
       const updatedIngredients = [...prevData.ingredients];
       updatedIngredients[index] = {
@@ -102,6 +104,7 @@ const UploadRecipe = () => {
 
       // Reset vårt formulär efter submitted
       setRecipeData({
+
         title: "",
         description: "",
         ratings: [],
