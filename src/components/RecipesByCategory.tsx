@@ -33,19 +33,25 @@ const RecipesByCategory = () => {
     navigate(`/Recipe/${recipeId}`);
   };
 
+  // RecipesByCategory component JSX
+
   return (
-    <div className="recipe-container">
+    <div className="recipeContainer">
       <button onClick={() => navigate("/")}>Tillbaka</button>
       <h1>Recipes in category: {categoryName}</h1>
-      <div className="recipe-list">
+      <div className="recipeList">
         {recipeList.map((recipe, index) => (
-          <div key={index} className="recipe-item" onClick={() => handleRecipeClick(recipe._id)}>
-            <div className="text-container">
+          <div
+            key={index}
+            className="recipeItem"
+            onClick={() => handleRecipeClick(recipe._id)}
+          >
+            <div className="imgContainer">
+              <img src={recipe.imageUrl} alt={recipe.title} />
+            </div>
+            <div className="textContainer">
               <h2>{recipe.title}</h2>
               <p>{recipe.description}</p>
-            </div>
-            <div className="img-container">
-              <img src={recipe.imageUrl} alt={recipe.title} />
             </div>
           </div>
         ))}

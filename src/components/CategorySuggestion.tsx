@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { categoryInterface } from "../interfaces/CategoryInterface";
+import "../styling/styleCategorySuggestion.css";
 
 const CategorySuggestion = () => {
   const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
@@ -33,24 +34,12 @@ const CategorySuggestion = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "grid",
-        gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))",
-        gap: "10px",
-      }}
-    >
+    <div className="category-suggestion-container">
       {categoryList.map((category, index) => (
         <div
           key={index}
           onClick={() => handleCategoryClick(category.name)}
-          style={{
-            backgroundColor: "lightblue",
-            padding: "10px",
-            border: "1px solid gray",
-            borderRadius: "5px",
-            cursor: "pointer",
-          }}
+          className="category"
         >
           {category.name}
         </div>
