@@ -4,17 +4,3 @@
   padding: 2rem;
   text-align: center;
 }
-
-.flex-container{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-#category{
-  height: 4vh;
-  width: 8vw;
-  margin-left: 10px;
-  margin-right: 10px;
-}
-
