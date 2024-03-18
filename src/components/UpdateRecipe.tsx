@@ -1,6 +1,16 @@
 import axios from "axios";
 import { useState } from "react";
-import { RecipeInterface } from "../interfaces/RecipeInterface";
+
+/**
+ * =====> TODO <=====
+ * - MAN SKA KUNNA UPPDATERA INGREDIENSERNA I RECEPTET, FÖR TILLFÄLLET KAN MAN BARA UPPDATERA 
+ *   SJÄLVA RECEPTET.
+ * - NÄR MAN LÄMNAR ETT FÄLT TOMT I OCH MED UPPDATERING SÅ SKA DE TOMMA KOMPONENTERNA INTE NOLLSTÄLLAS,
+ *   DE SKA FÖRBLI DETSAMMA.
+ * - INTRUCTIONS, MÅSTE FIXA OCH VARA I SYMBIOS MED KIMS KOD
+ * - RATINGS, MÅSTE LÄGGAS TILL OCH HA EN LIMIT PÅ MAX 5 "STÄRNOR"
+ */
+
 
 const UpdateRecipe = () => {
   
@@ -8,11 +18,11 @@ const UpdateRecipe = () => {
     const [recipeId, setRecipeId] = useState("");
     const [recipeName, setRecipeName] = useState("");
     const [recipeDescription, setRecipeDescription] = useState("");
+    const [recipeRating, setRecipeRating] = useState(Number);
     const [recipeImageUrl, setRecipeImageUrl] = useState("");
     const [recipeTimeInMin, setRecipeTimeInMin] = useState(Number);
     const [recipeCategory, setRecipeCategory] = useState("");
     const [recipeIntructions, setRecipeInstructions] = useState("");
-    const [, setRecipeData] = useState<RecipeInterface>();
 
     const [ingrediantName, setIngrediantName] = useState("");
     const [ingrediantAmount, setIngrediantAmount] = useState("");
@@ -42,7 +52,7 @@ const UpdateRecipe = () => {
         const updatedRecipeData = {
           title: recipeName,
           description: recipeDescription,
-          //ratings: "",
+          ratings: recipeRating,
           imageUrl: recipeImageUrl,
           timeInMins: recipeTimeInMin,
           categories: recipeCategory,
@@ -56,7 +66,7 @@ const UpdateRecipe = () => {
           const updatedRecipe = await getRecipeById(recipeId);
           if (updatedRecipe) {
             // Uppdatera receptdata
-            setRecipeData(updatedRecipe);
+            updatedRecipe;
             alert("Updated");
           }
         }
@@ -80,7 +90,7 @@ const UpdateRecipe = () => {
                 <input
                 type="text"
                 value={recipeId}
-                onChange={(e) => setRecipeId(e.target.value)}
+                onChange={(input) => setRecipeId(input.target.value)}
                 placeholder="Enter ID to update"
                 />
             </label>
@@ -102,6 +112,16 @@ const UpdateRecipe = () => {
                 name="description" 
                 value={recipeDescription} 
                 onChange={(e) => setRecipeDescription(e.target.value)}
+                />
+            </label>
+            <br />
+            <label>
+                Rating:
+                <input 
+                type="number" 
+                name="description" 
+                value={recipeRating} 
+                onChange={(e) => setRecipeRating(e.target.valueAsNumber)}
                 />
             </label>
             <br />
