@@ -1,80 +1,90 @@
-import { useState } from 'react'
-import { SearchInterface } from '../interfaces/SearchInterface'
-import axios from 'axios'
+import { useState, useEffect } from 'react';
+import { RecipeInterface } from '../interfaces/RecipeInterface';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { FaSearch } from "react-icons/fa";
+import "../styling/search_box.css"
 
-const  RecipeSearch =()=> {
-
-  //variabler för sökterm, recept och filtrerade recept
-
+const RecipeSearch = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [recipes, SetRecipes] = useState<SearchInterface[]>([]);
-  const [filteredRecipes, setFilteredRecipes] = useState<SearchInterface[]>([]);
+  const [recipes, setRecipes] = useState<RecipeInterface[]>([]);
+  const [filteredRecipes, setFilteredRecipes] = useState<RecipeInterface[]>([]);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  // Funktion för att hämta recept från API-n
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const result = await axios.get<RecipeInterface[]>('https://sti-java-grupp4-s4yjx9.reky.se/recipes');
+        setRecipes(result.data);
+      } catch (error) {
+        console.error('Error fetching recipes', error);
+        setErrorMessage('Could not fetch recipes.');
+      }
+    };
+    fetchData();
+  }, []);
 
-  const searchRecipes = async () => {
-    try {
-      const result = await axios.get<SearchInterface[]>('https://sti-java-grupp4-s4yjx9.reky.se/recipes');
-      SetRecipes(result.data);
-    } catch (error) {
-      console.error('Error fetching recipes', error);
+  useEffect(() => {
+    filterRecipes(searchTerm);
+  }, [searchTerm]);
+
+  const onChange = (e: { target: { value: any; }; })  => {
+    const term = e.target.value;
+    setSearchTerm(term);
+  };
+
+  const filterRecipes = (term: string) => {
+    const lowerCaseTerm = term.toLowerCase();
+    const filtered = recipes.filter((recipe) => recipe.title.toLowerCase().includes(lowerCaseTerm));
+    setFilteredRecipes(filtered);
+    // Set error message if no recipes found
+    setErrorMessage(filtered.length === 0 && term.trim() !== '' ? 'No recipes found.' : '');
+  };
+
+  const handleSearch = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    if (searchTerm.trim() === '') {
+      setErrorMessage('To find recipes, type something into the search bar.')
+      return;
+    } else {
+      setErrorMessage('')
+      filterRecipes(searchTerm);
     }
   };
 
-  //Hantera sökning när användaren skickar formuläre
-  
-  const handleSearch = (e) => {
-    e.preventDefault();
-    searchRecipes();
-    filterRecipes(searchTerm);
-  }
-  
-  // Uppdatera söktermen och filtrera recepten vid varje teckenändring
-  const onChange = (e) => {
-    setSearchTerm(e.target.value);
-    filterRecipes(e.target.value);
+  const handleClear = () => {
+    setSearchTerm('');
+    setFilteredRecipes([]);
+    setErrorMessage('');
   };
 
-  // Filtrera recepten baserat på söktermen
-  const filterRecipes = (term: string) => {
-    const lowerCaseTerm = term.toLowerCase();
-    const filtered = recipes.filter((recipe) =>
-      recipe.title.toLowerCase().includes(lowerCaseTerm)
-    );
-    setFilteredRecipes(filtered);
-  };
-  
   return (
-    <div className='search-div'>
-        <form className='search-form' onSubmit={handleSearch}>
-            <input 
-            className='search-bar' 
+    <div className='search'>
+      <div className='searchInputs'>
+        {errorMessage && <p>{errorMessage}</p>}
+        <form onSubmit={handleSearch}>
+          <input
+            className='search-box'
             type='text'
             placeholder='Search'
             onChange={onChange}
             value={searchTerm}
-            />
-            <input type='submit' value="Search"/>
+          />
+          <button type="button" onClick={handleClear}>x</button>
+          <button onSubmit={handleSearch}><FaSearch /></button>
         </form>
-
-        {/* Visa sökresultat om det finns matchande recept */}
-        {filteredRecipes.length > 0 && (
-        <div className='recipe-list'>
-          <h2>Search Results</h2>
-          <ul>
-            {filteredRecipes.map((recipe) => (
-              <li key={recipe.id}>
-                <h3>{recipe.title}</h3>
-                <p>{recipe.description}</p> 
-                <img src={recipe.imageUrl} alt={recipe.title} />               
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-       
+      </div>
+      <div className='recipe-list'>    
+        {filteredRecipes.map((recipe) => (
+          <div key={recipe._id}>
+            <Link to={`/recipe/${recipe._id}`}>
+              {recipe.title}
+            </Link>
+          </div>
+        ))}
+      </div>
     </div>
-  )
-}
+  );
+};
 
 export default RecipeSearch;
