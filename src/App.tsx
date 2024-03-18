@@ -1,24 +1,18 @@
 import "./App.css";
-import DataDisplay from "./components/DisplayRecipes";
-import UploadRecipeComponent from "./components/UploadRecipe";
-import RecipeSearch from "./components/SearchRecipe";
-import CategorySearch from "./components/CategorySearch";
-import DeleteRecipe from "./components/DeleteRecipe";
-import ReviewComponent from "./components/ReviewComponent";
-import CommentComponent from "./components/CommentRecipe";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Homepage";
+import OldHomepage from "./pages/OldHomepage";
 
 function App() {
+
   return (
     <>
-      <div className="card">
-        <RecipeSearch />
-        <UploadRecipeComponent />
-        <DataDisplay />
-        <CategorySearch />
-        <DeleteRecipe />
-        <ReviewComponent /> 
-        <CommentComponent />
-      </div>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/testSite" element={<OldHomepage />}/>
+        </Routes>
+      </Router>
     </>
   );
 }
