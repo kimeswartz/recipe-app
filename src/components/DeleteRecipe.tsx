@@ -24,7 +24,7 @@ const DeleteRecipe = () => {
       <input
         type="text"
         value={recipeId}
-        onChange={(e) => setRecipeId(e.target.value)}
+        onChange={(input) => setRecipeId(input.target.value)}
         placeholder="Enter the recipe id"
       />
       <button onClick={handleDelete}>Delete Recipe</button>
