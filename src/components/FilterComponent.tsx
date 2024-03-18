@@ -1,11 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
 
 const FilterComponent = () => {
-  const [recipeData, setRecipe] = useState<RecipeInterface[]>([]);
+  const [recipeData, setRecipeData] = useState<RecipeInterface[]>([]);
   const [filteredRecipes, setFilteredRecipes] = useState<RecipeInterface[]>([]);
-  const [availableIngredients, setAvailableIngredients] = useState<string[]>([]);
   const [userInput, setUserInput] = useState<string>('');
 
   useEffect(() => {
@@ -14,9 +13,9 @@ const FilterComponent = () => {
         const response = await axios.get<RecipeInterface[]>(
           "https://sti-java-grupp4-s4yjx9.reky.se/recipes"
         );
-        setRecipe(response.data);
+        setRecipeData(response.data);
         setFilteredRecipes(response.data);
-        console.log("Success fetching data from Swagger/Recipes");
+        console.log("Success fetching data from the recipe API");
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -28,7 +27,9 @@ const FilterComponent = () => {
   const filterRecipes = () => {
     const filtered = recipeData.filter(recipe => {
       // Check if recipe contains all ingredients entered by user
-      return recipe.ingredients.every(ingredient => availableIngredients.includes(ingredient.name));
+      return recipe.ingredients.some(ingredient =>
+        userInput.toLowerCase().includes(ingredient.name.toLowerCase())
+      );
     });
     setFilteredRecipes(filtered);
   };
@@ -37,17 +38,11 @@ const FilterComponent = () => {
     setUserInput(e.target.value);
   };
 
-  const addIngredient = () => {
-    setAvailableIngredients(prevState => [...prevState, userInput]);
-    setUserInput('');
-  };
-
   return (
     <div>
       <h1>Filter Recipes</h1>
       <input type="text" value={userInput} onChange={handleInputChange} />
-      <button onClick={addIngredient}>Add Ingredient</button>
-      <button onClick={filterRecipes}>Filter Recipes</button>
+      <button onClick={filterRecipes}>Filter</button>
       <ul>
         {filteredRecipes.map(recipe => (
           <li key={recipe._id}>
