@@ -15,18 +15,24 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "axios": "^1.6.7",
     "react": "^18.2.0",
+    "react-alice-carousel": "^2.8.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.2"
+    "react-icons": "^5.0.1",
+    "react-router-dom": "^6.22.2",
+    "react-slick": "^0.30.2",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
+    "@types/react-slick": "^0.23.13",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
     "@vitejs/plugin-react-swc": "^3.5.0",
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "terser-brunch": "^4.1.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.4"
   }
