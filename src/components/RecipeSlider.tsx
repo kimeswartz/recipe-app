@@ -4,11 +4,12 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css'; 
 import 'slick-carousel/slick/slick-theme.css'; 
 import { PiArrowSquareLeftFill,PiArrowSquareRightFill } from "react-icons/pi";
-import { SearchInterface } from '../interfaces/SearchInterface';
-
+import "../styling/slider_style.css"
+import { Link } from 'react-router-dom';
+import { RecipeInterface } from '../interfaces/RecipeInterface';
 
 const RecipeSlider: React.FC = () => {
-  const [randomRecipes, setRandomRecipes] = useState<SearchInterface[]>([]);
+  const [randomRecipes, setRandomRecipes] = useState<RecipeInterface[]>([]);
 
   useEffect(() => {
     getRandomRecipes();
@@ -16,8 +17,8 @@ const RecipeSlider: React.FC = () => {
 
   const getRandomRecipes = async () => {
     try {
-      const result = await axios.get<SearchInterface[]>('https://sti-java-grupp4-s4yjx9.reky.se/recipes');
-      const shuffledRecipes = result.data.sort(() => Math.random() - 0.5);
+      const result = await axios.get<RecipeInterface[]>('https://sti-java-grupp4-s4yjx9.reky.se/recipes');
+      const shuffledRecipes = result.data.sort(() => Math.random() - 1);
       const selectedRandomRecipes = shuffledRecipes.slice(0, 4); 
       setRandomRecipes(selectedRandomRecipes);
     } catch (error) {
@@ -30,7 +31,7 @@ const RecipeSlider: React.FC = () => {
     const { onClick } = props;
     return (
       <div className="custom-prev-arrow" onClick={onClick}>
-        <PiArrowSquareLeftFill size={50}/> {/* Använd egna ikonen för att representera pilen till vänster */}
+        <PiArrowSquareLeftFill size={50}/> 
       </div>
     );
   };
@@ -39,7 +40,7 @@ const RecipeSlider: React.FC = () => {
     const { onClick } = props;
     return (
       <div className="custom-next-arrow" onClick={onClick}>
-        <PiArrowSquareRightFill size={50}/> {/* Använd egna ikonen för att representera pilen till höger */}
+        <PiArrowSquareRightFill size={50}/> 
       </div>
     );
   };
@@ -47,29 +48,26 @@ const RecipeSlider: React.FC = () => {
   const sliderSettings = {
     dots: true,
     infinite: true,
-    speed: 300,
+    speed: 700,
     slidesToShow: 4, 
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1500,
-    prevArrow: <CustomPrevArrow />, // Använd anpassade komponenter för pilarna
+    prevArrow: <CustomPrevArrow />, 
     nextArrow: <CustomNextArrow />
     
   };
 
   return (
     <div className='recipe-slider'>
-      <h2>Random Recipes</h2>
+      <h2>Bläddra bland våra recept</h2>
       {randomRecipes.length > 0 && (
         <Slider {...sliderSettings}>
           {randomRecipes.map((recipe) => 
-            <div key={recipe.id} className='image-slide'>
-              <img
-                src={recipe.imageUrl}
-                alt={recipe.title}
-                title={recipe.title} 
-              />
+            <div key={recipe._id} className='image-slide'>
+              <Link to={`/recipe/${recipe._id}`}></Link>
+              <img src={recipe.imageUrl}/>
               <div className='cover'>{recipe.title}</div>
+              
             </div>
           )}
         </Slider>
