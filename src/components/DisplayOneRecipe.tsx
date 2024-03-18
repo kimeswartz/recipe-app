@@ -4,7 +4,6 @@ import { RecipeInterface } from "../interfaces/RecipeInterface";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
-
 import "../styling/styleRecipePage.css";
 
 const DisplayOneRecipe: React.FC = () => {
