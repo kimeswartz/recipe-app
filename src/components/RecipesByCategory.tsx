@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"; // useParams hook to access route parameters
 import { RecipeInterface } from "../interfaces/RecipeInterface";
-import "../styling/styleRecipiesByCategory.css";
+import "../styling/RecipiesByCategoryStyle.css";
 
 const RecipesByCategory = () => {
   const URL = "https://sti-java-grupp4-s4yjx9.reky.se";

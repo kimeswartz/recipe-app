@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { categoryInterface } from "../interfaces/CategoryInterface";
-import "../styling/styleCategorySuggestion.css";
+import "../styling/CategorySuggestionStyle.css";
 
 const CategorySuggestion = () => {
   const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
