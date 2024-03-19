@@ -6,12 +6,14 @@ import UpdateRecipe from '../components/UpdateRecipe'
 import ReviewComponent from '../components/ReviewComponent'
 import CommentRecipe from '../components/CommentRecipe'
 import CategorySuggestion from "../components/CategorySuggestion";
+import TopRatedRecipes from '../components/TopRatedRecipes'
 
 
 const OldHomepage = () => {
   return (
     <div>
         <h1>old homepage</h1>
+        <TopRatedRecipes/>
         <RecipeSearch />
         <CategorySuggestion/>
         <UploadRecipeComponent />
