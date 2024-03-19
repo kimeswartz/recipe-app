@@ -26,6 +26,7 @@ const DisplayOneRecipe: React.FC = () => {
     fetchRecipe();
   }, [recipeId]);
 
+
   if (!recipe) return <div>Hämtar recept...</div>;
 
   return (
@@ -98,7 +99,7 @@ const DisplayOneRecipe: React.FC = () => {
             <h2>Gör såhär</h2>
             <ol>
               {recipe.instructions.map((instruction, index) => (
-                <li key= {index} className="to-do-step"> {instruction} </li>
+                <li key={index} className="to-do-step"> {instruction} </li>
               ))}
             </ol>
           </div>

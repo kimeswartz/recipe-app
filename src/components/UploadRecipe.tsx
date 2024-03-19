@@ -1,10 +1,12 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { UploadRecipeInterface } from "../interfaces/UploadInterface";
+import allRecipeState from "../state/Endpoints";
 
 // Funktion med useState som håller våra värden från recipe interface.
 // uppdaterar App varje gång recipeData uppdateras.
 const UploadRecipeComponent = () => {
+
+  const { addRecipe, fetchAllRecipes } = allRecipeState();
 
   const [recipeData, setRecipeData] = useState<UploadRecipeInterface>({
 
@@ -82,38 +84,26 @@ const UploadRecipeComponent = () => {
   // Funktion som hanterar form data
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    addRecipe(recipeData, fetchAllRecipes);
 
-    try {
-      // URL baserad på vår api, post med axios.
-      const response = await axios.post<UploadRecipeInterface>(
-        "https://sti-java-grupp4-s4yjx9.reky.se/recipes",
-        recipeData
-      );
+    setRecipeData({
 
-      console.log("POST request successful", response.data);
-   
-      // Resetar/Återställer vårt formulär efter vi skickar in vår information --> "Submit" <--
-      setRecipeData({
+      title: "",
+      description: "",
+      ratings: [],
+      imageUrl: "",
+      timeInMins: 0,
+      categories: [],
+      instructions: [],
 
-        title: "",
-        description: "",
-        ratings: [],
-        imageUrl: "",
-        timeInMins: 0,
-        categories: [],
-        instructions: [],
-
-        ingredients: [
-          {
-            name: "",
-            amount: 0,
-            unit: "",
-          },
-        ],
-      });
-    } catch (error) { // Om det blir fel med att återställa formuläret efter "Submit "får vi ett felmeddelande i konsolen
-      console.error("Error submitting data:", error);
-    }
+      ingredients: [
+        {
+          name: "",
+          amount: 0,
+          unit: "",
+        },
+      ],
+    });
   };
 
   

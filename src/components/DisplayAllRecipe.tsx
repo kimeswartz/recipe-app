@@ -1,36 +1,27 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { RecipeInterface } from '../interfaces/RecipeInterface';
+import { useEffect } from 'react';
+import allRecipeState from '../state/Endpoints';
 import { Link } from 'react-router-dom';
 
 import "../styling/AllRecipeStyle.css"
 
 const DisplayAllRecipe = () => {
 
-  const [recipeData, setRecipe] = useState<RecipeInterface[]>([]);
+  const { recipeList, fetchAllRecipes } = allRecipeState();
 
   useEffect(() => {
-    const getRecipes = async () => {
-      try {
-        const response = await axios.get<RecipeInterface[]>("https://sti-java-grupp4-s4yjx9.reky.se/recipes");
-        if (response.status === 200) {
-          setRecipe(response.data);
-          console.log("Success fetching data from Swagger/Recipes");
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    getRecipes();
-  }, [])
+    fetchAllRecipes();
+  }, [fetchAllRecipes])
 
+  useEffect(() => {
+    //bruh
+  }, [recipeList])
 
   return (
     <>
       <div className='all-recipe'>
-        {recipeData.map((recipe) => {
+        {recipeList.map((recipe) => {
           return (
-            <Link to={`/recipe/${recipe._id}`}>
+            <Link to={`/recipe/${recipe._id}`} key={recipe._id}>
               <div className='recipe-card' key={recipe._id}>
                 <div className='first-card-div'>
                   <img className='display-recipe-img' src={recipe.imageUrl} alt={recipe.title} />
@@ -39,7 +30,7 @@ const DisplayAllRecipe = () => {
                 <div className='second-card-div'>
                   <h2>{recipe.title}</h2>
                   <span>Betyg</span>
-                  {recipe.avgRating === null ? <p>inga betyg</p> : <p>{recipe.avgRating}/5</p>}
+                  {recipe.avgRating === null ? <p>inga betyg</p> : <p>{recipe.avgRating.toFixed(1)}/5</p>}
                 </div>
               </div>
             </Link>
