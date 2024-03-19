@@ -4,7 +4,7 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css'; 
 import 'slick-carousel/slick/slick-theme.css'; 
 import { PiArrowSquareLeftFill,PiArrowSquareRightFill } from "react-icons/pi";
-import "../styling/slider_style.css"
+import "../styling/SliderStyle.css"
 import { Link } from 'react-router-dom';
 import { RecipeInterface } from '../interfaces/RecipeInterface';
 
