@@ -3,7 +3,7 @@ import { RecipeInterface } from '../interfaces/RecipeInterface';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { FaSearch } from "react-icons/fa";
-import "../styling/search_box.css"
+import "../styling/SearchBox.css"
 
 const RecipeSearch = () => {
   const [searchTerm, setSearchTerm] = useState('');
