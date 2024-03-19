@@ -1,24 +1,19 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { RecipeInterface } from '../interfaces/RecipeInterface';
+import { RecipeInterface } from '../../interfaces/RecipeInterface';
 import { Link } from 'react-router-dom';
-//import DeleteRecipe from './DeleteRecipe'; // Importera DeleteRecipe-komponenten
 
 
 /**
- * - DENNA FIL SKAPADE JAG ENDAST FÖR ATT LEKA RUNT FÖR ATT INGA MERGEKONFLIKTER SKA SKE.
- * - JAG VILLE INTE ROTA RUNT I DEN RIKTIGA FILEN SÅ JAG SKAPADE DENNA OCH LA TILL ETT S PÅ SLUTET
- *    AV DENNA FIL.
  * ==> VÄRT ATT NOTERA ÄR ATT JAG ANVÄNDER MIG AV ALICE KOMPONENT FÖR ATT RADERA ETT RECEPT,
  *     BEHÖVDE LÄGGA TILL "recipeId" SOM PARAMETER FÖR ATT FÅ DET ATT FUNGERA MED ATT KUNNA 
  *     RADERA MED ETT KLICK PÅ "Delete this recipe".
  */
 
 
+import "../../styling/all_recipes_style.css"
 
-import "../styling/all_recipes_style.css"
-
-const DisplayAllRecipe = () => {
+const AdminAllRecipes = () => {
 
   const [recipeData, setRecipe] = useState<RecipeInterface[]>([]);
 
@@ -37,6 +32,7 @@ const DisplayAllRecipe = () => {
     getRecipes();
   }, [])
 
+  // DETTA STYCKE ÄR TILLAGT
   const handleDelete = async (recipeId: string) => {
     try {
       const response = await axios.delete(
@@ -46,7 +42,7 @@ const DisplayAllRecipe = () => {
         console.log("Recipe deleted successfully");
         alert("Recipe deleted successfully")
       }
-    } catch (error) {
+    } catch (error) { 
       console.error("Error deleting recipe:", error);
       alert("NOT DELETED???");
     }
@@ -79,4 +75,4 @@ const DisplayAllRecipe = () => {
   )
 }
 
-export default DisplayAllRecipe
+export default AdminAllRecipes
