@@ -3,7 +3,6 @@ import Navbar from "../components/Navbar";
 import RecipeSlider from "../components/RecipeSlider";
 import RecipeSearch from "../components/SearchRecipe";
 import UploadRecipe from "../components/UploadRecipe";
-import CategorySuggestion from "../components/CategorySuggestion";
 
 const Home = () => {
     return (

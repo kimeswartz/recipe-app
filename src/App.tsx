@@ -12,12 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/testSite" element={<OldHomepage />}/>
-          { // Måste ändra min path..
-          /* <Route
-            path="/category/:categoryName"
-            element={<RecipesByCategory />}
-          /> */}
-=======
+          <Route path="/category/:categoryName" element={<RecipesByCategory />}/>
         </Routes>
       </Router>
     </>
