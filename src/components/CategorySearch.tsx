@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { categoryInterface } from "../interfaces/CategoryInterface";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
 
-import "../styling/category_search_style.css"
+import "../styling/CategorySearchStyle.css"
 
 const CategorySearch = () => {
 

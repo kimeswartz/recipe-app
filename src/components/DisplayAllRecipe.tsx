@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { RecipeInterface } from '../interfaces/RecipeInterface';
 import { Link } from 'react-router-dom';
 
-import "../styling/all_recipes_style.css"
+import "../styling/AllRecipeStyle.css"
 
 const DisplayAllRecipe = () => {
 
