@@ -4,7 +4,7 @@ import { RecipeInterface } from "../interfaces/RecipeInterface";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
-import "../styling/styleRecipePage.css";
+import "../styling/StyleRecipepage.css";
 
 const DisplayOneRecipe: React.FC = () => {
   const { recipeId } = useParams();
@@ -98,7 +98,7 @@ const DisplayOneRecipe: React.FC = () => {
             <h2>Gör såhär</h2>
             <ol>
               {recipe.instructions.map((instruction, index) => (
-                <li key= {index} className="to-do-step"> {instruction} </li>
+                <li key={index} className="to-do-step"> {instruction} </li>
               ))}
             </ol>
           </div>
