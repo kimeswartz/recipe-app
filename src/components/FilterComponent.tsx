@@ -6,6 +6,8 @@ const FilterComponent = () => {
   const [recipeData, setRecipeData] = useState<RecipeInterface[]>([]);
   const [filteredRecipes, setFilteredRecipes] = useState<RecipeInterface[]>([]);
   const [userInput, setUserInput] = useState<string>('');
+  const [searchIngredients, setSearchIngredients] = useState<string[]>([]);
+  const [suggestions, setSuggestions] = useState<string[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,22 +28,64 @@ const FilterComponent = () => {
 
   const filterRecipes = () => {
     const filtered = recipeData.filter(recipe => {
-      // Check if recipe contains all ingredients entered by user
-      return recipe.ingredients.some(ingredient =>
-        userInput.toLowerCase().includes(ingredient.name.toLowerCase())
+      // Check if all searchIngredients are present in recipe
+      return searchIngredients.every(searchIngredient =>
+        recipe.ingredients.some(ingredient =>
+          ingredient.name.toLowerCase().includes(searchIngredient.toLowerCase())
+        )
       );
     });
     setFilteredRecipes(filtered);
   };
 
+  const generateSuggestions = () => {
+    const ingredients = recipeData.reduce((acc, recipe) => {
+      recipe.ingredients.forEach(ingredient => {
+        if (!acc.includes(ingredient.name)) {
+          acc.push(ingredient.name);
+        }
+      });
+      return acc;
+    }, []);
+
+    const matchingSuggestions = ingredients.filter(ingredient =>
+      ingredient.toLowerCase().includes(userInput.toLowerCase())
+    );
+    setSuggestions(matchingSuggestions);
+  };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
+    generateSuggestions();
+  };
+
+  const handleSuggestionClick = (suggestion: string) => {
+    setSearchIngredients(prevIngredients => [...prevIngredients, suggestion]);
+    setUserInput('');
+    setSuggestions([]);
   };
 
   return (
     <div>
       <h1>Filter Recipes</h1>
-      <input type="text" value={userInput} onChange={handleInputChange} />
+      <div>
+        {searchIngredients.map((ingredient, index) => (
+          <span key={index}>
+            {ingredient}
+            <button onClick={() => setSearchIngredients(prevIngredients => prevIngredients.filter(item => item !== ingredient))}>X</button>
+          </span>
+        ))}
+      </div>
+      <input
+        type="text"
+        value={userInput}
+        onChange={handleInputChange}
+      />
+      <ul>
+        {suggestions.map((suggestion, index) => (
+          <li key={index} onClick={() => handleSuggestionClick(suggestion)}>{suggestion}</li>
+        ))}
+      </ul>
       <button onClick={filterRecipes}>Filter</button>
       <ul>
         {filteredRecipes.map(recipe => (

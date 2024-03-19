@@ -5,6 +5,7 @@ import DisplayAllRecipe from '../components/DisplayAllRecipe'
 import UpdateRecipe from '../components/UpdateRecipe'
 import ReviewComponent from '../components/ReviewComponent'
 import CommentRecipe from '../components/CommentRecipe'
+import FilterComponent from '../components/FilterComponent'
 
 
 const OldHomepage = () => {
@@ -17,7 +18,7 @@ const OldHomepage = () => {
         <ReviewComponent />
         <UpdateRecipe />
         <CommentRecipe />
-
+        <FilterComponent />
     </div>
   )
 }
