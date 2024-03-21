@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 
-
 const UpdateRecipe = () => {
   const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
   const [recipeId, setRecipeId] = useState("");
