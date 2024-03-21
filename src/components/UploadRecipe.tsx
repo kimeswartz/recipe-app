@@ -121,7 +121,7 @@ const UploadRecipe = () => {
   };
 
   // Present för våra kategorier
-  const presetCategories = ["Breakfast", "Lunch", "Dinner", "Vegetarian", "Party", "Asian", "South American"];
+  const presetCategories = ["Breakfast", "Party", "Dinner", "Vegetarian"];
 
   // Funktion till att hantera inmatning av kategories.
   const handleCategoryChange = (selectedCategory: string) => {

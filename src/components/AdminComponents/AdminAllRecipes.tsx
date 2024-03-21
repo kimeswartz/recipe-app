@@ -4,15 +4,6 @@ import { RecipeInterface } from '../../interfaces/RecipeInterface';
 import { Link } from 'react-router-dom';
 
 
-/**
- * ==> VÄRT ATT NOTERA ÄR ATT JAG ANVÄNDER MIG AV ALICE KOMPONENT FÖR ATT RADERA ETT RECEPT,
- *     BEHÖVDE LÄGGA TILL "recipeId" SOM PARAMETER FÖR ATT FÅ DET ATT FUNGERA MED ATT KUNNA 
- *     RADERA MED ETT KLICK PÅ "Delete this recipe".
- */
-
-
-import "../../styling/all_recipes_style.css"
-
 const AdminAllRecipes = () => {
 
   const [recipeData, setRecipe] = useState<RecipeInterface[]>([]);
@@ -32,7 +23,6 @@ const AdminAllRecipes = () => {
     getRecipes();
   }, [])
 
-  // DETTA STYCKE ÄR TILLAGT
   const handleDelete = async (recipeId: string) => {
     try {
       const response = await axios.delete(
@@ -51,17 +41,17 @@ const AdminAllRecipes = () => {
 
   return (
     <>
-      <div className='all-recipe'>
+      <div className='all-recipes'>
         {recipeData.map((recipe) => {
           return (
-            <div className='recipe-card' key={recipe._id}>
-              <button onClick={() => handleDelete(recipe._id)} className="delete-button">Delete this recipe</button>
+            <div className='recipes-card' key={recipe._id}>
+              <button className="delete-button" onClick={() => handleDelete(recipe._id)}>Delete this recipe</button>
               <Link to={`/recipe/${recipe._id}`}>
-                <div className='first-card-div'>
-                  <img className='display-recipe-img' src={recipe.imageUrl} alt={recipe.title} />
-                  <b className='card-category'>{recipe.categories[0]}</b>
+                <div className='first-cards-div'>
+                  <img className='display-recipes-img' src={recipe.imageUrl} alt={recipe.title} />
+                  <b className='cards-category'>{recipe.categories[0]}</b>
                 </div>
-                <div className='second-card-div'>
+                <div className='second-cards-div'>
                   <h2>{recipe.title}</h2>
                   <span>Betyg</span>
                   {recipe.avgRating === null ? <p>inga betyg</p> : <p>{recipe.avgRating}/5</p>}

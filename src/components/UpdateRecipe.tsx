@@ -1,16 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
 
-/**
- * =====> TODO <=====
- * - MAN SKA KUNNA UPPDATERA INGREDIENSERNA I RECEPTET, FÖR TILLFÄLLET KAN MAN BARA UPPDATERA 
- *   SJÄLVA RECEPTET.
- * - NÄR MAN LÄMNAR ETT FÄLT TOMT I OCH MED UPPDATERING SÅ SKA DE TOMMA KOMPONENTERNA INTE NOLLSTÄLLAS,
- *   DE SKA FÖRBLI DETSAMMA.
- * - INTRUCTIONS, MÅSTE FIXA OCH VARA I SYMBIOS MED KIMS KOD
- * - RATINGS, MÅSTE LÄGGAS TILL OCH HA EN LIMIT PÅ MAX 5 "STÄRNOR"
- */
-
 
 const UpdateRecipe = () => {
   
@@ -165,7 +155,7 @@ const UpdateRecipe = () => {
                 />
             </label>
             <br />
-            <h2>Update Ingrediants</h2>
+            <h2>Update Ingredients</h2>
             <label>
                 Ingredient Name:
                 <input 
