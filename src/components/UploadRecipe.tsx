@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import axios from "axios";
 import { UploadRecipeInterface } from "../interfaces/UploadInterface";
 
+// Funktion med useState som håller våra värden från recipe interface.
+// uppdaterar App varje gång recipeData uppdateras.
 const UploadRecipe = () => {
-  const initialRecipeState: UploadRecipeInterface = {
+  const [recipeData, setRecipeData] = useState<UploadRecipeInterface>({
     title: "",
     description: "",
     ratings: [],
@@ -11,26 +13,34 @@ const UploadRecipe = () => {
     timeInMins: 0,
     categories: [],
     instructions: [],
-    ingredients: [{ name: "", amount: 0, unit: "" }],
-  };
 
-  const [recipeData, setRecipeData] = useState<UploadRecipeInterface>(
-    initialRecipeState
-  );
+    ingredients: [
+      {
+        name: "",
+        amount: 0,
+        unit: "",
+      },
+    ],
+  });
 
-  const handleInputChange = (eventObject: any) => {
-    const { name, value } = eventObject.target;
-    setRecipeData((prevData) => ({
-      ...prevData,
+  // Funktion till att spara användarens input från formulärsfältet.
+  // name och value refererar till vårt interface API- fält. name: description, osv.
+  // ...updateData möjliggör att uppdatera ett värde i receptet.
+  // Om ett värde är samma som ett tidgare värde, uppdateras vår array.
+  const handleInputUpdate = (event: any) => {
+    const { name, value } = event.target;
+
+    setRecipeData((updateData) => ({
+      ...updateData,
       [name]: value,
     }));
   };
 
-  const handleIngredientInput = (
-    index: number,
-    field: string,
-    value: any
-  ) => {
+  // Funktion till att uppdatera objektet ingredients som är en del av vår array.
+  // Låter användaren lägga till värden kopplat till varje ingridients.
+  // setRecipeData är vår useState funktion, som uppdaterar recipeData
+  // ...prevData skapar en "ytlig" kopia av ingridients och ersätter med uppdaterade värden.
+  const handleIngredientInput = (index: number, field: string, value: any) => {
     setRecipeData((prevData) => {
       const updatedIngredients = [...prevData.ingredients];
       updatedIngredients[index] = {
@@ -45,6 +55,7 @@ const UploadRecipe = () => {
     });
   };
 
+  // Funktion till att addera ingridiener till vårt objekt 'ingridients'
   const addIngredient = () => {
     setRecipeData((prevData) => ({
       ...prevData,
@@ -52,6 +63,7 @@ const UploadRecipe = () => {
     }));
   };
 
+  // Funktion som hanterar inmatning av instruktioner till användaren
   const handleInstructionInput = (index: number, value: string) => {
     setRecipeData((prevData) => {
       const updateInstructions = [...prevData.instructions];
@@ -64,15 +76,17 @@ const UploadRecipe = () => {
     });
   };
 
+  // Funktion till att addera ny instruktion
   const addInstruction = () => {
     setRecipeData((prevData) => ({
       ...prevData,
-      instructions: [...prevData.instructions, ""],
+      instructions: [...prevData.instructions, ""], //Lägg till en ny tom string till representera en ny instruktion
     }));
   };
 
-  const handleSubmit = async (eventTrigger: any) => {
-    eventTrigger.preventDefault();
+  // Funktion som hanterar form data
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
 
     try {
       const response = await axios.post<UploadRecipeInterface>(
@@ -82,18 +96,38 @@ const UploadRecipe = () => {
 
       console.log("POST request successful", response.data);
 
-      setRecipeData(initialRecipeState);
+      // Reset vårt formulär efter submitted
+      setRecipeData({
+        title: "",
+        description: "",
+        ratings: [],
+        imageUrl: "",
+        timeInMins: 0,
+        categories: [],
+        instructions: [],
+
+        ingredients: [
+          {
+            name: "",
+            amount: 0,
+            unit: "",
+          },
+        ],
+      });
     } catch (error) {
       console.error("Error submitting data:", error);
     }
   };
 
+  // Present för våra kategorier
   const presetCategories = ["Breakfast", "Party", "Dinner", "Vegetarian"];
 
+  // Funktion till att hantera inmatning av kategories.
   const handleCategoryChange = (selectedCategory: string) => {
     setRecipeData((prevData) => {
       let updatedCategories;
 
+      // Om kategorin redan är vald, ta bort den, annars lägg till den
       if (prevData.categories.includes(selectedCategory)) {
         updatedCategories = prevData.categories.filter(
           (category) => category !== selectedCategory
@@ -113,13 +147,15 @@ const UploadRecipe = () => {
     <div>
       <h1>Upload Recipe</h1>
       <form onSubmit={handleSubmit}>
+        {/* Add form fields for other properties in RecipeInterface */}
+
         <label>
           Title:
           <input
             type="text"
             name="title"
             value={recipeData.title}
-            onChange={handleInputChange}
+            onChange={handleInputUpdate}
           />
         </label>
 
@@ -129,7 +165,7 @@ const UploadRecipe = () => {
             type="text"
             name="description"
             value={recipeData.description}
-            onChange={handleInputChange}
+            onChange={handleInputUpdate}
           />
         </label>
 
@@ -149,25 +185,27 @@ const UploadRecipe = () => {
             type="number"
             name="timeInMins"
             value={recipeData.timeInMins}
-            onChange={handleInputChange}
+            onChange={handleInputUpdate}
           />
         </label>
 
         <br />
 
+        {/*Category*/}
         <h2>Välj kategorier</h2>
         {presetCategories.map((category, index) => (
           <label key={index}>
             <input
               type="checkbox"
               value={category}
-              checked={recipeData.categories.includes(category)}
-              onChange={(e) => handleCategoryChange(e.target.value)}
+              checked={recipeData.categories.includes(category)} // Kontrollerar om kategorin redan är vald
+              onChange={(e) => handleCategoryChange(e.target.value)} //Hanterar checkbox- ändringen
             />
             {category}
           </label>
         ))}
 
+        {/*Intructions*/}
         <h2>Instructions</h2>
         {recipeData.instructions.map((instruction, index) => (
           <div key={index}>
@@ -181,7 +219,7 @@ const UploadRecipe = () => {
             </label>
           </div>
         ))}
-        <button type="button" onClick={addInstruction} className="main-button">
+        <button type="button" onClick={addInstruction}>
           Add Instruction
         </button>
 
@@ -207,7 +245,7 @@ const UploadRecipe = () => {
                 type="number"
                 value={ingredient.amount}
                 onChange={(e) =>
-                  handleIngredientInput(index, "amount", e.target.value)
+                  handleIngredientInput(index, "amount", +e.target.value)
                 }
               />
             </label>
@@ -228,7 +266,12 @@ const UploadRecipe = () => {
           Add Ingredient
         </button>
 
-        <button type="submit"className="main-button">Submit recipe to database</button>
+        <button type="button" onClick={addIngredient}>
+          Add Ingredient
+        </button>
+        {/* Slutet på ingridienser */}
+
+        <button type="submit">Submit recipe to database</button>
       </form>
     </div>
   );
