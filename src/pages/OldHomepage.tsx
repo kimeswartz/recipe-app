@@ -1,10 +1,10 @@
-import CategorySuggestion from "../components/CategorySuggestion";
+import TopRatedRecipes from "../components/TopRatedRecipes";
 
 const OldHomepage = () => {
   return (
     <div>
       <h1>old homepage</h1>
-      <CategorySuggestion />
+      <TopRatedRecipes/>
     </div>
   );
 };
