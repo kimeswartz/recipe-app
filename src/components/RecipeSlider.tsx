@@ -59,7 +59,7 @@ const RecipeSlider: React.FC = () => {
 
   return (
     <div className='recipe-slider'>
-      <h2>Bläddra bland våra recept</h2>
+      <h2>Inspireras av våra recept</h2>
       {randomRecipes.length > 0 && (
         <Slider {...sliderSettings}>
           {randomRecipes.map((recipe) => 

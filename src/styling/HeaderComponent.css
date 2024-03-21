@@ -1,9 +1,9 @@
 .home-header {
-  background-image: url('https://static.vecteezy.com/system/resources/thumbnails/024/403/877/small_2x/table-scene-with-a-selection-of-delicious-foods-top-view-over-a-dark-wood-banner-background-generate-ai-free-photo.jpg');
+  background-image: url('../assets/Food.jpg');
   background-color: #007bff;
   background-size: cover;
   background-position: center;
-  height: 900px;
+  height: 700px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,22 +11,17 @@
 
 .header-content {
   text-align: center;
+  width: 1000px;
 }
 
 .header-title {
-  font-size: 36px;
   color: white;
   margin-bottom: 20px;
 }
 
-.header-button {
-  background-color: #007bff;
+.header-paragraph {
+  text-align: center;
   color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 18px;
-  border-radius: 5px;
-  cursor: pointer;
 }
 
 @media only screen and (max-width: 768px) {

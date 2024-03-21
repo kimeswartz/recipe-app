@@ -38,13 +38,13 @@ const RecipeSearch = () => {
     const filtered = recipes.filter((recipe) => recipe.title.toLowerCase().includes(lowerCaseTerm));
     setFilteredRecipes(filtered);
     // Set error message if no recipes found
-    setErrorMessage(filtered.length === 0 && term.trim() !== '' ? 'No recipes found.' : '');
+    setErrorMessage(filtered.length === 0 && term.trim() !== '' ? 'Inga recept hittades' : '');
   };
 
   const handleSearch = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     if (searchTerm.trim() === '') {
-      setErrorMessage('To find recipes, type something into the search bar.')
+      setErrorMessage('Skriv in ditt recept och klicka på sök!')
       return;
     } else {
       setErrorMessage('')

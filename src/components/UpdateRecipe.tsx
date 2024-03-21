@@ -224,7 +224,7 @@ const UploadRecipe = () => {
             </label>
           </div>
         ))}
-        <button type="button" onClick={addInstruction}>
+        <button type="button" onClick={addInstruction} className="main-button">
           Add Instruction
         </button>
 
@@ -268,11 +268,11 @@ const UploadRecipe = () => {
           </div>
         ))}
 
-        <button type="button" onClick={addIngredient}>
+        <button type="button" onClick={addIngredient} className="main-button">
           Add Ingredient
         </button>
 
-        <button type="submit">Submit recipe to database</button>
+        <button type="submit" className="main-button" >Submit recipe to database</button>
       </form>
     </div>
   );
