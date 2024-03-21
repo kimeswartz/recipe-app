@@ -5,6 +5,7 @@ import OldHomepage from "./pages/OldHomepage";
 import AdminPage from "./pages/AdminPage";
 import Navbar from "./components/Navbar";
 import DisplayOneRecipe from "./components/DisplayOneRecipe";
+import FilterPage from './pages/Filter';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <BrowserRouter>
       <Navbar />
         <Routes>
+          <Route path="/filter" element={<FilterPage />} />
           <Route path="/" element={<Home />} />
           <Route path="/testSite" element={<OldHomepage />}/>
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />

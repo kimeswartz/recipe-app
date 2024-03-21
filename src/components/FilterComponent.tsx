@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
+import "../styling/Filter.css";
 
 const FilterComponent = () => {
   // State variables to store recipe data, filtered recipes, user input, search ingredients, and suggestions
@@ -9,6 +10,7 @@ const FilterComponent = () => {
   const [userInput, setUserInput] = useState<string>('');
   const [searchIngredients, setSearchIngredients] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [noIngredientFound, setNoIngredientFound] = useState<boolean>(false);
 
   // Fetch recipe data from the API when the component mounts
   useEffect(() => {
@@ -42,19 +44,12 @@ const FilterComponent = () => {
 
   // Generate suggestions based on user input
   const generateSuggestions = () => {
-    const ingredients: string[] = recipeData.reduce((acc, recipe) => {
-      recipe.ingredients.forEach((ingredient) => {
-        if (!acc.includes(ingredient.name)) {
-          acc.push(ingredient.name);
-        }
-      });
-      return acc;
-    }, []);
+    const matchingSuggestions = recipeData
+      .flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.name))
+      .filter(ingredient => ingredient.toLowerCase().startsWith(userInput.toLowerCase()));
 
-    const matchingSuggestions = ingredients.filter((ingredient) =>
-      typeof ingredient === 'string' && ingredient.toLowerCase().includes(userInput.toLowerCase())
-    );
     setSuggestions(matchingSuggestions);
+    setNoIngredientFound(matchingSuggestions.length === 0);
   };
 
   // Update user input and generate suggestions when input changes
@@ -68,6 +63,7 @@ const FilterComponent = () => {
     setSearchIngredients(prevIngredients => [...prevIngredients, suggestion]);
     setUserInput('');
     setSuggestions([]);
+    setNoIngredientFound(false);
   };
 
   // Remove ingredient from search ingredients
@@ -89,7 +85,7 @@ const FilterComponent = () => {
 
   // Render UI
   return (
-    <div>
+    <div className="filter-component-container">
       <h1>Filter Recipes</h1>
       <div>
         {/* Display selected search ingredients */}
@@ -108,9 +104,11 @@ const FilterComponent = () => {
       />
       {/* Display suggestions based on user input */}
       <ul>
-        {suggestions.map((suggestion, index) => (
-          <li key={index} onClick={() => handleSuggestionClick(suggestion)}>{suggestion}</li>
-        ))}
+        {noIngredientFound ? <li>No ingredient found</li> :
+          suggestions.map((suggestion, index) => (
+            <li key={index} onClick={() => handleSuggestionClick(suggestion)}>{suggestion}</li>
+          ))
+        }
       </ul>
       {/* Button to filter recipes based on search ingredients */}
       <button onClick={filterRecipes}>Filter</button>
