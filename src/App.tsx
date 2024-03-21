@@ -6,6 +6,7 @@ import RecipesByCategory from "./components/RecipesByCategory";
 import DisplayOneRecipe from "./components/DisplayOneRecipe";
 import AdminPage from "./pages/AdminPage";
 import Navbar from "./components/Navbar";
+import CategoryPage from "./pages/CategoryPage";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/testSite" element={<OldHomepage />} />
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
           <Route path="/adminpage" element={<AdminPage />}/>
+          <Route path="/category" element={<CategoryPage />} />
         </Routes>
       </BrowserRouter>
 
