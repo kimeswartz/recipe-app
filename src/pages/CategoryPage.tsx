@@ -1,13 +1,13 @@
 import CategorySuggestion from "../components/CategorySuggestion";
 
-
-const OldHomepage = () => {
+const CategoryPage = () => {
   return (
     <div>
-      <h1>old homepage</h1>
+      <h1>Sort by categories</h1>
       <CategorySuggestion />
-    </div>
-  );
-};
 
-export default OldHomepage;
+    </div>
+  )
+}
+
+export default CategoryPage
