@@ -8,8 +8,8 @@ interface recipeStateInterface{
   recipeList: RecipeInterface[];
   oneRecipe: RecipeInterface;
   fetchAllRecipes: () => Promise<void>;
-  addRecipe: (newRecipe: UploadRecipeInterface, fetchAllRecipes: () => Promise<void>) => Promise<void>;
-  deleteRecipe: (id: string, fetchAllRecipes: () => Promise<void>) => Promise<void>;
+  addRecipe: (newRecipe: UploadRecipeInterface) => Promise<void>;
+  deleteRecipe: (id: string) => Promise<void>;
   fetchOneRecipe: (id: string) => Promise<void>;
 }
 
@@ -46,7 +46,8 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
     }
   },
 
-  addRecipe: async(newRecipe: UploadRecipeInterface, fetchAllRecipes ) => {
+  addRecipe: async(newRecipe: UploadRecipeInterface ) => {
+    const { fetchAllRecipes } = allRecipeState();
     try{
       const response = await axios.post<UploadRecipeInterface>(`${URL}/recipes`, newRecipe)
       
@@ -61,14 +62,13 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
     }
   },
 
-  deleteRecipe: async(id, fetchAllRecipes) => {
+  deleteRecipe: async(id) => {
     try{
       const response = await axios.delete(
         `https://sti-java-grupp4-s4yjx9.reky.se/recipes/${id}`
       );
       if (response.status === 204) {
         console.log("Recipe deleted successfully");
-        fetchAllRecipes();
       }
 
     }catch(error){

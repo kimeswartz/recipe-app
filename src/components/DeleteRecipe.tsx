@@ -3,10 +3,10 @@ import allRecipeState from "../state/Endpoints";
 
 const DeleteRecipe = () => {
   const [recipeId, setRecipeId] = useState("");
-  const { deleteRecipe, fetchAllRecipes } = allRecipeState();
+  const { deleteRecipe } = allRecipeState();
 
   const handleDelete = async () => {
-    deleteRecipe(recipeId, fetchAllRecipes)
+    deleteRecipe(recipeId)
     setRecipeId('');
   };
 

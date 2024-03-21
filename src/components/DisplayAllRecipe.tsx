@@ -12,13 +12,7 @@ const DisplayAllRecipe = () => {
 
   useEffect(() => {
     fetchAllRecipes();
-  }, [fetchAllRecipes])
-
-  useEffect(() => {
-    //state trigger
-  }, [recipeList])
-
-
+  }, [ recipeList])
 
   return (
     <>

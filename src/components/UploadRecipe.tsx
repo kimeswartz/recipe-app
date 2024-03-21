@@ -1,10 +1,13 @@
 import { useState } from "react";
-import axios from "axios";
 import { UploadRecipeInterface } from "../interfaces/UploadInterface";
+import allRecipeState from "../state/Endpoints";
 
 // Funktion med useState som håller våra värden från recipe interface.
 // uppdaterar App varje gång recipeData uppdateras.
 const UploadRecipe = () => {
+
+  const { addRecipe } = allRecipeState()
+
   const [recipeData, setRecipeData] = useState<UploadRecipeInterface>({
     title: "",
     description: "",
@@ -87,37 +90,26 @@ const UploadRecipe = () => {
   // Funktion som hanterar form data
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    addRecipe(recipeData)
 
-    try {
-      // URL baserad på vår api, post med axios.
-      const response = await axios.post<UploadRecipeInterface>(
-        "https://sti-java-grupp4-s4yjx9.reky.se/recipes",
-        recipeData
-      );
+    // Reset vårt formulär efter submitted
+    setRecipeData({
+      title: "",
+      description: "",
+      ratings: [],
+      imageUrl: "",
+      timeInMins: 0,
+      categories: [],
+      instructions: [],
 
-      console.log("POST request successful", response.data);
-
-      // Reset vårt formulär efter submitted
-      setRecipeData({
-        title: "",
-        description: "",
-        ratings: [],
-        imageUrl: "",
-        timeInMins: 0,
-        categories: [],
-        instructions: [],
-
-        ingredients: [
-          {
-            name: "",
-            amount: 0,
-            unit: "",
-          },
-        ],
-      });
-    } catch (error) {
-      console.error("Error submitting data:", error);
-    }
+      ingredients: [
+        {
+          name: "",
+          amount: 0,
+          unit: "",
+        },
+      ],
+    });
   };
 
   // Present för våra kategorier

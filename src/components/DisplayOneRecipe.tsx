@@ -11,6 +11,7 @@ const DisplayOneRecipe: React.FC = () => {
   const { recipeId } = useParams<{ recipeId: string }>();
 
   useEffect(() => {
+
     if (recipeId) {
       fetchOneRecipe(recipeId)
     }
