@@ -29,20 +29,19 @@ const RecipesByCategory = () => {
     }
   };
 
-  const handleRecipeClick = async (recipeId: string) => {
+  const handleRecipeClick = (recipeId: string) => {
     navigate(`/Recipe/${recipeId}`);
   };
 
-  // RecipesByCategory component JSX
 
   return (
     <div className="recipeContainer">
       <button onClick={() => navigate("/")}>Tillbaka</button>
       <h1>Recipes in category: {categoryName}</h1>
       <div className="recipeList">
-        {recipeList.map((recipe, index) => (
+        {recipeList.map((recipe) => (
           <div
-            key={index}
+            key={recipe._id}
             className="recipeItem"
             onClick={() => handleRecipeClick(recipe._id)}
           >

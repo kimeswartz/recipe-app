@@ -28,8 +28,8 @@ const CategorySuggestion = () => {
     }
   };
 
-  // When clicked this function navigates to a different page with the specific category clicked
-  const handleCategoryClick = async (categoryName: string) => {
+  // When clicked this function navigates to a different page with recipes from the specific category clicked
+  const handleCategoryClick = (categoryName: string) => {
     navigate(`/category/${categoryName}`);
   };
 

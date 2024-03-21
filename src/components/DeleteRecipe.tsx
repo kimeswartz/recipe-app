@@ -23,7 +23,7 @@ const DeleteRecipe = () => {
       <h2>Delete Recipe</h2>
       <input
         type="text"
-        value={recipeId}
+        value={recipeId} // not necessary, just displays the value(recipeId) for the "user"
         onChange={(input) => setRecipeId(input.target.value)}
         placeholder="Enter the recipe id"
       />
