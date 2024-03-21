@@ -79,7 +79,7 @@ function SearchRecipe() {
 
             {input !== '' && filteredData.length !== 0 && ( // Rendering filtered recipe data
                 <div className='dataResult'>
-                    {filteredData.slice(0, 10).map((recipe) => {
+                    {filteredData.map((recipe) => {
                         return (
                             <div className='dataItem' key={recipe._id}>
                                 <Link to={`/recipe/${recipe._id}`} >

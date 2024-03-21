@@ -36,6 +36,10 @@
   .second-card-div > h2{
     margin-top: 2px;
     margin-bottom: 2px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 12rem;
   }
   
   .second-card-div > p{

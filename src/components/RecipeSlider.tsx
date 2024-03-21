@@ -15,6 +15,7 @@ const RecipeSlider: React.FC = () => {
     getRandomRecipes();
   }, []);
 
+  
   const getRandomRecipes = async () => {
     try {
       const result = await axios.get<RecipeInterface[]>('https://sti-java-grupp4-s4yjx9.reky.se/recipes');

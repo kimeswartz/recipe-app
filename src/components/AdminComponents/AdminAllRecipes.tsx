@@ -1,48 +1,26 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { RecipeInterface } from '../../interfaces/RecipeInterface';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import allRecipeState from '../../state/Endpoints';
 
 
 const AdminAllRecipes = () => {
 
-  const [recipeData, setRecipe] = useState<RecipeInterface[]>([]);
+  const { recipeList, fetchAllRecipes, deleteRecipe } = allRecipeState();
 
   useEffect(() => {
-    const getRecipes = async () => {
-      try {
-        const response = await axios.get<RecipeInterface[]>("https://sti-java-grupp4-s4yjx9.reky.se/recipes");
-        if (response.status === 200) {
-          setRecipe(response.data);
-          console.log("Success fetching data from Swagger/Recipes");
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    getRecipes();
-  }, [])
+    fetchAllRecipes()
+  }, [recipeList])
 
   const handleDelete = async (recipeId: string) => {
-    try {
-      const response = await axios.delete(
-        `https://sti-java-grupp4-s4yjx9.reky.se/recipes/${recipeId}`
-      );
-      if (response.status === 204) {
-        console.log("Recipe deleted successfully");
-        alert("Recipe deleted successfully")
-      }
-    } catch (error) { 
-      console.error("Error deleting recipe:", error);
-      alert("NOT DELETED???");
-    }
+    deleteRecipe(recipeId)
+    fetchAllRecipes();
   };
-  
+
 
   return (
     <>
       <div className='all-recipes'>
-        {recipeData.map((recipe) => {
+        {recipeList.map((recipe) => {
           return (
             <div className='recipes-card' key={recipe._id}>
               <button className="delete-button" onClick={() => handleDelete(recipe._id)}>Delete this recipe</button>
