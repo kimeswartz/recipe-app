@@ -1,29 +1,18 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { RecipeInterface } from '../interfaces/RecipeInterface';
-import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import allRecipeState from '../state/Endpoints';
+import { useNavigate } from 'react-router-dom';
 
 import "../styling/AllRecipeStyle.css"
 
 const DisplayAllRecipe = () => {
 
-  const [recipeData, setRecipe] = useState<RecipeInterface[]>([]);
+  const { recipeList, fetchAllRecipes } = allRecipeState();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const getRecipes = async () => {
-      try {
-        const response = await axios.get<RecipeInterface[]>("https://sti-java-grupp4-s4yjx9.reky.se/recipes");
-        if (response.status === 200) {
-          setRecipe(response.data);
-          console.log("Success fetching data from Swagger/Recipes");
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    getRecipes();
-  }, [])
-
+    fetchAllRecipes();
+  }, [ recipeList])
 
   // Kim: This code is updated to connect with css
   return (

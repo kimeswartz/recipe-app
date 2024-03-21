@@ -1,9 +1,11 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { UploadRecipeInterface } from "../interfaces/UploadInterface";
+import allRecipeState from "../state/Endpoints";
 
 const UploadRecipe = () => {
-  // State to manage recipe data
+
+  const { addRecipe } = allRecipeState()
+
   const [recipeData, setRecipeData] = useState<UploadRecipeInterface>({
     title: "",
     description: "",
@@ -76,32 +78,26 @@ const UploadRecipe = () => {
   // Function to handle form submission
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    try {
-      const response = await axios.post<UploadRecipeInterface>(
-        "https://sti-java-grupp4-s4yjx9.reky.se/recipes",
-        recipeData
-      );
-      console.log("POST request successful", response.data);
-      // Reset form fields after successful submission
-      setRecipeData({
-        title: "",
-        description: "",
-        ratings: [],
-        imageUrl: "",
-        timeInMins: 0,
-        categories: [],
-        instructions: [],
-        ingredients: [
-          {
-            name: "",
-            amount: 0,
-            unit: "",
-          },
-        ],
-      });
-    } catch (error) {
-      console.error("Error submitting data:", error);
-    }
+    addRecipe(recipeData)
+
+    // Reset vårt formulär efter submitted
+    setRecipeData({
+      title: "",
+      description: "",
+      ratings: [],
+      imageUrl: "",
+      timeInMins: 0,
+      categories: [],
+      instructions: [],
+
+      ingredients: [
+        {
+          name: "",
+          amount: 0,
+          unit: "",
+        },
+      ],
+    });
   };
 
   // Pre-defined categories

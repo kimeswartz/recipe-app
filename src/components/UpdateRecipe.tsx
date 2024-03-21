@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-
-
 const UpdateRecipe = () => {
   
     const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
@@ -19,8 +17,6 @@ const UpdateRecipe = () => {
     const [ingrediantAmount, setIngrediantAmount] = useState("");
     const [ingrediantUnit, setIngrediantUnit] = useState("");
 
-
-      
       
     // Funktion för att hämta receptet från servern med hjälp av dess ID
     const getRecipeById = async (recipeId: string) => {
@@ -35,8 +31,6 @@ const UpdateRecipe = () => {
       }
     };
 
-
-  
     // Funktionen uppdaterar ett recept i servern med hjälp av dess ID
     const updateById = async () => {
       try {
