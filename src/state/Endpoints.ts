@@ -64,9 +64,7 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
 
   deleteRecipe: async(id) => {
     try{
-      const response = await axios.delete(
-        `https://sti-java-grupp4-s4yjx9.reky.se/recipes/${id}`
-      );
+      const response = await axios.delete(`${URL}/${id}`);
       if (response.status === 204) {
         console.log("Recipe deleted successfully");
       }
