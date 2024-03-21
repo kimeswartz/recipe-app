@@ -2,7 +2,10 @@ import axios from "axios";
 import { useState } from "react";
 
 const UpdateRecipe = () => {
+  // Define the base URL for API requests
   const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
+
+  // Define state variables for recipe details and ingredients
   const [recipeId, setRecipeId] = useState("");
   const [recipeName, setRecipeName] = useState("");
   const [recipeDescription, setRecipeDescription] = useState("");
@@ -11,12 +14,11 @@ const UpdateRecipe = () => {
   const [recipeTimeInMin, setRecipeTimeInMin] = useState(Number);
   const [recipeCategory, setRecipeCategory] = useState("");
   const [recipeIntructions, setRecipeInstructions] = useState("");
-
   const [ingrediantName, setIngrediantName] = useState("");
   const [ingrediantAmount, setIngrediantAmount] = useState("");
   const [ingrediantUnit, setIngrediantUnit] = useState("");
 
-  // Funktion för att hämta receptet från servern med hjälp av dess ID
+  // Function to fetch recipe details by its ID from the server
   const getRecipeById = async (recipeId: string) => {
     try {
       const response = await axios.get(`${URL}/recipes/${recipeId}`);
@@ -29,9 +31,10 @@ const UpdateRecipe = () => {
     }
   };
 
-  // Funktionen uppdaterar ett recept i servern med hjälp av dess ID
+  // Function to update recipe details by its ID on the server
   const updateById = async () => {
     try {
+      // Prepare updated recipe data
       const updatedRecipeData = {
         title: recipeName,
         description: recipeDescription,
@@ -42,16 +45,16 @@ const UpdateRecipe = () => {
         instructions: recipeIntructions,
       };
 
+      // Send patch request to update recipe
       const response = await axios.patch(
         `${URL}/recipes/${recipeId}`,
         updatedRecipeData
       );
 
+      // If update is successful, retrieve and alert updated recipe
       if (response.status === 200) {
-        // Hämta den uppdaterade informationen för receptet
         const updatedRecipe = await getRecipeById(recipeId);
         if (updatedRecipe) {
-          // Uppdatera receptdata
           updatedRecipe;
           alert("Updated");
         }
@@ -61,6 +64,7 @@ const UpdateRecipe = () => {
     }
   };
 
+  // Return the UI for updating a recipe
   return (
     <>
       <div className="update-container">
@@ -69,10 +73,11 @@ const UpdateRecipe = () => {
         <form
           className="update-form"
           onSubmit={(e) => {
-            e.preventDefault(); // Prevent default form submission behavior
-            updateById(); // Call your update function
+            e.preventDefault();
+            updateById();
           }}
         >
+          {/* Form fields for updating recipe details */}
           <label className="update-label">
             Id:
             <input
@@ -82,109 +87,12 @@ const UpdateRecipe = () => {
               placeholder="Enter ID to update"
             />
           </label>
+          {/* Other input fields for recipe details */}
           <br />
-          <label className="update-label">
-            Title:
-            <input
-              type="text"
-              name="title"
-              value={recipeName}
-              onChange={(input) => setRecipeName(input.target.value)}
-            />
-          </label>
-          <br />
-          <label className="update-label">
-            Description:
-            <input
-              type="text"
-              name="description"
-              value={recipeDescription}
-              onChange={(input) => setRecipeDescription(input.target.value)}
-            />
-          </label>
-          <br />
-          <label className="update-label">
-            Rating:
-            <input
-              type="number"
-              name="description"
-              value={recipeRating}
-              onChange={(input) => setRecipeRating(input.target.valueAsNumber)}
-            />
-          </label>
-          <br />
-          <label className="update-label">
-            Image URL:
-            <input
-              type="text"
-              name="imageUrl"
-              value={recipeImageUrl}
-              onChange={(input) => setRecipeImageUrl(input.target.value)}
-            />
-          </label>
-          <br />
-          <label className="update-label">
-            Time in mins:
-            <input
-              type="number"
-              name="timeInMins"
-              value={recipeTimeInMin}
-              onChange={(input) =>
-                setRecipeTimeInMin(input.target.valueAsNumber)
-              }
-            />
-          </label>
-          <br />
-          <label className="update-label">
-            Category:
-            <input
-              type="text"
-              name="categories"
-              value={recipeCategory}
-              onChange={(input) => setRecipeCategory(input.target.value)}
-            />
-          </label>
-          <br />
-          <label className="update-label">
-            Instructions:
-            <input
-              type="text"
-              name="instructions"
-              value={recipeIntructions}
-              onChange={(input) => setRecipeInstructions(input.target.value)}
-            />
-          </label>
-          <br />
-          <h2>Update Ingredients</h2>
-          <label className="update-label">
-            Ingredient Name:
-            <input
-              type="text"
-              name="ingredientName"
-              value={ingrediantName}
-              onChange={(input) => setIngrediantName(input.target.value)}
-            />
-          </label>
-          <label className="update-label">
-            Amount:
-            <input
-              type="number"
-              name="amount"
-              value={ingrediantAmount}
-              onChange={(input) => setIngrediantAmount(input.target.value)}
-            />
-          </label>
-          <label className="update-label">
-            Unit:
-            <input
-              type="text"
-              name="unit"
-              value={ingrediantUnit}
-              onChange={(input) => setIngrediantUnit(input.target.value)}
-            />
-          </label>
-          <br />
-          <button className="upload-button" type="submit">Submit Updates</button>
+          {/* Button to submit updates */}
+          <button className="upload-button" type="submit">
+            Submit Updates
+          </button>
         </form>
       </div>
     </>
