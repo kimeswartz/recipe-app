@@ -1,3 +1,5 @@
+//Hampus
+
 import { useEffect } from 'react';
 import allRecipeState from '../state/Endpoints';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +14,7 @@ const DisplayAllRecipe = () => {
 
   useEffect(() => {
     fetchAllRecipes();
-  }, [ recipeList])
+  }, [recipeList])
 
   return (
     <>
