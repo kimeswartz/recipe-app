@@ -1,41 +1,26 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { categoryInterface } from "../interfaces/CategoryInterface";
 import "../styling/CategorySuggestionStyle.css";
+import allRecipeState from "../state/Endpoints";
 
 const CategorySuggestion = () => {
-  const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
-  const [categoryList, setCategoryList] = useState<categoryInterface[]>([]);
   const navigate = useNavigate();
+  const { categoryList, fetchAllCategories } = allRecipeState();
 
-  // Runs once to grab all categories
+  // To fetch all categories when component first loads or when the categoryList changes
   useEffect(() => {
-    getAllCategories();
-  }, []);
+    fetchAllCategories();
+  }, [categoryList]);
 
-  // Gets all the categories from the api
-  const getAllCategories = async () => {
-    try {
-      const response = await axios.get(`${URL}/categories`);
-
-      if (response.status === 200) {
-        setCategoryList(response.data);
-      }
-    } catch (error) {
-      console.error("error fetching categories: ", error);
-      setCategoryList([]);
-    }
-  };
-
-  // When clicked this function navigates to a different page with recipes from the specific category clicked
+  // Function to handle a click on a specific category
   const handleCategoryClick = (categoryName: string) => {
-    navigate(`/category/${categoryName}`);
+    navigate(`/category/${categoryName}`); // Navigate to category page with selected category
   };
 
   return (
     <div className="category-suggestion-container">
       {categoryList.map((category, index) => (
+        // Rendering each category item with click handler
         <div
           key={index}
           onClick={() => handleCategoryClick(category.name)}

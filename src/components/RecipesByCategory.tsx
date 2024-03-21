@@ -1,42 +1,27 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom"; // useParams hook to access route parameters
-import { RecipeInterface } from "../interfaces/RecipeInterface";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import "../styling/RecipiesByCategoryStyle.css";
+import allRecipeState from "../state/Endpoints";
 
 const RecipesByCategory = () => {
-  const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
-  const { categoryName } = useParams(); // access categoryName parameter from the route URL
-  const [recipeList, setRecipeList] = useState<RecipeInterface[]>([]);
+  const { categoryName } = useParams(); // Accessing the category name parameter from the route URL
   const navigate = useNavigate();
+  const { recipeList, fetchOneCategory } = allRecipeState();
 
-  // Gets all the recipes from the category
+  // To fetch all recipies from specific category when component first loads or when the categoryName changes
   useEffect(() => {
-    fetchRecipesByCategory();
-  }, []);
-
-  const fetchRecipesByCategory = async () => {
-    try {
-      const response = await axios.get(
-        `${URL}/categories/${categoryName}/recipes`
-      );
-      if (response.status === 200) {
-        setRecipeList(response.data);
-      }
-    } catch (error) {
-      console.error("Error fetching recipes by category:", error);
-      setRecipeList([]);
+    if (categoryName) {
+      fetchOneCategory(categoryName);
     }
-  };
+  }, [categoryName]);
 
+  // Function to handle a click on a specific recipe
   const handleRecipeClick = (recipeId: string) => {
-    navigate(`/Recipe/${recipeId}`);
+    navigate(`/Recipe/${recipeId}`); // Navigating to the recipe page with the selected recipe id
   };
-
 
   return (
     <div className="recipeContainer">
-      <button onClick={() => navigate("/")}>Tillbaka</button>
       <h1>Recipes in category: {categoryName}</h1>
       <div className="recipeList">
         {recipeList.map((recipe) => (
