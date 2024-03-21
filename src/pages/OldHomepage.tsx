@@ -6,12 +6,12 @@ import ReviewComponent from '../components/ReviewComponent'
 import CommentRecipe from '../components/CommentRecipe'
 import DeleteRecipe from '../components/DeleteRecipe'
 
-
 const OldHomepage = () => {
   return (
     <div>
         <h1>old homepage</h1>
         <RecipeSearch />
+
         <UploadRecipeComponent />
         <DisplayAllRecipe />
         <ReviewComponent />

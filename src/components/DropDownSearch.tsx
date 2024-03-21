@@ -5,7 +5,7 @@ import { RecipeInterface } from '../interfaces/RecipeInterface';
 import { Link } from 'react-router-dom'; 
 import "../styling/SearchBarStyle.css"; 
 
-function SearchRecipe() {
+function DropDownSearch() {
     const { Search } = Input; // Destructuring Search from Input component
     const [recipeData, setRecipeData] = useState<RecipeInterface[]>([]); // State for storing recipe data
     const [filteredData, setFilteredData] = useState<RecipeInterface[]>([]); // State for storing filtered recipe data
@@ -28,14 +28,18 @@ function SearchRecipe() {
 
     // Function to filter recipes based on search input
     const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const searchInput = e.target.value; // Getting search input value
+        const searchInput = e.target.value.toLowerCase(); // Getting search input value
         setInput(searchInput); // Updating input state with search input
         const newFilter = recipeData.filter((recipe) => {
-            return recipe.title.toLowerCase().includes(searchInput.toLowerCase()); // Filtering recipes based on search input
+            return (
+                recipe.title.toLowerCase().includes(searchInput) ||
+                recipe.ingredients.some((ingredient) =>
+                    ingredient.name.toLowerCase().includes(searchInput)
+                )
+            ); // Filtering recipes based on search input and ingredients
         });
         if (searchInput === "") {
             setFilteredData([]); // Resetting filteredData state if search input is empty
-            setInput(""); // Resetting input state if search input is empty
             setError(""); // Resetting error state if search input is empty
         } else {
             setFilteredData(newFilter); // Updating filteredData state with filtered recipes
@@ -47,51 +51,47 @@ function SearchRecipe() {
         }
     };
 
-    // Function to handle empty search input
-    const handleEmptySearch = (value: string) => {
-        if (value.trim() === "") {
-            setError('To find recipes, type something into the search bar.'); // Setting error message if search input is empty
-            return;
-        } else {
-            setError(''); // Clearing error message if search input is not empty
-        }
-    };
-
     return (
-        <section className='search-wrapper'>
-        <div className="search">
-            <div className='searchInputs'>
-                <Search
-                    placeholder='Search recipes...'
-                    value={input}
-                    onChange={(e) => handleFilter(e)}
-                    onSearch={handleEmptySearch}
-                    allowClear
-                    enterButton
-                
-                    
-                />
+        <div className='search-wrapper'>
+            <div className="search">
+                <div className='searchInputs'>
+                    <Search
+                        placeholder='Search recipes or ingredients...'
+                        value={input}
+                        onChange={(e) => handleFilter(e)}
+                        allowClear
+                        enterButton
+                    />
+                </div>
+
+                {error && ( // Rendering error message if error state is set
+                    <div className="error-message">{error}</div>
+                )}
+
+                {input !== '' && filteredData.length !== 0 && ( // Rendering filtered recipe data
+                    <div className='dataResult'>
+                        {filteredData.map((recipe) => {
+                            return (
+                                <div className='dataItem' key={recipe._id}>
+                                    <div>
+                                        <Link to={`/recipe/${recipe._id}`} >
+                                            {recipe.title}
+                                        </Link>
+                                    </div>
+                                    <div>
+                                        {recipe.ingredients.map((ingredient, index) => (
+                                            <span key={index}>{ingredient.name}</span>
+                                        ))}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                )}
             </div>
-
-            {error && ( // Rendering error message if error state is set
-                <div className="error-message">{error}</div>
-            )}
-
-            {input !== '' && filteredData.length !== 0 && ( // Rendering filtered recipe data
-                <ul className='dataResult'>
-                {filteredData.map((recipe) => (
-                    <li className='dataItem' key={recipe._id}>
-                        <Link to={`/recipe/${recipe._id}`}>
-                            {recipe.title}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-            
-            )}
         </div>
-    </section>
     );
 }
 
-export default SearchRecipe;
+
+export default DropDownSearch
