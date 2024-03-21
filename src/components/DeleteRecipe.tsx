@@ -25,3 +25,4 @@ const DeleteRecipe = () => {
 };
 
 export default DeleteRecipe;
+

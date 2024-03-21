@@ -1,7 +1,6 @@
 import DisplayAllRecipe from "../components/DisplayAllRecipe";
 import RecipeSlider from "../components/RecipeSlider";
 import RecipeSearch from "../components/SearchRecipe";
-import UploadRecipe from "../components/UploadRecipe";
 
 const Home = () => {
     return (
@@ -11,8 +10,6 @@ const Home = () => {
                 <h3>This is the search component:</h3>
                 <RecipeSearch />
                 <RecipeSlider/>
-                <h3>Here you can add a recipe</h3>
-                <UploadRecipe />
                 <DisplayAllRecipe />
             </div>
 
