@@ -1,3 +1,5 @@
+//Kim + Malcolm
+
 import { useState } from "react";
 import { UploadRecipeInterface } from "../../interfaces/UploadInterface";
 import allRecipeState from "../../state/Endpoints";
@@ -121,12 +123,12 @@ const UploadRecipe = () => {
 
   // Present för våra kategorier
   const presetCategories = [
-    "Breakfast",
+    "Frukost",
     "Lunch",
-    "Dinner",
+    "Middag",
     "Vegetarian",
     "Party",
-    "Asian",
+    "Asiatisk",
     "Latin American",
   ];
 
