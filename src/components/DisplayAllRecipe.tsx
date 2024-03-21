@@ -34,7 +34,7 @@ const DisplayAllRecipe = () => {
                 </div>
               </div>
             </Link>
-            
+
           )
         })}
       </div>

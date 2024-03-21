@@ -6,14 +6,18 @@ import { UploadRecipeInterface } from "../interfaces/UploadInterface";
 
 interface recipeStateInterface{
   recipeList: RecipeInterface[];
+  oneRecipe: RecipeInterface[];
   fetchAllRecipes: () => Promise<void>;
   addRecipe: (newRecipe: UploadRecipeInterface, fetchAllRecipes: () => Promise<void>) => void;
+  deleteRecipe: (id: string, fetchAllRecipes: () => Promise<void>) => void;
+  fetchOneRecipe: (id: string) => void;
 }
 
 const URL = "https://sti-java-grupp4-s4yjx9.reky.se"
 
 const allRecipeState = create<recipeStateInterface>()((set) => ({
   recipeList: [],
+  oneRecipe: [],
 
   fetchAllRecipes: async() => {
     try{
@@ -23,6 +27,18 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
       }
     }catch(error){
       console.error('Error fetching all recipes', error)
+    }
+  },
+
+  fetchOneRecipe: async(id) => {
+    try {
+      const response = await axios.get(`${URL}/recipes/${id}`);
+      if(response.status === 200){
+        set( {oneRecipe : response.data })
+      }
+    } catch (error) {
+      console.error("Error fetching recipe:", error);
+      return null;
     }
   },
 
@@ -39,9 +55,23 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
     }catch(error){
       console.error('Error from post attempt:', error)
     }
-  }
+  },
 
-    
+  deleteRecipe: async(id, fetchAllRecipes) => {
+    try{
+      const response = await axios.delete(
+        `https://sti-java-grupp4-s4yjx9.reky.se/recipes/${id}`
+      );
+      if (response.status === 204) {
+        console.log("Recipe deleted successfully");
+        fetchAllRecipes();
+      }
+
+    }catch(error){
+      console.error('Error deleting recipe:', error)
+    }
+  },
+
 }))
 
 export default allRecipeState;
