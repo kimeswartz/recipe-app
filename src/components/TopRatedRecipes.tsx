@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
 import axios from "axios";
+import "../styling/RecipiesByCategoryStyle.css"
 
 const TopRatedRecipes = () => {
   const [recipeData, setRecipe] = useState<RecipeInterface[]>([]);
@@ -25,17 +26,26 @@ const TopRatedRecipes = () => {
   const filteredRecipes = recipeData.filter((recipe) => recipe.avgRating >= 3);
 
   return (
-    <div>
+    <div className="recipeContainer">
       <h2>Top Rated Recipes</h2>
-      {filteredRecipes.map((recipe) => {
-        return (
-          <div key={recipe._id}>
-            <h2>
-              {recipe.title}, {recipe.avgRating}
-            </h2>
-          </div>
-        );
-      })}
+      <div className="recipeList">
+        {filteredRecipes
+          .sort((a, b) => b.avgRating - a.avgRating)
+          .map((recipe) => {
+            return (
+              <div key={recipe._id} className="recipeItem">
+                <div className="imgContainer">
+                  <img src={recipe.imageUrl} alt={recipe.title} />
+                </div>
+                <div className="textContainer">
+                  <h2>
+                    {recipe.title}, {recipe.avgRating}
+                  </h2>
+                </div>
+              </div>
+            );
+          })}
+      </div>
     </div>
   );
 };

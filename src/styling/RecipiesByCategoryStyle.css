@@ -22,9 +22,9 @@
   flex-direction: column;
 }
 
-.recipeItem:hover {
+/* .recipeItem:hover {
   transform: translateY(-5px);
-}
+} */
 
 .textContainer {
   padding: 15px;
