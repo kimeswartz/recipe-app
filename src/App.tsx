@@ -5,12 +5,7 @@ import OldHomepage from "./pages/OldHomepage";
 import DisplayOneRecipe from "./components/DisplayOneRecipe";
 import AdminPage from "./pages/AdminPage";
 import Navbar from "./components/Navbar";
-<<<<<<< HEAD
-import DisplayOneRecipe from "./components/DisplayOneRecipe";
-import FilterPage from './pages/Filter';
-=======
-
->>>>>>> 3b347b87c02b56654c99214ec2081ccb08b4231c
+import FilterPage from "./pages/Filter";
 
 function App() {
 
