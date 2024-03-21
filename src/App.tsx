@@ -16,7 +16,6 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/testSite" element={<OldHomepage />}/>
           <Route path="/category/:categoryName" element={<RecipesByCategory />}/>
           <Route path="/testSite" element={<OldHomepage />} />
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
