@@ -1,4 +1,3 @@
-import React from 'react'
 import RecipeSearch from '../components/SearchRecipe'
 import UploadRecipeComponent from '../components/UploadRecipe'
 import DisplayAllRecipe from '../components/DisplayAllRecipe'
@@ -7,6 +6,7 @@ import ReviewComponent from '../components/ReviewComponent'
 import CommentRecipe from '../components/CommentRecipe'
 import CategorySuggestion from "../components/CategorySuggestion";
 import TopRatedRecipes from '../components/TopRatedRecipes'
+import DeleteRecipe from '../components/DeleteRecipe'
 
 
 const OldHomepage = () => {
@@ -21,6 +21,7 @@ const OldHomepage = () => {
         <ReviewComponent />
         <UpdateRecipe />
         <CommentRecipe />
+        <DeleteRecipe />
 
     </div>
   );

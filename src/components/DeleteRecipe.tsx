@@ -1,21 +1,13 @@
 import { useState } from "react";
-import axios from "axios";
+import allRecipeState from "../state/Endpoints";
 
 const DeleteRecipe = () => {
   const [recipeId, setRecipeId] = useState("");
+  const { deleteRecipe } = allRecipeState();
 
   const handleDelete = async () => {
-    try {
-      const response = await axios.delete(
-        `https://sti-java-grupp4-s4yjx9.reky.se/recipes/${recipeId}`
-      );
-      if (response.status === 204) {
-        console.log("Recipe deleted successfully");
-      }
-    } catch (error) {
-      console.error("Error deleting recipe:", error);
-      alert("NOT DELETED???");
-    }
+    deleteRecipe(recipeId)
+    setRecipeId('');
   };
 
   return (

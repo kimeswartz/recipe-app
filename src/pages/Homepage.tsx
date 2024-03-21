@@ -1,5 +1,4 @@
 import DisplayAllRecipe from "../components/DisplayAllRecipe";
-import Navbar from "../components/Navbar";
 import RecipeSlider from "../components/RecipeSlider";
 import RecipeSearch from "../components/SearchRecipe";
 import UploadRecipe from "../components/UploadRecipe";
@@ -7,7 +6,6 @@ import UploadRecipe from "../components/UploadRecipe";
 const Home = () => {
     return (
         <div>
-            <Navbar/>
             <h1>Welcome to the Home- Page</h1>
             <div className="card">
                 <h3>This is the search component:</h3>
