@@ -1,88 +1,97 @@
-import React, { useEffect, useState } from 'react';
-import { Input } from "antd";
-import axios from 'axios';
-import { RecipeInterface } from '../interfaces/RecipeInterface';
-import { Link } from 'react-router-dom';
-import "../styling/SearchBarStyle.css";
+import React, { useEffect, useState } from 'react'; 
+import { Input } from "antd"; 
+import axios from 'axios'; 
+import { RecipeInterface } from '../interfaces/RecipeInterface';  
+import { Link } from 'react-router-dom'; 
+import "../styling/SearchBarStyle.css"; 
 
 function SearchRecipe() {
-    const { Search } = Input;
-    const [recipeData, setRecipeData] = useState<RecipeInterface[]>([]);
-    const [filteredData, setFilteredData] = useState<RecipeInterface[]>([]);
-    const [error, setError] = useState("");
-    const [input, setInput] = useState("");
+    const { Search } = Input; // Destructuring Search from Input component
+    const [recipeData, setRecipeData] = useState<RecipeInterface[]>([]); // State for storing recipe data
+    const [filteredData, setFilteredData] = useState<RecipeInterface[]>([]); // State for storing filtered recipe data
+    const [error, setError] = useState(""); // State for storing error messages
+    const [input, setInput] = useState(""); // State for storing search input
 
     useEffect(() => {
+        // fetches recipe data when the component is configured via API
         axios('https://sti-java-grupp4-s4yjx9.reky.se/recipes')
             .then((response) => {
-                console.log(response.data);
-                setRecipeData(response.data);
-                setFilteredData(response.data); // Initialize filteredData with all recipes
+                console.log(response.data); // Logging fetched data to console
+                setRecipeData(response.data); // Setting fetched data to recipeData state
+                setFilteredData(response.data); // Setting fetched data to filteredData state
             })
             .catch((err) => {
-                console.log('Error fetching recipes', err);
-                setError(err.message); // Set error message if fetching fails
+                console.log('Error fetching recipes', err); // Logging error message if API call fails
+                setError(err); // Setting error message to error state
             });
     }, []);
 
-    const handleFilter = (searchInput: string) => {
-        const newFilteredData = recipeData.filter((recipe) => {
-            const titleMatch = recipe.title.toLowerCase().includes(searchInput.toLowerCase());
-            const ingredientMatch = recipe.ingredients.some(ingredient => {
-                return ingredient.name.toLowerCase().includes(searchInput.toLowerCase());
-            });
-            return titleMatch || ingredientMatch;
+    // Function to filter recipes based on search input
+    const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const searchInput = e.target.value; // Getting search input value
+        setInput(searchInput); // Updating input state with search input
+        const newFilter = recipeData.filter((recipe) => {
+            return recipe.title.toLowerCase().includes(searchInput.toLowerCase()); // Filtering recipes based on search input
         });
-        setFilteredData(newFilteredData);
-        if (newFilteredData.length === 0) {
-            setError('No recipes found.'); // Set error message if no recipes match the search
+        if (searchInput === "") {
+            setFilteredData([]); // Resetting filteredData state if search input is empty
+            setInput(""); // Resetting input state if search input is empty
+            setError(""); // Resetting error state if search input is empty
         } else {
-            setError(""); // Clear error message if there are matching recipes
+            setFilteredData(newFilter); // Updating filteredData state with filtered recipes
+            if (newFilter.length === 0) {
+                setError('No recipes found.'); // Setting error message if no recipes found
+            } else {
+                setError(""); // Clearing error message if recipes are found
+            }
         }
     };
 
-    const handleSearch = (value: string) => {
-        setInput(value); // Update input state
+    // Function to handle empty search input
+    const handleEmptySearch = (value: string) => {
         if (value.trim() === "") {
-            setFilteredData(recipeData); // If search input is empty, show all recipes
-            setError('To find recipes, type something into the search bar.'); // Set error message
+            setError('To find recipes, type something into the search bar.'); // Setting error message if search input is empty
+            return;
         } else {
-            handleFilter(value);
+            setError(''); // Clearing error message if search input is not empty
         }
     };
 
     return (
         <div className='search-wrapper'>
-            <div className="search">
-                <div className='searchInputs'>
-                    <Search
-                        placeholder='Search recipes...'
-                        value={input}
-                        onChange={(e) => handleSearch(e.target.value)}
-                        allowClear
-                    />
-                </div>
-
-                {error && (
-                    <div className="error-message">{error}</div>
-                )}
-
-                {filteredData.length !== 0 && (
-                    <div className='dataResult'>
-                        {filteredData.map((recipe) => {
-                            return (
-                                <div className='dataItem' key={recipe._id}>
-                                    <Link to={`/recipe/${recipe._id}`} >
-                                        <h3>{recipe.title}</h3>
-                                    </Link>
-                                    <p>Ingredients: {recipe.ingredients.map(ingredient => ingredient.name).join(', ')}</p>
-                                </div>
-                            );
-                        })}
-                    </div>
-                )}
+        <div className="search">
+            <div className='searchInputs'>
+                <Search
+                    placeholder='Search recipes...'
+                    value={input}
+                    onChange={(e) => handleFilter(e)}
+                    onSearch={handleEmptySearch}
+                    allowClear
+                    enterButton
+                
+                    
+                />
             </div>
+
+            {error && ( // Rendering error message if error state is set
+                <div className="error-message">{error}</div>
+            )}
+
+            {input !== '' && filteredData.length !== 0 && ( // Rendering filtered recipe data
+                <div className='dataResult'>
+                    {filteredData.slice(0, 10).map((recipe) => {
+                        return (
+                            <div className='dataItem' key={recipe._id}>
+                                <Link to={`/recipe/${recipe._id}`} >
+                                    {recipe.title}
+                                </Link>
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
         </div>
+    </div>
     );
 }
 

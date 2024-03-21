@@ -10,7 +10,6 @@ export interface RecipeInterface {
     instructions: string[];
  
     ingredients: {
-      [x: string]: any;
       name: string;
       amount: number;
       unit: string;
