@@ -1,3 +1,5 @@
+//Kim + Hampus
+
 import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
