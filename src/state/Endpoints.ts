@@ -6,22 +6,22 @@ import { UploadRecipeInterface } from "../interfaces/UploadInterface";
 
 interface recipeStateInterface{
   recipeList: RecipeInterface[];
-  oneRecipe: RecipeInterface[];
+  oneRecipe: RecipeInterface;
   fetchAllRecipes: () => Promise<void>;
-  addRecipe: (newRecipe: UploadRecipeInterface, fetchAllRecipes: () => Promise<void>) => void;
-  deleteRecipe: (id: string, fetchAllRecipes: () => Promise<void>) => void;
-  fetchOneRecipe: (id: string) => void;
+  addRecipe: (newRecipe: UploadRecipeInterface, fetchAllRecipes: () => Promise<void>) => Promise<void>;
+  deleteRecipe: (id: string, fetchAllRecipes: () => Promise<void>) => Promise<void>;
+  fetchOneRecipe: (id: string) => Promise<void>;
 }
 
 const URL = "https://sti-java-grupp4-s4yjx9.reky.se"
 
 const allRecipeState = create<recipeStateInterface>()((set) => ({
   recipeList: [],
-  oneRecipe: [],
+  oneRecipe: {} as RecipeInterface,
 
   fetchAllRecipes: async() => {
     try{
-      const response = await axios.get<RecipeInterface[]>(`${URL}/recipes`)
+      const response = await axios.get(`${URL}/recipes`)
       if(response.status === 200){
         set({ recipeList: response.data })
       }
@@ -34,11 +34,15 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
     try {
       const response = await axios.get(`${URL}/recipes/${id}`);
       if(response.status === 200){
-        set( {oneRecipe : response.data })
+        console.log('Successfull get')
+        set((state) => ({
+          ...state,
+          oneRecipe: response.data
+        }))
+        console.log(response.data)
       }
     } catch (error) {
       console.error("Error fetching recipe:", error);
-      return null;
     }
   },
 

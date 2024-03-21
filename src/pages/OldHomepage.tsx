@@ -1,4 +1,3 @@
-import React from 'react'
 import RecipeSearch from '../components/SearchRecipe'
 import UploadRecipeComponent from '../components/UploadRecipe'
 import DisplayAllRecipe from '../components/DisplayAllRecipe'

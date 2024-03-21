@@ -12,18 +12,15 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <Navbar />
-      <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/testSite" element={<OldHomepage />} />
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
-          <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
-          <Route path="/adminpage" element={<AdminPage />}/> /* BARA FÖR ATT TESTA MIN AdminPage */
+          <Route path="/adminpage" element={<AdminPage />}/>
         </Routes>
       </BrowserRouter>
-      </BrowserRouter>
+
     </>
   );
 }
