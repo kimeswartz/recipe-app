@@ -1,3 +1,5 @@
+//Malcolm
+
 import axios from "axios";
 import { useState } from "react";
 
@@ -55,7 +57,6 @@ const UpdateRecipe = () => {
       if (response.status === 200) {
         const updatedRecipe = await getRecipeById(recipeId);
         if (updatedRecipe) {
-          updatedRecipe;
           alert("Updated");
         }
       }
