@@ -1,11 +1,14 @@
 import { useState } from "react";
-import axios from "axios";
 import { UploadRecipeInterface } from "../../interfaces/UploadInterface";
+import allRecipeState from "../../state/Endpoints";
 
 
 // Funktion med useState som håller våra värden från recipe interface.
 // uppdaterar App varje gång recipeData uppdateras.
 const UploadRecipe = () => {
+
+  const { addRecipe } = allRecipeState()
+
   const [recipeData, setRecipeData] = useState<UploadRecipeInterface>({
     title: "",
     description: "",
@@ -91,12 +94,7 @@ const UploadRecipe = () => {
 
     try {
       // URL baserad på vår api, post med axios.
-      const response = await axios.post<UploadRecipeInterface>(
-        "https://sti-java-grupp4-s4yjx9.reky.se/recipes",
-        recipeData
-      );
-
-      console.log("POST request successful", response.data);
+      addRecipe(recipeData)
 
       // Reset vårt formulär efter submitted
       setRecipeData({
