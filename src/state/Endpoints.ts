@@ -1,61 +1,83 @@
+//Hampus
+
 import { create } from "zustand";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
 import axios from "axios";
 import { UploadRecipeInterface } from "../interfaces/UploadInterface";
+import { categoryInterface } from "../interfaces/CategoryInterface";
 
-// Defining our interface to specify the structure of the state
-// We define an empty array which can hold multiple objects
-// Followed by oneRecipe which is declared to hold a single recipe object
-// Followed by a function to to fetch all recipes
-// Functions that returns promises to add, delete and fetch a single recipe
 interface recipeStateInterface {
   recipeList: RecipeInterface[];
   oneRecipe: RecipeInterface;
+  categoryList: categoryInterface[];
   fetchAllRecipes: () => Promise<void>;
   addRecipe: (newRecipe: UploadRecipeInterface) => Promise<void>;
   deleteRecipe: (id: string) => Promise<void>;
   fetchOneRecipe: (id: string) => Promise<void>;
+  fetchAllCategories: () => Promise<void>;
+  fetchOneCategory: (categoryName: string) => Promise<void>;
 }
 
-// Our base URL for the backend API
 const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
 
-// We use Zustand 'store' to set up an initial state (empty string and empty object)
-// Which will be used to manage recipe-related state in the app.
 const allRecipeState = create<recipeStateInterface>()((set) => ({
   recipeList: [],
   oneRecipe: {} as RecipeInterface,
+  categoryList: [],
 
-  // Function to fetch all recipes async.
   fetchAllRecipes: async () => {
     try {
-      const response = await axios.get(`${URL}/recipes`); // GET request to fecth all, recipes
+      const response = await axios.get(`${URL}/recipes`);
       if (response.status === 200) {
-        set({ recipeList: response.data }); // Updating the recipeList state with the fetched data
+        set({ recipeList: response.data });
       }
     } catch (error) {
       console.error("Error fetching all recipes", error);
     }
   },
 
-  // Function to fetch a single recipe asynchronously by ID
   fetchOneRecipe: async (id) => {
     try {
-      const response = await axios.get(`${URL}/recipes/${id}`); // Making GET request for singöe recipe
+      const response = await axios.get(`${URL}/recipes/${id}`);
       if (response.status === 200) {
         console.log("Successfull get");
         set((state) => ({
           ...state,
-          oneRecipe: response.data, // Updating the OneRecipe state with fetched recipe
+          oneRecipe: response.data,
         }));
-        console.log(response.data); // Logging the fetched recipe data
+        console.log(response.data);
       }
     } catch (error) {
       console.error("Error fetching recipe:", error);
     }
   },
 
-  //Functiopn to add a new recipe asynchronously
+  fetchAllCategories: async () => {
+    try {
+      const response = await axios.get(`${URL}/categories`);
+      if (response.status === 200) {
+        console.log("Successfull get");
+        set({ categoryList: response.data });
+      }
+    } catch (error) {
+      console.error("Error fetching all categories", error);
+    }
+  },
+
+  fetchOneCategory: async (categoryName: string) => {
+    try {
+      const response = await axios.get(
+        `${URL}/categories/${categoryName}/recipes`
+      );
+      if (response.status === 200) {
+        console.log("Successfull get");
+        set({ recipeList: response.data });
+      }
+    } catch (error) {
+      console.error("Error fetching recipes by category:", error);
+    }
+  },
+
   addRecipe: async (newRecipe: UploadRecipeInterface) => {
     const { fetchAllRecipes } = allRecipeState();
     try {
@@ -74,7 +96,6 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
     }
   },
 
-  // Function to delete a recipe asynchronously by ID
   deleteRecipe: async (id) => {
     try {
       const response = await axios.delete(`${URL}/recipes/${id}`);
