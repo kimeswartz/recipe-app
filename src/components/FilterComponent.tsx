@@ -44,9 +44,11 @@ const FilterComponent = () => {
 
   // Generate suggestions based on user input
   const generateSuggestions = () => {
-    const matchingSuggestions = recipeData
-      .flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.name))
-      .filter(ingredient => ingredient.toLowerCase().startsWith(userInput.toLowerCase()));
+    const matchingSuggestions = Array.from(new Set(
+      recipeData
+        .flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.name))
+        .filter(ingredient => ingredient.toLowerCase().startsWith(userInput.toLowerCase()))
+    ));
 
     setSuggestions(matchingSuggestions);
     setNoIngredientFound(matchingSuggestions.length === 0);
@@ -114,27 +116,31 @@ const FilterComponent = () => {
       <button onClick={filterRecipes}>Filter</button>
       {/* Display filtered recipes */}
       <ul>
-        {filteredRecipes.map(recipe => (
-          <li key={recipe._id}>
-            <img src={recipe.imageUrl} alt={recipe.title} />
-            <h2>{recipe.title}</h2>
-            <p>{recipe.description}</p>
-            <ul>
-              {/* Display ingredients of each recipe */}
-              {recipe.ingredients.map((ingredient, index) => (
-                <li key={index}>{`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`}</li>
-              ))}
-            </ul>
-            <p>{`Time: ${recipe.timeInMins} mins`}</p>
-            <p>{`Categories: ${recipe.categories.join(", ")}`}</p>
-            <ul>
-              {/* Display instructions of each recipe */}
-              {recipe.instructions.map((instruction, index) => (
-                <li key={index}>{instruction}</li>
-              ))}
-            </ul>
-          </li>
-        ))}
+        {filteredRecipes.length > 0 ? (
+          filteredRecipes.map(recipe => (
+            <li key={recipe._id}>
+              <img src={recipe.imageUrl} alt={recipe.title} />
+              <h2>{recipe.title}</h2>
+              <p>{recipe.description}</p>
+              <ul>
+                {/* Display ingredients of each recipe */}
+                {recipe.ingredients.map((ingredient, index) => (
+                  <li key={index}>{`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`}</li>
+                ))}
+              </ul>
+              <p>{`Time: ${recipe.timeInMins} mins`}</p>
+              <p>{`Categories: ${recipe.categories.join(", ")}`}</p>
+              <ul>
+                {/* Display instructions of each recipe */}
+                {recipe.instructions.map((instruction, index) => (
+                  <li key={index}>{instruction}</li>
+                ))}
+              </ul>
+            </li>
+          ))
+        ) : (
+          <li>No recipes found</li>
+        )}
       </ul>
     </div>
   );

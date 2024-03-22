@@ -6,12 +6,9 @@ import RecipesByCategory from "./components/RecipesByCategory";
 import DisplayOneRecipe from "./components/DisplayOneRecipe";
 import AdminPage from "./pages/AdminPage";
 import Navbar from "./components/Navbar";
-<<<<<<< HEAD
-import FilterPage from "./pages/Filter";
-=======
 import CategoryPage from "./pages/CategoryPage";
+import FilterPage from "./pages/Filter";
 
->>>>>>> b510a78f67d32f07beafdb65bcf1c8e72a6b39a2
 
 function App() {
 
