@@ -90,6 +90,7 @@ const UploadRecipe = () => {
   };
 
   // Function to handle form submission
+  // preventDefualt means the page won't reload, and no form data is sent to the server automatically.
   const handleSubmit = async (clickEvent: any) => {
     clickEvent.preventDefault();
 
