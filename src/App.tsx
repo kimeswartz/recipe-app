@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Homepage";
 import RecipesByCategory from "./components/RecipesByCategory";
 import DisplayOneRecipe from "./components/DisplayOneRecipe";
@@ -12,17 +12,17 @@ import Footer from "./components/Footer";
 function App() {
   return (
     <>
-      <Router>
+      <BrowserRouter>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/category/:categoryName" element={<RecipesByCategory />}/>
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
           <Route path="/category" element={<CategoryPage />} />
-          <Route path="/admin" element={<AdminPage />}></Route>
+          <Route path="/adminpage" element={<AdminPage />}/>
         </Routes>
         <Footer />
-      </Router>
+      </BrowserRouter>
     </>
   );
 }
