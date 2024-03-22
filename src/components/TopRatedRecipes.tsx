@@ -7,24 +7,24 @@ import "../styling/RecipiesByCategoryStyle.css"
 
 const TopRatedRecipes = () => {
   
-    const {recipeList, fetchAllRecipes} = allRecipeState();
-    const navigate = useNavigate();
+//     const {recipeList, fetchAllRecipes} = allRecipeState();
+//     const navigate = useNavigate();
 
-  useEffect(() => {
-    fetchAllRecipes();
-    }, [recipeList]);
+//   useEffect(() => {
+//     fetchAllRecipes();
+//     }, [recipeList]);
 
-  const filteredRecipes = recipeList.filter((recipe) => recipe.avgRating >= 3);
+//   const filteredRecipes = recipeList.filter((recipe) => recipe.avgRating >= 3);
 
-//   Function to handle a click on a specific recipe
-//   const handleRecipeClick = (recipeId: string) => {
-//     navigate(`/Recipe/${recipeId}`); // Navigating to the recipe page with the selected recipe id
-//   };
+// //   Function to handle a click on a specific recipe
+// //   const handleRecipeClick = (recipeId: string) => {
+// //     navigate(`/Recipe/${recipeId}`); // Navigating to the recipe page with the selected recipe id
+// //   };
 
   return (
     <div className="recipeContainer">
       <h2>Top Rated Recipes</h2>
-      <div className="recipeList">
+      {/* <div className="recipeList">
         {filteredRecipes
           .sort((a, b) => b.avgRating - a.avgRating)
           .map((recipe) => (
@@ -44,7 +44,7 @@ const TopRatedRecipes = () => {
               </div>
             )
           )}
-      </div>
+      </div> */}
     </div>
   );
 };
