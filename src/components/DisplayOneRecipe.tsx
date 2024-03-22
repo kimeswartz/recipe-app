@@ -15,6 +15,7 @@ const DisplayOneRecipe: React.FC = () => {
   const { oneRecipe, fetchOneRecipe } = allRecipeState();
 
   // Extracting recipeId from URL params
+  // we use useParams to acces dynamic parts in the URL, in this case, the recipe ID, that will route to the recipe URL request
   const { recipeId } = useParams<{ recipeId: string }>();
 
   // Fetch the recipe details when the component mounts or recipeId changes
