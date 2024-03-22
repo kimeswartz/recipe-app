@@ -5,7 +5,6 @@ import AdminUpload from "../components/AdminComponents/AdminUploadRecipe";
 
 import "../styling/AdminPage.css";
 
-
 const AdminPage = () => {
   return (
     <div>

@@ -3,9 +3,11 @@
 import axios from "axios";
 import { useState } from "react";
 
-
 const UpdateRecipe = () => {
+  // Define the base URL for API requests
   const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
+
+  // Define state variables for recipe details and ingredients
   const [recipeId, setRecipeId] = useState("");
   const [recipeName, setRecipeName] = useState("");
   const [recipeDescription, setRecipeDescription] = useState("");
@@ -14,12 +16,11 @@ const UpdateRecipe = () => {
   const [recipeTimeInMin, setRecipeTimeInMin] = useState(Number);
   const [recipeCategory, setRecipeCategory] = useState("");
   const [recipeIntructions, setRecipeInstructions] = useState("");
-
   const [ingrediantName, setIngrediantName] = useState("");
   const [ingrediantAmount, setIngrediantAmount] = useState("");
   const [ingrediantUnit, setIngrediantUnit] = useState("");
 
-  // Funktion för att hämta receptet från servern med hjälp av dess ID
+  // Function to fetch recipe details by its ID from the server
   const getRecipeById = async (recipeId: string) => {
     try {
       const response = await axios.get(`${URL}/recipes/${recipeId}`);
@@ -32,9 +33,10 @@ const UpdateRecipe = () => {
     }
   };
 
-  // Funktionen uppdaterar ett recept i servern med hjälp av dess ID
+  // Function to update recipe details by its ID on the server
   const updateById = async () => {
     try {
+      // Prepare updated recipe data
       const updatedRecipeData = {
         title: recipeName,
         description: recipeDescription,
@@ -45,13 +47,14 @@ const UpdateRecipe = () => {
         instructions: recipeIntructions,
       };
 
+      // Send patch request to update recipe
       const response = await axios.patch(
         `${URL}/recipes/${recipeId}`,
         updatedRecipeData
       );
 
+      // If update is successful, retrieve and alert updated recipe
       if (response.status === 200) {
-        // Hämta den uppdaterade informationen för receptet
         const updatedRecipe = await getRecipeById(recipeId);
         if (updatedRecipe) {
           alert("Updated");
@@ -62,6 +65,7 @@ const UpdateRecipe = () => {
     }
   };
 
+  // Return the UI for updating a recipe
   return (
     <>
       <div className="update-container">

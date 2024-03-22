@@ -1,53 +1,64 @@
-.custom-prev-arrow, .custom-next-arrow {
-    position: absolute; 
-    top: 50%; 
-    transform: translateY(-50%); 
-    font-size: 32px; 
-    color: #333; 
-    cursor: pointer; /
-  }
-  
-  .custom-prev-arrow {
-    left: -50px; /* Placera pilen till vänster */
-  }
-  
-  .custom-next-arrow {
-    right: -50px; /* Placera pilen till höger */
-  }
-  
-  .cover {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.877); 
-    color: white;
-    text-align: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0; 
-    transition: opacity 0.3s ease;
-  }
-  
-  .image-slide:hover .cover {
-    opacity: 1; 
-    font-size: 30px;
-    cursor: pointer;
-  }
+.recipe-slider {
+  width: 80rem;
+  margin: 0 auto; /* Center the slider horizontally */
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
 
-  .image-slide {
-    position: relative;
-    height: 300px; 
-  }
-  
-  .image-slide img {
-    width: 100%; 
-    height: 100%; 
-    object-fit: cover; 
-  }
-  
-  .recipe-slider{
-    font-size: 24px;
-  }
+.recipe-slider h2{
+margin-bottom: 30px;
+}
+
+.custom-prev-arrow,
+.custom-next-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+  color: #333;
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.custom-prev-arrow {
+  left: -50px;
+}
+
+.custom-next-arrow {
+  right: -50px;
+}
+
+.cover {
+  position: absolute;
+  max-width: 500px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.877);
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.image-slide:hover .cover {
+  opacity: 1;
+  cursor: pointer;
+}
+
+.image-slide {
+  position: relative;
+  height: 300px;
+}
+
+.image-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

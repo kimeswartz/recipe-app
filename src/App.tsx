@@ -1,12 +1,13 @@
 import "./App.css";
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Homepage";
-import OldHomepage from "./pages/OldHomepage";
 import RecipesByCategory from "./components/RecipesByCategory";
 import DisplayOneRecipe from "./components/DisplayOneRecipe";
 import AdminPage from "./pages/AdminPage";
 import Navbar from "./components/Navbar";
 import CategoryPage from "./pages/CategoryPage";
+import Footer from "./components/Footer";
+import RecipePageContent from "./pages/recipePage";
 
 function App() {
   return (
@@ -16,11 +17,12 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/category/:categoryName" element={<RecipesByCategory />}/>
-          <Route path="/testSite" element={<OldHomepage />} />
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
+          <Route path="/categorypage" element={<CategoryPage />} />
           <Route path="/adminpage" element={<AdminPage />}/>
-          <Route path="/category" element={<CategoryPage />} />
+          <Route path="/recipes" element={<RecipePageContent />}/>
         </Routes>
+        <Footer />
       </BrowserRouter>
     </>
   );
