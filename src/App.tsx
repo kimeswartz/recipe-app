@@ -19,7 +19,7 @@ function App() {
           <Route path="/category/:categoryName" element={<RecipesByCategory />}/>
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
           <Route path="/category" element={<CategoryPage />} />
-          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin" element={<AdminPage />}></Route>
         </Routes>
         <Footer />
       </Router>
