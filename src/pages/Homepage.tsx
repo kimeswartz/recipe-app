@@ -1,20 +1,15 @@
-import DisplayAllRecipe from "../components/DisplayAllRecipe";
+import HeaderComponent from "../components/Headers/HeaderComponent";
 import RecipeSlider from "../components/RecipeSlider";
-import RecipeSearch from "../components/SearchRecipe";
 
 const Home = () => {
-    return (
-        <div>
-            <h1>Welcome to the Home- Page</h1>
-            <div className="card">
-                <h3>This is the search component:</h3>
-                <RecipeSearch />
-                <RecipeSlider/>
-                <DisplayAllRecipe />
-            </div>
-
-        </div>
-    );
+  return (
+    <div>
+      <div className="card">
+        <HeaderComponent />
+        <RecipeSlider />
+      </div>
+    </div>
+  );
 };
 
 export default Home;

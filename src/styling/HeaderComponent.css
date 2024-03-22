@@ -1,0 +1,38 @@
+.home-header {
+  background-image: url('../assets/Food.jpg');
+  background-color: #007bff;
+  background-size: cover;
+  background-position: center;
+  height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-content {
+  text-align: center;
+  width: 1000px;
+}
+
+.header-title {
+  color: white;
+  margin-bottom: 20px;
+}
+
+.header-paragraph {
+  text-align: center;
+  color: white;
+}
+
+@media only screen and (max-width: 768px) {
+  .header {
+    height: 200px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .header-title {
+    font-size: 24px;
+  }
+}
+
