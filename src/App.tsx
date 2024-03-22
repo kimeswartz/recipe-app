@@ -18,7 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/category/:categoryName" element={<RecipesByCategory />}/>
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
-          <Route path="/category" element={<CategoryPage />} />
+          <Route path="/categorypage" element={<CategoryPage />} />
           <Route path="/adminpage" element={<AdminPage />}/>
         </Routes>
         <Footer />
