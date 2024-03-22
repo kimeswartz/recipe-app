@@ -26,36 +26,39 @@ function SearchRecipe() {
             });
     }, []);
 
-    // Function to filter recipes based on search input
-    const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const searchInput = e.target.value; // Getting search input value
-        setInput(searchInput); // Updating input state with search input
-        const newFilter = recipeData.filter((recipe) => {
-            return recipe.title.toLowerCase().includes(searchInput.toLowerCase()); // Filtering recipes based on search input
-        });
-        if (searchInput === "") {
-            setFilteredData([]); // Resetting filteredData state if search input is empty
-            setInput(""); // Resetting input state if search input is empty
-            setError(""); // Resetting error state if search input is empty
-        } else {
-            setFilteredData(newFilter); // Updating filteredData state with filtered recipes
-            if (newFilter.length === 0) {
-                setError('No recipes found.'); // Setting error message if no recipes found
-            } else {
-                setError(""); // Clearing error message if recipes are found
-            }
-        }
-    };
+  useEffect(() => {
+    filterRecipes(searchTerm);
+  }, [searchTerm]);
 
-    // Function to handle empty search input
-    const handleEmptySearch = (value: string) => {
-        if (value.trim() === "") {
-            setError('To find recipes, type something into the search bar.'); // Setting error message if search input is empty
-            return;
-        } else {
-            setError(''); // Clearing error message if search input is not empty
-        }
-    };
+  const onChange = (e: { target: { value: any; }; })  => {
+    const term = e.target.value;
+    setSearchTerm(term);
+  };
+
+  const filterRecipes = (term: string) => {
+    const lowerCaseTerm = term.toLowerCase();
+    const filtered = recipes.filter((recipe) => recipe.title.toLowerCase().includes(lowerCaseTerm));
+    setFilteredRecipes(filtered);
+    // Set error message if no recipes found
+    setErrorMessage(filtered.length === 0 && term.trim() !== '' ? 'Inga recept hittades' : '');
+  };
+
+  const handleSearch = (e: { preventDefault: () => void; }) => {
+    e.preventDefault();
+    if (searchTerm.trim() === '') {
+      setErrorMessage('Skriv in ditt recept och klicka på sök!')
+      return;
+    } else {
+      setErrorMessage('')
+      filterRecipes(searchTerm);
+    }
+  };
+
+  const handleClear = () => {
+    setSearchTerm('');
+    setFilteredRecipes([]);
+    setErrorMessage('');
+  };
 
     return (
         <section className='search-wrapper'>

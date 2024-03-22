@@ -71,8 +71,7 @@ const RecipeSlider: React.FC = () => {
   return (
     // Wrapper for the recipe slider
     <div className='recipe-slider'>
-      <h2>Bläddra bland våra recept</h2> 
-      {/* Render the slider only if random recipes are available */}
+      <h2>Inspireras av våra recept</h2>
       {randomRecipes.length > 0 && (
         <Slider {...sliderSettings}> 
           {/* Map through random recipes and render each as a slide */}

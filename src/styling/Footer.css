@@ -1,0 +1,61 @@
+/* Basic styling for the footer */
+.footer {
+  height: 30rem;
+  display: flex;
+  justify-content: center;
+  background-color: #282828;
+  background-image: url('../assets/Stone.jpg');
+  background-size: cover;
+  background-position: center;
+  padding: 20px 0;
+}
+
+.footer-container {
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap; /* Allow items to wrap if they exceed the container width */
+}
+
+.footer-container a{
+  text-decoration: none;
+color: white;
+}
+
+
+.footer-logo img {
+  max-width: 100px; /* Adjust the width of the logo as needed */
+}
+
+.footer-nav {
+  flex: 1;
+  text-align: center; /* Center the navigation links horizontally */
+}
+
+.footer-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center; /* Center the navigation links horizontally */
+}
+
+.footer-nav-list li {
+  margin-right: 20px; /* Adjust the spacing between each link */
+}
+
+/* Responsive styling */
+@media (max-width: 768px) {
+  .footer-nav {
+    flex-basis: 100%; /* Make the navigation take full width on smaller screens */
+    margin-top: 20px; /* Add margin to separate logo and navigation on smaller screens */
+    text-align: center; /* Center the navigation links horizontally */
+  }
+
+  .footer-nav-list li {
+    margin-right: 0;
+    margin-bottom: 10px; /* Adjust the spacing between each link on smaller screens */
+  }
+}
+
+
