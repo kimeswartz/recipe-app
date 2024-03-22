@@ -1,10 +1,10 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Homepage";
-import AdminPage from "./pages/AdminPage";
-
+import RecipesByCategory from "./components/RecipesByCategory";
 import DisplayOneRecipe from "./components/DisplayOneRecipe";
 import Navbar from "./components/Navbar";
+import CategoryPage from "./pages/CategoryPage";
 import Footer from "./components/Footer";
 
 
@@ -15,8 +15,9 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/category/:categoryName" element={<RecipesByCategory />}/>
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
+          <Route path="/category" element={<CategoryPage />} />
         </Routes>
         <Footer />
       </Router>
