@@ -52,8 +52,6 @@ const UpdateRecipe = () => {
         // Hämta den uppdaterade informationen för receptet
         const updatedRecipe = await getRecipeById(recipeId);
         if (updatedRecipe) {
-          // Uppdatera receptdata
-          updatedRecipe;
           alert("Updated");
         }
       }

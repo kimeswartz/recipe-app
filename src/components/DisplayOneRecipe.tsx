@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
@@ -6,16 +6,44 @@ import allRecipeState from "../state/Endpoints";
 import "../styling/RecipepageStyle.css";
 
 const DisplayOneRecipe: React.FC = () => {
-
   const { oneRecipe, fetchOneRecipe } = allRecipeState();
   const { recipeId } = useParams<{ recipeId: string }>();
+  const [userRating, setUserRating] = useState<number | null>(null);
 
   useEffect(() => {
-
     if (recipeId) {
-      fetchOneRecipe(recipeId)
+      fetchOneRecipe(recipeId);
     }
-  }, [recipeId]);
+  }, [fetchOneRecipe, recipeId]);
+
+
+
+
+  const handleRatingChange = (rating: number) => {
+    // Uppdatera betyget för det aktuella receptet i databasen
+    // I detta exempel antar vi att det är en synkron process
+    // Du kan behöva använda en asynkron metod för att skicka data till backend
+
+    // Här antas det att vi skickar betyget till en funktion för att uppdatera receptet i databasen
+    updateRatingInDatabase(rating);
+
+    // Uppdatera det lokala betyget för att omedelbart reflektera användarens ändringar
+    setUserRating(rating);
+  };
+
+  const updateRatingInDatabase = (rating: number) => {
+    // Implementera funktionen för att uppdatera betyget för det aktuella receptet i databasen
+    // Detta kan vara en AJAX-begäran till din server
+    console.log(
+      `Uppdatera betyget ${rating}/5 för receptet "${oneRecipe.title}" i databasen`
+    );
+  };
+
+
+
+
+
+
 
   if (!oneRecipe) {
     return <div>Hämtar recept...</div>;
@@ -40,8 +68,34 @@ const DisplayOneRecipe: React.FC = () => {
               <div className="info-container">
                 <div className="info-tag">
                   <p>
-                    <FontAwesomeIcon icon={faStar} className="star-icon" /> 3/5
-                    Betyg
+                    <FontAwesomeIcon icon={faStar} className="star-icon" />{" "}
+                    {oneRecipe.avgRating !== null ? (
+                      <span>{oneRecipe.avgRating}/5</span>
+                    ) : (
+                      <span>Missing review</span>
+                    )}
+                  </p>
+                </div>
+              </div>
+              
+              <div className="info-container">
+                <div className="info-tag">
+                  {/* Interaktivt betygssystem */}
+                  <p>
+                    Rate this recipe: {""}
+                    {[1, 2, 3, 4, 5].map((value) => (
+                      <span
+                        key={value}
+                        style={{ cursor: "pointer" }}
+                        onClick={() => handleRatingChange(value)}
+                      >
+                        <FontAwesomeIcon
+                          icon={faStar}
+                          className="star-icon"
+                          color={value <= (userRating || 0) ? "gold" : "gray"}
+                        />
+                      </span>
+                    ))}
                   </p>
                 </div>
               </div>
@@ -90,7 +144,10 @@ const DisplayOneRecipe: React.FC = () => {
               <h2>Gör såhär</h2>
               <ol>
                 {oneRecipe.instructions?.map((instruction, index) => (
-                  <li key={index} className="to-do-step"> {instruction} </li>
+                  <li key={index} className="to-do-step">
+                    {" "}
+                    {instruction}{" "}
+                  </li>
                 ))}
               </ol>
             </div>
