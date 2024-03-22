@@ -52,7 +52,7 @@ const DisplayOneRecipe: React.FC = () => {
               <div className="info-container">
                 <div className="info-tag">
                   <p>
-                    <FontAwesomeIcon icon={faStar} className="star-icon" /> 3/5
+                    <FontAwesomeIcon icon={faStar} className="star-icon" /> {oneRecipe.avgRating?.toFixed(1)}/5
                     Betyg
                   </p>
                 </div>

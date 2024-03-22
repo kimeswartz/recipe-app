@@ -77,7 +77,7 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
   // Function to delete a recipe asynchronously by ID
   deleteRecipe: async (id) => {
     try {
-      const response = await axios.delete(`${URL}/${id}`);
+      const response = await axios.delete(`${URL}/recipes/${id}`);
       if (response.status === 204) {
         console.log("Recipe deleted successfully");
       }
