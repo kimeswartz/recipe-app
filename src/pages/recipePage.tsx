@@ -1,4 +1,4 @@
-import DisplayRecipes from "../components/DisplayRecipes";
+import DisplayRecipes from "../components/DisplayAllRecipe";
 
 const RecipePageContent = () => {
   return (

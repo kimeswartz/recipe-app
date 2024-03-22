@@ -7,6 +7,7 @@ import AdminPage from "./pages/AdminPage";
 import Navbar from "./components/Navbar";
 import CategoryPage from "./pages/CategoryPage";
 import Footer from "./components/Footer";
+import RecipePageContent from "./pages/recipePage";
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
           <Route path="/categorypage" element={<CategoryPage />} />
           <Route path="/adminpage" element={<AdminPage />}/>
+          <Route path="/recipes" element={<RecipePageContent />}/>
         </Routes>
         <Footer />
       </BrowserRouter>
