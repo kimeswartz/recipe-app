@@ -7,7 +7,7 @@ const Navbar = () => {
       <a className='logo'><Link to='/'>Logo</Link></a>
       <div className='nav-links'>
       <a><Link to='/'>Home</Link></a>
-      <a><Link to='/category'>Categories</Link></a>
+      <a><Link to='/CategoryPage'>Categories</Link></a>
       <a><Link to='/search'>Search</Link></a>
       <a><Link to='/AdminPage'>Admin</Link></a>
       </div>
