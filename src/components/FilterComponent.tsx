@@ -10,7 +10,6 @@ const FilterComponent = () => {
   const [userInput, setUserInput] = useState<string>('');
   const [searchIngredients, setSearchIngredients] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  const [noIngredientFound, setNoIngredientFound] = useState<boolean>(false);
 
   // Fetch recipe data from the API when the component mounts
   useEffect(() => {
@@ -20,7 +19,6 @@ const FilterComponent = () => {
           "https://sti-java-grupp4-s4yjx9.reky.se/recipes"
         );
         setRecipeData(response.data);
-        setFilteredRecipes(response.data);
         console.log("Success fetching data from the recipe API");
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -30,60 +28,59 @@ const FilterComponent = () => {
     fetchData();
   }, []);
 
-  // Filter recipes based on search ingredients
-  const filterRecipes = () => {
-    const filtered = recipeData.filter(recipe => {
-      return searchIngredients.some(searchIngredient =>
-        recipe.ingredients.some(ingredient =>
-          ingredient.name.toLowerCase().includes(searchIngredient.toLowerCase())
-        )
-      );
-    });
-    setFilteredRecipes(filtered);
+  // Function to normalize ingredient names
+  const normalizeIngredientName = (name: string) => {
+    return name.toLowerCase(); // Convert ingredient name to lowercase
   };
+
+  // Filter recipes based on search ingredients
+  useEffect(() => {
+    if (searchIngredients.length === 0) {
+      setFilteredRecipes(recipeData);
+    } else {
+      const filtered = recipeData.filter(recipe => {
+        return searchIngredients.some(searchIngredient =>
+          recipe.ingredients.some(ingredient =>
+            normalizeIngredientName(ingredient.name) === normalizeIngredientName(searchIngredient)
+          )
+        );
+      });
+      setFilteredRecipes(filtered);
+    }
+  }, [searchIngredients, recipeData]);
 
   // Generate suggestions based on user input
-  const generateSuggestions = () => {
-    const matchingSuggestions = Array.from(new Set(
-      recipeData
-        .flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.name))
-        .filter(ingredient => ingredient.toLowerCase().startsWith(userInput.toLowerCase()))
-    ));
+  useEffect(() => {
+    if (userInput.length > 0) {
+      const normalizedInput = userInput.toLowerCase(); // Normalizing user input
+      const matchingSuggestions = Array.from(new Set(
+        recipeData
+          .flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.name.toLowerCase())) // Normalizing ingredient names
+          .filter(ingredient => ingredient.startsWith(normalizedInput))
+      ));
 
-    setSuggestions(matchingSuggestions);
-    setNoIngredientFound(matchingSuggestions.length === 0);
-  };
+      setSuggestions(matchingSuggestions);
+    } else {
+      setSuggestions([]);
+    }
+  }, [userInput, recipeData]);
 
-  // Update user input and generate suggestions when input changes
+  // Update user input when input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
-    generateSuggestions();
   };
 
-  // Add selected suggestion to search ingredients and clear user input and suggestions
+  // Add selected suggestion to search ingredients
   const handleSuggestionClick = (suggestion: string) => {
     setSearchIngredients(prevIngredients => [...prevIngredients, suggestion]);
     setUserInput('');
     setSuggestions([]);
-    setNoIngredientFound(false);
   };
 
   // Remove ingredient from search ingredients
   const removeIngredient = (ingredient: string) => {
     setSearchIngredients(prevIngredients => prevIngredients.filter(item => item !== ingredient));
   };
-
-  // Update filtered recipes when search ingredients change
-  useEffect(() => {
-    filterRecipes();
-  }, [searchIngredients]);
-
-  // Show all recipes when there are no search ingredients
-  useEffect(() => {
-    if (searchIngredients.length === 0) {
-      setFilteredRecipes(recipeData);
-    }
-  }, [searchIngredients, recipeData]);
 
   // Render UI
   return (
@@ -106,41 +103,33 @@ const FilterComponent = () => {
       />
       {/* Display suggestions based on user input */}
       <ul>
-        {noIngredientFound ? <li>No ingredient found</li> :
-          suggestions.map((suggestion, index) => (
-            <li key={index} onClick={() => handleSuggestionClick(suggestion)}>{suggestion}</li>
-          ))
-        }
+        {suggestions.map((suggestion, index) => (
+          <li key={index} onClick={() => handleSuggestionClick(suggestion)}>{suggestion}</li>
+        ))}
       </ul>
-      {/* Button to filter recipes based on search ingredients */}
-      <button onClick={filterRecipes}>Filter</button>
       {/* Display filtered recipes */}
       <ul>
-        {filteredRecipes.length > 0 ? (
-          filteredRecipes.map(recipe => (
-            <li key={recipe._id}>
-              <img src={recipe.imageUrl} alt={recipe.title} />
-              <h2>{recipe.title}</h2>
-              <p>{recipe.description}</p>
-              <ul>
-                {/* Display ingredients of each recipe */}
-                {recipe.ingredients.map((ingredient, index) => (
-                  <li key={index}>{`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`}</li>
-                ))}
-              </ul>
-              <p>{`Time: ${recipe.timeInMins} mins`}</p>
-              <p>{`Categories: ${recipe.categories.join(", ")}`}</p>
-              <ul>
-                {/* Display instructions of each recipe */}
-                {recipe.instructions.map((instruction, index) => (
-                  <li key={index}>{instruction}</li>
-                ))}
-              </ul>
-            </li>
-          ))
-        ) : (
-          <li>No recipes found</li>
-        )}
+        {filteredRecipes.map(recipe => (
+          <li key={recipe._id}>
+            <img src={recipe.imageUrl} alt={recipe.title} />
+            <h2>{recipe.title}</h2>
+            <p>{recipe.description}</p>
+            <ul>
+              {/* Display ingredients of each recipe */}
+              {recipe.ingredients.map((ingredient, index) => (
+                <li key={index}>{`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`}</li>
+              ))}
+            </ul>
+            <p>{`Time: ${recipe.timeInMins} mins`}</p>
+            <p>{`Categories: ${recipe.categories.join(", ")}`}</p>
+            <ul>
+              {/* Display instructions of each recipe */}
+              {recipe.instructions.map((instruction, index) => (
+                <li key={index}>{instruction}</li>
+              ))}
+            </ul>
+          </li>
+        ))}
       </ul>
     </div>
   );
