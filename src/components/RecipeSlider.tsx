@@ -20,8 +20,8 @@ const RecipeSlider: React.FC = () => {
   const getRandomRecipes = async () => {
     try {
       const result = await axios.get<RecipeInterface[]>('https://sti-java-grupp4-s4yjx9.reky.se/recipes');
-      const shuffledRecipes = result.data.sort(() => Math.random() - 1);
-      const selectedRandomRecipes = shuffledRecipes.slice(0, 4); 
+      const shuffledRecipes = result.data.sort(() => Math.random() - 0.5);
+      const selectedRandomRecipes = shuffledRecipes.slice(0, 8); 
       setRandomRecipes(selectedRandomRecipes);
     } catch (error) {
       console.error('Error fetching random recipes', error);
