@@ -3,6 +3,5 @@ export interface SearchInterface {
     title: string;
     description: string;
     imageUrl: string;
-    
   }
   
