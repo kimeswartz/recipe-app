@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { Input } from "antd"; 
 import axios from 'axios'; 
 import { RecipeInterface } from '../interfaces/RecipeInterface';  
-import { Link } from 'react-router-dom'; 
 import "../styling/SearchBarStyle.css"; 
 
 function SearchRecipe() {
@@ -68,24 +67,27 @@ function SearchRecipe() {
                         onSearch={handleEmptySearch}
                         allowClear
                         enterButton
+                        multiple
+                        
                     />
                 </div>
 
                 {error && ( // Rendering error message if error state is set
                     <p className="error-message">{error}</p>
                 )}
-
                 {input !== '' && filteredData.length !== 0 && ( // Rendering filtered recipe data
-                    <ul className='dataResult'>
-                        {filteredData.map((recipe) => (
-                            <li key={recipe._id}>
-                                <Link to={`/recipe/${recipe._id}`} >
-                                    {recipe.title}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                )}
+                <ul className='dataResult'>
+                    {filteredData.map((recipe) => (
+                    <li key={recipe._id}>
+                    <div className="result-item">
+                    <span>{recipe.title}</span>
+                    
+                    </div>
+            </li>
+        ))}
+    </ul>
+)}
+
             </div>
         </div>
     );

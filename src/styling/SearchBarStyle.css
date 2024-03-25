@@ -1,28 +1,30 @@
+/* Gemensam CSS för .dataResult och .dataItem */
 .dataResult {
   margin-top: 20px;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid #ddd;
-  height: 300px; /* Sätt en fast höjd på dataResult-elementet */
+  min-height: 100px; /* Använd min-height istället för en fast höjd */
 }
 
 .dataItem {
-  padding: 5px;
-  background-color: dark;
+  padding: 10px; /* Ökad padding för bättre utseende */
+  background-color: #333; /* Korrigera färg för bakgrund */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-bottom: 1px solid #ddd; 
+  border-bottom: 1px solid #ddd;
   display: flex; /* Använd flexbox för att justera elementen */
+  align-items: center; /* Centrera innehållet vertikalt */
 }
 
 .dataItem img {
   flex: 0 0 100px; /* Bestäm bredden på bilden här */
   height: auto; /* Låt höjden anpassa sig för att behålla proportionerna */
-  margin-right: 10px; /* Lägg till lite mellanrum mellan bilden och texten */
+  margin-right: 20px; /* Lägg till lite mer mellanrum mellan bilden och texten */
 }
 
 .dataItem:last-child {
-  border-bottom: none; 
+  border-bottom: none;
 }
 
 .dataItem:hover {
@@ -31,17 +33,18 @@
 }
 
 .dataItem a {
-  display: flex; /* Använd flexbox för att justera texten vertikalt */
-  align-items: center; /* Centrera texten vertikalt */
   color: #fff;
   font-size: 16px;
   text-decoration: none;
+  display: flex; /* Använd flexbox för att justera texten vertikalt */
+  align-items: center; /* Centrera texten vertikalt */
 }
 
 .dataItem a:hover {
-  color: #555;
+  color: #ddd; /* Korrigera färg för länkar vid hover */
 }
 
+/* Justera gränstjockleken baserat på antalet objekt */
 .dataResult {
   --num-items: 10;
   border-width: calc(1px + (var(--num-items) * 1px));
