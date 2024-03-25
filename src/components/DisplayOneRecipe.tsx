@@ -1,16 +1,16 @@
-//Kim + Hampus
+//Kim + Hampus + Malcolm
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
 import allRecipeState from "../state/Endpoints";
+import axios from "axios";
 import "../styling/RecipepageStyle.css";
 
 // Component for displaying a single recipe
 // Using React.FC to define a function component
 const DisplayOneRecipe: React.FC = () => {
-
   // Destructuring state and function from the state management
   const { oneRecipe, fetchOneRecipe } = allRecipeState();
 
@@ -26,34 +26,24 @@ const DisplayOneRecipe: React.FC = () => {
     }
   }, [fetchOneRecipe, recipeId]);
 
-
-
-
-  const handleRatingChange = (rating: number) => {
-    // Uppdatera betyget för det aktuella receptet i databasen
-    // I detta exempel antar vi att det är en synkron process
-    // Du kan behöva använda en asynkron metod för att skicka data till backend
-
-    // Här antas det att vi skickar betyget till en funktion för att uppdatera receptet i databasen
-    updateRatingInDatabase(rating);
-
-    // Uppdatera det lokala betyget för att omedelbart reflektera användarens ändringar
-    setUserRating(rating);
+  // This will send a review to database between 1-5
+  const handleRatingChange = async (rating: number) => {
+    try {
+      const response = await axios.post(
+        `https://sti-java-grupp4-s4yjx9.reky.se/recipes/${recipeId}/ratings`,
+        { rating: rating }
+      );
+      if (response.status === 200) {
+        console.log(
+          `Rating ${rating}/5 has been updated for "${oneRecipe.title}" in database`
+        );
+        alert("Tack för ditt betyg");
+        setUserRating(rating);
+      }
+    } catch (error) {
+      console.error("Error updating rating:", error);
+    }
   };
-
-  const updateRatingInDatabase = (rating: number) => {
-    // Implementera funktionen för att uppdatera betyget för det aktuella receptet i databasen
-    // Detta kan vara en AJAX-begäran till din server
-    console.log(
-      `Uppdatera betyget ${rating}/5 för receptet "${oneRecipe.title}" i databasen`
-    );
-  };
-
-
-
-
-
-
 
   // Conditional rendering based on whether the recipe has loaded or not
   if (!oneRecipe) {
@@ -61,13 +51,11 @@ const DisplayOneRecipe: React.FC = () => {
   } else {
     return (
       <div className="recipe-container">
-        
         {/* Header section displaying recipe title, description, time, and rating */}
         <div className="header-container">
           <div className="text-container">
             <h1>{oneRecipe.title}</h1> {/* Display recipe title */}
             <p>{oneRecipe.description}</p> {/* Display recipe description */}
-            
             {/* Display recipe time and rating */}
             <div className="time-review-section">
               <div className="info-container">
@@ -86,17 +74,17 @@ const DisplayOneRecipe: React.FC = () => {
                     {oneRecipe.avgRating !== null ? (
                       <span>{oneRecipe.avgRating}/5</span>
                     ) : (
-                      <span>Missing review</span>
+                      <span>Review missing</span>
                     )}
                   </p>
                 </div>
               </div>
-              
+
               <div className="info-container">
                 <div className="info-tag">
-                  {/* Interaktivt betygssystem */}
+                  {/* Interaktiv ratingsystem */}
                   <p>
-                    Rate this recipe: {""}
+                    Sätt ditt betyg på dena rätt: {""}
                     {[1, 2, 3, 4, 5].map((value) => (
                       <span
                         key={value}
@@ -106,11 +94,10 @@ const DisplayOneRecipe: React.FC = () => {
                         <FontAwesomeIcon
                           icon={faStar}
                           className="star-icon"
-                          color={value <= (userRating || 0) ? "gold" : "gray"}
+                          color={value <= (userRating || 0) ? "yellow" : "red"} 
                         />
                       </span>
                     ))}
-                    <FontAwesomeIcon icon={faStar} className="star-icon" />
                   </p>
                 </div>
               </div>
