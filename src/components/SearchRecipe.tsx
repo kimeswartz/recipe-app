@@ -26,74 +26,68 @@ function SearchRecipe() {
             });
     }, []);
 
-  useEffect(() => {
-    filterRecipes(searchTerm);
-  }, [searchTerm]);
+    // Function to filter recipes based on search input
+    const handleFilter = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const searchInput = e.target.value; // Getting search input value
+        setInput(searchInput); // Updating input state with search input
+        const newFilter = recipeData.filter((recipe) => {
+            return recipe.title.toLowerCase().includes(searchInput.toLowerCase()); // Filtering recipes based on search input
+        });
+        if (searchInput === "") {
+            setFilteredData([]); // Resetting filteredData state if search input is empty
+            setInput(""); // Resetting input state if search input is empty
+            setError(""); // Resetting error state if search input is empty
+        } else {
+            setFilteredData(newFilter); // Updating filteredData state with filtered recipes
+            if (newFilter.length === 0) {
+                setError('No recipes found.'); // Setting error message if no recipes found
+            } else {
+                setError(""); // Clearing error message if recipes are found
+            }
+        }
+    };
 
-  const onChange = (e: { target: { value: any; }; })  => {
-    const term = e.target.value;
-    setSearchTerm(term);
-  };
-
-  const filterRecipes = (term: string) => {
-    const lowerCaseTerm = term.toLowerCase();
-    const filtered = recipes.filter((recipe) => recipe.title.toLowerCase().includes(lowerCaseTerm));
-    setFilteredRecipes(filtered);
-    // Set error message if no recipes found
-    setErrorMessage(filtered.length === 0 && term.trim() !== '' ? 'Inga recept hittades' : '');
-  };
-
-  const handleSearch = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    if (searchTerm.trim() === '') {
-      setErrorMessage('Skriv in ditt recept och klicka på sök!')
-      return;
-    } else {
-      setErrorMessage('')
-      filterRecipes(searchTerm);
-    }
-  };
-
-  const handleClear = () => {
-    setSearchTerm('');
-    setFilteredRecipes([]);
-    setErrorMessage('');
-  };
+    // Function to handle empty search input
+    const handleEmptySearch = (value: string) => {
+        if (value.trim() === "") {
+            setError('To find recipes, type something into the search bar.'); // Setting error message if search input is empty
+            return;
+        } else {
+            setError(''); // Clearing error message if search input is not empty
+        }
+    };
 
     return (
-        <section className='search-wrapper'>
-        <div className="search">
-            <div className='searchInputs'>
-                <Search
-                    placeholder='Search recipes...'
-                    value={input}
-                    onChange={(e) => handleFilter(e)}
-                    onSearch={handleEmptySearch}
-                    allowClear
-                    enterButton
-                
-                    
-                />
+        <div className='search-wrapper'>
+            <div className="search">
+                <div className='searchInputs'>
+                    <Search
+                        placeholder='Search recipes...'
+                        value={input}
+                        onChange={(e) => handleFilter(e)}
+                        onSearch={handleEmptySearch}
+                        allowClear
+                        enterButton
+                    />
+                </div>
+
+                {error && ( // Rendering error message if error state is set
+                    <div className="error-message">{error}</div>
+                )}
+
+                {input !== '' && filteredData.length !== 0 && ( // Rendering filtered recipe data
+                    <div className='dataResult'>
+                        {filteredData.map((recipe) => (
+                            <React.Fragment key={recipe._id}>
+                                <Link to={`/recipe/${recipe._id}`} >
+                                    {recipe.title}
+                                </Link>
+                            </React.Fragment>
+                        ))}
+                    </div>
+                )}
             </div>
-
-            {error && ( // Rendering error message if error state is set
-                <div className="error-message">{error}</div>
-            )}
-
-            {input !== '' && filteredData.length !== 0 && ( // Rendering filtered recipe data
-                <ul className='dataResult'>
-                {filteredData.map((recipe) => (
-                    <li className='dataItem' key={recipe._id}>
-                        <Link to={`/recipe/${recipe._id}`}>
-                            {recipe.title}
-                        </Link>
-                    </li>
-                ))}
-            </ul>
-            
-            )}
         </div>
-    </section>
     );
 }
 

@@ -1,35 +1,36 @@
 .search-wrapper {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .search {
-    width: 100%; 
-  }
-    
-  .error-message {
-    color: red;
-    font-weight: bold;
-  }
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
 
- .dataResult {
+.search {
+  width: 100%;
+}
+
+.error-message {
+  color: red;
+  font-weight: bold;
+}
+
+.dataResult {
   margin-top: 20px;
   border-radius: 10px;
   overflow: hidden;
-  border: 1px solid #ddd; 
+  border: 1px solid #ddd;
+  height: 300px; /* Sätt en fast höjd på dataResult-elementet */
 }
 
 .dataItem {
   padding: 5px;
-  background-color: #fff;
+  background-color: dark;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  border-bottom: 1px solid #ddd; /* Gräns mellan varje dataItem */
+  border-bottom: 1px solid #ddd; 
 }
 
 .dataItem:last-child {
-  border-bottom: none; /* Ta bort gränsen från sista dataItem */
+  border-bottom: none; 
 }
 
 .dataItem:hover {
@@ -39,7 +40,7 @@
 
 .dataItem a {
   display: block;
-  color: #333;
+  color: #fff;s
   font-size: 16px;
   text-decoration: none;
 }
@@ -48,8 +49,7 @@
   color: #555;
 }
 
-
 .dataResult {
-  --num-items: 10; 
+  --num-items: 10;
   border-width: calc(1px + (var(--num-items) * 1px));
 }
