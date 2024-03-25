@@ -16,6 +16,7 @@ interface recipeStateInterface {
   fetchOneRecipe: (id: string) => Promise<void>;
   fetchAllCategories: () => Promise<void>;
   fetchOneCategory: (categoryName: string) => Promise<void>;
+  addRating: (rating: number, id: string) => Promise<void>;
 }
 
 const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
@@ -106,6 +107,23 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
       console.error("Error deleting recipe:", error);
     }
   },
+
+  addRating: async (rating, id) => {
+    try {
+      const response = await axios.post(
+        `https://sti-java-grupp4-s4yjx9.reky.se/recipes/${id}/ratings`,
+        { rating: rating }
+      );
+      if (response.status === 200) {
+        console.log(
+          `Rating ${rating}/5 has been updated for recipe:${id} in the database`
+        );
+        alert("Tack för ditt betyg");
+      }
+    } catch (error) {
+      console.error("Error updating rating:", error);
+    }
+  }
 }));
 
 export default allRecipeState;

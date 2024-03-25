@@ -5,44 +5,31 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
 import allRecipeState from "../state/Endpoints";
-import axios from "axios";
 import "../styling/RecipepageStyle.css";
 
 // Component for displaying a single recipe
 // Using React.FC to define a function component
 const DisplayOneRecipe: React.FC = () => {
   // Destructuring state and function from the state management
-  const { oneRecipe, fetchOneRecipe } = allRecipeState();
+  const { oneRecipe, fetchOneRecipe, addRating } = allRecipeState();
 
   // Extracting recipeId from URL params
   // we use useParams to acces dynamic parts in the URL, in this case, the recipe ID, that will route to the recipe URL request
   const { recipeId } = useParams<{ recipeId: string }>();
-  const [userRating, setUserRating] = useState<number | null>(null);
+  const [userRating, setUserRating] = useState<number>();
 
   // Fetch the recipe details when the component mounts or recipeId changes
   useEffect(() => {
     if (recipeId) {
       fetchOneRecipe(recipeId);
     }
-  }, [fetchOneRecipe, recipeId]);
+  }, [recipeId, userRating]);
 
   // This will send a review to database between 1-5
   const handleRatingChange = async (rating: number) => {
-    try {
-      const response = await axios.post(
-        `https://sti-java-grupp4-s4yjx9.reky.se/recipes/${recipeId}/ratings`,
-        { rating: rating }
-      );
-      if (response.status === 200) {
-        console.log(
-          `Rating ${rating}/5 has been updated for "${oneRecipe.title}" in database`
-        );
-        alert("Tack för ditt betyg");
-        setUserRating(rating);
-      }
-    } catch (error) {
-      console.error("Error updating rating:", error);
-    }
+
+    addRating(rating, oneRecipe._id)
+    setUserRating(rating);
   };
 
   // Conditional rendering based on whether the recipe has loaded or not
@@ -72,7 +59,7 @@ const DisplayOneRecipe: React.FC = () => {
                   <p>
                     <FontAwesomeIcon icon={faStar} className="star-icon" />{" "}
                     {oneRecipe.avgRating !== null ? (
-                      <span>{oneRecipe.avgRating}/5</span>
+                      <span>{oneRecipe.avgRating?.toFixed(1)}/5</span>
                     ) : (
                       <span>Review missing</span>
                     )}
@@ -94,7 +81,7 @@ const DisplayOneRecipe: React.FC = () => {
                         <FontAwesomeIcon
                           icon={faStar}
                           className="star-icon"
-                          color={value <= (userRating || 0) ? "yellow" : "red"} 
+                          color={value <= (userRating || 0) ? "yellow" : "red"}
                         />
                       </span>
                     ))}
