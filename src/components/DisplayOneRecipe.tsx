@@ -23,7 +23,7 @@ const DisplayOneRecipe: React.FC = () => {
     if (recipeId) {
       fetchOneRecipe(recipeId);
     }
-  }, [recipeId, userRating]);
+  }, [recipeId, oneRecipe]);
 
   // This will send a review to database between 1-5
   const handleRatingChange = async (rating: number) => {
