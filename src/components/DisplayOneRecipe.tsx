@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
 import allRecipeState from "../state/Endpoints";
+import globalCartFunctions from "../state/Cart";
 import "../styling/RecipepageStyle.css";
 
 // Component for displaying a single recipe
@@ -12,6 +13,7 @@ import "../styling/RecipepageStyle.css";
 const DisplayOneRecipe: React.FC = () => {
   // Destructuring state and function from the state management
   const { oneRecipe, fetchOneRecipe, addRating } = allRecipeState();
+  const { addRecipeToCart } = globalCartFunctions();
 
   // Extracting recipeId from URL params
   // we use useParams to acces dynamic parts in the URL, in this case, the recipe ID, that will route to the recipe URL request
@@ -87,6 +89,9 @@ const DisplayOneRecipe: React.FC = () => {
                     ))}
                   </p>
                 </div>
+                <div className="info-container">
+                  <button onClick={() => addRecipeToCart(oneRecipe)}>Add to cart</button>
+                </div>
               </div>
             </div>
           </div>
@@ -122,7 +127,7 @@ const DisplayOneRecipe: React.FC = () => {
           {/* Section for displaying ingredients */}
           <div className="ingredients-wrapper">
             <div className="centered-mobile">
-              <h2>Ingridienser</h2>
+              <h2>Ingredienser</h2>
               <ul>
                 {/* Display ingredients with amount and unit */}
                 {oneRecipe.ingredients?.map((ingredient, index) => (

@@ -9,6 +9,7 @@ import CategoryPage from "./pages/CategoryPage";
 import Footer from "./components/Footer";
 import RecipePageContent from "./pages/RecipePage";
 import FilterPage from "./pages/Filter";
+import CartPage from "./pages/CartPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/categorypage" element={<CategoryPage />} />
           <Route path="/adminpage" element={<AdminPage />}/>
           <Route path="/recipes" element={<RecipePageContent />}/>
+          <Route path="/cart" element={<CartPage />}/>
         </Routes>
         <Footer />
       </BrowserRouter>

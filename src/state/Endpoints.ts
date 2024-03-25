@@ -9,6 +9,7 @@ interface recipeStateInterface {
   recipeList: RecipeInterface[];
   oneRecipe: RecipeInterface;
   categoryList: categoryInterface[];
+  categoryRecipeList: RecipeInterface[];
   setOneRecipe: (recipe: RecipeInterface) => void;
   fetchAllRecipes: () => Promise<void>;
   addRecipe: (newRecipe: RecipeInterface) => Promise<void>;
@@ -17,6 +18,7 @@ interface recipeStateInterface {
   fetchAllCategories: () => Promise<void>;
   fetchOneCategory: (categoryName: string) => Promise<void>;
   addRating: (rating: number, id: string | undefined) => Promise<void>;
+  updateRecipe: (updatedRecipe: RecipeInterface, id: string | undefined) => Promise<void>;
 }
 
 const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
@@ -25,6 +27,7 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
   recipeList: [],
   oneRecipe: {} as RecipeInterface,
   categoryList: [],
+  categoryRecipeList: [],
 
   setOneRecipe: (recipe: RecipeInterface) => {
     set({oneRecipe: recipe})
@@ -76,7 +79,7 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
       );
       if (response.status === 200) {
         console.log("Successfull get");
-        set({ recipeList: response.data });
+        set({ categoryRecipeList: response.data });
       }
     } catch (error) {
       console.error("Error fetching recipes by category:", error);
@@ -126,7 +129,22 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
     } catch (error) {
       console.error("Error updating rating:", error);
     }
-  }
+  },
+
+  updateRecipe: async(updatedRecipe, id) => {
+    try{
+      const response = await axios.patch(
+        `${URL}/recipes/${id}`,
+        updatedRecipe
+      );
+      if (response.status === 200) {
+        //make something happen
+        alert('recipe was updated')
+      }
+    }catch(error){
+      console.error("Error updating recipe:", error);
+    }
+  },
 }));
 
 export default allRecipeState;
