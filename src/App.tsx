@@ -9,7 +9,6 @@ import CategoryPage from "./pages/CategoryPage";
 import Footer from "./components/Footer";
 import RecipePageContent from "./pages/recipePage";
 
-
 function App() {
   return (
     <>
