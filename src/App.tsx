@@ -7,7 +7,7 @@ import AdminPage from "./pages/AdminPage";
 import Navbar from "./components/Navbar";
 import CategoryPage from "./pages/CategoryPage";
 import Footer from "./components/Footer";
-import RecipePageContent from "./pages/Recipepag";
+import RecipePageContent from "./pages/RecipePage";
 import FilterPage from "./pages/Filter";
 
 function App() {
