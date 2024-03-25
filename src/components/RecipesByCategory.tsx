@@ -16,7 +16,7 @@ const RecipesByCategory = () => {
   }, [categoryName]);
 
   // Function to handle a click on a specific recipe
-  const handleRecipeClick = (recipeId: string) => {
+  const handleRecipeClick = (recipeId: string | undefined) => {
     navigate(`/Recipe/${recipeId}`); // Navigating to the recipe page with the selected recipe id
   };
 

@@ -3,15 +3,15 @@
 import { create } from "zustand";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
 import axios from "axios";
-import { UploadRecipeInterface } from "../interfaces/UploadInterface";
 import { categoryInterface } from "../interfaces/CategoryInterface";
 
 interface recipeStateInterface {
   recipeList: RecipeInterface[];
   oneRecipe: RecipeInterface;
   categoryList: categoryInterface[];
+  setOneRecipe: (recipe: RecipeInterface) => void;
   fetchAllRecipes: () => Promise<void>;
-  addRecipe: (newRecipe: UploadRecipeInterface) => Promise<void>;
+  addRecipe: (newRecipe: RecipeInterface) => Promise<void>;
   deleteRecipe: (id: string) => Promise<void>;
   fetchOneRecipe: (id: string) => Promise<void>;
   fetchAllCategories: () => Promise<void>;
@@ -24,6 +24,10 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
   recipeList: [],
   oneRecipe: {} as RecipeInterface,
   categoryList: [],
+
+  setOneRecipe: (recipe: RecipeInterface) => {
+    set({oneRecipe: recipe})
+  },
 
   fetchAllRecipes: async () => {
     try {
@@ -78,18 +82,17 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
     }
   },
 
-  addRecipe: async (newRecipe: UploadRecipeInterface) => {
-    const { fetchAllRecipes } = allRecipeState();
+  addRecipe: async (newRecipe: RecipeInterface) => {
     try {
-      const response = await axios.post<UploadRecipeInterface>(
-        `${URL}/recipes`,
-        newRecipe
-      );
+      const response = await axios.post<RecipeInterface>(`${URL}/recipes`,newRecipe);
 
       if (response.status === 200) {
         console.log("Successful post: ", response.data);
         console.log(response.status);
-        fetchAllRecipes();
+        set((prevState) => ({
+          ...prevState,
+          recipeList: [...prevState.recipeList, newRecipe]
+        }));
       }
     } catch (error) {
       console.error("Error from post attempt:", error);
