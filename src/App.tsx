@@ -17,10 +17,10 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/category/:categoryName" element={<RecipesByCategory />}/>
+          <Route path="/category/:categoryName" element={<RecipesByCategory />} />
           <Route path="/testSite" element={<OldHomepage />} />
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
-          <Route path="/adminpage" element={<AdminPage />}/>
+          <Route path="/adminpage" element={<AdminPage />} />
           <Route path="/category" element={<CategoryPage />} />
         </Routes>
       </BrowserRouter>
