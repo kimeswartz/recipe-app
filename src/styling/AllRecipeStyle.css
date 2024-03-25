@@ -1,64 +1,62 @@
-.recipe-card{
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    height: 300px;
-    width: 200px;
-    margin: 10px 20px 10px 20px;
-    cursor: pointer;
-    border-radius: 10px;
-    background-color: antiquewhite;
-  }
-  
-  .first-card-div{
-    position: relative;
-  }
-  
-  .card-category{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    background-color: white;
-    color: black;
-    padding: 4px 10px 4px 10px;
-    max-width: 7rem;
-    margin-bottom: 2rem;
-  }
-  
-  .second-card-div{
-    display: flex;
-    justify-content: center;
-    color: black;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .second-card-div > h2{
-    margin-top: 2px;
-    margin-bottom: 2px;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    max-width: 12rem;
-  }
-  
-  .second-card-div > p{
-    margin-top: 0px;
-    margin-bottom: 0px;
-  }
-  
-  .display-recipe-img{
-    height: 200px;
-    width: 200px;
-  }
-  
-  .all-recipe{
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 50px;
-  }
-  
-  .recipe-card:hover .display-recipe-img{
-    filter: opacity(50%);
-  }
+.all-recipe {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.recipe-card {
+  flex: 0 1 calc(25% - 20px);
+  max-width: 300px;
+  margin: 10px;
+  border: none;
+  border-radius: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1; /* Allow cards to grow vertically */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Button shadow */
+  transition: box-shadow 0.3s ease; /* Smooth transition for the shadow */
+}
+
+.first-card-div {
+  height: 200px;
+  width: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.display-recipe-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px 10px 0 0;
+}
+
+.card-category {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #009e74;
+  color: white;
+  padding: 4px 10px;
+  max-width: 7rem;
+}
+
+.second-card-div {
+  text-align: center;
+  max-width: min-content;
+  padding: 15px;
+  margin: auto;
+}
+
+.second-card-div p {
+  text-align: center;
+  font-weight: 900;
+  color: #009e74;
+}
+
+.recipe-card:hover .display-recipe-img {
+  filter: opacity(50%);
+}
