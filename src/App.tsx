@@ -10,7 +10,6 @@ import Footer from "./components/Footer";
 import RecipePageContent from "./pages/recipePage";
 import FilterPage from "./pages/Filter";
 
-
 function App() {
   return (
     <>
