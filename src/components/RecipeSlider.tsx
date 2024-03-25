@@ -23,11 +23,8 @@ const RecipeSlider: React.FC = () => {
     try {
       // Fetch recipes from the API
       const result = await axios.get<RecipeInterface[]>('https://sti-java-grupp4-s4yjx9.reky.se/recipes');
-      // Shuffle the fetched recipes
       const shuffledRecipes = result.data.sort(() => Math.random() - 0.5);
-      // Select a subset of recipes for the slider
-      const selectedRandomRecipes = shuffledRecipes.slice(0, 15); 
-      // Set state with selected random recipes
+      const selectedRandomRecipes = shuffledRecipes.slice(0, 8); 
       setRandomRecipes(selectedRandomRecipes);
     } catch (error) {
       // Handle errors if fetching fails

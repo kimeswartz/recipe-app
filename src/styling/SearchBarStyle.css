@@ -1,18 +1,3 @@
-.search-wrapper {
-  max-width: 400px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.search {
-  width: 100%;
-}
-
-.error-message {
-  color: red;
-  font-weight: bold;
-}
-
 .dataResult {
   margin-top: 20px;
   border-radius: 10px;
@@ -27,6 +12,13 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   border-bottom: 1px solid #ddd; 
+  display: flex; /* Använd flexbox för att justera elementen */
+}
+
+.dataItem img {
+  flex: 0 0 100px; /* Bestäm bredden på bilden här */
+  height: auto; /* Låt höjden anpassa sig för att behålla proportionerna */
+  margin-right: 10px; /* Lägg till lite mellanrum mellan bilden och texten */
 }
 
 .dataItem:last-child {
@@ -39,8 +31,9 @@
 }
 
 .dataItem a {
-  display: block;
-  color: #fff;s
+  display: flex; /* Använd flexbox för att justera texten vertikalt */
+  align-items: center; /* Centrera texten vertikalt */
+  color: #fff;
   font-size: 16px;
   text-decoration: none;
 }

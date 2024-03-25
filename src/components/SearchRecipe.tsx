@@ -72,19 +72,19 @@ function SearchRecipe() {
                 </div>
 
                 {error && ( // Rendering error message if error state is set
-                    <div className="error-message">{error}</div>
+                    <p className="error-message">{error}</p>
                 )}
 
                 {input !== '' && filteredData.length !== 0 && ( // Rendering filtered recipe data
-                    <div className='dataResult'>
+                    <ul className='dataResult'>
                         {filteredData.map((recipe) => (
-                            <React.Fragment key={recipe._id}>
+                            <li key={recipe._id}>
                                 <Link to={`/recipe/${recipe._id}`} >
                                     {recipe.title}
                                 </Link>
-                            </React.Fragment>
+                            </li>
                         ))}
-                    </div>
+                    </ul>
                 )}
             </div>
         </div>

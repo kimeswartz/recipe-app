@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar";
 import CategoryPage from "./pages/CategoryPage";
 import Footer from "./components/Footer";
 import RecipePageContent from "./pages/recipePage";
-
+import FilterPage from "./pages/Filter";
 
 function App() {
   return (
@@ -16,6 +16,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
+          <Route path="/filter" element={<FilterPage />} />
           <Route path="/" element={<Home />} />
           <Route path="/category/:categoryName" element={<RecipesByCategory />}/>
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
