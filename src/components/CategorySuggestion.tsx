@@ -10,7 +10,7 @@ const CategorySuggestion = () => {
   // To fetch all categories when component first loads or when the categoryList changes
   useEffect(() => {
     fetchAllCategories();
-  }, [categoryList]);
+  }, []);
 
   // Function to handle a click on a specific category
   const handleCategoryClick = (categoryName: string) => {
