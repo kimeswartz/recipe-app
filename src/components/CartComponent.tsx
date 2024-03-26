@@ -6,7 +6,7 @@ import allRecipeState from "../state/Endpoints"
 
 const CartComponent = () => {
 
-  const { cart } = globalCartFunctions()
+  const { cart, removeRecipeFromCart } = globalCartFunctions()
   const { setOneRecipe } = allRecipeState();
   const navigate = useNavigate();
 
@@ -26,6 +26,12 @@ const CartComponent = () => {
     window.scrollTo(0, 0);
   }
 
+  const handleRemoveFromCart = (id: string | undefined) => {
+    if(id){
+      removeRecipeFromCart(id)
+    }
+  }
+
   return (
     <div className="all-recipe">
       {cart.map((cartItem, index) => (
@@ -41,6 +47,7 @@ const CartComponent = () => {
                   <h2>{recipe.title}</h2>
                   <span>Betyg</span>
                   {recipe.avgRating === null ? <p>inga betyg</p> : <p>{recipe.avgRating?.toFixed(1)}/5</p>}
+                  <button onClick={() => handleRemoveFromCart(recipe._id)}>X</button>
                 </div>
               </div>
             )

@@ -12,13 +12,13 @@ import FilterPage from "./pages/Filter";
 import Modal from 'react-modal';
 import globalCartFunctions from "./state/Cart";
 import CartComponent from "./components/CartComponent";
+import PopularRecipes from "./pages/PopularRecipes";
 
 Modal.setAppElement('#root')
 
 function App() {
 
   const { displayCart, toggleCart } = globalCartFunctions();
-
 
   return (
     <>
@@ -30,7 +30,13 @@ function App() {
           onRequestClose={() => toggleCart(displayCart)}
           contentLabel="Example Modal"
         >
-          <CartComponent />
+          <div>
+            <div className="navbar">
+              <h1>Varukorg</h1>
+              <button className="main-button" onClick={() => toggleCart(displayCart)}>X</button>
+            </div>
+            <CartComponent />
+          </div>
         </Modal>
         <Routes>
           <Route path="/filter" element={<FilterPage />} />
@@ -40,6 +46,7 @@ function App() {
           <Route path="/categorypage" element={<CategoryPage />} />
           <Route path="/adminpage" element={<AdminPage />} />
           <Route path="/recipes" element={<RecipePageContent />} />
+          <Route path="/popular" element={<PopularRecipes />} />
         </Routes>
         <Footer />
       </BrowserRouter>

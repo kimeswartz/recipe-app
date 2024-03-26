@@ -6,6 +6,7 @@ interface GlobalCartInterface {
   cart: CartInterface[];
   displayCart: boolean;
   addRecipeToCart: (recipe: RecipeInterface) => void;
+  removeRecipeFromCart: (removeId: string) => void;
   toggleCart: (mode: boolean) => void;
   // addCocktailToCart: CocktailInterface;
 
@@ -21,6 +22,10 @@ const globalCartFunctions = create<GlobalCartInterface>()((set) => ({
     set((prevState) => ({
       cart: [...prevState.cart, {recipeList: [recipe]}]
     }))
+  },
+
+  removeRecipeFromCart: (removeId) => {
+    
   },
 
   toggleCart: (mode) => {
