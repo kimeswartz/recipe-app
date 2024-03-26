@@ -191,7 +191,7 @@ const UploadRecipe = () => {
     <div>
       <section className="upload-container">
         <h1 className="upload-title">Upload Recipe</h1>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
           <label className="upload-label">
             Title:
             <input
@@ -292,6 +292,10 @@ const UploadRecipe = () => {
                 />
               </label>
 
+
+<div className="amount-unit-container">
+
+
               <label className="upload-label">
                 Amount:
                 <input
@@ -311,7 +315,7 @@ const UploadRecipe = () => {
               <label className="upload-label">
                 Unit:
                 <select
-                  className="select-bar"
+                  className="user-input"
                   value={ingredient.unit}
                   onChange={(selectedByUser) =>
                     handleIngredientInput(
@@ -328,6 +332,9 @@ const UploadRecipe = () => {
                   ))}
                 </select>
               </label>
+
+              </div>
+
             </div>
           ))}
 
@@ -339,9 +346,11 @@ const UploadRecipe = () => {
             Add Ingredient
           </button>
 
+<div className="button-container">
           <button className="upload-button" type="submit">
             Submit recipe to database
           </button>
+          </div>
         </form>
       </section>
     </div>
