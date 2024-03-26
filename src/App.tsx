@@ -9,6 +9,8 @@ import CategoryPage from "./pages/CategoryPage";
 import Footer from "./components/Footer";
 import RecipePageContent from "./pages/RecipePage";
 import FilterPage from "./pages/Filter";
+import CocktailHomePage from "./pages/CocktailPages/CocktailHomePage";
+import CocktailLetterPage from "./components/CocktailComponents/CocktailLetterPage";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Routes>
+          <Route path="/cocktails/:letter" element={<CocktailLetterPage />} />
+          <Route path="/cocktails" element={<CocktailHomePage />} />
           <Route path="/filter" element={<FilterPage />} />
           <Route path="/" element={<Home />} />
           <Route path="/category/:categoryName" element={<RecipesByCategory />}/>
