@@ -6,7 +6,7 @@ import allRecipeState from "../../state/Endpoints";
 const UploadRecipe = () => {
   const { addRecipe } = allRecipeState();
 
-// state to manage form data for uploading a recipe
+  // state to manage form data for uploading a recipe
   const [recipeData, setRecipeData] = useState<UploadRecipeInterface>({
     title: "",
     description: "",
@@ -95,6 +95,29 @@ const UploadRecipe = () => {
     clickEvent.preventDefault();
 
     try {
+      //Checking if any required fields are empty
+      if (
+        recipeData.title === "" ||
+        recipeData.description === "" ||
+        recipeData.imageUrl === "" ||
+        recipeData.timeInMins === 0 ||
+        recipeData.instructions.some(
+          (instruction: string) => instruction === ""
+        ) ||
+        recipeData.ingredients.some(
+          (ingredient) =>
+            ingredient.name === "" ||
+            ingredient.amount === 0 ||
+            ingredient.unit === ""
+        ) ||
+        recipeData.categories.length === 0
+      ) {
+        alert(
+          "Vänligen fyll i alla fält, och välj minst en kategori, innan du skickar."
+        );
+        return;
+      }
+
       // Adding the recipe data to the database
       addRecipe(recipeData);
 
@@ -132,6 +155,18 @@ const UploadRecipe = () => {
     "Latin American",
   ];
 
+  // Present unit for ingredients
+  const presentIngredientsUnit = [
+    "l",
+    "dl",
+    "ml",
+    "msk",
+    "tsk",
+    "g",
+    "kg",
+    "st",
+  ];
+
   // Function to handle category changes
   const handleCategoryChange = (selectedCategory: string) => {
     setRecipeData((prevData) => {
@@ -160,6 +195,7 @@ const UploadRecipe = () => {
           <label className="upload-label">
             Title:
             <input
+              className="user-input"
               type="text"
               name="title"
               value={recipeData.title}
@@ -169,6 +205,7 @@ const UploadRecipe = () => {
           <label className="upload-label">
             Description:
             <input
+              className="user-input"
               type="text"
               name="description"
               value={recipeData.description}
@@ -178,6 +215,7 @@ const UploadRecipe = () => {
           <label className="upload-label">
             Image URL:
             <input
+              className="user-input"
               type="text"
               name="imageUrl"
               value={recipeData.imageUrl}
@@ -187,6 +225,7 @@ const UploadRecipe = () => {
           <label className="upload-label">
             Time in mins:
             <input
+              className="user-input"
               type="number"
               name="timeInMins"
               value={recipeData.timeInMins}
@@ -214,6 +253,7 @@ const UploadRecipe = () => {
               <label className="upload-label">
                 Instruction {index + 1}:
                 <input
+                  className="user-input"
                   type="text"
                   value={instruction}
                   onChange={(e) =>
@@ -239,6 +279,7 @@ const UploadRecipe = () => {
               <label className="upload-label">
                 Ingredient Name:
                 <input
+                  className="user-input"
                   type="text"
                   value={ingredient.name}
                   onChange={(enteredByUser) =>
@@ -254,6 +295,7 @@ const UploadRecipe = () => {
               <label className="upload-label">
                 Amount:
                 <input
+                  className="user-input"
                   type="number"
                   value={ingredient.amount}
                   onChange={(enteredByUser) =>
@@ -268,17 +310,23 @@ const UploadRecipe = () => {
 
               <label className="upload-label">
                 Unit:
-                <input
-                  type="text"
+                <select
+                  className="select-bar"
                   value={ingredient.unit}
-                  onChange={(enteredByUser) =>
+                  onChange={(selectedByUser) =>
                     handleIngredientInput(
                       index,
                       "unit",
-                      enteredByUser.target.value
+                      selectedByUser.target.value
                     )
                   }
-                />
+                >
+                  {presentIngredientsUnit.map((unit, index) => (
+                    <option key={index} value={unit}>
+                      {unit}
+                    </option>
+                  ))}
+                </select>
               </label>
             </div>
           ))}

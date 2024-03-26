@@ -61,6 +61,21 @@ p {  font-size: 1 em;
     padding: 3em;
   }
 
+ .select-bar {
+  padding: 10px;
+  border: none;
+  border-radius: 15px;
+  background-color: white;
+ }
+
+ .user-input {
+  padding: 10px;
+  margin: 5px;
+  border: none;
+  border-radius: 15px;
+
+ }
+
 :root {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
