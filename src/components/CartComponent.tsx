@@ -4,7 +4,7 @@ import globalCartFunctions from "../state/Cart"
 import '../styling/AllRecipeStyle.css'
 import allRecipeState from "../state/Endpoints"
 
-const Cart = () => {
+const CartComponent = () => {
 
   const { cart } = globalCartFunctions()
   const { setOneRecipe } = allRecipeState();
@@ -51,4 +51,4 @@ const Cart = () => {
   )
 }
 
-export default Cart
+export default CartComponent;

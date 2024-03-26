@@ -19,18 +19,23 @@ const DisplayOneRecipe: React.FC = () => {
   // we use useParams to acces dynamic parts in the URL, in this case, the recipe ID, that will route to the recipe URL request
   const { recipeId } = useParams<{ recipeId: string }>();
   const [userRating, setUserRating] = useState<number>();
+  const [trigger, setTrigger] = useState(false)
 
   // Fetch the recipe details when the component mounts or recipeId changes
   useEffect(() => {
+    console.log('useEffect triggered with recipeId:', recipeId)
     if (recipeId) {
       fetchOneRecipe(recipeId);
     }
-  }, [recipeId]);
+  }, [trigger]);
 
   // This will send a review to database between 1-5
   const handleRatingChange = async (rating: number) => {
 
     addRating(rating, oneRecipe._id)
+      .then(() => {
+        setTrigger(!trigger)
+      })
     setUserRating(rating);
   };
 

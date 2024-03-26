@@ -4,7 +4,9 @@ import { CartInterface } from "../interfaces/CartInterface";
 
 interface GlobalCartInterface {
   cart: CartInterface[];
+  displayCart: boolean;
   addRecipeToCart: (recipe: RecipeInterface) => void;
+  toggleCart: (mode: boolean) => void;
   // addCocktailToCart: CocktailInterface;
 
 }
@@ -12,14 +14,18 @@ interface GlobalCartInterface {
 const globalCartFunctions = create<GlobalCartInterface>()((set) => ({
 
   cart: [],
+  displayCart: false,
 
   addRecipeToCart: (recipe) => {
     alert('Varan har lagts till')
     set((prevState) => ({
       cart: [...prevState.cart, {recipeList: [recipe]}]
     }))
-  }
+  },
 
+  toggleCart: (mode) => {
+    set({displayCart: !mode})
+  },
 }))
 
 export default globalCartFunctions;

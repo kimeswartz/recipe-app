@@ -1,23 +1,22 @@
 import "../styling/NavbarStyle.css"
 import { Link } from "react-router-dom"
-import { useNavigate } from "react-router-dom"
+import globalCartFunctions from "../state/Cart"
 
 const Navbar = () => {
 
-  const navigate = useNavigate();
-  
+  const { displayCart, toggleCart } = globalCartFunctions();
+
   return (
     <div className="navbar container" >
       <a className='logo'><Link to='/'>Logo</Link></a>
       <div className='nav-links'>
-        <a ><Link to='/'>Start</Link></a>
-        <a><Link to='/CategoryPage'>Kategorier</Link></a>
-        <a><Link to='/Filter'>Filtrera</Link></a>
-        <a><Link to='/Recipes'>Alla Recept</Link></a>
+        <a ><Link to='/'>Home</Link></a>
+        <a><Link to='/CategoryPage'>Categories</Link></a>
+        <a><Link to='/Filter'>Filter</Link></a>
+        <a><Link to='/Recipes'>Recipes</Link></a>
         <a><Link to='/AdminPage'>Admin</Link></a>
-        <button className="main-btn" onClick={() => navigate('/cart')}>Cart</button>
+        <button className="main-btn" onClick={() => toggleCart(displayCart)}>Cart</button>
       </div>
-
     </div>
 
   )

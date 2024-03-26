@@ -40,6 +40,13 @@ p {  font-size: 1 em;
   font-weight: 300;
 }
 
+.modal-cart-window{
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+}
+
 .main-button {
     border-radius: 15px;
     border: none;

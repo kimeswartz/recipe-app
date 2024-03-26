@@ -9,22 +9,37 @@ import CategoryPage from "./pages/CategoryPage";
 import Footer from "./components/Footer";
 import RecipePageContent from "./pages/RecipePage";
 import FilterPage from "./pages/Filter";
-import CartPage from "./pages/CartPage";
+import Modal from 'react-modal';
+import globalCartFunctions from "./state/Cart";
+import CartComponent from "./components/CartComponent";
+
+Modal.setAppElement('#root')
 
 function App() {
+
+  const { displayCart, toggleCart } = globalCartFunctions();
+
+
   return (
     <>
       <BrowserRouter>
         <Navbar />
+        <Modal
+          className='modal-cart-window'
+          isOpen={displayCart}
+          onRequestClose={() => toggleCart(displayCart)}
+          contentLabel="Example Modal"
+        >
+          <CartComponent />
+        </Modal>
         <Routes>
           <Route path="/filter" element={<FilterPage />} />
           <Route path="/" element={<Home />} />
-          <Route path="/category/:categoryName" element={<RecipesByCategory />}/>
+          <Route path="/category/:categoryName" element={<RecipesByCategory />} />
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
           <Route path="/categorypage" element={<CategoryPage />} />
-          <Route path="/adminpage" element={<AdminPage />}/>
-          <Route path="/recipes" element={<RecipePageContent />}/>
-          <Route path="/cart" element={<CartPage />}/>
+          <Route path="/adminpage" element={<AdminPage />} />
+          <Route path="/recipes" element={<RecipePageContent />} />
         </Routes>
         <Footer />
       </BrowserRouter>
