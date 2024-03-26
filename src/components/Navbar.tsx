@@ -22,7 +22,7 @@ const Navbar = () => {
         <a onClick={() => handleNavigation("/Filter")}>Filter</a>
         <a onClick={() => handleNavigation("/Recipes")}>Recipes</a>
         <a onClick={() => handleNavigation("/AdminPage")}>Admin</a>
-        <button className="main-btn" onClick={() => toggleCart(displayCart)}>Cart</button>
+        <button className="main-button" onClick={() => toggleCart(displayCart)}>Cart</button>
       </div>
     </div>
   );

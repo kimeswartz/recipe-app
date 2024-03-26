@@ -25,7 +25,11 @@ const globalCartFunctions = create<GlobalCartInterface>()((set) => ({
   },
 
   removeRecipeFromCart: (removeId) => {
-    
+    set((prevState) => ({
+      cart: prevState.cart.filter((cartItem) =>
+        !cartItem.recipeList.some((recipe) => recipe._id === removeId)
+      )
+    }));
   },
 
   toggleCart: (mode) => {

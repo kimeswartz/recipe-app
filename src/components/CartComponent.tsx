@@ -27,7 +27,7 @@ const CartComponent = () => {
   }
 
   const handleRemoveFromCart = (id: string | undefined) => {
-    if(id){
+    if (id) {
       removeRecipeFromCart(id)
     }
   }
@@ -47,7 +47,7 @@ const CartComponent = () => {
                   <h2>{recipe.title}</h2>
                   <span>Betyg</span>
                   {recipe.avgRating === null ? <p>inga betyg</p> : <p>{recipe.avgRating?.toFixed(1)}/5</p>}
-                  <button onClick={() => handleRemoveFromCart(recipe._id)}>X</button>
+                  <button onClick={() => handleRemoveFromCart(recipe._id)} className="main-button">X</button>
                 </div>
               </div>
             )
