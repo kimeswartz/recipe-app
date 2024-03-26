@@ -68,7 +68,7 @@ const RecipeSearch = () => {
           <input
             className='search-box'
             type='text'
-            placeholder='Search'
+            placeholder='Sök recept'
             onChange={onChange}
             value={searchTerm}
           />

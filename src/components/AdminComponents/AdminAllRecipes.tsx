@@ -25,7 +25,7 @@ const AdminAllRecipes = () => {
         {recipeList.map((recipe) => {
           return (
             <div className='recipes-card' key={recipe._id}>
-              <button className="delete-button" onClick={() => handleDelete(recipe._id)}>Delete this recipe</button>
+              <button className="delete-button" onClick={() => handleDelete(recipe._id)}>Ta bort recept</button>
               <Link to={`/recipe/${recipe._id}`}>
                 <div className='first-cards-div'>
                   <img className='display-recipes-img' src={recipe.imageUrl} alt={recipe.title} />

@@ -9,18 +9,18 @@ const AdminPage = () => {
   return (
     <div>
       <header className="header">
-        <h1>ADMINS ONLY!</h1>
+        <h1>ENDAST ADMINS!</h1>
         <RecipeSearch />
       </header>
     
       <div className="card">
-        <h2>THIS IS THE SECTION WHERE YOU CAN UPLOAD A NEW RECIPE</h2>
+        <h2>HÄR KAN DU LADDA UPP ETT RECEPT</h2>
         <AdminUpload />
 
-        <h2>Here is where you can delete a recipe</h2>
+        <h2>HÄR KAN DU TA BORT ETT RECEPT</h2>
         <AdminRecipes />
 
-        <h2>Here is where you can edit an existing recipe</h2>
+        <h2>HÄR KAN DU UPPDATERA ETT RECEPT</h2>
         <AdminUpdate />
       </div>
     </div>

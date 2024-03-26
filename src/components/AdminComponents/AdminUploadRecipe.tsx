@@ -126,10 +126,10 @@ const UploadRecipe = () => {
     "Frukost",
     "Lunch",
     "Middag",
-    "Vegetarian",
-    "Party",
+    "Vegetarisk",
+    "Festlig",
     "Asiatisk",
-    "Latin American",
+    "Latin Amerikansk",
   ];
 
   // Function to handle category changes
@@ -155,10 +155,10 @@ const UploadRecipe = () => {
   return (
     <div>
       <section className="upload-container">
-        <h1 className="upload-title">Upload Recipe</h1>
+        <h1 className="upload-title">Ladda upp recept</h1>
         <form onSubmit={handleSubmit}>
           <label className="upload-label">
-            Title:
+            Titel:
             <input
               type="text"
               name="title"
@@ -167,7 +167,7 @@ const UploadRecipe = () => {
             />
           </label>
           <label className="upload-label">
-            Description:
+            Beskrivning:
             <input
               type="text"
               name="description"
@@ -176,7 +176,7 @@ const UploadRecipe = () => {
             />
           </label>
           <label className="upload-label">
-            Image URL:
+            Bild URL:
             <input
               type="text"
               name="imageUrl"
@@ -185,7 +185,7 @@ const UploadRecipe = () => {
             />
           </label>
           <label className="upload-label">
-            Time in mins:
+            Tid i min:
             <input
               type="number"
               name="timeInMins"
@@ -194,7 +194,7 @@ const UploadRecipe = () => {
             />
           </label>
 
-          <h2 className="upload-h2">Choose Category</h2>
+          <h2 className="upload-h2">Välj Kategori</h2>
           {presetCategories.map((category, index) => (
             <label className="category-label" key={index}>
               <input
@@ -208,11 +208,11 @@ const UploadRecipe = () => {
             </label>
           ))}
 
-          <h2 className="upload-h2">Instructions</h2>
+          <h2 className="upload-h2">Instruktioner</h2>
           {recipeData.instructions.map((instruction, index) => (
             <div key={index}>
               <label className="upload-label">
-                Instruction {index + 1}:
+                Instruktioner {index + 1}:
                 <input
                   type="text"
                   value={instruction}
@@ -228,16 +228,16 @@ const UploadRecipe = () => {
             type="button"
             onClick={addInstruction}
           >
-            Add Instruction
+            Lägg till instruktion
           </button>
 
           <br />
 
-          <h2 className="upload-h2">Ingredients</h2>
+          <h2 className="upload-h2">Ingredienser</h2>
           {recipeData.ingredients.map((ingredient, index) => (
             <div key={index}>
               <label className="upload-label">
-                Ingredient Name:
+                Ingrediens namn:
                 <input
                   type="text"
                   value={ingredient.name}
@@ -252,7 +252,7 @@ const UploadRecipe = () => {
               </label>
 
               <label className="upload-label">
-                Amount:
+                Antal:
                 <input
                   type="number"
                   value={ingredient.amount}
@@ -267,7 +267,7 @@ const UploadRecipe = () => {
               </label>
 
               <label className="upload-label">
-                Unit:
+                Enhet:
                 <input
                   type="text"
                   value={ingredient.unit}
@@ -288,11 +288,11 @@ const UploadRecipe = () => {
             type="button"
             onClick={addIngredient}
           >
-            Add Ingredient
+            Lägg till ingrediens
           </button>
 
           <button className="upload-button" type="submit">
-            Submit recipe to database
+            Skicka recept till databas
           </button>
         </form>
       </section>

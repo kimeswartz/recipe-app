@@ -69,7 +69,7 @@ const UpdateRecipe = () => {
   return (
     <>
       <div className="update-container">
-        <h2>Update Recipe</h2>
+        <h2>Uppdatera recept</h2>
 
         <form
           className="update-form"
@@ -84,12 +84,12 @@ const UpdateRecipe = () => {
               type="text"
               value={recipeId}
               onChange={(input) => setRecipeId(input.target.value)}
-              placeholder="Enter ID to update"
+              placeholder="Recept ID här"
             />
           </label>
           <br />
           <label className="update-label">
-            Title:
+            Tittel:
             <input
               type="text"
               name="title"
@@ -99,7 +99,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Description:
+            Beskrivning:
             <input
               type="text"
               name="description"
@@ -109,7 +109,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Rating:
+            Betyg:
             <input
               type="number"
               name="description"
@@ -119,7 +119,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Image URL:
+            Bild URL:
             <input
               type="text"
               name="imageUrl"
@@ -129,7 +129,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Time in mins:
+            Tid i min:
             <input
               type="number"
               name="timeInMins"
@@ -141,7 +141,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Category:
+            Kategori:
             <input
               type="text"
               name="categories"
@@ -151,7 +151,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Instructions:
+            Instruktioner:
             <input
               type="text"
               name="instructions"
@@ -160,9 +160,9 @@ const UpdateRecipe = () => {
             />
           </label>
           <br />
-          <h2>Update Ingredients</h2>
+          <h2>Uppdatera ingredienser</h2>
           <label className="update-label">
-            Ingredient Name:
+            Ingrediens namn:
             <input
               type="text"
               name="ingredientName"
@@ -171,7 +171,7 @@ const UpdateRecipe = () => {
             />
           </label>
           <label className="update-label">
-            Amount:
+            Antal:
             <input
               type="number"
               name="amount"
@@ -180,7 +180,7 @@ const UpdateRecipe = () => {
             />
           </label>
           <label className="update-label">
-            Unit:
+            Enhet:
             <input
               type="text"
               name="unit"
@@ -189,7 +189,7 @@ const UpdateRecipe = () => {
             />
           </label>
           <br />
-          <button className="upload-button" type="submit">Submit Updates</button>
+          <button className="upload-button" type="submit">Skicka uppdatering</button>
         </form>
       </div>
     </>

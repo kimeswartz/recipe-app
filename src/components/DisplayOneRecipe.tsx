@@ -74,7 +74,7 @@ const DisplayOneRecipe: React.FC = () => {
                     {oneRecipe.avgRating !== null ? (
                       <span>{oneRecipe.avgRating}/5</span>
                     ) : (
-                      <span>Review missing</span>
+                      <span>Saknar betyg</span>
                     )}
                   </p>
                 </div>
