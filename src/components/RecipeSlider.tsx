@@ -1,5 +1,3 @@
-//Bilge
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Slider from 'react-slick'; 
@@ -7,11 +5,12 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css'; 
 import { PiArrowSquareLeftFill, PiArrowSquareRightFill } from "react-icons/pi";
 import "../styling/SliderStyle.css" 
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'; // Importera useNavigate här
 import { RecipeInterface } from '../interfaces/RecipeInterface';
 
 const RecipeSlider: React.FC = () => {
   const [randomRecipes, setRandomRecipes] = useState<RecipeInterface[]>([]);
+  const navigate = useNavigate(); // Använd useNavigate för att få navigationsfunktionen
 
   useEffect(() => {
     // Fetch random recipes when component mounts
@@ -74,9 +73,10 @@ const RecipeSlider: React.FC = () => {
           {/* Map through random recipes and render each as a slide */}
           {randomRecipes.map((recipe) => 
             <div key={recipe._id} className='image-slide'>
-              <Link to={`/recipe/${recipe._id}`}></Link> {/* Link to recipe details */}
-              <img src={recipe.imageUrl}/> {/* Image for the recipe */}
-              <div className='cover'>{recipe.title}</div> {/* Title for the recipe */}
+              <div onClick={() => navigate(`/recipe/${recipe._id}`)}> {/* Använd navigate här */}
+                <img src={recipe.imageUrl} alt={recipe.title}/> {/* Image for the recipe */}
+                <div className='cover'>{recipe.title}</div> {/* Title for the recipe */}
+              </div>
             </div>
           )}
         </Slider>
