@@ -13,7 +13,7 @@ const TopRatedRecipes = () => {
   // Fetch all recipes when component first loads or recipeList changes
   useEffect(() => {
     fetchAllRecipes();
-  }, [recipeList]);
+  }, []);
 
   // Function to handle navigation to individual recipe page
   const handleNavigate = (recipe: RecipeInterface) => {
