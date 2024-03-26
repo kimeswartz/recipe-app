@@ -2,12 +2,11 @@
   --background-color: #fff;
   --background-light: #fff;
   --shadow-color: rgba(0,0,0,0.2);
-  --primary-color:rgb(255,0,86);
+  --primary-color: rgb(255,0,86);
   --text-color: #0A0A0A;
   --text-light: #575757;
   --font-size: 16px;
   --animations-speed: 1;
-
 }
 
 *{
@@ -24,12 +23,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-    .logo{
-      font-size: 1.2em;
-      font-weight: bolder;
-      color: var(--primary-color);
-      text-shadow: 0 1px 3px var(--shadow-color);
-   }
+  .logo{
+    font-size: 1.2em;
+    font-weight: bolder;
+    color: var(--primary-color);
+    text-shadow: 0 1px 3px var(--shadow-color);
+  }
 }
 
 .container{
@@ -44,6 +43,7 @@
     text-transform: uppercase;
     position: relative;
     text-decoration: none;
+    cursor: pointer; 
     &::before{
       content: '';
       display: inline-block;
@@ -60,6 +60,7 @@
       &::before{
         transform: scaleX(1);
       }
+      color: var(--primary-color); 
     }
   }
 }
