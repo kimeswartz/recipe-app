@@ -1,14 +1,13 @@
-import React from 'react'
-import TopRatedRecipes from '../components/TopRatedRecipes'
+import TopRatedRecipes from "../components/TopRatedRecipes";
 
 // lägg till en navigate som navigerar till popular recipes page
 
 const PopularRecipes = () => {
   return (
     <div>
-        <TopRatedRecipes/>
-        </div>
-  )
-}
+      <TopRatedRecipes />
+    </div>
+  );
+};
 
-export default PopularRecipes
+export default PopularRecipes;
