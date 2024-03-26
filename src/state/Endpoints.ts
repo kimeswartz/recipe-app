@@ -38,6 +38,7 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
       const response = await axios.get(`${URL}/recipes`);
       if (response.status === 200) {
         set({ recipeList: response.data });
+        console.log('fetched all recipes')
       }
     } catch (error) {
       console.error("Error fetching all recipes", error);
@@ -95,8 +96,9 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
         console.log(response.status);
         set((prevState) => ({
           ...prevState,
-          recipeList: [...prevState.recipeList, newRecipe]
+          recipeList: [...prevState.recipeList, response.data]
         }));
+        console.log('Added recipe to recipeList')
       }
     } catch (error) {
       console.error("Error from post attempt:", error);
@@ -108,6 +110,10 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
       const response = await axios.delete(`${URL}/recipes/${id}`);
       if (response.status === 204) {
         console.log("Recipe deleted successfully");
+        set((state) => ({
+          ...state,
+          recipeList: state.recipeList.filter(recipe => recipe._id !== id)
+        }))
       }
     } catch (error) {
       console.error("Error deleting recipe:", error);

@@ -13,12 +13,11 @@ const AdminAllRecipes = () => {
 
   useEffect(() => {
     fetchAllRecipes()
-  }, [recipeList])
+  }, [])
 
   const handleDelete = async (recipeId: string | undefined) => {
     if (recipeId) {
       deleteRecipe(recipeId)
-      fetchAllRecipes();
     }
   };
 
@@ -27,13 +26,12 @@ const AdminAllRecipes = () => {
     navigate(`/recipe/${recipe._id}`)
   }
 
-
   return (
     <>
       <div className='all-recipes'>
-        {recipeList.map((recipe) => {
+        {recipeList.map((recipe, indexKey) => {
           return (
-            <div className='recipes-card' key={recipe._id}>
+            <div className='recipes-card' key={indexKey}>
               <button className="delete-button" onClick={() => handleDelete(recipe._id)}>Delete this recipe</button>
 
               <div className='first-cards-div' onClick={() => handleNavigate(recipe)}>

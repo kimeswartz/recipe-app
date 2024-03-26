@@ -4,7 +4,7 @@ import { RecipeInterface } from "../../interfaces/RecipeInterface";
 
 // Destructuring addRecipe function from the Zusand store, with direct acces to the function in /Endpoints
 const UploadRecipe = () => {
-  const { addRecipe } = allRecipeState();
+  const { addRecipe, fetchAllRecipes } = allRecipeState();
 
 // state to manage form data for uploading a recipe
   const [recipeData, setRecipeData] = useState<RecipeInterface>({
@@ -94,31 +94,28 @@ const UploadRecipe = () => {
   const handleSubmit = async (clickEvent: any) => {
     clickEvent.preventDefault();
 
-    try {
-      // Adding the recipe data to the database
-      addRecipe(recipeData);
 
-      // Resetting the form fields after submission
-      setRecipeData({
-        title: "",
-        description: "",
-        ratings: [],
-        imageUrl: "",
-        timeInMins: 0,
-        categories: [],
-        instructions: [],
+    // Adding the recipe data to the database
+    addRecipe(recipeData);
 
-        ingredients: [
-          {
-            name: "",
-            amount: 0,
-            unit: "",
-          },
-        ],
-      });
-    } catch (error) {
-      console.error("Error submitting data:", error);
-    }
+    // Resetting the form fields after submission
+    setRecipeData({
+      title: "",
+      description: "",
+      ratings: [],
+      imageUrl: "",
+      timeInMins: 0,
+      categories: [],
+      instructions: [],
+
+      ingredients: [
+        {
+          name: "",
+          amount: 0,
+          unit: "",
+        },
+      ],
+    });
   };
 
   // Preset categories for recipes

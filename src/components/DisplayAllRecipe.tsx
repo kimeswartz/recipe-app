@@ -15,7 +15,7 @@ const DisplayAllRecipe = () => {
 
   useEffect(() => {
     fetchAllRecipes();
-  }, [recipeList])
+  }, [])
 
   const handleNavigate = (recipe: RecipeInterface) => {
     setOneRecipe(recipe)

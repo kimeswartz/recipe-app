@@ -16,7 +16,7 @@ const RecipesByCategory = () => {
 
   return (
     <div className="recipeContainer">
-      <h1>Recept i : {categoryName}</h1>
+      <h1>{categoryName} recept</h1>
       <div className="recipeList">
         {categoryRecipeList.map((recipe) => (
           <div
