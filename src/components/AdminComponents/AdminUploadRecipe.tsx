@@ -1,13 +1,13 @@
 import { useState } from "react";
-import { UploadRecipeInterface } from "../../interfaces/UploadInterface";
 import allRecipeState from "../../state/Endpoints";
+import { RecipeInterface } from "../../interfaces/RecipeInterface";
 
 // Destructuring addRecipe function from the Zusand store, with direct acces to the function in /Endpoints
 const UploadRecipe = () => {
   const { addRecipe } = allRecipeState();
 
 // state to manage form data for uploading a recipe
-  const [recipeData, setRecipeData] = useState<UploadRecipeInterface>({
+  const [recipeData, setRecipeData] = useState<RecipeInterface>({
     title: "",
     description: "",
     ratings: [],

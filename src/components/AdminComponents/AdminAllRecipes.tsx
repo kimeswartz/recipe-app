@@ -13,9 +13,11 @@ const AdminAllRecipes = () => {
     fetchAllRecipes()
   }, [recipeList])
 
-  const handleDelete = async (recipeId: string) => {
-    deleteRecipe(recipeId)
-    fetchAllRecipes();
+  const handleDelete = async (recipeId: string | undefined) => {
+    if(recipeId){
+      deleteRecipe(recipeId)
+      fetchAllRecipes();
+    }
   };
 
 
