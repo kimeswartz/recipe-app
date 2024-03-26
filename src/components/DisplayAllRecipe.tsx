@@ -33,7 +33,7 @@ const DisplayAllRecipe = () => {
                 <b className='card-category'>{recipe.categories[0]}</b>
               </div>
               <div className='second-card-div'>
-                <h2>{recipe.title}</h2>c
+                <h2>{recipe.title}</h2>
                 <span>Betyg</span>
                 {recipe.avgRating === null ? <p>inga betyg</p> : <p>{recipe.avgRating?.toFixed(1)}/5</p>}
               </div>
