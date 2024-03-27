@@ -1,12 +1,17 @@
+
+
 import { RecipeInterface } from "../interfaces/RecipeInterface"
 import { useNavigate } from "react-router-dom"
 import globalCartFunctions from "../state/Cart"
-import '../styling/AllRecipeStyle.css'
+import '../styling/CartStyle.css'
 import allRecipeState from "../state/Endpoints"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+
 
 const CartComponent = () => {
 
-  const { cart, removeRecipeFromCart } = globalCartFunctions()
+  const { cart, displayCart, removeRecipeFromCart, toggleCart } = globalCartFunctions()
   const { setOneRecipe } = allRecipeState();
   const navigate = useNavigate();
 
@@ -21,6 +26,7 @@ const CartComponent = () => {
   }
 
   const handleNavigate = (recipe: RecipeInterface) => {
+    toggleCart(displayCart)
     setOneRecipe(recipe)
     navigate(`/recipe/${recipe._id}`)
     window.scrollTo(0, 0);
@@ -33,27 +39,37 @@ const CartComponent = () => {
   }
 
   return (
-    <div className="all-recipe">
-      {cart.map((cartItem, index) => (
-        <div className='all-recipe' key={index}>
-          {cartItem.recipeList.map((recipe, recipeKey) => {
-            return (
-              <div className='recipe-card' key={recipeKey} onClick={() => handleNavigate(recipe)}>
-                <div className='first-card-div'>
-                  <img className='display-recipe-img' src={recipe.imageUrl} alt={recipe.title} />
-                  <b className='card-category'>{recipe.categories[0]}</b>
-                </div>
-                <div className='second-card-div'>
-                  <h2>{recipe.title}</h2>
-                  <span>Betyg</span>
-                  {recipe.avgRating === null ? <p>inga betyg</p> : <p>{recipe.avgRating?.toFixed(1)}/5</p>}
-                  <button onClick={() => handleRemoveFromCart(recipe._id)} className="main-button">X</button>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      ))}
+    <div>
+      {cart.map((cartItem, index) => {
+        return(
+          <div className="flex-box" key={index}>
+            <div className="v-flex-box">
+              {cartItem.recipeList.map((recipe) => {
+                return(
+                  <div className="recipe-box" onClick={() => handleNavigate(recipe)}>
+                    <div className="cart-img">
+                      <img src={recipe.imageUrl} alt={recipe.title} className="cart-img" />
+                    </div>
+                    <div className="recipe-info">
+                      <b>{recipe.title}</b>
+                      <p className="cart-description">{recipe.description}</p>
+                    </div>
+                      <p className="cart-rating">
+                        <FontAwesomeIcon icon={faStar} className="star-icon" />
+                        {" "}{recipe.avgRating === null ? <span>0</span> : <span>{recipe.avgRating?.toFixed(1)}</span>}/5
+                      </p>
+                    <button className="exit-button" onClick={() => handleRemoveFromCart(recipe._id)}>X</button>
+                  </div>
+                )
+              })}
+            </div>
+            <div className="v-flex-box">
+              test
+            </div>
+
+          </div>
+        )
+      })}
     </div>
   )
 }
