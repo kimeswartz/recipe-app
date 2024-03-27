@@ -13,6 +13,7 @@ import Modal from 'react-modal';
 import globalCartFunctions from "./state/Cart";
 import CartComponent from "./components/CartComponent";
 import PopularRecipes from "./pages/PopularRecipes";
+import AboutUsPage from "./pages/AboutUsPage";
 
 Modal.setAppElement('#root')
 
@@ -47,6 +48,8 @@ function App() {
           <Route path="/adminpage" element={<AdminPage />} />
           <Route path="/recipes" element={<RecipePageContent />} />
           <Route path="/popular" element={<PopularRecipes />} />
+          <Route path="/about" element={<AboutUsPage />} />
+
         </Routes>
         <Footer />
       </BrowserRouter>

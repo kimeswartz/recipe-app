@@ -1,0 +1,135 @@
+.about-us-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .about-us-header-section {
+    position: relative;
+    height: 500px; /* Adjust height as needed */
+    overflow: hidden;
+    margin-top: 20px; /* Add space above the image */
+    margin-bottom: 20px; /* Add space below the image */
+  }
+  
+  .about-us-background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .about-us-background-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .about-us-group-name {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 76px; /* Adjust font size as needed */
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for emphasis */
+  }
+  
+  .about-us-description-section {
+    margin-top: 20px;
+  }
+  
+  .about-us-info-section {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    margin-bottom: 30px; /* Add space under the info cards */
+  }
+  
+  .about-us-info-card {
+    width: 48%;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9; /* Add background color */
+    transition: transform 0.2s; /* Add transition for hover effect */
+  }
+  
+  .about-us-info-card:hover {
+    transform: translateY(-5px); /* Add hover effect */
+  }
+  
+  .about-us-info-card h2 {
+    margin-bottom: 10px;
+    color: #333; /* Adjust color */
+  }
+  
+  .about-us-info-card p {
+    color: #666; /* Adjust color */
+  }
+  
+  .about-us-info-card h2::after {
+    content: "🎉"; /* Add emoji after header */
+  }
+  
+  .about-us-crew-section {
+    text-align: center;
+    margin-top: 30px; /* Add some space above */
+  }
+  
+  .about-us-crew-section h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .about-us-crew {
+    display: flex;
+    justify-content: center;
+    gap: 0px; /* Adjust gap between images */
+  }
+  
+  .about-us-member {
+    flex: 0 0 auto; /* Prevent flex items from shrinking */
+    text-align: center;
+  }
+  
+  .about-us-member img {
+    width: 180px; /* Adjust width */
+    height: 250px; /* Adjust height */
+    object-fit: cover;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    
+  }
+  
+  .about-us-member h3 {
+    margin: 0;
+  }
+  
+  .about-us-selected-member {
+  text-align: center;
+  margin-top: 20px; /* Add some top margin */
+  margin-bottom: 30px;
+}
+
+.about-us-selected-member img {
+  width: 300px; /* Adjust width */
+  height: 300px; /* Adjust height */
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 10px; /* Add some bottom margin */
+  margin-top: 20px;
+}
+
+.about-us-selected-member h3 {
+  font-size: 24px;
+  margin-bottom: 5px; /* Add some bottom margin */
+}
+
+.about-us-selected-member p {
+  margin: 0; /* Reset margins */
+  color: #666; /* Adjust text color */
+}
