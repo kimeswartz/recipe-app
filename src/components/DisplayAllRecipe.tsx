@@ -9,17 +9,18 @@ import { RecipeInterface } from '../interfaces/RecipeInterface';
 
 const DisplayAllRecipe = () => {
 
-  const { recipeList ,fetchAllRecipes, setOneRecipe } = allRecipeState();
+  const { recipeList, fetchAllRecipes, setOneRecipe } = allRecipeState();
 
   const navigate = useNavigate();
 
   useEffect(() => {
     fetchAllRecipes();
-  }, [recipeList])
+  }, [])
 
   const handleNavigate = (recipe: RecipeInterface) => {
     setOneRecipe(recipe)
     navigate(`/recipe/${recipe._id}`)
+    window.scrollTo(0, 0)
   }
 
   return (
