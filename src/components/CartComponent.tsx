@@ -1,4 +1,4 @@
-
+//Hampus
 
 import { RecipeInterface } from "../interfaces/RecipeInterface"
 import { useNavigate } from "react-router-dom"
@@ -11,11 +11,11 @@ import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const CartComponent = () => {
 
-  const { cart, displayCart, removeRecipeFromCart, toggleCart } = globalCartFunctions()
+  const { cartRecipes, displayCart, removeRecipeFromCart, toggleCart } = globalCartFunctions()
   const { setOneRecipe } = allRecipeState();
   const navigate = useNavigate();
 
-  if (cart.length === 0) {
+  if (cartRecipes.length === 0) {
     return (
       <div className="centered-tags">
         <div className="info-tag">
@@ -32,44 +32,38 @@ const CartComponent = () => {
     window.scrollTo(0, 0);
   }
 
-  const handleRemoveFromCart = (id: string | undefined) => {
-    if (id) {
-      removeRecipeFromCart(id)
-    }
+  const handleRemoveFromCart = (positionInArray: number) => {
+    removeRecipeFromCart(positionInArray)
   }
 
   return (
-
     <div className="flex-box">
       <div className="v-flex-box">
-        {cart.map((cartItem) => {
+        {cartRecipes.map((recipe, recipeIndex) => {
           return (
-            cartItem.recipeList.map((recipe, recipeIndex) => {
-              return (
-                <div className="recipe-box" key={recipeIndex} >
+            <div className="recipe-box" key={recipeIndex} >
 
-                  <img
-                    src={recipe.imageUrl}
-                    alt={recipe.title}
-                    className="cart-img"
-                    onClick={() => handleNavigate(recipe)}
-                  />
+              <img
+                src={recipe.imageUrl}
+                alt={recipe.title}
+                className="cart-img"
+                onClick={() => handleNavigate(recipe)}
+              />
 
-                  <div className="recipe-info">
-                    <b>{recipe.title}</b>
-                    <p className="cart-description">{recipe.description}</p>
-                  </div>
+              <div className="recipe-info">
+                <b>{recipe.title} {recipeIndex}</b>
+                <p className="cart-description">{recipe.description}</p>
+              </div>
 
-                  <p className="cart-rating">
-                    <FontAwesomeIcon icon={faStar} className="star-icon" />
-                    {" "}{recipe.avgRating === null ? <span>0</span> : <span>{recipe.avgRating?.toFixed(1)}</span>}/5
-                  </p>
-                  <button className="exit-button" onClick={() => handleRemoveFromCart(recipe._id)}>X</button>
-                </div>
-              )
-            })
+              <p className="cart-rating">
+                <FontAwesomeIcon icon={faStar} className="star-icon" />
+                {" "}{recipe.avgRating === null ? <span>0</span> : <span>{recipe.avgRating?.toFixed(1)}</span>}/5
+              </p>
+              <button className="exit-button" onClick={() => handleRemoveFromCart(recipeIndex)}>X</button>
+            </div>
           )
-        })}
+        })
+        }
       </div>
       <div className="v-flex-box">
         {/* Put cocktail logic here */}
