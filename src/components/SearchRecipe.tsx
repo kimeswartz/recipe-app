@@ -1,92 +1,122 @@
-//Bilge
-
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import allRecipeState from '../state/Endpoints';
+import { useNavigate } from 'react-router-dom';
+import "../styling/SearchRecipe.css"
+import "../styling/AllRecipeStyle.css"
 import { RecipeInterface } from '../interfaces/RecipeInterface';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import { FaSearch } from "react-icons/fa";
-import "../styling/SearchBox.css"
 
-const RecipeSearch = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [recipes, setRecipes] = useState<RecipeInterface[]>([]);
-  const [filteredRecipes, setFilteredRecipes] = useState<RecipeInterface[]>([]);
-  const [errorMessage, setErrorMessage] = useState('');
+const SearchRecipe = () => {
+  const { recipeList, fetchAllRecipes, setOneRecipe } = allRecipeState();
+  const [searchTerms, setSearchTerms] = useState<string>(''); 
+  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [searchPerformed, setSearchPerformed] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await axios.get<RecipeInterface[]>('https://sti-java-grupp4-s4yjx9.reky.se/recipes');
-        setRecipes(result.data);
-      } catch (error) {
-        console.error('Error fetching recipes', error);
-        setErrorMessage('Could not fetch recipes.');
-      }
-    };
-    fetchData();
+    fetchAllRecipes();
   }, []);
 
-  useEffect(() => {
-    filterRecipes(searchTerm);
-  }, [searchTerm]);
+  const handleNavigate = (recipe: RecipeInterface) => {
+    setOneRecipe(recipe);
+    navigate(`/recipe/${recipe._id}`);
+  }
 
-  const onChange = (e: { target: { value: any; }; })  => {
-    const term = e.target.value;
-    setSearchTerm(term);
+  // Function to split search terms and filter recipes based on all search terms
+  const filteredRecipes = recipeList.filter(recipe =>
+    searchTerms.split(' ').every(term =>
+      recipe.title.toLowerCase().includes(term.toLowerCase())
+    )
+  );
+
+  const performSearch = () => {
+    setSearchPerformed(true);
+    // Clear suggestions when performing search
+    setSuggestions([]);
   };
 
-  const filterRecipes = (term: string) => {
-    const lowerCaseTerm = term.toLowerCase();
-    const filtered = recipes.filter((recipe) => recipe.title.toLowerCase().includes(lowerCaseTerm));
-    setFilteredRecipes(filtered);
-    // Set error message if no recipes found
-    setErrorMessage(filtered.length === 0 && term.trim() !== '' ? 'Inga recept hittades' : '');
+  const handleSuggestionClick = (value: string) => {
+    setSearchTerms(value);
+    // Clear suggestions and perform search when suggestion is clicked
+    setSuggestions([]);
+    performSearch();
   };
 
-  const handleSearch = (e: { preventDefault: () => void; }) => {
-    e.preventDefault();
-    if (searchTerm.trim() === '') {
-      setErrorMessage('Skriv in ditt recept och klicka på sök!')
-      return;
+  const handleInputChange = (value: string) => {
+    setSearchTerms(value);
+    // Generate suggestions based on current search term
+    if (value.trim() === '') {
+      setSuggestions([]);
+      setSearchPerformed(false); // Reset searchPerformed when input is empty
     } else {
-      setErrorMessage('')
-      filterRecipes(searchTerm);
+      generateSuggestions(value);
     }
   };
 
-  const handleClear = () => {
-    setSearchTerm('');
-    setFilteredRecipes([]);
-    setErrorMessage('');
+  // Function to generate suggestions based on current search term
+  const generateSuggestions = (value: string) => {
+    // For simplicity, let's just filter recipe titles for suggestions
+    const filteredSuggestions = recipeList
+      .filter(recipe => recipe.title.toLowerCase().includes(value.toLowerCase()))
+      .map(recipe => recipe.title);
+    setSuggestions(filteredSuggestions);
+  };
+
+  const handleClearSearch = () => {
+    setSearchTerms('');
+    setSearchPerformed(false);
+    setSuggestions([]);
   };
 
   return (
-    <div className='search'>
-      <div className='searchInputs'>
-        {errorMessage && <p>{errorMessage}</p>}
-        <form onSubmit={handleSearch}>
-          <input
-            className='search-box'
-            type='text'
-            placeholder='Search'
-            onChange={onChange}
-            value={searchTerm}
-          />
-          <button type="button" onClick={handleClear}>x</button>
-          <button onSubmit={handleSearch}><FaSearch /></button>
-        </form>
+    <>
+      <div className='search-bar'>
+        <input
+          type='text'
+          value={searchTerms}
+          placeholder='Search recipes...'
+          onChange={(e) => handleInputChange(e.target.value)}
+        />
+        {searchTerms.trim() !== '' ? (
+          <button onClick={handleClearSearch}>Clear</button>
+        ) : (
+          <button onClick={performSearch}>Search</button>
+        )}
+
+      {searchTerms.trim() !== '' && ( // Only render suggestions if search term is not empty or whitespace
+        <div className='suggestions'>
+          {suggestions.map((suggestion, index) => (
+            <div
+              key={index}
+              className='suggestion'
+              onClick={() => handleSuggestionClick(suggestion)}
+            >
+              {suggestion}
+            </div>
+          ))}
+        </div>
+      )}
       </div>
-      <div className='recipe-list'>    
-        {filteredRecipes.map((recipe) => (
-          <div key={recipe._id}>
-            <Link to={`/recipe/${recipe._id}`}>
-              {recipe.title}
-            </Link>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
+      {searchPerformed && searchTerms.trim() !== '' && ( // Only render recipes if a search has been performed and search term is not empty
+        <div className='all-recipe'>
+          {filteredRecipes.map((recipe) => {
+            return (
+              <div className='recipe-card' key={recipe._id} onClick={() => handleNavigate(recipe)}>
+                <div className='first-card-div'>
+                  <img className='display-recipe-img' src={recipe.imageUrl} alt={recipe.title} />
+                  <b className='card-category'>{recipe.categories[0]}</b>
+                </div>
+                <div className='second-card-div'>
+                  <h3>{recipe.title}</h3>
+                  <span>Betyg</span>
+                  {recipe.avgRating === null ? <p>inga betyg</p> : <p>{recipe.avgRating?.toFixed(1)}/5</p>}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
+    </>
+  )
 };
 
-export default RecipeSearch;
+export default SearchRecipe;
