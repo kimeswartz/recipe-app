@@ -39,37 +39,41 @@ const CartComponent = () => {
   }
 
   return (
-    <div>
-      {cart.map((cartItem, index) => {
-        return(
-          <div className="flex-box" key={index}>
-            <div className="v-flex-box">
-              {cartItem.recipeList.map((recipe) => {
-                return(
-                  <div className="recipe-box" onClick={() => handleNavigate(recipe)}>
-                    <div className="cart-img">
-                      <img src={recipe.imageUrl} alt={recipe.title} className="cart-img" />
-                    </div>
-                    <div className="recipe-info">
-                      <b>{recipe.title}</b>
-                      <p className="cart-description">{recipe.description}</p>
-                    </div>
-                      <p className="cart-rating">
-                        <FontAwesomeIcon icon={faStar} className="star-icon" />
-                        {" "}{recipe.avgRating === null ? <span>0</span> : <span>{recipe.avgRating?.toFixed(1)}</span>}/5
-                      </p>
-                    <button className="exit-button" onClick={() => handleRemoveFromCart(recipe._id)}>X</button>
-                  </div>
-                )
-              })}
-            </div>
-            <div className="v-flex-box">
-              test
-            </div>
 
-          </div>
-        )
-      })}
+    <div className="flex-box">
+      <div className="v-flex-box">
+        {cart.map((cartItem) => {
+          return (
+            cartItem.recipeList.map((recipe, recipeIndex) => {
+              return (
+                <div className="recipe-box" key={recipeIndex} >
+
+                  <img
+                    src={recipe.imageUrl}
+                    alt={recipe.title}
+                    className="cart-img"
+                    onClick={() => handleNavigate(recipe)}
+                  />
+
+                  <div className="recipe-info">
+                    <b>{recipe.title}</b>
+                    <p className="cart-description">{recipe.description}</p>
+                  </div>
+
+                  <p className="cart-rating">
+                    <FontAwesomeIcon icon={faStar} className="star-icon" />
+                    {" "}{recipe.avgRating === null ? <span>0</span> : <span>{recipe.avgRating?.toFixed(1)}</span>}/5
+                  </p>
+                  <button className="exit-button" onClick={() => handleRemoveFromCart(recipe._id)}>X</button>
+                </div>
+              )
+            })
+          )
+        })}
+      </div>
+      <div className="v-flex-box">
+        {/* Put cocktail logic here */}
+      </div>
     </div>
   )
 }

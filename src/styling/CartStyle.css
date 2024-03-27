@@ -6,27 +6,31 @@
 
 .v-flex-box{
   display: flex;
-  flex-direction: row;
+  flex: 1;
+  flex-direction: column;
   width: 40rem;
-  height: 10rem;
-  background-color: aliceblue;
   border-radius: 10px;
 }
 
 .recipe-box{
+  height: 10rem;
   display: flex;
-  flex: 1;
   position: relative;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  background-color: aliceblue;
+  border-radius: 10px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .recipe-info{
   padding-left: 1rem;
   padding-right: 1rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .cart-description{
+  overflow: hidden;
   text-overflow: ellipsis;
   padding-right: 3rem;
 }
@@ -52,4 +56,5 @@
 .cart-img{
   width: 10rem;
   height: 10rem;
+  cursor: pointer;
 }
