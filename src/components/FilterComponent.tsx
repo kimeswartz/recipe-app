@@ -39,11 +39,8 @@ const FilterComponent = () => {
       setFilteredRecipes(recipeData);
     } else {
       const filtered = recipeData.filter(recipe => {
-        return searchIngredients.some(searchIngredient =>
-          recipe.ingredients.some(ingredient =>
-            normalizeIngredientName(ingredient.name) === normalizeIngredientName(searchIngredient)
-          )
-        );
+        const normalizedIngredients = recipe.ingredients.map(ingredient => normalizeIngredientName(ingredient.name));
+        return searchIngredients.every(searchIngredient => normalizedIngredients.includes(normalizeIngredientName(searchIngredient)));
       });
       setFilteredRecipes(filtered);
     }
@@ -85,19 +82,29 @@ const FilterComponent = () => {
   // Render UI
   return (
     <div className="filter-component-container">
-      <h1>Filter Recipes</h1>
+      <h1>Filtera Recept</h1>
       <div>
         {/* Display selected search ingredients */}
-        {searchIngredients.map((ingredient, index) => (
-          <span key={index}>
-            {ingredient}
-            <button onClick={() => removeIngredient(ingredient)}>X</button>
-          </span>
-        ))}
+        {searchIngredients.length > 0 && (
+          <div>
+            <h2>Valda Ingredienser:</h2>
+            {searchIngredients.map((ingredient, index) => (
+              <span key={index}>
+                {ingredient}
+                <button onClick={() => removeIngredient(ingredient)}>X</button>
+              </span>
+            ))}
+          </div>
+        )}
+        {/* Display message if no ingredient is found */}
+        {searchIngredients.length > 0 && filteredRecipes.length === 0 && (
+          <p>Inga recept hittades som matchar de valda ingredienserna.</p>
+        )}
       </div>
       {/* Input field for user to enter search criteria */}
       <input
         type="text"
+        placeholder="Sök ingrediens"
         value={userInput}
         onChange={handleInputChange}
       />
@@ -120,8 +127,8 @@ const FilterComponent = () => {
                 <li key={index}>{`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`}</li>
               ))}
             </ul>
-            <p>{`Time: ${recipe.timeInMins} mins`}</p>
-            <p>{`Categories: ${recipe.categories.join(", ")}`}</p>
+            <p>{`Tid: ${recipe.timeInMins} minuter`}</p>
+            <p>{`Kategorier: ${recipe.categories.join(", ")}`}</p>
             <ul>
               {/* Display instructions of each recipe */}
               {recipe.instructions.map((instruction, index) => (
