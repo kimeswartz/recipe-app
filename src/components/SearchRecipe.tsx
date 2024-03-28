@@ -7,7 +7,7 @@ import { RecipeInterface } from '../interfaces/RecipeInterface';
 
 const SearchRecipe = () => {
   const { recipeList, fetchAllRecipes, setOneRecipe } = allRecipeState();
-  const [searchTerms, setSearchTerms] = useState<string>(''); 
+  const [searchTerms, setSearchTerms] = useState<string>('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
   const navigate = useNavigate();
@@ -82,19 +82,19 @@ const SearchRecipe = () => {
           <button onClick={performSearch}>Search</button>
         )}
 
-      {searchTerms.trim() !== '' && ( // Only render suggestions if search term is not empty or whitespace
-        <div className='suggestions'>
-          {suggestions.map((suggestion, index) => (
-            <div
-              key={index}
-              className='suggestion'
-              onClick={() => handleSuggestionClick(suggestion)}
-            >
-              {suggestion}
-            </div>
-          ))}
-        </div>
-      )}
+        {searchTerms.trim() !== '' && ( // Only render suggestions if search term is not empty or whitespace
+          <div className='suggestions'>
+            {suggestions.map((suggestion, index) => (
+              <div
+                key={index}
+                className='suggestion'
+                onClick={() => handleSuggestionClick(suggestion)}
+              >
+                {suggestion}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
       {searchPerformed && searchTerms.trim() !== '' && ( // Only render recipes if a search has been performed and search term is not empty
         <div className='all-recipe'>

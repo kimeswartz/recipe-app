@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> fd7e73334ba97bea0400f2608c8dbffc56739b23
 import FilterComponent from '../components/FilterComponent';
 import '../styling/Filter.css'; 
 
