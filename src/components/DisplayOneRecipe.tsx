@@ -182,14 +182,14 @@ const DisplayOneRecipe: React.FC = () => {
         </div>
         <div className="comments-section">
           <h2>Kommentarer</h2>
-          {oneRecipe.comments?.map((comment, index) => (
-            <div key={index} className="comment">
-              {comment.text}
-            </div>
-          ))}
           <textarea value={commentText} onChange={(e) => setCommentText(e.target.value)} placeholder="Skriv din kommentar här..."></textarea>
           <button onClick={handleAddComment}>Skicka kommentar</button>
-        </div> {/* arash */}
+           {oneRecipe.comments?.map((comment, index) => (
+              <div key={index} className="comment">
+              {comment}
+          </div>
+           ))}
+          </div> {/* arash */}
 
       </div>
     );

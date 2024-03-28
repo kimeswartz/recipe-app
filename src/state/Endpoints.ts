@@ -141,14 +141,17 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
 
   addComment: async (comment, id) => {
     try {
-        const response = await axios.post(`https://sti-java-grupp4-s4yjx9.reky.se/recipes/${id}/comments`, { comment });
+      if (id) {
+        const response = await axios.post(`${URL}/recipes/${id}/comments`, { comment });
         if (response.status === 200) {
-          console.log(
-          `Comment ${comment} has been updated for recipe:${id} in the database`);
-          alert ("Tack för din kommentar")
+          console.log(`Comment ${comment} has been updated for recipe:${id} in the database`);
+          alert("Tack för din kommentar")
+          return response.data;
         }
+      }
     } catch (error) {
-        console.error("Error adding comment:", error);
+      console.error("Error adding comment:", error);
+      throw error; 
     }
 }, //arash
 
