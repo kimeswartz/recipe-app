@@ -5,10 +5,10 @@
 
 .about-us-header-section {
   position: relative;
-  height: 500px; /* Adjust height as needed */
+  height: 500px;
   overflow: hidden;
-  margin-top: 20px; /* Add space above the image */
-  margin-bottom: 20px; /* Add space below the image */
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .about-us-background-image {
@@ -31,21 +31,22 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: #fff;
-  font-size: 76px; /* Adjust font size as needed */
+  font-size: 76px;
   font-weight: bold;
   text-align: center;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Add text shadow for emphasis */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .about-us-description-section {
-  margin-top: 20px;
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .about-us-info-section {
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
-  margin-bottom: 30px; /* Add space under the info cards */
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .about-us-info-card {
@@ -54,83 +55,77 @@
   border: 1px solid #ccc;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #f9f9f9; /* Add background color */
-  transition: transform 0.2s; /* Add transition for hover effect */
-}
-
-.about-us-info-card:hover {
-  transform: translateY(-5px); /* Add hover effect */
+  background-color: #f9f9f9;
+  transition: transform 0.2s;
 }
 
 .about-us-info-card h2 {
   margin-bottom: 10px;
-  color: #333; /* Adjust color */
+  color: #333;
 }
 
 .about-us-info-card p {
-  color: #666; /* Adjust color */
-}
-
-.about-us-info-card h2::after {
-  content: "🎉"; /* Add emoji after header */
+  text-align: center;
+  color: #666;
 }
 
 .about-us-crew-section {
   text-align: center;
-  margin-top: 30px; /* Add some space above */
+  margin-top: 40px;
+  margin-bottom: 40px;
 }
 
 .about-us-crew-section h2 {
   font-size: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 
 .about-us-crew {
   display: flex;
   justify-content: center;
-  /* gap: 5px; Adjust gap between images */
+  gap: 5px;
 }
 
 .about-us-member {
-  flex: 0 0 auto; /* Prevent flex items from shrinking */
+  flex: 0 0 auto;
   text-align: center;
 }
 
 .about-us-member img {
-  width: 170px; /* Adjust width */
-  height: 230px; /* Adjust height */
+  width: 170px;
+  height: 230px;
   object-fit: cover;
   cursor: pointer;
   transition: transform 0.2s ease;
-  /* border-radius: 10px; */
-  
+  border-radius: 10px;
 }
 
 .about-us-member h3 {
-  margin: 0;
+  margin: 10px 0;
 }
 
 .about-us-selected-member {
-text-align: center;
-margin-top: 20px; /* Add some top margin */
-margin-bottom: 30px;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 150px;
 }
 
 .about-us-selected-member img {
-width: 300px; /* Adjust width */
-height: 300px; /* Adjust height */
-object-fit: cover;
-border-radius: 50%;
-margin-bottom: 10px; /* Add some bottom margin */
-margin-top: 20px;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .about-us-selected-member h3 {
-font-size: 24px;
-margin-bottom: 5px; /* Add some bottom margin */
+  font-size: 24px;
+  margin-bottom: 10px;
 }
 
 .about-us-selected-member p {
-margin: 0; /* Reset margins */
-color: #666; /* Adjust text color */
+  margin-bottom: 10px;
+  color: #666;
+  text-align: center;
 }

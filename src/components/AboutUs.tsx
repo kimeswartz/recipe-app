@@ -3,7 +3,6 @@ import "../styling/AboutUs.css";
 import "../interfaces/TeamMemberInterface";
 
 const AboutUs = () => {
-  
   // Team members data/info
   const teamMembers: TeamMember[] = [
     {
@@ -59,7 +58,8 @@ const AboutUs = () => {
     {
       name: "ChatGPT",
       jobTitle: "AI Assistant",
-      description: "I'm ChatGPT, an AI language model created by OpenAI. My purpose is to assist and engage in various conversations, providing information, answering questions, and generating text based on the input I receive. I've been trained on a diverse range of internet text, allowing me to understand and respond to many topics and inquiries. Whether you need help with a specific question, want to brainstorm ideas, or just fancy a chat, feel free to engage with me!",
+      description:
+        "I'm ChatGPT, an AI language model created by OpenAI. My purpose is to assist and engage in various conversations, providing information, answering questions, and generating text based on the input I receive. I've been trained on a diverse range of internet text, allowing me to understand and respond to many topics and inquiries. Whether you need help with a specific question, want to brainstorm ideas, or just fancy a chat, feel free to engage with me!",
       image:
         "https://verticalresponse.com/wp-content/uploads/2023/04/chat-gpt-logo-scaled.jpeg",
     },
@@ -68,7 +68,7 @@ const AboutUs = () => {
   // State to keep track of the selected team member
   const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
 
-  // Function to handle clicking on a team member
+  // Function to handle clicking on a team member. Updates the state
   const handleMemberClick = (member: TeamMember) => {
     setSelectedMember(member);
   };
@@ -102,28 +102,22 @@ const AboutUs = () => {
           förenade av vår kärlek till kodning. Men hej, det är inte bara arbete
           och ingen lek. Vi ser till att umgås efter arbetstid, byta historier
           och bygga vänskap. Kom och joina oss på denna programmeringsresa där
-          lärande är kul och vänskap är nyckeln.
+          lärande är kul och vänskap är nyckeln. / ChatGpt
         </p>
       </div>
       <div className="about-us-info-section">
         <div className="about-us-info-card">
-          <h2>Events 🎉</h2>
-          <p>
-            Weekly coding challenges, game nights, and more! AW (After Work)
-            hangouts are a must!
-          </p>
+          <h2>Events</h2>
+          <p>Weekly After Work hangouts are mandatory!</p>
         </div>
         <div className="about-us-info-card">
-          <h2>Opening Hours ⏰</h2>
-          <p>
-            We're always open for coding adventures! Closed for distractions.
-            Don't contact us during coding marathons! 🚀
-          </p>
+          <h2>Opening Hours</h2>
+          <p>We're always open for coding adventures!</p>
         </div>
       </div>
-      {/* Crew section */}
+      {/* Team/crew section */}
       <div className="about-us-crew-section">
-        <h2>The Crew</h2>
+        <h2>The Team</h2>
         <div className="about-us-crew">
           {teamMembers.map((member, index) => (
             <div
@@ -139,6 +133,7 @@ const AboutUs = () => {
       </div>
 
       {/* Details about the selected team member */}
+      {/* If selectedMember exists(aka not null) the code is executed */}
       {selectedMember && (
         <div id="about-us-selected-member" className="about-us-selected-member">
           <img src={selectedMember.image} alt={selectedMember.name} />
