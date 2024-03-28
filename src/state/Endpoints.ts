@@ -5,6 +5,7 @@ import { RecipeInterface } from "../interfaces/RecipeInterface";
 import axios from "axios";
 import { categoryInterface } from "../interfaces/CategoryInterface";
 import { CommentInterface } from "../interfaces/CommentInterface";
+import URL from "../constants/RecipeApi";
 
 interface recipeStateInterface {
   recipeList: RecipeInterface[];
@@ -20,14 +21,10 @@ interface recipeStateInterface {
   fetchAllCategories: () => Promise<void>;
   fetchOneCategory: (categoryName: string) => Promise<void>;
   addRating: (rating: number, id: string | undefined) => Promise<void>;
-  
   fetchComments: (id: string) => Promise<void>;
   addComment: (comments: string, id: string | undefined) => Promise<void>; //arash
-
   updateRecipe: (updatedRecipe: RecipeInterface, id: string | undefined) => Promise<void>;
 }
-
-const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
 
 const allRecipeState = create<recipeStateInterface>()((set) => ({
   recipeList: [],

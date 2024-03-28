@@ -32,10 +32,10 @@ function App() {
           contentLabel="Example Modal"
         >
           <div>
-            <div className="navbar">
+            <nav className="navbar">
               <h2>Varukorg</h2>
               <button className="main-button" onClick={() => toggleCart(displayCart)}>X</button>
-            </div>
+            </nav>
             <CartComponent />
           </div>
         </Modal>
