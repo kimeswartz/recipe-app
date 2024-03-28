@@ -4,7 +4,6 @@ export interface RecipeInterface {
     description: string;
     ratings: number[]; // List of ratings
     avgRating?: number; // Automatic average
-    comments: string []; //arash
     imageUrl: string;
     timeInMins: number;
     categories: string[];
@@ -15,8 +14,4 @@ export interface RecipeInterface {
       amount: number;
       unit: string;
     }[];
-
-   // comments: {
-     //text: string; //arash
-  //}[];
 }
