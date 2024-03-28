@@ -12,13 +12,14 @@ import "../styling/RecipepageStyle.css";
 // Using React.FC to define a function component
 const DisplayOneRecipe: React.FC = () => {
   // Destructuring state and function from the state management
-  const { oneRecipe, fetchOneRecipe, addRating } = allRecipeState();
+  const { oneRecipe, fetchOneRecipe, addRating, addComment} = allRecipeState();
   const { addRecipeToCart } = globalCartFunctions();
 
   // Extracting recipeId from URL params
   // we use useParams to acces dynamic parts in the URL, in this case, the recipe ID, that will route to the recipe URL request
   const { recipeId } = useParams<{ recipeId: string }>();
   const [userRating, setUserRating] = useState<number>();
+  const [commentText, setCommentText] = useState(""); //arash
   const [trigger, setTrigger] = useState(false)
 
   // Fetch the recipe details when the component mounts or recipeId changes
@@ -38,6 +39,25 @@ const DisplayOneRecipe: React.FC = () => {
       })
     setUserRating(rating);
   };
+
+  const handleAddComment = async () => {
+    if (!commentText.trim()) {
+      alert("Kan inte lägga till en tom kommentar.");
+      return;
+    }
+    if (!oneRecipe._id) {
+      alert("Recept-ID är odefinierat.");
+      return;
+    }
+  
+    try {
+      await addComment(commentText.trim(), oneRecipe._id);
+      setCommentText("");
+    } catch (error) {
+      console.error("Fel vid tillägg av kommentar:", error);
+    }
+  }; //arash
+
 
   // Conditional rendering based on whether the recipe has loaded or not
   if (!oneRecipe) {
@@ -160,6 +180,17 @@ const DisplayOneRecipe: React.FC = () => {
             </div>
           </div>
         </div>
+        <div className="comments-section">
+          <h2>Kommentarer</h2>
+          {oneRecipe.comments?.map((comment, index) => (
+            <div key={index} className="comment">
+              {comment.text}
+            </div>
+          ))}
+          <textarea value={commentText} onChange={(e) => setCommentText(e.target.value)} placeholder="Skriv din kommentar här..."></textarea>
+          <button onClick={handleAddComment}>Skicka kommentar</button>
+        </div> {/* arash */}
+
       </div>
     );
   }

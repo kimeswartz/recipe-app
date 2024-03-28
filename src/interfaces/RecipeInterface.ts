@@ -14,4 +14,8 @@ export interface RecipeInterface {
       amount: number;
       unit: string;
     }[];
+
+    comments: {
+     text: string; //arash
+  }[];
 }

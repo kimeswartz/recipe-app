@@ -18,6 +18,9 @@ interface recipeStateInterface {
   fetchAllCategories: () => Promise<void>;
   fetchOneCategory: (categoryName: string) => Promise<void>;
   addRating: (rating: number, id: string | undefined) => Promise<void>;
+  
+  addComment: (comments: string, id: string | undefined) => Promise<void>; //arash
+
   updateRecipe: (updatedRecipe: RecipeInterface, id: string | undefined) => Promise<void>;
 }
 
@@ -135,6 +138,19 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
       console.error("Error updating rating:", error);
     }
   },
+
+  addComment: async (comment, id) => {
+    try {
+        const response = await axios.post(`https://sti-java-grupp4-s4yjx9.reky.se/recipes/${id}/comments`, { comment });
+        if (response.status === 200) {
+          console.log(
+          `Comment ${comment} has been updated for recipe:${id} in the database`);
+          alert ("Tack för din kommentar")
+        }
+    } catch (error) {
+        console.error("Error adding comment:", error);
+    }
+}, //arash
 
   updateRecipe: async(updatedRecipe, id) => {
     try{
