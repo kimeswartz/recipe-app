@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'; // Importera useNavigate här
 import { RecipeInterface } from '../interfaces/RecipeInterface';
 
 const RecipeSlider: React.FC = () => {
+  
   const [randomRecipes, setRandomRecipes] = useState<RecipeInterface[]>([]);
   const navigate = useNavigate(); // Använd useNavigate för att få navigationsfunktionen
 
@@ -16,15 +17,14 @@ const RecipeSlider: React.FC = () => {
     // Fetch random recipes when component mounts
     getRandomRecipes();
   }, []);
-
   
   const getRandomRecipes = async () => {
     try {
       // Fetch recipes from the API
       const result = await axios.get<RecipeInterface[]>('https://sti-java-grupp4-s4yjx9.reky.se/recipes');
       const shuffledRecipes = result.data.sort(() => Math.random() - 0.5);
-      const selectedRandomRecipes = shuffledRecipes.slice(0, 8); 
-      setRandomRecipes(selectedRandomRecipes);
+      shuffledRecipes.slice(0, 8); 
+      setRandomRecipes(shuffledRecipes);
     } catch (error) {
       // Handle errors if fetching fails
       console.error('Error fetching random recipes', error);
