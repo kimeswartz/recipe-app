@@ -6,8 +6,8 @@ import "../styling/AllRecipeStyle.css"
 import { RecipeInterface } from '../interfaces/RecipeInterface';
 
 const SearchRecipe = () => {
-  const { recipeList, fetchAllRecipes, setOneRecipe } = allRecipeState();
-  const [searchTerms, setSearchTerms] = useState<string>('');
+  const { recipeList, fetchAllRecipes } = allRecipeState();
+  const [searchTerms, setSearchTerms] = useState<string>(''); 
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
   const navigate = useNavigate();
@@ -17,48 +17,41 @@ const SearchRecipe = () => {
   }, []);
 
   const handleNavigate = (recipe: RecipeInterface) => {
-    setOneRecipe(recipe);
     navigate(`/recipe/${recipe._id}`);
   }
 
-  // Function to split search terms and filter recipes based on all search terms
-  const filteredRecipes = recipeList.filter(recipe =>
-    searchTerms.split(' ').every(term =>
-      recipe.title.toLowerCase().includes(term.toLowerCase())
-    )
-  );
-
   const performSearch = () => {
-    setSearchPerformed(true);
-    // Clear suggestions when performing search
-    setSuggestions([]);
-  };
-
-  const handleSuggestionClick = (value: string) => {
-    setSearchTerms(value);
-    // Clear suggestions and perform search when suggestion is clicked
-    setSuggestions([]);
-    performSearch();
+    if (searchTerms.trim() !== '') {
+      setSearchPerformed(true);
+    }
   };
 
   const handleInputChange = (value: string) => {
     setSearchTerms(value);
-    // Generate suggestions based on current search term
     if (value.trim() === '') {
       setSuggestions([]);
-      setSearchPerformed(false); // Reset searchPerformed when input is empty
+      setSearchPerformed(false);
     } else {
       generateSuggestions(value);
     }
   };
 
-  // Function to generate suggestions based on current search term
   const generateSuggestions = (value: string) => {
-    // For simplicity, let's just filter recipe titles for suggestions
     const filteredSuggestions = recipeList
       .filter(recipe => recipe.title.toLowerCase().includes(value.toLowerCase()))
       .map(recipe => recipe.title);
     setSuggestions(filteredSuggestions);
+  };
+
+  const handleSuggestionClick = (value: string) => {
+    setSearchTerms(value);
+    setSuggestions([]);
+    performSearch(); // Perform search when suggestion is selected
+    // Navigate to the recipe page
+    const selectedRecipe = recipeList.find(recipe => recipe.title.toLowerCase() === value.toLowerCase());
+    if (selectedRecipe) {
+      handleNavigate(selectedRecipe);
+    }
   };
 
   const handleClearSearch = () => {
@@ -66,6 +59,23 @@ const SearchRecipe = () => {
     setSearchPerformed(false);
     setSuggestions([]);
   };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      performSearch();
+      // Navigate to the recipe page
+      const selectedRecipe = recipeList.find(recipe => recipe.title.toLowerCase() === searchTerms.toLowerCase());
+      if (selectedRecipe) {
+        handleNavigate(selectedRecipe);
+      }
+    }
+  };
+
+  const filteredRecipes = recipeList.filter(recipe =>
+    searchTerms.split(' ').every(term =>
+      recipe.title.toLowerCase().includes(term.toLowerCase())
+    )
+  );
 
   return (
     <>
@@ -75,6 +85,7 @@ const SearchRecipe = () => {
           value={searchTerms}
           placeholder='Search recipes...'
           onChange={(e) => handleInputChange(e.target.value)}
+          onKeyPress={handleKeyPress}
         />
         {searchTerms.trim() !== '' ? (
           <button onClick={handleClearSearch}>Clear</button>
@@ -82,7 +93,7 @@ const SearchRecipe = () => {
           <button onClick={performSearch}>Search</button>
         )}
 
-        {searchTerms.trim() !== '' && ( // Only render suggestions if search term is not empty or whitespace
+        {searchTerms.trim() !== '' && (
           <div className='suggestions'>
             {suggestions.map((suggestion, index) => (
               <div
@@ -96,23 +107,14 @@ const SearchRecipe = () => {
           </div>
         )}
       </div>
-      {searchPerformed && searchTerms.trim() !== '' && ( // Only render recipes if a search has been performed and search term is not empty
-        <div className='all-recipe'>
-          {filteredRecipes.map((recipe) => {
-            return (
-              <div className='recipe-card' key={recipe._id} onClick={() => handleNavigate(recipe)}>
-                <div className='first-card-div'>
-                  <img className='display-recipe-img' src={recipe.imageUrl} alt={recipe.title} />
-                  <b className='card-category'>{recipe.categories[0]}</b>
-                </div>
-                <div className='second-card-div'>
-                  <h3>{recipe.title}</h3>
-                  <span>Betyg</span>
-                  {recipe.avgRating === null ? <p>inga betyg</p> : <p>{recipe.avgRating?.toFixed(1)}/5</p>}
-                </div>
-              </div>
-            )
-          })}
+      
+      {searchPerformed && searchTerms.trim() !== '' && (
+        <div>
+          {filteredRecipes.map((recipe) => (
+            <div className='recipe-card' key={recipe._id}
+              onClick={() => handleNavigate(recipe)}>
+            </div>
+          ))}
         </div>
       )}
     </>
