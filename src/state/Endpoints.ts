@@ -141,13 +141,11 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
 
   addComment: async (comment, id) => {
     try {
-      if (id) {
         const response = await axios.post(`${URL}/recipes/${id}/comments`, { comment });
         if (response.status === 200) {
           console.log(`Comment ${comment} has been updated for recipe:${id} in the database`);
           alert("Tack för din kommentar")
           return response.data;
-        }
       }
     } catch (error) {
       console.error("Error adding comment:", error);
