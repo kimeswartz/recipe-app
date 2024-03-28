@@ -16,6 +16,7 @@
     border-radius: 4px;
     width: 400px;
     margin-right: 10px;
+    font-weight: bolder;
   }
   
   .search-bar button {
@@ -44,13 +45,15 @@
     border-top: none;
     border-radius: 0 0 4px 4px;
     z-index: 1;
+    font-weight: bolder;
   }
   
   .suggestion {
     padding: 8px;
     cursor: pointer;
+
   }
-  
+
   .suggestion:hover {
     background-color: #f2f2f2;
   }
