@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "../styling/AboutUs.css";
 import "../interfaces/TeamMemberInterface";
 
 const AboutUs = () => {
-  // Data for team members
-  // Define the team members data
+  
+  // Team members data/info
   const teamMembers: TeamMember[] = [
     {
       name: "Alice",
@@ -36,8 +36,9 @@ const AboutUs = () => {
     },
     {
       name: "Hampus",
-      jobTitle: "Software Engineer",
-      description: "Passionate coder with a love for frontend development.",
+      jobTitle: "Scrum Master",
+      description:
+        "Hej och välkommen till vår sida! Jag är stolt över att vara en del av detta fantastiska projekt som Scrum Master. Mitt uppdrag är att se till att vårt team fungerar smidigt och effektivt för att leverera det bästa resultatet möjligt. Jag är involverad i olika delar av projektet och arbetar hårt för att lösa problem och främja samarbete. Mitt mål är att se till att alla i teamet trivs och är framgångsrika. Tack för att du är här och stödjer oss på vår resa mot framgång!",
       image:
         "https://img.freepik.com/premium-vector/person-using-mobile-phone-holding-hand-surfing-internet-reading-online-bearded-man-glasses-texting-with-smartphone-cellphone-flat-vector-illustration-isolated-white-background_633472-561.jpg?size=626&ext=jpg",
     },
@@ -55,6 +56,13 @@ const AboutUs = () => {
       image:
         "https://img.freepik.com/premium-vector/smiling-businessman-gesturing-showing-thumbs-up_316839-2100.jpg",
     },
+    {
+      name: "ChatGPT",
+      jobTitle: "AI Assistant",
+      description: "I'm ChatGPT, an AI language model created by OpenAI. My purpose is to assist and engage in various conversations, providing information, answering questions, and generating text based on the input I receive. I've been trained on a diverse range of internet text, allowing me to understand and respond to many topics and inquiries. Whether you need help with a specific question, want to brainstorm ideas, or just fancy a chat, feel free to engage with me!",
+      image:
+        "https://verticalresponse.com/wp-content/uploads/2023/04/chat-gpt-logo-scaled.jpeg",
+    },
   ];
 
   // State to keep track of the selected team member
@@ -64,7 +72,8 @@ const AboutUs = () => {
   const handleMemberClick = (member: TeamMember) => {
     setSelectedMember(member);
   };
-  
+
+  //Function to scroll down to selected member
   useEffect(() => {
     if (selectedMember) {
       const element = document.getElementById("about-us-selected-member");
@@ -112,7 +121,7 @@ const AboutUs = () => {
           </p>
         </div>
       </div>
-      {/* The crew section */}
+      {/* Crew section */}
       <div className="about-us-crew-section">
         <h2>The Crew</h2>
         <div className="about-us-crew">
@@ -129,7 +138,7 @@ const AboutUs = () => {
         </div>
       </div>
 
-      {/* Additional details about the selected team member */}
+      {/* Details about the selected team member */}
       {selectedMember && (
         <div id="about-us-selected-member" className="about-us-selected-member">
           <img src={selectedMember.image} alt={selectedMember.name} />
