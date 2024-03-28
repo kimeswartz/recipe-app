@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom'; // Importera useNavigate här
 import { RecipeInterface } from '../interfaces/RecipeInterface';
 
 const RecipeSlider: React.FC = () => {
+  
   const [randomRecipes, setRandomRecipes] = useState<RecipeInterface[]>([]);
   const navigate = useNavigate(); // Använd useNavigate för att få navigationsfunktionen
 
