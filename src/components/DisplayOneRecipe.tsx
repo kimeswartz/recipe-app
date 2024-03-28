@@ -12,7 +12,7 @@ import "../styling/RecipepageStyle.css";
 // Using React.FC to define a function component
 const DisplayOneRecipe: React.FC = () => {
   // Destructuring state and function from the state management
-  const { oneRecipe, fetchOneRecipe, addRating, fetchComments, addComment, recipeComment} = allRecipeState();
+  const { oneRecipe, fetchOneRecipe, addRating, fetchComments, addComment, recipeComment } = allRecipeState();
   const { addRecipeToCart } = globalCartFunctions();
 
   // Extracting recipeId from URL params
@@ -27,7 +27,7 @@ const DisplayOneRecipe: React.FC = () => {
     console.log('useEffect triggered with recipeId:', recipeId);
     if (recipeId) {
       fetchOneRecipe(recipeId)
-        fetchComments(recipeId); //arash
+      fetchComments(recipeId); //arash
     }
   }, [trigger]);
 
@@ -50,7 +50,7 @@ const DisplayOneRecipe: React.FC = () => {
       alert("Recept-ID är odefinierat.");
       return;
     }
-  
+
     addComment(commentText.trim(), oneRecipe._id);
     setCommentText("");
   }; //arash
@@ -178,11 +178,11 @@ const DisplayOneRecipe: React.FC = () => {
           </div>
         </div>
         <div className="comments-section">
-         <h2>Kommentarer</h2>
+          <h2>Kommentarer</h2>
           <textarea value={commentText} onChange={(e) => setCommentText(e.target.value)} placeholder="Lämna en kommentar"></textarea>
           <button onClick={handleAddComment}>Skicka</button>
           <div>
-            {recipeComment.map((userReview, reviewKey)=> (
+            {recipeComment.map((userReview, reviewKey) => (
               <p key={reviewKey}>{userReview.comment}</p>
             ))}
           </div>
