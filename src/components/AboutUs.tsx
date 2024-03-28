@@ -89,7 +89,7 @@ const AboutUs = () => {
         <div className="about-us-background-image">
           <img
             src="https://eep.io/images/yzco4xsimv0y/6aZY89JahywcsYcUkC6seq/88f9ad3c2c5004fd2166b1b5b7ee6567/hero_our-story.jpg?w=1520&fm=avif&q=60"
-            alt="Group"
+            alt="Grupp 4"
           />
           <h1 className="about-us-group-name">Grupp 4</h1>
         </div>
