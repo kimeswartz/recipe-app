@@ -20,7 +20,7 @@ const AboutUs = () => {
         "https://img.freepik.com/premium-vector/teenager-boy-laughing-expressing-emotions_316839-2943.jpg?size=626&ext=jpg",
     },
     {
-      name: "Malcom",
+      name: "Malcolm",
       jobTitle: "Software Engineer",
       description: "Passionate coder with a love for frontend development.",
       image:
