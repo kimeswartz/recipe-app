@@ -74,8 +74,8 @@ const UpdateRecipe = () => {
         <form
           className="update-form"
           onSubmit={(e) => {
-            e.preventDefault(); // Prevent default form submission behavior
-            updateById(); // Call your update function
+            e.preventDefault();
+            updateById();
           }}
         >
           <label className="update-label">
@@ -89,12 +89,21 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Tittel:
+            Titel:
             <input
               type="text"
               name="title"
               value={recipeName}
-              onChange={(input) => setRecipeName(input.target.value)}
+              onChange={(input) => {
+                const filteredValue = input.target.value.replace(
+                  /[^a-zA-Z\s]/g,
+                  ""
+                ); 
+                setRecipeName(
+                  filteredValue.charAt(0).toUpperCase() +
+                    filteredValue.slice(1).toLowerCase()
+                );
+              }}
             />
           </label>
           <br />
@@ -159,6 +168,7 @@ const UpdateRecipe = () => {
               onChange={(input) => setRecipeInstructions(input.target.value)}
             />
           </label>
+
           <br />
           <h2>Uppdatera ingredienser</h2>
           <label className="update-label">
@@ -167,7 +177,16 @@ const UpdateRecipe = () => {
               type="text"
               name="ingredientName"
               value={ingrediantName}
-              onChange={(input) => setIngrediantName(input.target.value)}
+              onChange={(input) => {
+                const newValue = input.target.value.trim();
+                if (newValue !== "") {
+                  setIngrediantName(newValue);
+                  console.log("nytt recept lagt");
+                } else {
+                  // If the new value is empty, keep the original value
+                  setIngrediantName(newValue || "");
+                }
+              }}
             />
           </label>
           <label className="update-label">
@@ -181,15 +200,26 @@ const UpdateRecipe = () => {
           </label>
           <label className="update-label">
             Enhet:
-            <input
-              type="text"
-              name="unit"
+            <select
               value={ingrediantUnit}
               onChange={(input) => setIngrediantUnit(input.target.value)}
-            />
+            >
+              <option value="kg">kg</option>
+              <option value="hg">hg</option>
+              <option value="gram">gram</option>
+              <option value="l">l</option>
+              <option value="dl">dl</option>
+              <option value="ml">ml</option>
+              <option value="msk">msk</option>
+              <option value="tsk">tsk</option>
+              <option value="krm">krm</option>
+              <option value="st">st</option>
+            </select>
           </label>
           <br />
-          <button className="upload-button" type="submit">Skicka uppdatering</button>
+          <button className="upload-button" type="submit">
+            Skicka uppdatering
+          </button>
         </form>
       </div>
     </>
