@@ -14,6 +14,8 @@ import globalCartFunctions from "./state/Cart";
 import CartComponent from "./components/CartComponent";
 import PopularRecipes from "./pages/PopularRecipes";
 import AboutUsPage from "./pages/AboutUsPage";
+import CocktailLetterPage from "./components/CocktailComponents/CocktailLetterPage";
+import CocktailHomePage from "./pages/CocktailPages/CocktailHomePage";
 
 Modal.setAppElement('#root')
 
@@ -40,6 +42,8 @@ function App() {
           </div>
         </Modal>
         <Routes>
+          <Route path="/cocktails/:letter" element={<CocktailLetterPage />} />
+          <Route path="/cocktails" element={<CocktailHomePage />} />
           <Route path="/filter" element={<FilterPage />} />
           <Route path="/" element={<Home />} />
           <Route path="/category/:categoryName" element={<RecipesByCategory />} />
