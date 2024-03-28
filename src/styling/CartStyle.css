@@ -1,0 +1,60 @@
+.flex-box{
+  display: flex;
+  justify-content: space-between;
+  padding: 2rem 5rem 2rem 5rem;
+}
+
+.v-flex-box{
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  width: 40rem;
+  border-radius: 10px;
+}
+
+.recipe-box{
+  height: 10rem;
+  display: flex;
+  position: relative;
+  background-color: aliceblue;
+  border-radius: 10px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.recipe-info{
+  padding-left: 1rem;
+  padding-right: 1rem;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.cart-description{
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 3rem;
+}
+
+.exit-button{
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  padding: 5px 10px 5px 10px;
+  background-color: red;
+  border-radius: 10px;
+  color: white;
+  border-color: red;
+  cursor: pointer;
+}
+
+.cart-rating{
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+.cart-img{
+  width: 10rem;
+  height: 10rem;
+  cursor: pointer;
+}
