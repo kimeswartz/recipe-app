@@ -82,7 +82,6 @@ const FilterComponent = () => {
   // Render UI
   return (
     <div className="filter-component-container">
-      <h1>Filtera Recept</h1>
       <div>
         {/* Display selected search ingredients */}
         {searchIngredients.length > 0 && (
