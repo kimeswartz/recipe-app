@@ -28,7 +28,7 @@ const CartComponent = () => {
   const handleNavigate = (recipe: RecipeInterface) => {
     toggleCart(displayCart)
     setOneRecipe(recipe)
-    navigate(`/recipe/${recipe._id}`, { state: recipe })
+    navigate(`/recipe/${recipe._id}`)
     window.scrollTo(0, 0);
   }
 
