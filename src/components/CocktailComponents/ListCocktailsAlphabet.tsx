@@ -30,13 +30,16 @@ const ListCocktailsAlphabet = () => {
 
   return (
     <div>
-      {alphabet.map((letter : string, index) => (
+      {alphabet.map((letter: string, index) => (
         <span key={index}>
-          <button onClick={() => getCocktailsByLetter(letter) }>
+          <span>
+            {index === 0 ? <span></span> : <span>/</span>}
+          </span>
+          <a onClick={() => getCocktailsByLetter(letter)}>
             {letter}
-          </button>
+          </a>
         </span>
-          
+
       ))}
 
       <ul>
