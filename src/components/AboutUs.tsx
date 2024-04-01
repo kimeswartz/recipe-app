@@ -1,75 +1,14 @@
 import { useEffect, useState } from "react";
 import "../styling/AboutUs.css";
-import "../interfaces/TeamMemberInterface";
+import teamMembers from "../constants/TeamInfo";
 
 const AboutUs = () => {
-  // Team members data/info
-  const teamMembers: TeamMember[] = [
-    {
-      name: "Alice",
-      jobTitle: "Software Engineer",
-      description: "Passionate coder with a love for frontend development.",
-      image:
-        "https://img.freepik.com/premium-vector/male-character-presentation-making-gesture_316839-3134.jpg?size=626&ext=jpg",
-    },
-    {
-      name: "Kim",
-      jobTitle: "Software Engineer",
-      description: "Passionate coder with a love for frontend development.",
-      image:
-        "https://img.freepik.com/premium-vector/teenager-boy-laughing-expressing-emotions_316839-2943.jpg?size=626&ext=jpg",
-    },
-    {
-      name: "Malcolm",
-      jobTitle: "Software Engineer",
-      description: "Passionate coder with a love for frontend development.",
-      image:
-        "https://img.freepik.com/premium-vector/young-business-man-showing-gesture-good-idea-flat-vector-cartoon-design_185694-733.jpg",
-    },
-    {
-      name: "Bilge",
-      jobTitle: "Software Engineer",
-      description: "Passionate coder with a love for frontend development.",
-      image:
-        "https://img.freepik.com/premium-vector/bearded-man-employee-giving-presentation-showing_316839-2935.jpg",
-    },
-    {
-      name: "Hampus",
-      jobTitle: "Scrum Master",
-      description:
-        "Hej och välkommen till vår sida! Jag är stolt över att vara en del av detta fantastiska projekt som Scrum Master. Mitt uppdrag är att se till att vårt team fungerar smidigt och effektivt för att leverera det bästa resultatet möjligt. Jag är involverad i olika delar av projektet och arbetar hårt för att lösa problem och främja samarbete. Mitt mål är att se till att alla i teamet trivs och är framgångsrika. Tack för att du är här och stödjer oss på vår resa mot framgång!",
-      image:
-        "https://img.freepik.com/premium-vector/person-using-mobile-phone-holding-hand-surfing-internet-reading-online-bearded-man-glasses-texting-with-smartphone-cellphone-flat-vector-illustration-isolated-white-background_633472-561.jpg?size=626&ext=jpg",
-    },
-    {
-      name: "Arash",
-      jobTitle: "Software Engineer",
-      description: "Passionate coder with a love for frontend development.",
-      image:
-        "https://static.vecteezy.com/system/resources/thumbnails/008/056/913/small_2x/young-smiling-man-cartoon-character-shows-gesture-cool-with-two-thumbs-up-flat-illustration-isolated-on-white-background-free-vector.jpg",
-    },
-    {
-      name: "Pablo",
-      jobTitle: "UI/UX Designer",
-      description: "Creative designer with a knack for user-centered design.",
-      image:
-        "https://img.freepik.com/premium-vector/smiling-businessman-gesturing-showing-thumbs-up_316839-2100.jpg",
-    },
-    {
-      name: "ChatGPT",
-      jobTitle: "AI Assistant",
-      description:
-        "I'm ChatGPT, an AI language model created by OpenAI. My purpose is to assist and engage in various conversations, providing information, answering questions, and generating text based on the input I receive. I've been trained on a diverse range of internet text, allowing me to understand and respond to many topics and inquiries. Whether you need help with a specific question, want to brainstorm ideas, or just fancy a chat, feel free to engage with me!",
-      image:
-        "https://verticalresponse.com/wp-content/uploads/2023/04/chat-gpt-logo-scaled.jpeg",
-    },
-  ];
 
   // State to keep track of the selected team member
-  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+  const [selectedMember, setSelectedMember] = useState<TeamMemberInterface | null>(null);
 
   // Function to handle clicking on a team member. Updates the state
-  const handleMemberClick = (member: TeamMember) => {
+  const handleMemberClick = (member: TeamMemberInterface) => {
     setSelectedMember(member);
   };
 
