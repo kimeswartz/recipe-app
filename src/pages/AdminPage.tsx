@@ -2,7 +2,7 @@ import RecipeSearch from "../components/SearchRecipe";
 import AdminUpdate from "../components/AdminComponents/AdminUpdate";
 import AdminRecipes from "../components/AdminComponents/AdminAllRecipes";
 import AdminUpload from "../components/AdminComponents/AdminUploadRecipe";
-
+import ClearAPIComponent from "../components/AdminComponents/ClearAPIComponent";
 import "../styling/AdminPage.css";
 
 const AdminPage = () => {
@@ -22,6 +22,8 @@ const AdminPage = () => {
 
         <h2>Here is where you can edit an existing recipe</h2>
         <AdminUpdate />
+
+        <ClearAPIComponent />
       </div>
     </div>
   );

@@ -24,12 +24,13 @@ interface recipeStateInterface {
   fetchComments: (id: string) => Promise<void>;
   addComment: (comments: string, id: string | undefined) => Promise<void>; //arash
   updateRecipe: (updatedRecipe: RecipeInterface, id: string | undefined) => Promise<void>;
+  clearAPI: () => Promise<void>;
 }
 
 const allRecipeState = create<recipeStateInterface>()((set) => ({
   recipeList: [],
   oneRecipe: {} as RecipeInterface,
- recipeComment: [],
+  recipeComment: [],
   categoryList: [],
   categoryRecipeList: [],
 
@@ -184,6 +185,18 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
       console.error("Error updating recipe:", error);
     }
   },
+
+  clearAPI: async() => {
+    try{
+      const response = await axios.get(`${URL}/clear`)
+      if(response.status){
+        alert('You just removed everything. Congrats! :)')
+      }
+    }catch(error){
+      console.log('could not clear database', error);
+    }
+  }
+
 }));
 
 export default allRecipeState;
