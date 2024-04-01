@@ -52,6 +52,7 @@ const DisplayOneRecipe: React.FC = () => {
     }
 
     addComment(commentText.trim(), oneRecipe._id);
+    setTrigger(!trigger)
     setCommentText("");
   }; //arash
 
