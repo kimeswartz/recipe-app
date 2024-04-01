@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useState } from "react";
+import allRecipeState from "../../state/Endpoints";
 
 const UpdateRecipe = () => {
   // Define the base URL for API requests
@@ -17,8 +18,11 @@ const UpdateRecipe = () => {
   const [recipeCategory, setRecipeCategory] = useState("");
   const [recipeIntructions, setRecipeInstructions] = useState("");
   const [ingrediantName, setIngrediantName] = useState("");
-  const [ingrediantAmount, setIngrediantAmount] = useState("");
+  const [ingrediantAmount, setIngrediantAmount] = useState(Number);
   const [ingrediantUnit, setIngrediantUnit] = useState("");
+  const { recipeList } = allRecipeState();
+  const [searchTerms, setSearchTerms] = useState<string>("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
 
   // Function to fetch recipe details by its ID from the server
   const getRecipeById = async (recipeId: string) => {
@@ -65,12 +69,100 @@ const UpdateRecipe = () => {
     }
   };
 
+  const handleInputChange = (value: string) => {
+    setSearchTerms(value);
+    if (value.trim() === "") {
+      setSuggestions([]);
+    } else {
+      generateSuggestions(value);
+    }
+  };
+
+  const generateSuggestions = (value: string) => {
+    const filteredSuggestions = recipeList
+      .filter((recipe) =>
+        recipe.title.toLowerCase().includes(value.toLowerCase())
+      )
+      .map((recipe) => recipe.title);
+    setSuggestions(filteredSuggestions);
+  };
+
+  const handleSuggestionClick = (value: string) => {
+    setSearchTerms(value);
+    setSuggestions([]);
+    const selectedRecipe = recipeList.find(
+      (recipe) => recipe.title.toLowerCase() === value.toLowerCase()
+    );
+    if (selectedRecipe) {
+      // Fyll i formuläret med information från det valda receptet
+      setRecipeId(selectedRecipe._id || "");
+      setRecipeName(selectedRecipe.title);
+      setRecipeDescription(selectedRecipe.description);
+      setRecipeRating(
+        Array.isArray(selectedRecipe.ratings)
+          ? selectedRecipe.ratings[0]
+          : selectedRecipe.ratings || 0
+      );
+      setRecipeImageUrl(selectedRecipe.imageUrl);
+      setRecipeTimeInMin(selectedRecipe.timeInMins || 0);
+      setRecipeCategory(
+        Array.isArray(selectedRecipe.categories)
+          ? selectedRecipe.categories[0]
+          : selectedRecipe.categories || 0
+      );
+      setRecipeInstructions(
+        Array.isArray(selectedRecipe.instructions)
+          ? selectedRecipe.instructions[0]
+          : selectedRecipe.instructions || 0
+      );
+
+      // Uppdatera staten för ingredienser också, om det behövs
+      if (selectedRecipe.ingredients.length > 0) {
+        const firstIngredient = selectedRecipe.ingredients[0];
+        setIngrediantName(firstIngredient.name);
+        setIngrediantAmount(firstIngredient.amount);
+        setIngrediantUnit(firstIngredient.unit);
+      }
+    } else {
+      console.log("Error")
+    }
+  };
+
+  const handleClearSearch = () => {
+    setSearchTerms("");
+    setSuggestions([]);
+  };
+
   // Return the UI for updating a recipe
   return (
     <>
       <div className="update-container">
         <h2>Uppdatera recept</h2>
+        <div className="search-bar">
+          <input
+            type="text"
+            value={searchTerms}
+            placeholder="Search recipes..."
+            onChange={(e) => handleInputChange(e.target.value)}
+          />
+          <button onClick={handleClearSearch}>Clear</button>
 
+          {searchTerms.trim() !== "" && (
+            <div className="suggestions">
+              {suggestions.map((suggestion, index) => (
+                <div
+                  key={index}
+                  className="suggestion"
+                  onClick={() => handleSuggestionClick(suggestion)}
+                >
+                  {suggestion}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        <br />
+        <br />
         <form
           className="update-form"
           onSubmit={(e) => {
@@ -98,7 +190,7 @@ const UpdateRecipe = () => {
                 const filteredValue = input.target.value.replace(
                   /[^a-zA-Z\s]/g,
                   ""
-                ); 
+                );
                 setRecipeName(
                   filteredValue.charAt(0).toUpperCase() +
                     filteredValue.slice(1).toLowerCase()
@@ -177,16 +269,7 @@ const UpdateRecipe = () => {
               type="text"
               name="ingredientName"
               value={ingrediantName}
-              onChange={(input) => {
-                const newValue = input.target.value.trim();
-                if (newValue !== "") {
-                  setIngrediantName(newValue);
-                  console.log("nytt recept lagt");
-                } else {
-                  // If the new value is empty, keep the original value
-                  setIngrediantName(newValue || "");
-                }
-              }}
+              onChange={(input) => setIngrediantName(input.target.value)}
             />
           </label>
           <label className="update-label">
@@ -195,7 +278,7 @@ const UpdateRecipe = () => {
               type="number"
               name="amount"
               value={ingrediantAmount}
-              onChange={(input) => setIngrediantAmount(input.target.value)}
+              onChange={(input) => setIngrediantAmount(input.target.valueAsNumber)}
             />
           </label>
           <label className="update-label">
