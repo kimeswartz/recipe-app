@@ -3,6 +3,7 @@ import MalcolmImage from "../assets/Malcolm.jpg";
 import HampusImage from "../assets/Hampus.jpg";
 import PabloImage from "../assets/PabloDiaz.jpg";
 import AliceImage from "../assets/Alice.jpg";
+import ArashImage from "../assets/Arash.jpg"
 
 // Team members data/info
 const teamMembers: TeamMemberInterface[] = [
@@ -57,9 +58,8 @@ const teamMembers: TeamMemberInterface[] = [
   {
     name: "Arash",
     jobTitle: "Software Engineer",
-    description: "Passionate coder with a love for frontend development.",
-    image:
-      "https://static.vecteezy.com/system/resources/thumbnails/008/056/913/small_2x/young-smiling-man-cartoon-character-shows-gesture-cool-with-two-thumbs-up-flat-illustration-isolated-on-white-background-free-vector.jpg",
+    description: "Hej, jag heter Arash Sohrevardi, en entusiastisk fullstack-utvecklare med djup kunskap i Java, TypeScript och React, samt en solid förståelse för CSS, Flexbox och global state hantering. Utöver mina tekniska färdigheter, bär jag på erfarenheter som förbundsdomare hos Svenska Innebandyförbundet och en bakgrund som extremsportare, vilket har lärt mig vikten av teamwork och att hålla huvudet kallt under press. Som 42-åring med en passion för träning och att utforska nya horisonter, är jag en utåtriktad och prestigelös individ som tror starkt på teamets dynamik. Jag siktar på att utöka min karriär internationellt inom programmering, där jag känner att jag kan bidra väsentligt till storskaliga projekt. Jag är övertygad om att min unika kombination av teknisk kompetens, teamorienterad inställning och livserfarenhet gör mig till en värdefull tillgång i varje projekt.",
+    image: ArashImage,
   },
 
   {
