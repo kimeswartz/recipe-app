@@ -13,17 +13,25 @@ import Modal from 'react-modal';
 import globalCartFunctions from "./state/Cart";
 import CartComponent from "./components/CartComponent";
 import PopularRecipes from "./pages/PopularRecipes";
+import { useState } from "react";
 
 Modal.setAppElement('#root')
 
 function App() {
 
   const { displayCart, toggleCart } = globalCartFunctions();
+  const [language, setLanguage] = useState(navigator.language.startsWith('sv') ? 'sv' : 'en');
+
+  const toggleLanguage = () => {
+    setLanguage(prevLanguage  => 
+    (prevLanguage === 'sv' ? 'en' : 'sv')
+    )
+  }
 
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+        <Navbar language={language} toggleLanguage={toggleLanguage}/>
         <Modal
           className='modal-cart-window'
           isOpen={displayCart}
