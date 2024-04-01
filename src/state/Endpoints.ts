@@ -158,6 +158,10 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
         const response = await axios.post(`${URL}/recipes/${id}/comments`, { comment });
         if (response.status === 200) {
           console.log(`Comment ${comment} has been updated for recipe:${id} in the database`);
+          set((prevState) => ({
+            prevState,
+            recipeComment: [...prevState.recipeComment, response.data]
+          }))
           alert("Tack för din kommentar")
           return response.data;
       }
