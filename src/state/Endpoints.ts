@@ -1,4 +1,4 @@
-//Hampus + Arash
+//Hampus + Alice + Arash
 
 import { create } from "zustand";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
