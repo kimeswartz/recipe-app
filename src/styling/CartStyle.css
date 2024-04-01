@@ -12,7 +12,7 @@
   border-radius: 10px;
 }
 
-.recipe-box{
+.item-box{
   height: 10rem;
   display: flex;
   position: relative;
@@ -22,7 +22,7 @@
   margin-bottom: 1rem;
 }
 
-.recipe-info{
+.item-info{
   padding-left: 1rem;
   padding-right: 1rem;
   text-overflow: ellipsis;

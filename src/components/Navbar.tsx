@@ -24,7 +24,7 @@ const Navbar = () => {
         <a onClick={() => handleNavigation("/Recipes")}>Recipes</a>
         <a onClick={() => handleNavigation("/AdminPage")}>Admin</a>
         <a onClick={() => handleNavigation("/popular")}>Popular</a>
-        <button className="main-button" onClick={() => toggleCart(displayCart)}>Cart</button>
+        <button className="main-button" onClick={() => toggleCart(displayCart)}>Favoriter</button>
       </div>
     </div>
   );
