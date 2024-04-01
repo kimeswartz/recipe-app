@@ -37,7 +37,7 @@ const DisplayAllRecipe = () => {
           return (
             <div className='recipe-card' key={recipe._id} onClick={() => handleNavigate(recipe)}>
               {location.pathname === '/AdminPage' && (
-                <button onClick={() => handleDelete(recipe._id)}>Radera</button>
+                <button onClick={() => handleDelete(recipe._id)} className='main-button'>Radera</button>
               )}
               <div className='first-card-div'>
                 <img className='display-recipe-img' src={recipe.imageUrl} alt={recipe.title} />

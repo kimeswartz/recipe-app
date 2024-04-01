@@ -113,7 +113,7 @@ const DisplayOneRecipe: React.FC = () => {
                   </p>
                 </div>
                 <div className="info-container">
-                  <button onClick={() => addRecipeToCart(oneRecipe)}>Add to cart</button>
+                  <button onClick={() => addRecipeToCart(oneRecipe)} className="main-button">Lägg till</button>
                 </div>
               </div>
             </div>
