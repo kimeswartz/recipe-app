@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { CocktailSliderInterface } from '../interfaces/CocktailSliderInterface';
+import CocktailInterface from '../interfaces/CocktailInterfaces/CocktailInterface';
 import Slider from 'react-slick';
 
 function CocktailSlider() {
   
-  const [randomCocktail, setRandomCocktail] = useState<CocktailSliderInterface[]>([]);
+  const [randomCocktail, setRandomCocktail] = useState<CocktailInterface[]>([]);
 
   const fetchData = async () => {
     try {
@@ -47,6 +47,5 @@ function CocktailSlider() {
       </Slider>
     </>
   );
-
 }
 export default CocktailSlider;

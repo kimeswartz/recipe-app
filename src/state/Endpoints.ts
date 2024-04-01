@@ -1,4 +1,4 @@
-//Hampus + Arash
+//Hampus + Alice + Arash
 
 import { create } from "zustand";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
@@ -24,12 +24,13 @@ interface recipeStateInterface {
   fetchComments: (id: string) => Promise<void>;
   addComment: (comments: string, id: string | undefined) => Promise<void>; //arash
   updateRecipe: (updatedRecipe: RecipeInterface, id: string | undefined) => Promise<void>;
+  clearAPI: () => Promise<void>;
 }
 
 const allRecipeState = create<recipeStateInterface>()((set) => ({
   recipeList: [],
   oneRecipe: {} as RecipeInterface,
- recipeComment: [],
+  recipeComment: [],
   categoryList: [],
   categoryRecipeList: [],
 
@@ -158,6 +159,10 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
         const response = await axios.post(`${URL}/recipes/${id}/comments`, { comment });
         if (response.status === 200) {
           console.log(`Comment ${comment} has been updated for recipe:${id} in the database`);
+          set((prevState) => ({
+            prevState,
+            recipeComment: [...prevState.recipeComment, response.data]
+          }))
           alert("Tack för din kommentar")
           return response.data;
       }
@@ -180,6 +185,18 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
       console.error("Error updating recipe:", error);
     }
   },
+
+  clearAPI: async() => {
+    try{
+      const response = await axios.get(`${URL}/clear`)
+      if(response.status){
+        alert('You just removed everything. Congrats! :)')
+      }
+    }catch(error){
+      console.log('could not clear database', error);
+    }
+  }
+
 }));
 
 export default allRecipeState;
