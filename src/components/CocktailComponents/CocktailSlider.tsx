@@ -24,7 +24,7 @@ function CocktailSlider() {
   }, []);
 
    // Configuration settings for the slider
-   const sliderSettings = {
+  const sliderSettings = {
     dots: true,
     infinite: true,
     speed: 700,

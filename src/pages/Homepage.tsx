@@ -1,4 +1,5 @@
 import CocktailSlider from "../components/CocktailComponents/CocktailSlider";
+import DisplayIngredient from "../components/CocktailComponents/DisplayIngredient";
 import HeaderComponent from "../components/Headers/HeaderComponent";
 import RecipeSlider from "../components/RecipeSlider";
 
@@ -9,6 +10,7 @@ const Home = () => {
         <HeaderComponent />
         <RecipeSlider />
         <CocktailSlider />
+        <DisplayIngredient />
       </div>
     </div>
   );
