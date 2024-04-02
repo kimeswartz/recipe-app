@@ -28,7 +28,7 @@ const RecipesByCategory = () => {
               <img src={recipe.imageUrl} alt={recipe.title} />
             </div>
             <div className="textContainer">
-              <h2>{recipe.title}</h2>
+              <h3>{recipe.title}</h3>
               <p>{recipe.description}</p>
             </div>
           </div>
