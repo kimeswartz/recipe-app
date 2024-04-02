@@ -1,4 +1,4 @@
-import CocktailSlider from "../components/CocktailSlider";
+import CocktailSlider from "../components/CocktailComponents/CocktailSlider";
 import HeaderComponent from "../components/Headers/HeaderComponent";
 import RecipeSlider from "../components/RecipeSlider";
 

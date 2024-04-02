@@ -1,0 +1,131 @@
+.about-us-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.about-us-header-section {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.about-us-background-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.about-us-background-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.about-us-group-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 76px;
+  font-weight: bold;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.about-us-description-section {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.about-us-info-section {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.about-us-info-card {
+  width: 48%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #f9f9f9;
+  transition: transform 0.2s;
+}
+
+.about-us-info-card h2 {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.about-us-info-card p {
+  text-align: center;
+  color: #666;
+}
+
+.about-us-crew-section {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+.about-us-crew-section h2 {
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+.about-us-crew {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+}
+
+.about-us-member {
+  flex: 0 0 auto;
+  text-align: center;
+}
+
+.about-us-member img {
+  width: 170px;
+  height: 230px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  border-radius: 10px;
+}
+
+.about-us-member h3 {
+  margin: 10px 0;
+}
+
+.about-us-selected-member {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 150px;
+}
+
+.about-us-selected-member img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.about-us-selected-member h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.about-us-selected-member p {
+  margin-bottom: 10px;
+  color: #666;
+  text-align: center;
+}
