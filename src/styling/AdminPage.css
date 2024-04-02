@@ -2,7 +2,7 @@
     display: flex;
     position: relative;
     flex-direction: column;
-    height: 500px;/*ÄNDRADE TILL 400 SÅ ATT BETYGEN KOMMER MED I KORTEN*/
+    height: 500px;/*ÄNDRADE TILL 500 SÅ ATT BETYGEN KOMMER MED I KORTEN*/
     width: 200px;
     margin: 10px 20px 20px 20px;
     cursor: pointer;

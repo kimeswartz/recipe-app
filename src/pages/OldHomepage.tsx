@@ -1,12 +1,13 @@
 import CategorySuggestion from "../components/CategorySuggestion";
 
-const CategoryPage = () => {
+
+const OldHomepage = () => {
   return (
     <div>
-      <h1>Hitta recept baserat på kategori</h1>
+      <h1>old homepage</h1>
       <CategorySuggestion />
     </div>
-  )
-}
+  );
+};
 
-export default CategoryPage
+export default OldHomepage;

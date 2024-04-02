@@ -1,20 +1,32 @@
-import "../styling/NavbarStyle.css"
-import { Link } from "react-router-dom"
+import "../styling/NavbarStyle.css";
+import { To, useNavigate } from "react-router-dom";
+import globalCartFunctions from "../state/Cart"
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
+  const handleNavigation = (path: To) => {
+    navigate(path);
+  };
+
+  const { displayCart, toggleCart } = globalCartFunctions();
+
   return (
-   <div className="navbar container" >
-      <a className='logo'><Link to='/'>Logo</Link></a>
-      <div className='nav-links'>
-      <a><Link to='/'>Home</Link></a>
-      <a><Link to='/CategoryPage'>Categories</Link></a>
-      <a><Link to='/Filter'>Filter</Link></a>
-      <a><Link to='/Recipes'>Recipes</Link></a>
-      <a><Link to='/AdminPage'>Admin</Link></a>
+    <div className="navbar container">
+      <a className="logo" onClick={() => handleNavigation("/")}>
+        Logo
+      </a>
+      <div className="nav-links">
+        <a onClick={() => handleNavigation("/")}>Home</a>
+        <a onClick={() => handleNavigation("/CategoryPage")}>Categories</a>
+        <a onClick={() => handleNavigation("/Filter")}>Filter</a>
+        <a onClick={() => handleNavigation("/Recipes")}>Recipes</a>
+        <a onClick={() => handleNavigation("/AdminPage")}>Admin</a>
+        <a onClick={() => handleNavigation("/popular")}>Popular</a>
+        <button className="main-button" onClick={() => toggleCart(displayCart)}>Cart</button>
       </div>
-     
     </div>
-  
-  )
-}
-export default Navbar
+  );
+};
+
+export default Navbar;
