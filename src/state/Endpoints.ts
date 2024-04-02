@@ -1,13 +1,16 @@
-//Hampus
+//Hampus + Alice + Arash
 
 import { create } from "zustand";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
 import axios from "axios";
 import { categoryInterface } from "../interfaces/CategoryInterface";
+import { CommentInterface } from "../interfaces/CommentInterface";
+import URL from "../constants/RecipeApi";
 
 interface recipeStateInterface {
   recipeList: RecipeInterface[];
   oneRecipe: RecipeInterface;
+  recipeComment: CommentInterface[];
   categoryList: categoryInterface[];
   categoryRecipeList: RecipeInterface[];
   setOneRecipe: (recipe: RecipeInterface) => void;
@@ -18,14 +21,16 @@ interface recipeStateInterface {
   fetchAllCategories: () => Promise<void>;
   fetchOneCategory: (categoryName: string) => Promise<void>;
   addRating: (rating: number, id: string | undefined) => Promise<void>;
+  fetchComments: (id: string) => Promise<void>;
+  addComment: (comments: string, id: string | undefined) => Promise<void>; //arash
   updateRecipe: (updatedRecipe: RecipeInterface, id: string | undefined) => Promise<void>;
+  clearAPI: () => Promise<void>;
 }
-
-const URL = "https://sti-java-grupp4-s4yjx9.reky.se";
 
 const allRecipeState = create<recipeStateInterface>()((set) => ({
   recipeList: [],
   oneRecipe: {} as RecipeInterface,
+  recipeComment: [],
   categoryList: [],
   categoryRecipeList: [],
 
@@ -59,6 +64,7 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
       console.error("Error fetching recipe:", error);
     }
   },
+
 
   fetchAllCategories: async () => {
     try {
@@ -136,6 +142,35 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
     }
   },
 
+  fetchComments: async (id: string) => {
+    try {
+      const response = await axios.get(`${URL}/recipes/${id}/comments`);
+      if (response.status === 200) {
+        console.log("Successfully fetched comments");
+        set ({recipeComment: response.data})
+      }
+    } catch (error) {
+      console.error("Error fetching comments:", error);
+    }
+  },  //arash
+
+  addComment: async (comment, id) => {
+    try {
+        const response = await axios.post(`${URL}/recipes/${id}/comments`, { comment });
+        if (response.status === 200) {
+          console.log(`Comment ${comment} has been updated for recipe:${id} in the database`);
+          set((prevState) => ({
+            prevState,
+            recipeComment: [...prevState.recipeComment, response.data]
+          }))
+          alert("Tack för din kommentar")
+          return response.data;
+      }
+    } catch (error) {
+      console.error("Error adding comment:", error);
+    }
+}, //arash
+
   updateRecipe: async(updatedRecipe, id) => {
     try{
       const response = await axios.patch(
@@ -150,6 +185,18 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
       console.error("Error updating recipe:", error);
     }
   },
+
+  clearAPI: async() => {
+    try{
+      const response = await axios.get(`${URL}/clear`)
+      if(response.status){
+        alert('You just removed everything. Congrats! :)')
+      }
+    }catch(error){
+      console.log('could not clear database', error);
+    }
+  }
+
 }));
 
 export default allRecipeState;

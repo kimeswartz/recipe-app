@@ -1,16 +1,22 @@
+//Hampus
+
 import { RecipeInterface } from "../interfaces/RecipeInterface"
 import { useNavigate } from "react-router-dom"
 import globalCartFunctions from "../state/Cart"
-import '../styling/AllRecipeStyle.css'
+import '../styling/CartStyle.css'
 import allRecipeState from "../state/Endpoints"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
+import CocktailInterface from "../interfaces/CocktailInterfaces/CocktailInterface"
+
 
 const CartComponent = () => {
 
-  const { cart, removeRecipeFromCart } = globalCartFunctions()
+  const { cartRecipes, cartCocktails, displayCart, removeRecipeFromCart, removeCocktailFromCart, toggleCart } = globalCartFunctions()
   const { setOneRecipe } = allRecipeState();
   const navigate = useNavigate();
 
-  if (cart.length === 0) {
+  if (cartRecipes.length === 0 && cartCocktails.length === 0) {
     return (
       <div className="centered-tags">
         <div className="info-tag">
@@ -20,40 +26,68 @@ const CartComponent = () => {
     )
   }
 
-  const handleNavigate = (recipe: RecipeInterface) => {
+  const recipeNavigate = (recipe: RecipeInterface) => {
+    toggleCart(displayCart)
     setOneRecipe(recipe)
     navigate(`/recipe/${recipe._id}`)
     window.scrollTo(0, 0);
   }
 
-  const handleRemoveFromCart = (id: string | undefined) => {
-    if (id) {
-      removeRecipeFromCart(id)
-    }
+  const cocktailNavigate = (cocktail: CocktailInterface) => {
+    toggleCart(displayCart)
+    //setOneCocktail
+    navigate(`/cocktails/${cocktail.idDrink}`)
+    window.scrollTo(0, 0);
   }
 
   return (
-    <div className="all-recipe">
-      {cart.map((cartItem, index) => (
-        <div className='all-recipe' key={index}>
-          {cartItem.recipeList.map((recipe, recipeKey) => {
-            return (
-              <div className='recipe-card' key={recipeKey} onClick={() => handleNavigate(recipe)}>
-                <div className='first-card-div'>
-                  <img className='display-recipe-img' src={recipe.imageUrl} alt={recipe.title} />
-                  <b className='card-category'>{recipe.categories[0]}</b>
-                </div>
-                <div className='second-card-div'>
-                  <h2>{recipe.title}</h2>
-                  <span>Betyg</span>
-                  {recipe.avgRating === null ? <p>inga betyg</p> : <p>{recipe.avgRating?.toFixed(1)}/5</p>}
-                  <button onClick={() => handleRemoveFromCart(recipe._id)} className="main-button">X</button>
-                </div>
+    <div className="flex-box">
+      <div className="v-flex-box">
+        {cartRecipes.map((recipe, recipeIndex) => {
+          return (
+            <div className="item-box" key={recipeIndex} >
+
+              <img
+                src={recipe.imageUrl}
+                alt={recipe.title}
+                className="cart-img"
+                onClick={() => recipeNavigate(recipe)}
+              />
+
+              <div className="item-info">
+                <b>{recipe.title}</b>
+                <p className="cart-description">{recipe.description}</p>
               </div>
-            )
-          })}
-        </div>
-      ))}
+
+              <p className="cart-rating">
+                <FontAwesomeIcon icon={faStar} className="star-icon" />
+                {" "}{recipe.avgRating === null ? <span>0</span> : <span>{recipe.avgRating?.toFixed(1)}</span>}/5
+              </p>
+              <button className="exit-button" onClick={() => removeRecipeFromCart(recipeIndex)}>X</button>
+            </div>
+          )
+        })}
+      </div>
+      <div className="v-flex-box">
+        {cartCocktails.map((cocktail, cocktailIndex) => {
+          return(
+            <div className="item-box" key={cocktailIndex}>
+              <img 
+                src={cocktail.strDrinkThumb} 
+                alt={cocktail.strDrink} 
+                className="cart-img"
+                onClick={() => cocktailNavigate(cocktail)}
+              />
+              <div className="item-info">
+                <b>{cocktail.strDrink}</b>
+                <p className="cart-description">{cocktail.strInstructions}</p>
+                <p className="cart-rating">{cocktail.strAlcoholic}</p>
+              </div>
+              <button className="exit-button" onClick={() => removeCocktailFromCart(cocktailIndex)}>X</button>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }

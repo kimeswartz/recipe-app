@@ -1,4 +1,4 @@
-//Kim + Hampus + Malcolm
+//Kim + Hampus + Malcolm + Arash
 
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -12,20 +12,22 @@ import "../styling/RecipepageStyle.css";
 // Using React.FC to define a function component
 const DisplayOneRecipe: React.FC = () => {
   // Destructuring state and function from the state management
-  const { oneRecipe, fetchOneRecipe, addRating } = allRecipeState();
+  const { oneRecipe, fetchOneRecipe, addRating, fetchComments, addComment, recipeComment } = allRecipeState();
   const { addRecipeToCart } = globalCartFunctions();
 
   // Extracting recipeId from URL params
   // we use useParams to acces dynamic parts in the URL, in this case, the recipe ID, that will route to the recipe URL request
   const { recipeId } = useParams<{ recipeId: string }>();
   const [userRating, setUserRating] = useState<number>();
+  const [commentText, setCommentText] = useState(""); //arash
   const [trigger, setTrigger] = useState(false)
 
   // Fetch the recipe details when the component mounts or recipeId changes
   useEffect(() => {
-    console.log('useEffect triggered with recipeId:', recipeId)
+    console.log('useEffect triggered with recipeId:', recipeId);
     if (recipeId) {
-      fetchOneRecipe(recipeId);
+      fetchOneRecipe(recipeId)
+      fetchComments(recipeId); //arash
     }
   }, [trigger]);
 
@@ -38,6 +40,22 @@ const DisplayOneRecipe: React.FC = () => {
       })
     setUserRating(rating);
   };
+
+  const handleAddComment = async () => {
+    if (!commentText.trim()) {
+      alert("Kan inte lägga till en tom kommentar.");
+      return;
+    }
+    if (!oneRecipe._id) {
+      alert("Recept-ID är odefinierat.");
+      return;
+    }
+
+    addComment(commentText.trim(), oneRecipe._id);
+    setTrigger(!trigger)
+    setCommentText("");
+  }; //arash
+
 
   // Conditional rendering based on whether the recipe has loaded or not
   if (!oneRecipe) {
@@ -95,7 +113,7 @@ const DisplayOneRecipe: React.FC = () => {
                   </p>
                 </div>
                 <div className="info-container">
-                  <button onClick={() => addRecipeToCart(oneRecipe)}>Add to cart</button>
+                  <button onClick={() => addRecipeToCart(oneRecipe)} className="main-button">Lägg till</button>
                 </div>
               </div>
             </div>
@@ -160,6 +178,18 @@ const DisplayOneRecipe: React.FC = () => {
             </div>
           </div>
         </div>
+        <div className="comments-section">
+          <h2>Kommentarer</h2>
+          <textarea value={commentText} onChange={(e) => setCommentText(e.target.value)} placeholder="Lämna en kommentar"></textarea>
+          <button onClick={handleAddComment}>Skicka</button>
+          <div>
+            {recipeComment.map((userReview, reviewKey) => (
+              <p key={reviewKey}>{userReview.comment}</p>
+            ))}
+          </div>
+
+        </div> {/* arash */}
+
       </div>
     );
   }

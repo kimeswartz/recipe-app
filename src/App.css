@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 *{
-    font-family: 'Poppins', sans-serif;
-    color: #1a1a1a;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+  color: #1a1a1a;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 h1, h2, h3, h4, h5 {
@@ -51,24 +51,26 @@ p {  font-size: 1 em;
   padding: 40px;
 }
 
-.main-button {
-    border-radius: 15px;
-    border: none;
-    padding: 0.9em 2.2em;
-    font-weight: 500;
-    background-color: #FF1212;
-    color: white;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Button shadow */
-    transition: box-shadow 0.3s ease; /* Smooth transition for the shadow */
-  }
+.main-button{
+  border-radius: 15px;
+  border: none;
+  padding: 0.9em 2.2em;
+  font-weight: 500;
+  background-color: #FF1212;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Button shadow */
+  transition: box-shadow 0.3s ease; /* Smooth transition for the shadow */
+}
   
-  .main-button:hover {
-    border-color: none;
-    background-color: #ff5151;
-  }
+.main-button:hover {
+  border-color: none;
+  background-color: #ff5151;
+}
 
-
+.margin-container {
+  padding: 3em;
+}
 
 :root {
   color-scheme: light dark;

@@ -1,3 +1,5 @@
 export interface CommentInterface {
-  text: string; // The text for comments -arash
+  _id: string;
+  comment: string;
+  name?: string; // The text for comments -arash
 }
