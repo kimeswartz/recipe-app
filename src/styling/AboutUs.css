@@ -94,6 +94,7 @@
   width: 170px;
   height: 230px;
   object-fit: cover;
+  object-position: center 15%;
   cursor: pointer;
   transition: transform 0.2s ease;
   border-radius: 10px;
