@@ -2,14 +2,12 @@ import { useState } from "react";
 import allRecipeState from "../../state/Endpoints";
 import { RecipeInterface } from "../../interfaces/RecipeInterface";
 
-// Destructuring addRecipe function from the Zusand store, with direct acces to the function in /Endpoints
+// Destructuring addRecipe function from the Zusand store, with direct access to the function in /Endpoints
 const UploadRecipe = () => {
   const { addRecipe } = allRecipeState();
 
-// state to manage form data for uploading a recipe
-  const [recipeData, setRecipeData] = useState<RecipeInterface>({
   // state to manage form data for uploading a recipe
-  const [recipeData, setRecipeData] = useState<UploadRecipeInterface>({
+  const [recipeData, setRecipeData] = useState<RecipeInterface>({
     title: "",
     description: "",
     ratings: [],
@@ -17,7 +15,6 @@ const UploadRecipe = () => {
     timeInMins: 0,
     categories: [],
     instructions: [],
-
     ingredients: [
       {
         name: "",
@@ -27,12 +24,7 @@ const UploadRecipe = () => {
     ],
   });
 
-  // Eventhandler function to handle input updates for recipe fields
-  // The function takes one parameter of type any
-  // name corresponds to the name attribute of the inoput field that triggered the event
-  // values represents the input from the user
-  // These values are used to update the components state based on user input
-
+  // Event handler function to handle input updates for recipe fields
   const handleInputUpdate = (input: any) => {
     const { name, value } = input.target;
 
@@ -42,11 +34,7 @@ const UploadRecipe = () => {
     }));
   };
 
-  // Function to add a new ingredient inout to the recipe, it takes three parameters
-  // index = the index of the ingredient in the ingredients array
-  // field = represents a specific property (amount)
-  // value = represents the value of unit
-  // Uses the hook setRecipeData to update the state of ingredients array
+  // Function to add a new ingredient input to the recipe
   const handleIngredientInput = (index: number, field: string, value: any) => {
     setRecipeData((prevData) => {
       const updatedIngredients = [...prevData.ingredients];
@@ -92,55 +80,49 @@ const UploadRecipe = () => {
   };
 
   // Function to handle form submission
-  // preventDefualt means the page won't reload, and no form data is sent to the server automatically.
   const handleSubmit = async (clickEvent: any) => {
     clickEvent.preventDefault();
 
     try {
-      //Checking if any required fields are empty
+      // Checking if any required fields are empty
       if (
         recipeData.title === "" ||
         recipeData.description === "" ||
         recipeData.imageUrl === "" ||
         recipeData.timeInMins === 0 ||
-        recipeData.instructions.some(
-          (instruction: string) => instruction === ""
-        ) ||
+        recipeData.instructions.some((instruction: string) => instruction === "") ||
         recipeData.ingredients.some(
-          (ingredient) =>
-            ingredient.name === "" ||
-            ingredient.amount === 0 ||
-            ingredient.unit === ""
+          (ingredient) => ingredient.name === "" || ingredient.amount === 0 || ingredient.unit === ""
         ) ||
         recipeData.categories.length === 0
       ) {
-        alert(
-          "Vänligen fyll i alla fält, och välj minst en kategori, innan du skickar."
-        );
-        return;
+        throw new Error("Fältet är tomt");
       }
 
       // Adding the recipe data to the database
       addRecipe(recipeData);
 
-    // Resetting the form fields after submission
-    setRecipeData({
-      title: "",
-      description: "",
-      ratings: [],
-      imageUrl: "",
-      timeInMins: 0,
-      categories: [],
-      instructions: [],
-
-      ingredients: [
-        {
-          name: "",
-          amount: 0,
-          unit: "",
-        },
-      ],
-    });
+      // Resetting the form fields after submission
+      setRecipeData({
+        title: "",
+        description: "",
+        ratings: [],
+        imageUrl: "",
+        timeInMins: 0,
+        categories: [],
+        instructions: [],
+        ingredients: [
+          {
+            name: "",
+            amount: 0,
+            unit: "",
+          },
+        ],
+      });
+    } catch (error) {
+      alert("Vänligen fyll i alla fält");
+      return;
+    }
   };
 
   // Preset categories for recipes
@@ -155,16 +137,7 @@ const UploadRecipe = () => {
   ];
 
   // Present unit for ingredients
-  const presentIngredientsUnit = [
-    "l",
-    "dl",
-    "ml",
-    "msk",
-    "tsk",
-    "g",
-    "kg",
-    "st",
-  ];
+  const presentIngredientsUnit = ["l", "dl", "ml", "msk", "tsk", "g", "kg", "st"];
 
   // Function to handle category changes
   const handleCategoryChange = (selectedCategory: string) => {
@@ -172,9 +145,7 @@ const UploadRecipe = () => {
       let updatedCategories;
 
       if (prevData.categories.includes(selectedCategory)) {
-        updatedCategories = prevData.categories.filter(
-          (category) => category !== selectedCategory
-        );
+        updatedCategories = prevData.categories.filter((category) => category !== selectedCategory);
       } else {
         updatedCategories = [...prevData.categories, selectedCategory];
       }
