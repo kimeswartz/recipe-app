@@ -6,6 +6,7 @@ const Footer = () => {
 
   const handleNavigation = (path: To) => {
     navigate(path);
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -35,6 +36,9 @@ const Footer = () => {
             </li>
             <li>
               <a onClick={() => handleNavigation("/popular")}>Popular</a>
+            </li>
+            <li>
+              <a onClick={() => handleNavigation("/about")}>About Us</a>
             </li>
           </ul>
         </nav>
