@@ -96,7 +96,7 @@ const UploadRecipe = () => {
         ) ||
         recipeData.categories.length === 0
       ) {
-        throw new Error("Inputfield is empty");
+        throw new Error("Ett fält är tomt");
       }
 
       // Adding the recipe data to the database
