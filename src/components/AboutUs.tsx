@@ -3,9 +3,9 @@ import "../styling/AboutUs.css";
 import teamMembers from "../constants/TeamInfo";
 
 const AboutUs = () => {
-
   // State to keep track of the selected team member
-  const [selectedMember, setSelectedMember] = useState<TeamMemberInterface | null>(null);
+  const [selectedMember, setSelectedMember] =
+    useState<TeamMemberInterface | null>(null);
 
   // Function to handle clicking on a team member. Updates the state
   const handleMemberClick = (member: TeamMemberInterface) => {
@@ -28,20 +28,20 @@ const AboutUs = () => {
         <div className="about-us-background-image">
           <img
             src="https://eep.io/images/yzco4xsimv0y/6aZY89JahywcsYcUkC6seq/88f9ad3c2c5004fd2166b1b5b7ee6567/hero_our-story.jpg?w=1520&fm=avif&q=60"
-            alt="Grupp 4"
+            alt="Group 4"
           />
-          <h1 className="about-us-group-name">Grupp 4</h1>
+          <h1 className="about-us-group-name">Group 4</h1>
         </div>
       </div>
       <div className="about-us-description-section">
         <p>
-          Välkommen till Grupp 4! Vi är en grupp människor från olika
-          livsstilar, alla dyker in i programmering tillsammans. Från de med
-          lite mer erfarenhet till nyfikna entusiaster, är vi en mångsidig skara
-          förenade av vår kärlek till kodning. Men hej, det är inte bara arbete
-          och ingen lek. Vi ser till att umgås efter arbetstid, byta historier
-          och bygga vänskap. Kom och joina oss på denna programmeringsresa där
-          lärande är kul och vänskap är nyckeln. / ChatGpt
+          Welcome to Group 4! We are a diverse group of individuals from various
+          lifestyles, all diving into programming together. From those with a
+          bit more experience to curious enthusiasts, we are a versatile bunch
+          united by our love for coding. But hey, it's not all work and no play.
+          We make sure to socialize after hours, swap stories, and build
+          friendships. Come join us on this programming journey where learning
+          is fun and friendship is key.
         </p>
       </div>
       <div className="about-us-info-section">

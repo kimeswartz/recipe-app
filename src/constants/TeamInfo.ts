@@ -1,11 +1,12 @@
 import "../interfaces/TeamMemberInterface";
-import MalcolmImage from "../assets/Malcolm.jpg";
-import HampusImage from "../assets/Hampus.jpg";
-import PabloImage from "../assets/PabloDiaz.jpg";
-import AliceImage from "../assets/Alice.jpg";
-import ArashImage from "../assets/Arash.jpg"
-import KimImage from "../assets/kim.jpeg"
-import BilgeImage from "../assets/bilge.jpg"
+import MalcolmImage from "../assets/TeamMemberImages/Malcolm.jpg";
+import HampusImage from "../assets/TeamMemberImages/Hampus.jpg";
+import PabloImage from "../assets/TeamMemberImages/PabloDiaz.jpg";
+import AliceImage from "../assets/TeamMemberImages/Alice.jpg";
+import ArashImage from "../assets/TeamMemberImages/Arash.jpg";
+import KimImage from "../assets/TeamMemberImages/kim.jpeg";
+import BilgeImage from "../assets/TeamMemberImages/bilge.jpg";
+import ChatGPTImage from "../assets/TeamMemberImages/chatGPTLogo.jpg";
 
 // Team members data/info
 const teamMembers: TeamMemberInterface[] = [
@@ -13,52 +14,55 @@ const teamMembers: TeamMemberInterface[] = [
     name: "Hampus",
     jobTitle: "Scrum Master",
     description:
-      "Hej och välkommen till vår sida! Jag är stolt över att vara en del av detta fantastiska projekt som Scrum Master. Mitt uppdrag är att se till att vårt team fungerar smidigt och effektivt för att leverera det bästa resultatet möjligt. Jag är involverad i olika delar av projektet och arbetar hårt för att lösa problem och främja samarbete. Mitt mål är att se till att alla i teamet trivs och är framgångsrika. Tack för att du är här och stödjer oss på vår resa mot framgång!",
+      "Hello and welcome to our page! I am proud to be a part of this amazing project as Scrum Master. My mission is to ensure that our team operates smoothly and efficiently to deliver the best possible results. I am involved in various aspects of the project and work hard to solve problems and promote collaboration. My goal is to ensure that everyone on the team thrives and succeeds. Thank you for being here and supporting us on our journey towards success!",
     image: HampusImage,
   },
 
   {
-    name: "Pablo",
-    jobTitle: "Utvecklare",
+    name: "Kim",
+    jobTitle: "Product Owner",
     description:
-      "Pablo Diaz heter jag och från en tidig ålder har jag älskat att sitta ner och skapa, från att rita små figurer som barn till att nu arbeta med teknik och lösningar. Jag trivs både med träning och med att utforska världen framför datorn. Min styrka ligger i min förmåga att tänka utanför boxen för att hitta nya och innovativa lösningar på olika utmaningar. När jag inte arbetar eller sitter framför datorn, ägnar jag mig åt min hobby - historia. Jag finner inspiration i att lära mig om tidigare tider och dras till att dra paralleller mellan dåtid och nutid.",
+      "As a product owner, my overarching responsibility is to ensure that the project achieves its goals and that the desired product is delivered according to specifications. This means that I act as the primary advocate for the project and am responsible for defining the vision, goals, and requirements for the product. I ensure that the product meets the agreed-upon quality standards by establishing and following appropriate quality control processes and by conducting tests and evaluations as needed.",
+    image: KimImage,
+  },
+
+  {
+    name: "Pablo",
+    jobTitle: "Developer",
+    description:
+      "My name is Pablo Diaz, and from an early age, I've had a passion for creating, from drawing small figures as a child to now working with technology and solutions. I enjoy both exercising and exploring the world in front of the computer. My strength lies in my ability to think outside the box to find new and innovative solutions to various challenges. When I'm not working or in front of the computer, I devote myself to my hobby - history. I find inspiration in learning about past times and I am drawn to drawing parallels between the past and the present.",
     image: PabloImage,
   },
 
   {
     name: "Malcolm",
-    jobTitle: "Utvecklare",
+    jobTitle: "Developer",
     description:
-      "Malcolm Uzuriaga Toro är namnet. Jag är 28år gammal och studerar inom Javautveckling i Front/-Backend. På min fritid spenderar jag mycket tid ute med min hund, cykel eller mina sprayburkar. Jag är en kreativ man som gillar att skapa saker ur egen fantasi och älskar att ha kul och ta vara på tiden man har. När jag blir stor vill jag bli en Programmerare som förhoppningsvis kan skapa häftiga program eller lösa svåra problem åt företag/bolag som dom själva inte kan lösa !",
+      "Malcolm Uzuriaga Toro is the name. I am 28 years old and studying Java development in Front/Backend. In my free time, I spend a lot of time outdoors with my dog, bike, or my spray cans. I am a creative man who enjoys creating things from my own imagination and loves to have fun and make the most of the time I have. When I grow up, I want to become a programmer who hopefully can create cool programs or solve difficult problems for companies that they themselves cannot solve!",
     image: MalcolmImage,
   },
 
   {
     name: "Alice",
-    jobTitle: "Utvecklare/ AW ansvarig",
+    jobTitle: "Developer/ After-Work Coordinator",
     description:
-      "När jag inte är upptagen med att vara en pålitlig och engagerad utvecklare i teamet, tar jag rollen som after work-ansvarig på allvar. Jag älskar att utforska Stockholms pulserande nattliv och upptäcka nya gömda pärlor i staden. Utöver det är träning en stor del av mitt liv, och jag finner stor glädje i att vara social och umgås med vänner och kollegor.",
+      "When I'm not busy being a reliable and committed developer on the team, I take the role of after-work coordinator seriously. Through organizing social activities, I facilitate team bonding, which in turn cultivates stronger relationships and enhances collaboration within our work environment. Outside of work, I love exploring Stockholm, whether it's a leisurely walk through the city streets or sharing a meal together with friends and colleagues. You can often find me at a cozy café or a wine bar.",
     image: AliceImage,
   },
 
   {
-    name: "Kim",
-    jobTitle: "Produktägare",
-    description: "Som produktägare är mitt övergripande ansvar att säkerställa att projektet når sina mål och att den önskade produkten levereras enligt specifikationerna. Detta innebär att jag agerar som den främsta förespråkaren för projektet och är ansvarig för att definiera visionen, målen och kraven för produkten. Jag ser till att produkten uppfyller de överenskomna kvalitetsstandarderna genom att etablera och följa lämpliga kvalitetskontrollprocesser och genom att utföra tester och utvärderingar när det behövs.",
-    image: KimImage,
-  },
-
-  {
     name: "Bilge",
-    jobTitle: "Software Engineer",
-    description: "Jag är en utvecklare i teamet och fokuserar på kodning. Mitt arbete inkluderar implementering och testning av funktionalitet. Jag samarbetar med teamet för att förbättra vår arbetsprocess. Målet är att leverera högkvalitativa resultat i tid. Tack för att jag får vara en del av detta projekt!",
+    jobTitle: "Developer",
+    description:
+      "I'm a developer within the team, primarily focusing on coding tasks. My work involves implementing and testing functionality. I collaborate with the team to enhance our workflow. The aim is to deliver high-quality results within deadlines. Thank you for allowing me to be part of this project!",
     image: BilgeImage,
   },
 
   {
     name: "Arash",
-    jobTitle: "Software Engineer",
-    description: "Hej, jag heter Arash Sohrevardi, en entusiastisk fullstack-utvecklare med djup kunskap i Java, TypeScript och React, samt en solid förståelse för CSS, Flexbox och global state hantering. Utöver mina tekniska färdigheter, bär jag på erfarenheter som förbundsdomare hos Svenska Innebandyförbundet och en bakgrund som extremsportare, vilket har lärt mig vikten av teamwork och att hålla huvudet kallt under press. Som 42-åring med en passion för träning och att utforska nya horisonter, är jag en utåtriktad och prestigelös individ som tror starkt på teamets dynamik. Jag siktar på att utöka min karriär internationellt inom programmering, där jag känner att jag kan bidra väsentligt till storskaliga projekt. Jag är övertygad om att min unika kombination av teknisk kompetens, teamorienterad inställning och livserfarenhet gör mig till en värdefull tillgång i varje projekt.",
+    jobTitle: "Developer",
+    description:
+      "Hello, my name is Arash Sohrevardi, an enthusiastic full-stack developer with deep knowledge in Java, TypeScript, and React, as well as a solid understanding of CSS, Flexbox, and global state management. In addition to my technical skills, I bring experiences as a referee with the Swedish Floorball Federation and a background as an extreme sports enthusiast, which has taught me the importance of teamwork and keeping a cool head under pressure. As a 42-year-old with a passion for fitness and exploring new horizons, I am an outgoing and humble individual who strongly believes in the dynamics of teamwork. I aim to expand my career internationally in programming, where I feel I can significantly contribute to large-scale projects. I am convinced that my unique combination of technical expertise, team-oriented approach, and life experience makes me a valuable asset in any project.",
     image: ArashImage,
   },
 
@@ -67,8 +71,7 @@ const teamMembers: TeamMemberInterface[] = [
     jobTitle: "AI Assistant",
     description:
       "I'm ChatGPT, an AI language model created by OpenAI. My purpose is to assist and engage in various conversations, providing information, answering questions, and generating text based on the input I receive. I've been trained on a diverse range of internet text, allowing me to understand and respond to many topics and inquiries. Whether you need help with a specific question, want to brainstorm ideas, or just fancy a chat, feel free to engage with me!",
-    image:
-      "https://verticalresponse.com/wp-content/uploads/2023/04/chat-gpt-logo-scaled.jpeg",
+    image: ChatGPTImage,
   },
 ];
 
