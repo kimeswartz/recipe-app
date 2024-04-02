@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
-import allRecipeState from "../state/Endpoints";
-import globalCartFunctions from "../state/Cart";
+import allRecipeState from "../store/Endpoints";
+import globalCartFunctions from "../store/Cart";
 import "../styling/RecipepageStyle.css";
 
 // Component for displaying a single recipe

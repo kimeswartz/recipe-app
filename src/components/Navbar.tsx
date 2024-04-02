@@ -1,6 +1,6 @@
 import "../styling/NavbarStyle.css";
 import { To, useNavigate } from "react-router-dom";
-import globalCartFunctions from "../state/Cart"
+import globalCartFunctions from "../store/Cart"
 
 const Navbar = () => {
   const navigate = useNavigate();

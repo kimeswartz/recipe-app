@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import allRecipeState from '../state/Endpoints';
+import allRecipeState from '../store/Endpoints';
 import { useNavigate } from 'react-router-dom';
 import "../styling/SearchRecipe.css"
 import "../styling/AllRecipeStyle.css"
@@ -7,7 +7,7 @@ import { RecipeInterface } from '../interfaces/RecipeInterface';
 
 const SearchRecipe = () => {
   const { recipeList, fetchAllRecipes } = allRecipeState();
-  const [searchTerms, setSearchTerms] = useState<string>(''); 
+  const [searchTerms, setSearchTerms] = useState<string>('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
   const navigate = useNavigate();
@@ -107,7 +107,7 @@ const SearchRecipe = () => {
           </div>
         )}
       </div>
-      
+
       {searchPerformed && searchTerms.trim() !== '' && (
         <div>
           {filteredRecipes.map((recipe) => (

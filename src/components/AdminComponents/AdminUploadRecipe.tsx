@@ -1,5 +1,5 @@
 import { useState } from "react";
-import allRecipeState from "../../state/Endpoints";
+import allRecipeState from "../../store/Endpoints";
 import { RecipeInterface } from "../../interfaces/RecipeInterface";
 
 // Destructuring addRecipe function from the Zusand store, with direct access to the function in /Endpoints
@@ -263,45 +263,45 @@ const UploadRecipe = () => {
               </label>
 
 
-<div className="amount-unit-container">
+              <div className="amount-unit-container">
 
 
-              <label className="upload-label">
-                Amount:
-                <input
-                  className="user-input"
-                  type="number"
-                  value={ingredient.amount}
-                  onChange={(enteredByUser) =>
-                    handleIngredientInput(
-                      index,
-                      "amount",
-                      +enteredByUser.target.value
-                    )
-                  }
-                />
-              </label>
+                <label className="upload-label">
+                  Amount:
+                  <input
+                    className="user-input"
+                    type="number"
+                    value={ingredient.amount}
+                    onChange={(enteredByUser) =>
+                      handleIngredientInput(
+                        index,
+                        "amount",
+                        +enteredByUser.target.value
+                      )
+                    }
+                  />
+                </label>
 
-              <label className="upload-label">
-                Unit:
-                <select
-                  className="user-input"
-                  value={ingredient.unit}
-                  onChange={(selectedByUser) =>
-                    handleIngredientInput(
-                      index,
-                      "unit",
-                      selectedByUser.target.value
-                    )
-                  }
-                >
-                  {presentIngredientsUnit.map((unit, index) => (
-                    <option key={index} value={unit}>
-                      {unit}
-                    </option>
-                  ))}
-                </select>
-              </label>
+                <label className="upload-label">
+                  Unit:
+                  <select
+                    className="user-input"
+                    value={ingredient.unit}
+                    onChange={(selectedByUser) =>
+                      handleIngredientInput(
+                        index,
+                        "unit",
+                        selectedByUser.target.value
+                      )
+                    }
+                  >
+                    {presentIngredientsUnit.map((unit, index) => (
+                      <option key={index} value={unit}>
+                        {unit}
+                      </option>
+                    ))}
+                  </select>
+                </label>
 
               </div>
 
@@ -316,10 +316,10 @@ const UploadRecipe = () => {
             Add Ingredient
           </button>
 
-<div className="button-container">
-          <button className="upload-button" type="submit">
-            Submit recipe to database
-          </button>
+          <div className="button-container">
+            <button className="upload-button" type="submit">
+              Submit recipe to database
+            </button>
           </div>
         </form>
       </section>

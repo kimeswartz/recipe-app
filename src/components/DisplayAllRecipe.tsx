@@ -1,7 +1,7 @@
 //Hampus
 
 import { useEffect } from 'react';
-import allRecipeState from '../state/Endpoints';
+import allRecipeState from '../store/Endpoints';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import "../styling/AllRecipeStyle.css"

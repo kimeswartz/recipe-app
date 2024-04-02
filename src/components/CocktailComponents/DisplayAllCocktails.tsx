@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import globalCocktailFunctions from '../../state/CocktailAPICalls';
+import globalCocktailFunctions from '../../store/CocktailAPICalls';
 
 const DisplayAllCocktails = () => {
- 
+
   const { cocktailList, fetchAllCocktails } = globalCocktailFunctions();
 
   useEffect(() => {

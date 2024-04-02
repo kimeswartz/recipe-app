@@ -10,7 +10,7 @@ import Footer from "./components/Footer";
 import RecipePageContent from "./pages/RecipePage";
 import FilterPage from "./pages/Filter";
 import Modal from 'react-modal';
-import globalCartFunctions from "./state/Cart";
+import globalCartFunctions from "./store/Cart";
 import CartComponent from "./components/CartComponent";
 import PopularRecipes from "./pages/PopularRecipes";
 import AboutUsPage from "./pages/AboutUsPage";
