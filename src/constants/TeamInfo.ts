@@ -4,6 +4,8 @@ import HampusImage from "../assets/Hampus.jpg";
 import PabloImage from "../assets/PabloDiaz.jpg";
 import AliceImage from "../assets/Alice.jpg";
 import ArashImage from "../assets/Arash.jpg"
+import KimImage from "../assets/kim.jpeg"
+import BilgeImage from "../assets/bilge.jpg"
 
 // Team members data/info
 const teamMembers: TeamMemberInterface[] = [
@@ -41,18 +43,16 @@ const teamMembers: TeamMemberInterface[] = [
 
   {
     name: "Kim",
-    jobTitle: "Produkt ägare",
-    description: "Passionate coder with a love for frontend development.",
-    image:
-      "https://img.freepik.com/premium-vector/teenager-boy-laughing-expressing-emotions_316839-2943.jpg?size=626&ext=jpg",
+    jobTitle: "Produktägare",
+    description: "Som produktägare är mitt övergripande ansvar att säkerställa att projektet når sina mål och att den önskade produkten levereras enligt specifikationerna. Detta innebär att jag agerar som den främsta förespråkaren för projektet och är ansvarig för att definiera visionen, målen och kraven för produkten. Jag ser till att produkten uppfyller de överenskomna kvalitetsstandarderna genom att etablera och följa lämpliga kvalitetskontrollprocesser och genom att utföra tester och utvärderingar när det behövs.",
+    image: KimImage,
   },
 
   {
     name: "Bilge",
     jobTitle: "Software Engineer",
-    description: "Passionate coder with a love for frontend development.",
-    image:
-      "https://img.freepik.com/premium-vector/bearded-man-employee-giving-presentation-showing_316839-2935.jpg",
+    description: "Jag är en utvecklare i teamet och fokuserar på kodning. Mitt arbete inkluderar implementering och testning av funktionalitet. Jag samarbetar med teamet för att förbättra vår arbetsprocess. Målet är att leverera högkvalitativa resultat i tid. Tack för att jag får vara en del av detta projekt!",
+    image: BilgeImage,
   },
 
   {
