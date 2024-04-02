@@ -1,18 +1,21 @@
+import CategorySuggestion from "../components/CategorySuggestion";
 import DisplayRecipes from "../components/DisplayAllRecipe";
+import HeaderRecipes from "../components/Headers/HeaderRecipes";
+
 
 const RecipePageContent = () => {
   return (
     <div>
+<HeaderRecipes />
 
-      <h1>This page shows all recipes</h1>
+<div className="category-conatiner">
+<CategorySuggestion />
 
-    <p>Below you can see all recipes</p>
+</div>
 
-      <div className="card">
+<h2>All our recipes</h2>
 
         <DisplayRecipes />
-
-      </div>
 
     </div>
   );

@@ -2,9 +2,10 @@ import { useEffect } from "react";
 import allRecipeState from "../state/Endpoints";
 import { useNavigate } from "react-router-dom";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
+import "../styling/Cards.css";
 
 //Same styling file as recipesByCategory
-import "../styling/RecipiesByCategoryStyle.css";
+//import "../styling/RecipiesByCategoryStyle.css";
 
 const TopRatedRecipes = () => {
   const { recipeList, fetchAllRecipes, setOneRecipe } = allRecipeState();
@@ -22,34 +23,39 @@ const TopRatedRecipes = () => {
     window.scrollTo(0, 0);
   };
 
-  //Filter for recipes with rating 3 or over
-  //Sort to display scores high to low
   return (
-    <div className="recipeContainer">
+    <div className="card-grid">
       <h2>Top Rated Recipes</h2>
-      <div className="recipeList">
-        {recipeList
-          .filter(
-            (recipe) => recipe.avgRating !== undefined && recipe.avgRating >= 3
-          )
-          .sort((a, b) => (b.avgRating ?? 0) - (a.avgRating ?? 0))
-          .map((recipe) => (
-            <div
-              key={recipe._id}
-              className="recipeItem"
-              onClick={() => handleNavigate(recipe)}
-            >
-              <div className="imgContainer">
-                <img src={recipe.imageUrl} alt={recipe.title} />
-              </div>
-              <div className="textContainer">
-                <h2>
-                  {recipe.title}, {recipe.avgRating}
-                </h2>
-              </div>
+      {recipeList
+        .filter(
+          (recipe) => recipe.avgRating !== undefined && recipe.avgRating >= 3
+        )
+        .sort((a, b) => (b.avgRating ?? 0) - (a.avgRating ?? 0))
+        .map((recipe) => (
+          <div
+            key={recipe._id}
+            className="recipe-card"
+            onClick={() => handleNavigate(recipe)}
+          >
+            <div className="first-card-div">
+              {" "}
+              {/* Image container */}
+              <img
+                className="display-recipe-img"
+                src={recipe.imageUrl}
+                alt={recipe.title}
+              />
+              <b className="card-category">
+                {recipe.avgRating?.toFixed(1) || "No rating"}
+              </b>
             </div>
-          ))}
-      </div>
+            <div className="second-card-div">
+              {" "}
+              {/* Content below the image */}
+              <h3>{recipe.title}</h3>
+            </div>
+          </div>
+        ))}
     </div>
   );
 };

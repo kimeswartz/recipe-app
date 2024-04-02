@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
-import globalCocktailFunctions from '../../state/CocktailAPICalls';
+import { useEffect } from "react";
+import globalCocktailFunctions from "../../state/CocktailAPICalls";
+import "../../styling/CocktailGrid.css"
 
 const DisplayAllCocktails = () => {
- 
   const { cocktailList, fetchAllCocktails } = globalCocktailFunctions();
 
   useEffect(() => {
@@ -10,17 +10,17 @@ const DisplayAllCocktails = () => {
   }, []);
 
   return (
-    <div>
+    <div className="cocktail-grid">
       <h2>All Cocktails</h2>
-      <ul>
-        {/* Loop through all cocktails and render them as list items */}
-        {cocktailList.map(cocktail => (
-          <li key={cocktail.idDrink}>
-            <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} style={{ width: '100px' }} />
+      <div className="cocktail-list">
+        {/* Loop through all cocktails and render them as cards */}
+        {cocktailList.map((cocktail) => (
+          <div key={cocktail.idDrink} className="cocktail-card">
+            <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
             <p>{cocktail.strDrink}</p>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
