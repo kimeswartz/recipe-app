@@ -1,6 +1,6 @@
 // CocktailPage.js
 import React, { useState, useEffect } from 'react';
-import globalCocktailFunctions from '../../state/CocktailAPICalls';
+import globalCocktailFunctions from '../../store/CocktailAPICalls';
 import '../../styling/CocktailGrid.css';
 import '../../styling/Ingredient.css'; 
 
