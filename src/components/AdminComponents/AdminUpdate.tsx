@@ -142,10 +142,10 @@ const UpdateRecipe = () => {
           <input
             type="text"
             value={searchTerms}
-            placeholder="Search recipes..."
+            placeholder="Sök recept..."
             onChange={(e) => handleInputChange(e.target.value)}
           />
-          <button onClick={handleClearSearch}>Clear</button>
+          <button onClick={handleClearSearch}>Rensa</button>
 
           {searchTerms.trim() !== "" && (
             <div className="suggestions">
