@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
-import "../styling/RecipiesByCategoryStyle.css";
+import "../styling/Cards.css";
 import allRecipeState from "../state/Endpoints";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
 
@@ -15,26 +15,34 @@ const RecipesByCategory = () => {
   };
 
   return (
-    <div className="recipeContainer">
-      <h1>{categoryName} recept</h1>
-      <div className="recipeList">
-        {categoryRecipeList.map((recipe) => (
-          <div
-            key={recipe._id}
-            className="recipeItem"
-            onClick={() => handleRecipeClick(recipe)}
-          >
-            <div className="imgContainer">
-              <img src={recipe.imageUrl} alt={recipe.title} />
-            </div>
-            <div className="textContainer">
-              <h3>{recipe.title}</h3>
-              <p>{recipe.description}</p>
-            </div>
-          </div>
-        ))}
+
+<div>
+  <h1>{categoryName} recept</h1>
+  <div className="card-grid">
+    {categoryRecipeList.map((recipe) => (
+      <div
+        className="recipe-card"
+        key={recipe._id}
+        onClick={() => handleRecipeClick(recipe)}
+      >
+        <div className="first-card-div">
+          {/* Image container */}
+          <img
+            className="display-recipe-img"
+            src={recipe.imageUrl}
+            alt={recipe.title}
+          />
+          <b className="card-category">{recipe.categories[0]}</b>
+        </div>
+        <div className="second-card-div">
+          {/* Assuming you want to display category as a badge */}
+          <h3>{recipe.title}</h3>
+        </div>
       </div>
-    </div>
+    ))}
+  </div>
+</div>
+
   );
 };
 
