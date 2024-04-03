@@ -53,17 +53,6 @@ const UploadRecipe = () => {
   const presetCategories = [
     "Breakfast",
     "Lunch",
-<<<<<<< HEAD
-    "Middag",
-    "Vegetarisk",
-    "Festlig",
-    "Asiatisk",
-    "Latin Amerikansk",
-  ];
-
-  // Present unit for ingredients
-  const presentIngredientsUnit = ["kg", "hg", "g", "l", "dl", "ml", "msk", "tsk", "krm", "st"];
-=======
     "Dinner",
     "Vegetarian",
     "Party",
@@ -73,7 +62,6 @@ const UploadRecipe = () => {
 
   // Present unit for ingredients
   const presentIngredientsUnit = ["l", "dl", "ml", "tbsp", "tsp", "g", "kg", "noOf"];
->>>>>>> 033f1e0280478853cb7cfb00d41181c8dc05b727
 
   // Function to handle category changes
   const handleCategoryChange = (selectedCategory: string) => {

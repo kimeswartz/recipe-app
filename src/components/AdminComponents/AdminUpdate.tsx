@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useState } from "react";
-import allRecipeState from "../../state/Endpoints";
+import allRecipeState from "../../store/Endpoints";
 
 const UpdateRecipe = () => {
   // Define the base URL for API requests
