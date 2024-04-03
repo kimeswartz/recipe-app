@@ -1,4 +1,3 @@
-import React from 'react'
 import DisplayIngredient from '../../components/CocktailComponents/DisplayIngredient'
 
 function Ingredient() {

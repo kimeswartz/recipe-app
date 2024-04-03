@@ -4,6 +4,7 @@ interface CocktailInterface {
   strDrinkThumb: string;
   strInstructions: string;
   strAlcoholic: string;
+  ingredients: { strIngredient: string }[];
 }
 
 export default CocktailInterface;

@@ -28,10 +28,14 @@ function DisplayIngredient() {
       />
       {oneIngredient.strIngredient && (
         <div className="display-ingredient-info">
-          <p className="ingredient-name">Ingredient name: {oneIngredient.strIngredient} </p>
-          <p className="ingredient-description">Ingredient Description: {oneIngredient.strDescription}</p>
-          <p className="ingredient-type">Ingredient Type: {oneIngredient.strAlcohol}</p>
-          <p>Ingredient ID: {oneIngredient.idIngredient}</p>
+          <h3 className="ingredient-name"> {oneIngredient.strIngredient} </h3>
+          <img
+            src={`https://www.thecocktaildb.com/images/ingredients/${oneIngredient.strIngredient}-Medium.png`}
+            alt={oneIngredient.strIngredient}
+            className="ingredient-image"
+          />
+          <p className="ingredient-type">Type of alcohol: {oneIngredient.strAlcohol}</p>
+          <p className="ingredient-description"> {oneIngredient.strDescription}</p>
         </div>
       )}
     </div>
