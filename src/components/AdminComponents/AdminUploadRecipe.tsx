@@ -137,7 +137,7 @@ const UploadRecipe = () => {
   ];
 
   // Present unit for ingredients
-  const presentIngredientsUnit = ["l", "dl", "ml", "msk", "tsk", "g", "kg", "st"];
+  const presentIngredientsUnit = ["kg", "hg", "g", "l", "dl", "ml", "msk", "tsk", "krm", "st"];
 
   // Function to handle category changes
   const handleCategoryChange = (selectedCategory: string) => {

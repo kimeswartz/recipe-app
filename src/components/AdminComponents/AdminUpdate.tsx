@@ -124,7 +124,7 @@ const UpdateRecipe = () => {
         setIngrediantUnit(firstIngredient.unit);
       }
     } else {
-      console.log("Error")
+      console.log("Error");
     }
   };
 
@@ -132,6 +132,10 @@ const UpdateRecipe = () => {
     setSearchTerms("");
     setSuggestions([]);
   };
+
+  const presentIngredientsUnit = [
+    "kg","hg","g","l","dl","ml","msk","tsk","krm","st",
+  ];
 
   // Return the UI for updating a recipe
   return (
@@ -278,7 +282,9 @@ const UpdateRecipe = () => {
               type="number"
               name="amount"
               value={ingrediantAmount}
-              onChange={(input) => setIngrediantAmount(input.target.valueAsNumber)}
+              onChange={(input) =>
+                setIngrediantAmount(input.target.valueAsNumber)
+              }
             />
           </label>
           <label className="update-label">
@@ -287,16 +293,11 @@ const UpdateRecipe = () => {
               value={ingrediantUnit}
               onChange={(input) => setIngrediantUnit(input.target.value)}
             >
-              <option value="kg">kg</option>
-              <option value="hg">hg</option>
-              <option value="gram">gram</option>
-              <option value="l">l</option>
-              <option value="dl">dl</option>
-              <option value="ml">ml</option>
-              <option value="msk">msk</option>
-              <option value="tsk">tsk</option>
-              <option value="krm">krm</option>
-              <option value="st">st</option>
+              {presentIngredientsUnit.map((unit, index) => (
+              <option key={index} value={unit}>
+                {unit}
+              </option>
+            ))}
             </select>
           </label>
           <br />
