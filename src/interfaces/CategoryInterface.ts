@@ -1,4 +1,4 @@
-export interface categoryInterface {
+export interface CategoryInterface {
   name: string;
   count: number;
 }

@@ -1,25 +1,24 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Homepage";
-import RecipesByCategory from "./components/RecipesByCategory";
-import DisplayOneRecipe from "./components/DisplayOneRecipe";
+import RecipesByCategory from "./components/recipe_components/RecipesByCategory";
+import DisplayOneRecipe from "./components/recipe_components/DisplayOneRecipe";
 import AdminPage from "./pages/AdminPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import RecipePageContent from "./pages/RecipePage";
 import FilterPage from "./pages/Filter";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import globalCartFunctions from "./state/Cart";
 import CartComponent from "./components/CartComponent";
 import PopularRecipes from "./pages/PopularRecipes";
 import AboutUsPage from "./pages/AboutUsPage";
-import CocktailLetterPage from "./components/CocktailComponents/CocktailLetterPage";
-import CocktailHomePage from "./pages/CocktailPages/CocktailHomePage";
+import CocktailLetterPage from "./components/cocktail_components/CocktailLetterPage";
+import CocktailHomePage from "./pages/CocktailHomePage";
 
-Modal.setAppElement('#root')
+Modal.setAppElement("#root");
 
 function App() {
-
   const { displayCart, toggleCart } = globalCartFunctions();
 
   return (
@@ -27,7 +26,7 @@ function App() {
       <BrowserRouter>
         <Navbar />
         <Modal
-          className='modal-cart-window'
+          className="modal-cart-window"
           isOpen={displayCart}
           onRequestClose={() => toggleCart(displayCart)}
           contentLabel="Example Modal"
@@ -35,7 +34,12 @@ function App() {
           <div>
             <nav className="navbar">
               <h2>Varukorg</h2>
-              <button className="main-button" onClick={() => toggleCart(displayCart)}>X</button>
+              <button
+                className="main-button"
+                onClick={() => toggleCart(displayCart)}
+              >
+                X
+              </button>
             </nav>
             <CartComponent />
           </div>
@@ -45,7 +49,10 @@ function App() {
           <Route path="/cocktails" element={<CocktailHomePage />} />
           <Route path="/filter" element={<FilterPage />} />
           <Route path="/" element={<Home />} />
-          <Route path="/category/:categoryName" element={<RecipesByCategory />} />
+          <Route
+            path="/category/:categoryName"
+            element={<RecipesByCategory />}
+          />
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
           <Route path="/adminpage" element={<AdminPage />} />
           <Route path="/recipes" element={<RecipePageContent />} />

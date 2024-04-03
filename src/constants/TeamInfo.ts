@@ -1,12 +1,12 @@
 import "../interfaces/TeamMemberInterface";
-import MalcolmImage from "../assets/TeamMemberImages/Malcolm.jpg";
-import HampusImage from "../assets/TeamMemberImages/Hampus.jpg";
-import PabloImage from "../assets/TeamMemberImages/PabloDiaz.jpg";
-import AliceImage from "../assets/TeamMemberImages/Alice.jpg";
-import ArashImage from "../assets/TeamMemberImages/Arash.jpg";
-import KimImage from "../assets/TeamMemberImages/kim.jpeg";
-import BilgeImage from "../assets/TeamMemberImages/bilge.jpg";
-import ChatGPTImage from "../assets/TeamMemberImages/chatGPTLogo.jpg";
+import MalcolmImage from "../assets/team_member_images/Malcolm.jpg";
+import HampusImage from "../assets/team_member_images/Hampus.jpg";
+import PabloImage from "../assets/team_member_images/PabloDiaz.jpg";
+import AliceImage from "../assets/team_member_images/Alice.jpg";
+import ArashImage from "../assets/team_member_images/Arash.jpg";
+import KimImage from "../assets/team_member_images/Kim.jpeg";
+import BilgeImage from "../assets/team_member_images/Bilge.jpg";
+import ChatGPTImage from "../assets/team_member_images/ChatGPTLogo.jpg";
 
 // Team members data/info
 const teamMembers: TeamMemberInterface[] = [
