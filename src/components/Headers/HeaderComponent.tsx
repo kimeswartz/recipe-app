@@ -1,8 +1,7 @@
-import React from 'react';
 import "../../styling/HeaderComponent.css";
 import RecipeSearch from '../SearchRecipe';
 
-const HeaderComponent: React.FC = () => {
+const HeaderComponent = () => {
   return (
     <header className="home-header">
       <div className="header-content">

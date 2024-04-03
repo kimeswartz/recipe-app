@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import "../styling/Cards.css";
-import allRecipeState from "../state/Endpoints";
+import allRecipeState from "../store/Endpoints";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
 
 const RecipesByCategory = () => {
