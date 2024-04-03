@@ -6,15 +6,18 @@ import axios from 'axios';
 import { cocktailURL } from '../constants/ApiUrl';
 import IngredientInterface from '../interfaces/CocktailInterfaces/IngredientInterface';
 
+
 interface CocktailStateInterface {
   cocktailList: CocktailInterface[];
   randomCocktail: CocktailInterface;
   oneCocktail: CocktailInterface;
   oneIngredient: IngredientInterface;
+  cocktailsByIngredient: CocktailInterface[];
   fetchCocktailByName: (cocktailName: string) => Promise<void>;
   fetchIngredient: (ingredientName: string) => Promise<void>;
   fetchRandomCocktail: () => Promise<void>;
   setOneCocktail: (cocktail: CocktailInterface) => void;
+  fetchCocktailsByIngredient: (ingredientByName: string) => Promise<void>;
 }
 
 const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
@@ -22,6 +25,7 @@ const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
   randomCocktail: {} as CocktailInterface,
   oneCocktail: {} as CocktailInterface,
   oneIngredient: {} as IngredientInterface,
+  cocktailsByIngredient:[],
 
   fetchCocktailByName: async(name) => {
     try{
@@ -43,6 +47,18 @@ const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
       }
     }catch(error){
       console.log('something went wrong:', error)
+    }
+  },
+
+  fetchCocktailsByIngredient: async(ingredientByName) => {
+    try{
+      const response = await axios.get(`${cocktailURL}/filter.php?i=${ingredientByName}`);
+      if(response.status === 200){
+        console.log(response.data.drinks[0])
+        set({cocktailsByIngredient: response.data.drinks})
+      }
+    }catch(error){
+      console.log("something went wrong:", error)
     }
   },
 

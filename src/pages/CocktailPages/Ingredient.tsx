@@ -2,7 +2,6 @@ import DisplayIngredient from '../../components/CocktailComponents/DisplayIngred
 
 function Ingredient() {
 
-
   return (
     <div>
       <DisplayIngredient />
