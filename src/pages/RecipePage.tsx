@@ -2,23 +2,20 @@ import CategorySuggestion from "../components/CategorySuggestion";
 import DisplayRecipes from "../components/DisplayAllRecipe";
 import HeaderRecipes from "../components/Headers/HeaderRecipes";
 
-
 const RecipePageContent = () => {
   return (
     <div>
-<HeaderRecipes />
+      <HeaderRecipes />
 
-<div className="category-conatiner">
-<CategorySuggestion />
+      <div className="category-conatiner">
+        <CategorySuggestion />
+      </div>
 
-</div>
+      <h2>All our recipes</h2>
 
-<h2>All our recipes</h2>
-
-        <DisplayRecipes />
-
+      <DisplayRecipes />
     </div>
   );
 };
 
-export default RecipePageContent
+export default RecipePageContent;
