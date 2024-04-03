@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import allRecipeState from '../state/Endpoints';
 import { useNavigate } from 'react-router-dom';
 import "../styling/SearchRecipe.css"
-import "../styling/AllRecipeStyle.css"
+import "../styling/Cards.css"
 import { RecipeInterface } from '../interfaces/RecipeInterface';
 
 const SearchRecipe = () => {

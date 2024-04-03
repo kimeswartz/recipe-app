@@ -1,21 +1,50 @@
-import { Link } from 'react-router-dom';
-import '../styling/Footer.css'; // Import your CSS file for styling
+import "../styling/Footer.css"; // Import your CSS file for styling
+import { To, useNavigate } from "react-router-dom";
 
 const Footer = () => {
+  const navigate = useNavigate();
+
+  const handleNavigation = (path: To) => {
+    navigate(path);
+    window.scrollTo(0, 0);
+  };
+
   return (
     <footer className="footer">
       <div className="footer-container">
         <nav className="footer-nav">
           <ul className="footer-nav-list">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/recipes">Recipes</Link></li>
-            <li><Link to="/search">Search</Link></li>
-            <li><Link to="/admin">Admin</Link></li>
+            <li>
+              <a onClick={() => handleNavigation("/")}>Home</a>
+            </li>
+            <li>
+              <a onClick={() => handleNavigation("/CategoryPage")}>
+                Categories
+              </a>
+            </li>
+            <li>
+              <a onClick={() => handleNavigation("/Cocktails")}>Cocktails</a>
+            </li>
+            <li>
+              <a onClick={() => handleNavigation("/Filter")}>Filter</a>
+            </li>
+            <li>
+              <a onClick={() => handleNavigation("/Recipes")}>Recipes</a>
+            </li>
+            <li>
+              <a onClick={() => handleNavigation("/AdminPage")}>Admin</a>
+            </li>
+            <li>
+              <a onClick={() => handleNavigation("/popular")}>Popular</a>
+            </li>
+            <li>
+              <a onClick={() => handleNavigation("/about")}>About Us</a>
+            </li>
           </ul>
         </nav>
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;

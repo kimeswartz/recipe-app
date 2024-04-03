@@ -2,11 +2,11 @@ import { useState } from "react";
 import allRecipeState from "../../state/Endpoints";
 import { RecipeInterface } from "../../interfaces/RecipeInterface";
 
-// Destructuring addRecipe function from the Zusand store, with direct acces to the function in /Endpoints
+// Destructuring addRecipe function from the Zusand store, with direct access to the function in /Endpoints
 const UploadRecipe = () => {
   const { addRecipe } = allRecipeState();
 
-// state to manage form data for uploading a recipe
+  // state to manage form data for uploading a recipe
   const [recipeData, setRecipeData] = useState<RecipeInterface>({
     title: "",
     description: "",
@@ -15,7 +15,6 @@ const UploadRecipe = () => {
     timeInMins: 0,
     categories: [],
     instructions: [],
-
     ingredients: [
       {
         name: "",
@@ -25,12 +24,7 @@ const UploadRecipe = () => {
     ],
   });
 
-  // Eventhandler function to handle input updates for recipe fields
-  // The function takes one parameter of type any
-  // name corresponds to the name attribute of the inoput field that triggered the event
-  // values represents the input from the user
-  // These values are used to update the components state based on user input
-
+  // Event handler function to handle input updates for recipe fields
   const handleInputUpdate = (input: any) => {
     const { name, value } = input.target;
 
@@ -40,11 +34,7 @@ const UploadRecipe = () => {
     }));
   };
 
-  // Function to add a new ingredient inout to the recipe, it takes three parameters
-  // index = the index of the ingredient in the ingredients array
-  // field = represents a specific property (amount)
-  // value = represents the value of unit
-  // Uses the hook setRecipeData to update the state of ingredients array
+  // Function to add a new ingredient input to the recipe
   const handleIngredientInput = (index: number, field: string, value: any) => {
     setRecipeData((prevData) => {
       const updatedIngredients = [...prevData.ingredients];
@@ -90,32 +80,49 @@ const UploadRecipe = () => {
   };
 
   // Function to handle form submission
-  // preventDefualt means the page won't reload, and no form data is sent to the server automatically.
   const handleSubmit = async (clickEvent: any) => {
     clickEvent.preventDefault();
 
+    try {
+      // Checking if any required fields are empty
+      if (
+        recipeData.title === "" ||
+        recipeData.description === "" ||
+        recipeData.imageUrl === "" ||
+        recipeData.timeInMins === 0 ||
+        recipeData.instructions.some((instruction: string) => instruction === "") ||
+        recipeData.ingredients.some(
+          (ingredient) => ingredient.name === "" || ingredient.amount === 0 || ingredient.unit === ""
+        ) ||
+        recipeData.categories.length === 0
+      ) {
+        throw new Error("Ett fält är tomt");
+      }
 
-    // Adding the recipe data to the database
-    addRecipe(recipeData);
+      // Adding the recipe data to the database
+      addRecipe(recipeData);
 
-    // Resetting the form fields after submission
-    setRecipeData({
-      title: "",
-      description: "",
-      ratings: [],
-      imageUrl: "",
-      timeInMins: 0,
-      categories: [],
-      instructions: [],
-
-      ingredients: [
-        {
-          name: "",
-          amount: 0,
-          unit: "",
-        },
-      ],
-    });
+      // Resetting the form fields after submission
+      setRecipeData({
+        title: "",
+        description: "",
+        ratings: [],
+        imageUrl: "",
+        timeInMins: 0,
+        categories: [],
+        instructions: [],
+        ingredients: [
+          {
+            name: "",
+            amount: 0,
+            unit: "",
+          },
+        ],
+      });
+    } catch (error) {
+      alert("Vänligen fyll i alla fält");
+      return;
+    }
   };
 
   // Preset categories for recipes
@@ -129,15 +136,16 @@ const UploadRecipe = () => {
     "Latin Amerikansk",
   ];
 
+  // Present unit for ingredients
+  const presentIngredientsUnit = ["l", "dl", "ml", "msk", "tsk", "g", "kg", "st"];
+
   // Function to handle category changes
   const handleCategoryChange = (selectedCategory: string) => {
     setRecipeData((prevData) => {
       let updatedCategories;
 
       if (prevData.categories.includes(selectedCategory)) {
-        updatedCategories = prevData.categories.filter(
-          (category) => category !== selectedCategory
-        );
+        updatedCategories = prevData.categories.filter((category) => category !== selectedCategory);
       } else {
         updatedCategories = [...prevData.categories, selectedCategory];
       }
@@ -152,11 +160,12 @@ const UploadRecipe = () => {
   return (
     <div>
       <section className="upload-container">
-        <h1 className="upload-title">Ladda upp recept</h1>
-        <form onSubmit={handleSubmit}>
+        <h1 className="upload-title">Upload Recipe</h1>
+        <form onSubmit={handleSubmit} >
           <label className="upload-label">
             Titel:
             <input
+              className="user-input"
               type="text"
               name="title"
               value={recipeData.title}
@@ -166,6 +175,7 @@ const UploadRecipe = () => {
           <label className="upload-label">
             Beskrivning:
             <input
+              className="user-input"
               type="text"
               name="description"
               value={recipeData.description}
@@ -175,6 +185,7 @@ const UploadRecipe = () => {
           <label className="upload-label">
             Bild URL:
             <input
+              className="user-input"
               type="text"
               name="imageUrl"
               value={recipeData.imageUrl}
@@ -184,6 +195,7 @@ const UploadRecipe = () => {
           <label className="upload-label">
             Tid i min:
             <input
+              className="user-input"
               type="number"
               name="timeInMins"
               value={recipeData.timeInMins}
@@ -211,6 +223,7 @@ const UploadRecipe = () => {
               <label className="upload-label">
                 Instruktioner {index + 1}:
                 <input
+                  className="user-input"
                   type="text"
                   value={instruction}
                   onChange={(e) =>
@@ -236,6 +249,7 @@ const UploadRecipe = () => {
               <label className="upload-label">
                 Ingrediens namn:
                 <input
+                  className="user-input"
                   type="text"
                   value={ingredient.name}
                   onChange={(enteredByUser) =>
@@ -248,9 +262,14 @@ const UploadRecipe = () => {
                 />
               </label>
 
+
+<div className="amount-unit-container">
+
+
               <label className="upload-label">
                 Antal:
                 <input
+                  className="user-input"
                   type="number"
                   value={ingredient.amount}
                   onChange={(enteredByUser) =>
@@ -264,19 +283,28 @@ const UploadRecipe = () => {
               </label>
 
               <label className="upload-label">
-                Enhet:
-                <input
-                  type="text"
+                Unit:
+                <select
+                  className="user-input"
                   value={ingredient.unit}
-                  onChange={(enteredByUser) =>
+                  onChange={(selectedByUser) =>
                     handleIngredientInput(
                       index,
                       "unit",
-                      enteredByUser.target.value
+                      selectedByUser.target.value
                     )
                   }
-                />
+                >
+                  {presentIngredientsUnit.map((unit, index) => (
+                    <option key={index} value={unit}>
+                      {unit}
+                    </option>
+                  ))}
+                </select>
               </label>
+
+              </div>
+
             </div>
           ))}
 
@@ -288,9 +316,11 @@ const UploadRecipe = () => {
             Lägg till ingrediens
           </button>
 
+<div className="button-container">
           <button className="upload-button" type="submit">
             Skicka recept till databas
           </button>
+          </div>
         </form>
       </section>
     </div>

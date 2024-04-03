@@ -1,35 +1,26 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect } from "react";
+import globalCocktailFunctions from "../../state/CocktailAPICalls";
+import "../../styling/CocktailGrid.css"
 
 const DisplayAllCocktails = () => {
-  const [cocktails, setCocktails] = useState<any[]>([]); // Here we store cocktails fetched from the API
+  const { cocktailList } = globalCocktailFunctions(); //vet inte om denna behövs längre
 
   useEffect(() => {
-    const fetchCocktails = async () => {
-      try {
-        // Fetch all cocktails from the API when the component mounts
-        const response = await axios.get('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-        setCocktails(response.data.drinks); // Save cocktails in state
-      } catch (error) {
-        console.error('Error fetching cocktails:', error);
-      }
-    };
-
-    fetchCocktails(); // Call the function to fetch cocktails when the component mounts
+    //brukade fetcha allCocktails här
   }, []);
 
   return (
-    <div>
+    <div className="cocktail-grid">
       <h2>All Cocktails</h2>
-      <ul>
-        {/* Loop through all cocktails and render them as list items */}
-        {cocktails.map(cocktail => (
-          <li key={cocktail.idDrink}>
-            <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} style={{ width: '100px' }} />
+      <div className="cocktail-list">
+        {/* Loop through all cocktails and render them as cards */}
+        {cocktailList.map((cocktail) => (
+          <div key={cocktail.idDrink} className="cocktail-card">
+            <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
             <p>{cocktail.strDrink}</p>
-          </li>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };
