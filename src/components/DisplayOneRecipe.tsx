@@ -9,7 +9,7 @@ import globalCartFunctions from "../store/Cart";
 import "../styling/RecipepageStyle.css";
 
 // Component for displaying a single recipe
-const DisplayOneRecipe= () => {
+const DisplayOneRecipe = () => {
   // Destructuring state and function from the state management
   const { oneRecipe, fetchOneRecipe, addRating, fetchComments, addComment, recipeComment } = allRecipeState();
   const { addRecipeToCart } = globalCartFunctions();
