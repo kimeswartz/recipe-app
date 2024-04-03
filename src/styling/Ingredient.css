@@ -1,0 +1,33 @@
+/* Styles för container */
+.display-ingredient-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.display-ingredient-info {
+  background-color: #f9f9f9;
+  border-radius: 5px;
+  padding: 15px;
+  margin-top: 20px;
+}
+
+
+.display-ingredient-info p {
+  margin-bottom: 10px;
+}
+
+
+.display-ingredient-info .ingredient-name {
+  font-weight: bold;
+}
+
+
+.display-ingredient-info .ingredient-description {
+  font-style: italic;
+}
+
+
+.display-ingredient-info .ingredient-type {
+  font-weight: bold;
+}
