@@ -10,7 +10,7 @@ const UploadRecipe = () => {
 
   const { recipe, setTitle, setDescription, setImageUrl, setTimeInMins, setCategories, setInstructions, setIngredients } = uploadUpdateRecipeState();
 
-  const [categoryList, setCategoryList] = useState<string[]>([]);
+  const [ instructions, setCurrentInstructions ] = useState('');
 
 
   // Function to handle form submission
@@ -61,37 +61,12 @@ const UploadRecipe = () => {
     setCategories(updatedCategories);
   };
 
-  const handleInstructionsChange = (newInstruction: string) => {
-    const updatedInstructions = recipe.instructions.includes(newInstruction)
-      ? recipe.instructions.filter(instruction => instruction !== newInstruction)
-      : [...recipe.instructions, newInstruction];
-
-    updatedInstructions.filter(instruction => instruction === '')
-
-    setInstructions(updatedInstructions);
-  }
-
-  const handleIngredientChange = (index: number, field: string, value: string | number) => {
-    const updatedIngredients = [...recipe.ingredients];
-    updatedIngredients[index] = {
-      ...updatedIngredients[index],
-      [field]: value,
-    }
-    setIngredients(updatedIngredients)
-  }
-
   const handleAddIngredient = () => {
-    const newIngredient = { name: '', amount: 0, unit: '' };
-    const updatedIngredients = [...recipe.ingredients, newIngredient];
-    setIngredients(updatedIngredients);
+    
   };
 
-
-
   const handleAddInstruction = () => {
-    const newInstruction = '';
-    const updatedInstructions = [...recipe.instructions, newInstruction];
-    setInstructions(updatedInstructions)
+    
   };
 
   return (
@@ -105,6 +80,7 @@ const UploadRecipe = () => {
               className="user-input"
               type="text"
               name="title"
+              value={recipe.title}
               onChange={(input) => setTitle(input.target.value)}
             />
           </label>
@@ -114,6 +90,7 @@ const UploadRecipe = () => {
               className="user-input"
               type="text"
               name="description"
+              value={recipe.description}
               onChange={(input) => setDescription(input.target.value)}
             />
           </label>
@@ -123,6 +100,7 @@ const UploadRecipe = () => {
               className="user-input"
               type="text"
               name="imageUrl"
+              value={recipe.imageUrl}
               onChange={(input) => setImageUrl(input.target.value)}
             />
           </label>
@@ -132,6 +110,7 @@ const UploadRecipe = () => {
               className="user-input"
               type="number"
               name="timeInMins"
+              value={recipe.timeInMins}
               onChange={(input) => setTimeInMins(parseInt(input.target.value))}
             />
           </label>
@@ -151,19 +130,17 @@ const UploadRecipe = () => {
           ))}
 
           <h2 className="upload-h2">Instructions</h2>
-          {recipe.instructions.map((instruction, index) => (
-            <div key={index}>
+            <div>
               <label className="upload-label">
-                Instruction {index + 1}:
-                <input
-                  className="user-input"
-                  type="text"
-                  value={instruction}
-                  onChange={(e) => handleInstructionsChange(e.target.value)}
+                Instruction:
+                <input 
+                  type="text" 
+                  name="instruction" 
+                  value={instructions}
+                  
                 />
               </label>
             </div>
-          ))}
           <button
             className="upload-button"
             type="button"
@@ -174,7 +151,7 @@ const UploadRecipe = () => {
 
           <br />
 
-          <h2 className="upload-h2">Ingredients</h2>
+          {/* <h2 className="upload-h2">Ingredients</h2>
           {recipe.ingredients.map((ingredient, index) => (
             <div key={index}>
               <label className="upload-label">
@@ -224,7 +201,7 @@ const UploadRecipe = () => {
             onClick={handleAddIngredient}
           >
             Add Ingredient
-          </button>
+          </button> */}
 
           <div className="button-container">
             <button className="upload-button" type="submit">
