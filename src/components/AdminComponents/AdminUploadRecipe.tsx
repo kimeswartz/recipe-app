@@ -2,19 +2,17 @@ import { useState } from "react";
 import allRecipeState from "../../store/Endpoints";
 import uploadUpdateRecipeState from "../../store/UpdateAndUpload";
 
-// Destructuring addRecipe function from the Zusand store, with direct access to the function in /Endpoints
 const UploadRecipe = () => {
+
   const { addRecipe } = allRecipeState();
+  const { recipe, setTitle, setDescription, setImageUrl, setTimeInMins, setCategories, setInstructions, setIngredients, emptyRecipe } = uploadUpdateRecipeState();
 
-  // state to manage form data for uploading a recipe
+  const [userInputInstructions, setUserInstructions] = useState('')
 
-  const { recipe, setTitle, setDescription, setImageUrl, setTimeInMins, setCategories, setInstructions, setIngredients } = uploadUpdateRecipeState();
-
-  const [ instructions, setCurrentInstructions ] = useState('');
-
+  const [newIngredient, setNewIngredient] = useState({ name: '', amount: 0, unit: '' })
 
   // Function to handle form submission
-  const handleSubmit = async (clickEvent: any) => {
+  const handleSubmit = (clickEvent: any) => {
     clickEvent.preventDefault();
 
     if (
@@ -30,12 +28,10 @@ const UploadRecipe = () => {
     ) {
       alert('Ett eller flera fält är tomma')
     } else {
+      console.log(recipe)
       addRecipe(recipe);
+      emptyRecipe()
     }
-
-    // Adding the recipe data to the database
-
-    // Resetting the form fields after submission
   };
 
   // Preset categories for recipes
@@ -61,13 +57,15 @@ const UploadRecipe = () => {
     setCategories(updatedCategories);
   };
 
-  const handleAddIngredient = () => {
-    
-  };
+  const handleSubmitInstruction = () => {
+    setInstructions(userInputInstructions)
+    setUserInstructions('');
+  }
 
-  const handleAddInstruction = () => {
-    
-  };
+  const handleSubmitIngredient = () => {
+    setIngredients(newIngredient)
+    setNewIngredient({ name: '', amount: 0, unit: '' })
+  }
 
   return (
     <div>
@@ -129,79 +127,101 @@ const UploadRecipe = () => {
             </label>
           ))}
 
+          <div>
+            <ul>
+              {recipe.instructions?.map((instruction, instructionNumber) => {
+                return (
+                  <li key={instructionNumber}>{instructionNumber + 1}:{instruction}</li>
+                )
+              })}
+            </ul>
+          </div>
+
           <h2 className="upload-h2">Instructions</h2>
-            <div>
-              <label className="upload-label">
-                Instruction:
-                <input 
-                  type="text" 
-                  name="instruction" 
-                  value={instructions}
-                  
-                />
-              </label>
-            </div>
+          <div>
+            <label className="upload-label">
+              Instruction :
+              <input
+                className="user-input"
+                type="text"
+                name="instruction"
+                value={userInputInstructions}
+                onChange={(input) => setUserInstructions(input.target.value)}
+              />
+            </label>
+          </div>
           <button
             className="upload-button"
             type="button"
-            onClick={handleAddInstruction}
+            onClick={() => handleSubmitInstruction()}
           >
             Add Instruction
           </button>
 
           <br />
 
-          {/* <h2 className="upload-h2">Ingredients</h2>
-          {recipe.ingredients.map((ingredient, index) => (
-            <div key={index}>
+          <div>
+            <ul>
+              {recipe.ingredients?.map((ingredientInfo, ingredientKey) => {
+                return (
+                  <li key={ingredientKey}>
+                    {ingredientInfo.name} | {ingredientInfo.amount} | {ingredientInfo.unit}
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+
+          <h2 className="upload-h2">Ingredients</h2>
+
+          <div>
+            <label className="upload-label">
+              Ingredient Name:
+              <input
+                className="user-input"
+                type="text"
+                value={newIngredient.name}
+                onChange={(input) => setNewIngredient({ ...newIngredient, name: input.target.value })}
+              />
+            </label>
+
+            <div className="amount-unit-container">
               <label className="upload-label">
-                Ingredient Name:
+                Amount:
                 <input
                   className="user-input"
-                  type="text"
-                  value={ingredient.name}
-                  onChange={(input) => handleIngredientChange(index, 'name', input.target.value)}
+                  type="number"
+                  value={newIngredient.amount}
+                  onChange={(input) => setNewIngredient({ ...newIngredient, amount: +input.target.value })}
                 />
               </label>
 
-              <div className="amount-unit-container">
-                <label className="upload-label">
-                  Amount:
-                  <input
-                    className="user-input"
-                    type="number"
-                    value={ingredient.amount}
-                    onChange={(enteredByUser) => handleIngredientChange(index, "amount", enteredByUser.target.value)}
-                  />
-                </label>
-
-                <label className="upload-label">
-                  Unit:
-                  <select
-                    className="user-input"
-                    value={ingredient.unit}
-                    onChange={(selectedByUser) => handleIngredientChange(index, "unit", selectedByUser.target.value)}
-                  >
-                    {presentIngredientsUnit.map((unit, index) => (
-                      <option key={index} value={unit}>
-                        {unit}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-
-              </div>
+              <label className="upload-label">
+                Unit:
+                <select
+                  className="user-input"
+                  defaultValue=""
+                  onChange={(input) => setNewIngredient({ ...newIngredient, unit: input.target.value })}
+                >
+                  <option disabled hidden></option>
+                  {presentIngredientsUnit.map((unit, index) => (
+                    <option key={index} value={unit}>
+                      {unit}
+                    </option>
+                  ))}
+                </select>
+              </label>
 
             </div>
-          ))}
 
+          </div>
           <button
             className="upload-button"
             type="button"
-            onClick={handleAddIngredient}
+            onClick={() => handleSubmitIngredient()}
           >
             Add Ingredient
-          </button> */}
+          </button>
 
           <div className="button-container">
             <button className="upload-button" type="submit">

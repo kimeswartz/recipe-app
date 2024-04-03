@@ -9,8 +9,8 @@ interface globalRecipeState{
   setImageUrl: (newImageUrl: string) => void;
   setTimeInMins: (newTimeInMins: number) => void;
   setCategories: (newCategories: string[]) => void;
-  setInstructions: (newInstructions: string[]) => void;
-  setIngredients: (newIngredients: RecipeInterface['ingredients']) => void;
+  setInstructions: (newInstructions: string) => void;
+  setIngredients: (newIngredient: {name: string, amount: number, unit: string}) => void;
   emptyRecipe: () => void;
   addNewRecipe: () => void;
   updateOldRecipe: (id: string) => void;
@@ -30,26 +30,29 @@ const initialRecipe: RecipeInterface = {
 const uploadUpdateRecipeState = create<globalRecipeState>((set) => ({
   recipe: { ...initialRecipe },
 
-  setTitle: (newTitle: string) =>
+  setTitle: (newTitle) =>
     set((state) => ({ recipe: { ...state.recipe, title: newTitle } })),
 
-  setDescription: (newDescription: string) =>
+  setDescription: (newDescription) =>
     set((state) => ({ recipe: { ...state.recipe, description: newDescription } })),
 
-  setImageUrl: (newImageUrl: string) =>
+  setImageUrl: (newImageUrl) =>
     set((state) => ({ recipe: { ...state.recipe, imageUrl: newImageUrl } })),
 
-  setTimeInMins: (newTimeInMins: number) =>
+  setTimeInMins: (newTimeInMins) =>
     set((state) => ({ recipe: { ...state.recipe, timeInMins: newTimeInMins } })),
 
-  setCategories: (newCategories: string[]) =>
-    set((state) => ({ recipe: { ...state.recipe, categories: newCategories } })),
-
-  setInstructions: (newInstructions: string[]) =>
-    set((state) => ({ recipe: { ...state.recipe, instructions: newInstructions } })),
-
-  setIngredients: (newIngredients: RecipeInterface['ingredients']) =>
-    set((state) => ({ recipe: { ...state.recipe, ingredients: newIngredients } })),
+  setCategories: (newCategories) => {
+    set((state) => ({ recipe: { ...state.recipe, categories: newCategories } }))
+  },
+    
+  setInstructions: (newInstructions) => {
+    set((state) => ({ recipe: { ...state.recipe, instructions: [...state.recipe.instructions, newInstructions] } }))
+  },
+    
+  setIngredients: (newIngredients) => {
+    set((state) => ({ recipe: { ...state.recipe, ingredients: [...state.recipe.ingredients, newIngredients ] } }))
+  },
     
   emptyRecipe: () => set({ recipe: { ...initialRecipe } }),
 
@@ -57,7 +60,7 @@ const uploadUpdateRecipeState = create<globalRecipeState>((set) => ({
     allRecipeState.getState().addRecipe(uploadUpdateRecipeState.getState().recipe)
   },
 
-  updateOldRecipe: (id: string) => {
+  updateOldRecipe: (id) => {
     allRecipeState.getState().updateRecipe(uploadUpdateRecipeState.getState().recipe, id)
   },
 
