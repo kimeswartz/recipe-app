@@ -5,7 +5,8 @@ import allRecipeState from "../state/Endpoints";
 
 const CategorySuggestion = () => {
   const navigate = useNavigate();
-  const { categoryList, recipeList, fetchAllCategories, fetchOneCategory } = allRecipeState();
+  const { categoryList, recipeList, fetchAllCategories, fetchOneCategory } =
+    allRecipeState();
 
   // To fetch all categories when component first loads or when the categoryList changes
   useEffect(() => {
@@ -20,19 +21,19 @@ const CategorySuggestion = () => {
   };
 
   return (
-<div className="tag-grid category-suggestion-container">
-  {categoryList.map((category, index) => (
-    <div
-      key={index}
-      onClick={() => handleCategoryClick(category.name)}
-      className="recipe-tag category"
-    >
-      <div className="tag-div">
-      <h3>{category.name}</h3>
-      </div>
+    <div className="tag-grid category-suggestion-container">
+      {categoryList.map((category, index) => (
+        <div
+          key={index}
+          onClick={() => handleCategoryClick(category.name)}
+          className="recipe-tag category"
+        >
+          <div className="tag-div">
+            <h3>{category.name}</h3>
+          </div>
+        </div>
+      ))}
     </div>
-  ))}
-</div>
   );
 };
 
