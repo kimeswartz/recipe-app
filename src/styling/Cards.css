@@ -68,7 +68,6 @@
   color: #009e74;
 }
 
-
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .recipe-card {
