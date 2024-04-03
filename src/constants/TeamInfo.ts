@@ -44,7 +44,7 @@ const teamMembers: TeamMemberInterface[] = [
 
   {
     name: "Alice",
-    jobTitle: "Developer/ After-Work Coordinator",
+    jobTitle: "Developer / After-Work Coordinator",
     description:
       "When I'm not busy being a reliable and committed developer on the team, I take the role of after-work coordinator seriously. Through organizing social activities, I facilitate team bonding, which in turn cultivates stronger relationships and enhances collaboration within our work environment. Outside of work, I love exploring Stockholm, whether it's a leisurely walk through the city streets or sharing a meal together with friends and colleagues. You can often find me at a cozy café or a wine bar.",
     image: AliceImage,
