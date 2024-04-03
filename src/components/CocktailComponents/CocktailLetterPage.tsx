@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CocktailInterface from '../../interfaces/CocktailInterfaces/CocktailInterface';
-import { useParams } from 'react-router-dom'; 
-import ListCocktailsAlphabet from './ListCocktailsAlphabet'; 
+import { useParams } from 'react-router-dom';
+import ListCocktailsAlphabet from './ListCocktailsAlphabet';
 import "../../styling/CocktailGrid.css"
 
 const CocktailLetterPage = () => {
@@ -33,18 +33,18 @@ const CocktailLetterPage = () => {
   }, [letter]);
 
   return (
-<div className="cocktail-grid">
-  <h2>Cocktails starting with {letter}</h2>
-  <ListCocktailsAlphabet />
-  <ul className="cocktail-list">
-    {cocktails.map((cocktail) => (
-      <li key={cocktail.idDrink} className="cocktail-card">
-        <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
-        <p>{cocktail.strDrink}</p>
-      </li>
-    ))}
-  </ul>
-</div>
+    <div className="cocktail-grid">
+      <h2>Cocktails starting with {letter}</h2>
+      <ListCocktailsAlphabet />
+      <ul className="cocktail-list">
+        {cocktails.map((cocktail) => (
+          <li key={cocktail.idDrink} className="cocktail-card">
+            <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
+            <p>{cocktail.strDrink}</p>
+          </li>
+        ))}
+      </ul>
+    </div>
 
   );
 };

@@ -20,19 +20,19 @@ const CategorySuggestion = () => {
   };
 
   return (
-<div className="tag-grid category-suggestion-container">
-  {categoryList.map((category, index) => (
-    <div
-      key={index}
-      onClick={() => handleCategoryClick(category.name)}
-      className="recipe-tag category"
-    >
-      <div className="tag-div">
-      <h3>{category.name}</h3>
-      </div>
+    <div className="tag-grid category-suggestion-container">
+      {categoryList.map((category, index) => (
+        <div
+          key={index}
+          onClick={() => handleCategoryClick(category)}
+          className="recipe-tag category"
+        >
+          <div className="tag-div">
+            <h3>{category}</h3>
+          </div>
+        </div>
+      ))}
     </div>
-  ))}
-</div>
   );
 };
 

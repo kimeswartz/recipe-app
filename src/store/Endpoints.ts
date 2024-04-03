@@ -3,7 +3,6 @@
 import { create } from "zustand";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
 import axios from "axios";
-import { categoryInterface } from "../interfaces/CategoryInterface";
 import { CommentInterface } from "../interfaces/CommentInterface";
 import URL from "../constants/RecipeApi";
 
@@ -11,7 +10,7 @@ interface recipeStateInterface {
   recipeList: RecipeInterface[];
   oneRecipe: RecipeInterface;
   recipeComment: CommentInterface[];
-  categoryList: categoryInterface[];
+  categoryList: [];
   categoryRecipeList: RecipeInterface[];
   setOneRecipe: (recipe: RecipeInterface) => void;
   fetchAllRecipes: () => Promise<void>;
@@ -71,7 +70,8 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
       const response = await axios.get(`${URL}/categories`);
       if (response.status === 200) {
         console.log("Successfull get");
-        set({ categoryList: response.data });
+        const categoryNames = response.data.map((category: any) => category.name)
+        set({ categoryList: categoryNames });
       }
     } catch (error) {
       console.error("Error fetching all categories", error);
