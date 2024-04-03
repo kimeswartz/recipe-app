@@ -1,6 +1,5 @@
 import { create } from "zustand";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
-import allRecipeState from "./Endpoints";
 
 interface globalRecipeState{
   recipe: RecipeInterface;
@@ -11,9 +10,9 @@ interface globalRecipeState{
   setCategories: (newCategories: string[]) => void;
   setInstructions: (newInstructions: string) => void;
   setIngredients: (newIngredient: {name: string, amount: number, unit: string}) => void;
+  removeInstruction: (position: number) => void;
+  removeIngredient: (position: number) => void;
   emptyRecipe: () => void;
-  addNewRecipe: () => void;
-  updateOldRecipe: (id: string) => void;
 }
 
 const initialRecipe: RecipeInterface = {
@@ -53,17 +52,28 @@ const uploadUpdateRecipeState = create<globalRecipeState>((set) => ({
   setIngredients: (newIngredients) => {
     set((state) => ({ recipe: { ...state.recipe, ingredients: [...state.recipe.ingredients, newIngredients ] } }))
   },
+
+  removeInstruction: (position) => {
+    set((prevState) => ({
+      prevState,
+      recipe: {
+        ...prevState.recipe,
+        instructions: prevState.recipe.instructions.filter((_, index) => index !== position)
+      }
+    }))
+  },
+
+  removeIngredient: (position) => {
+    set((prevState) => ({
+      prevState,
+      recipe: {
+        ...prevState.recipe,
+        ingredients: prevState.recipe.ingredients.filter((_, index) => index !== position)
+      }
+    }))
+  },
     
   emptyRecipe: () => set({ recipe: { ...initialRecipe } }),
-
-  addNewRecipe: () => {
-    allRecipeState.getState().addRecipe(uploadUpdateRecipeState.getState().recipe)
-  },
-
-  updateOldRecipe: (id) => {
-    allRecipeState.getState().updateRecipe(uploadUpdateRecipeState.getState().recipe, id)
-  },
-
 }))
 
 export default uploadUpdateRecipeState;

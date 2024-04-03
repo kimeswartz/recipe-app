@@ -34,7 +34,7 @@ function App() {
         >
           <div>
             <nav className="navbar">
-              <h2>Varukorg</h2>
+              <h2>Shopping List</h2>
               <button className="main-button" onClick={() => toggleCart(displayCart)}>X</button>
             </nav>
             <CartComponent />

@@ -6,7 +6,7 @@ import "../styling/Cards.css"
 import { RecipeInterface } from '../interfaces/RecipeInterface';
 
 const SearchRecipe = () => {
-  const { recipeList, fetchAllRecipes } = allRecipeState();
+  const { recipeList, fetchAllRecipes, setOneRecipe } = allRecipeState();
   const [searchTerms, setSearchTerms] = useState<string>('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
@@ -17,6 +17,7 @@ const SearchRecipe = () => {
   }, []);
 
   const handleNavigate = (recipe: RecipeInterface) => {
+    setOneRecipe(recipe);
     navigate(`/recipe/${recipe._id}`);
   }
 
@@ -60,17 +61,6 @@ const SearchRecipe = () => {
     setSuggestions([]);
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      performSearch();
-      // Navigate to the recipe page
-      const selectedRecipe = recipeList.find(recipe => recipe.title.toLowerCase() === searchTerms.toLowerCase());
-      if (selectedRecipe) {
-        handleNavigate(selectedRecipe);
-      }
-    }
-  };
-
   const filteredRecipes = recipeList.filter(recipe =>
     searchTerms.split(' ').every(term =>
       recipe.title.toLowerCase().includes(term.toLowerCase())
@@ -85,7 +75,6 @@ const SearchRecipe = () => {
           value={searchTerms}
           placeholder='Search recipes...'
           onChange={(e) => handleInputChange(e.target.value)}
-          onKeyPress={handleKeyPress}
         />
         {searchTerms.trim() !== '' ? (
           <button onClick={handleClearSearch}>Clear</button>

@@ -1,11 +1,26 @@
+//Malmcolm + Kim + Hampus
+
 import { useState } from "react";
 import allRecipeState from "../../store/Endpoints";
 import uploadUpdateRecipeState from "../../store/UpdateAndUpload";
+import '../../styling/AdminPage.css'
 
 const UploadRecipe = () => {
 
   const { addRecipe } = allRecipeState();
-  const { recipe, setTitle, setDescription, setImageUrl, setTimeInMins, setCategories, setInstructions, setIngredients, emptyRecipe } = uploadUpdateRecipeState();
+  const {
+    recipe,
+    setTitle,
+    setDescription,
+    setImageUrl,
+    setTimeInMins,
+    setCategories,
+    setInstructions,
+    setIngredients,
+    removeInstruction,
+    removeIngredient,
+    emptyRecipe
+  } = uploadUpdateRecipeState();
 
   const [userInputInstructions, setUserInstructions] = useState('')
 
@@ -22,11 +37,11 @@ const UploadRecipe = () => {
       recipe.timeInMins === 0 ||
       recipe.instructions.some((instruction: string) => instruction === "") ||
       recipe.ingredients.some(
-        (ingredient) => ingredient.name === "" || ingredient.amount === 0 || ingredient.unit === ""
+        (ingredient) => ingredient.name === "" || ingredient.amount <= 0 || ingredient.unit === ""
       ) ||
       recipe.categories.length === 0
     ) {
-      alert('Ett eller flera fält är tomma')
+      alert('One or more fields are empty')
     } else {
       console.log(recipe)
       addRecipe(recipe);
@@ -58,13 +73,21 @@ const UploadRecipe = () => {
   };
 
   const handleSubmitInstruction = () => {
-    setInstructions(userInputInstructions)
-    setUserInstructions('');
+    if (userInputInstructions === '') {
+      alert('field is empty')
+    } else {
+      setInstructions(userInputInstructions)
+      setUserInstructions('');
+    }
   }
 
   const handleSubmitIngredient = () => {
-    setIngredients(newIngredient)
-    setNewIngredient({ name: '', amount: 0, unit: '' })
+    if (newIngredient.name === '' || newIngredient.amount <= 0 || newIngredient.unit === '') {
+      alert('one ore more fields are empty')
+    } else {
+      setIngredients(newIngredient)
+      setNewIngredient({ name: '', amount: 0, unit: '' })
+    }
   }
 
   return (
@@ -131,7 +154,12 @@ const UploadRecipe = () => {
             <ul>
               {recipe.instructions?.map((instruction, instructionNumber) => {
                 return (
-                  <li key={instructionNumber}>{instructionNumber + 1}:{instruction}</li>
+                  <li key={instructionNumber}>
+                    {instructionNumber + 1}:{instruction}
+                    <button onClick={() => removeInstruction(instructionNumber)} className="main-button">
+                      X
+                    </button>
+                  </li>
                 )
               })}
             </ul>
@@ -159,13 +187,15 @@ const UploadRecipe = () => {
           </button>
 
           <br />
-
           <div>
             <ul>
               {recipe.ingredients?.map((ingredientInfo, ingredientKey) => {
                 return (
                   <li key={ingredientKey}>
                     {ingredientInfo.name} | {ingredientInfo.amount} | {ingredientInfo.unit}
+                    <button onClick={() => removeIngredient(ingredientKey)} className="main-button">
+                      X
+                    </button>
                   </li>
                 )
               })}
@@ -173,7 +203,6 @@ const UploadRecipe = () => {
           </div>
 
           <h2 className="upload-h2">Ingredients</h2>
-
           <div>
             <label className="upload-label">
               Ingredient Name:
@@ -211,9 +240,7 @@ const UploadRecipe = () => {
                   ))}
                 </select>
               </label>
-
             </div>
-
           </div>
           <button
             className="upload-button"

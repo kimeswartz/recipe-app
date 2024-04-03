@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import CocktailInterface from '../interfaces/CocktailInterfaces/CocktailInterface';
 import Slider from 'react-slick';
 
-function CocktailSlider() {
+const CocktailSlider = () => {
   
   const [randomCocktail, setRandomCocktail] = useState<CocktailInterface[]>([]);
 

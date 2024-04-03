@@ -20,7 +20,7 @@ const CartComponent = () => {
     return (
       <div className="centered-tags">
         <div className="info-tag">
-          <h1>Varukorgen är tom!</h1>
+          <h1>Nothing added yet!</h1>
         </div>
       </div>
     )
