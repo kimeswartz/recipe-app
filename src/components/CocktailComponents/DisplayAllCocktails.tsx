@@ -3,10 +3,10 @@ import globalCocktailFunctions from "../../state/CocktailAPICalls";
 import "../../styling/CocktailGrid.css"
 
 const DisplayAllCocktails = () => {
-  const { cocktailList, fetchAllCocktails } = globalCocktailFunctions();
+  const { cocktailList } = globalCocktailFunctions(); //vet inte om denna behövs längre
 
   useEffect(() => {
-    fetchAllCocktails();
+    //brukade fetcha allCocktails här
   }, []);
 
   return (
