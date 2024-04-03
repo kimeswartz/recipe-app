@@ -1,6 +1,6 @@
 import "../styling/NavbarStyle.css";
 import { To, useNavigate } from "react-router-dom";
-import globalCartFunctions from "../state/Cart"
+import globalCartFunctions from "../store/Cart"
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Navbar = () => {
         <a onClick={() => handleNavigation("/Recipes")}>Recipes</a>
         <a onClick={() => handleNavigation("/AdminPage")}>Admin</a>
         <a onClick={() => handleNavigation("/popular")}>Popular</a>
-        <button className="main-button" onClick={() => toggleCart(displayCart)}>Favoriter</button>
+        <button className="main-button" onClick={() => toggleCart(displayCart)}>Shopping list</button>
       </div>
     </div>
   );

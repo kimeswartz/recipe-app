@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Slider from 'react-slick'; 
 import 'slick-carousel/slick/slick.css'; 
@@ -8,7 +8,7 @@ import "../styling/SliderStyle.css"
 import { useNavigate } from 'react-router-dom'; // Importera useNavigate här
 import { RecipeInterface } from '../interfaces/RecipeInterface';
 
-const RecipeSlider: React.FC = () => {
+const RecipeSlider = () => {
   
   const [randomRecipes, setRandomRecipes] = useState<RecipeInterface[]>([]);
   const navigate = useNavigate(); // Använd useNavigate för att få navigationsfunktionen
