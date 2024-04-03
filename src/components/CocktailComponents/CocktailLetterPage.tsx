@@ -3,6 +3,7 @@ import axios from 'axios';
 import CocktailInterface from '../../interfaces/CocktailInterfaces/CocktailInterface';
 import { useParams } from 'react-router-dom'; 
 import ListCocktailsAlphabet from './ListCocktailsAlphabet'; 
+import "../../styling/CocktailGrid.css"
 
 const CocktailLetterPage: React.FC = () => {
   const { letter } = useParams<{ letter: string | undefined }>();
@@ -32,18 +33,19 @@ const CocktailLetterPage: React.FC = () => {
   }, [letter]);
 
   return (
-    <div>
-      <h2>Cocktails starting with {letter}</h2>
-      <ListCocktailsAlphabet />
-      <ul>
-        {cocktails.map((cocktail) => (
-          <li key={cocktail.idDrink}>
-            <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} style={{ width: '100px' }} />
-            <p>{cocktail.strDrink}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
+<div className="cocktail-grid">
+  <h2>Cocktails starting with {letter}</h2>
+  <ListCocktailsAlphabet />
+  <ul className="cocktail-list">
+    {cocktails.map((cocktail) => (
+      <li key={cocktail.idDrink} className="cocktail-card">
+        <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
+        <p>{cocktail.strDrink}</p>
+      </li>
+    ))}
+  </ul>
+</div>
+
   );
 };
 

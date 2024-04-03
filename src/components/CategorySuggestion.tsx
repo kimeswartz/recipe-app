@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../styling/CategorySuggestionStyle.css";
+import "../styling/CategoryTags.css";
 import allRecipeState from "../store/Endpoints";
 
 const CategorySuggestion = () => {
@@ -20,18 +20,19 @@ const CategorySuggestion = () => {
   };
 
   return (
-    <div className="category-suggestion-container">
-      {categoryList.map((category, index) => (
-        // Rendering each category item with click handler
-        <div
-          key={index}
-          onClick={() => handleCategoryClick(category.name)}
-          className="category"
-        >
-          {category.name}
-        </div>
-      ))}
+<div className="tag-grid category-suggestion-container">
+  {categoryList.map((category, index) => (
+    <div
+      key={index}
+      onClick={() => handleCategoryClick(category.name)}
+      className="recipe-tag category"
+    >
+      <div className="tag-div">
+      <h3>{category.name}</h3>
+      </div>
     </div>
+  ))}
+</div>
   );
 };
 

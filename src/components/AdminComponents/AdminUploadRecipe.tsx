@@ -8,7 +8,7 @@ const UploadRecipe = () => {
 
   // state to manage form data for uploading a recipe
 
-  const { recipe, setTitle, setDescription, setImageUrl, setTimeInMins, setCategories, setInstructions, setIngredients, emptyRecipe } = uploadUpdateRecipeState();
+  const { recipe, setTitle, setDescription, setImageUrl, setTimeInMins, setCategories, setInstructions, setIngredients } = uploadUpdateRecipeState();
 
   const [categoryList, setCategoryList] = useState<string[]>([]);
 
@@ -28,7 +28,7 @@ const UploadRecipe = () => {
       ) ||
       recipe.categories.length === 0
     ) {
-      throw new Error("One field is empty");
+      alert('Ett eller flera fält är tomma')
     } else {
       addRecipe(recipe);
     }
@@ -85,6 +85,8 @@ const UploadRecipe = () => {
     const updatedIngredients = [...recipe.ingredients, newIngredient];
     setIngredients(updatedIngredients);
   };
+
+
 
   const handleAddInstruction = () => {
     const newInstruction = '';

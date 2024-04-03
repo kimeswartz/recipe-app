@@ -5,7 +5,6 @@ import RecipesByCategory from "./components/RecipesByCategory";
 import DisplayOneRecipe from "./components/DisplayOneRecipe";
 import AdminPage from "./pages/AdminPage";
 import Navbar from "./components/Navbar";
-import CategoryPage from "./pages/CategoryPage";
 import Footer from "./components/Footer";
 import RecipePageContent from "./pages/RecipePage";
 import FilterPage from "./pages/Filter";
@@ -48,7 +47,6 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/category/:categoryName" element={<RecipesByCategory />} />
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
-          <Route path="/categorypage" element={<CategoryPage />} />
           <Route path="/adminpage" element={<AdminPage />} />
           <Route path="/recipes" element={<RecipePageContent />} />
           <Route path="/popular" element={<PopularRecipes />} />

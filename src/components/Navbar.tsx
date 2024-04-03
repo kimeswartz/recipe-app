@@ -18,7 +18,6 @@ const Navbar = () => {
       </a>
       <div className="nav-links">
         <a onClick={() => handleNavigation("/")}>Home</a>
-        <a onClick={() => handleNavigation("/CategoryPage")}>Categories</a>
         <a onClick={() => handleNavigation("/Cocktails")}>Cocktails</a>
         <a onClick={() => handleNavigation("/Filter")}>Filter</a>
         <a onClick={() => handleNavigation("/Recipes")}>Recipes</a>
