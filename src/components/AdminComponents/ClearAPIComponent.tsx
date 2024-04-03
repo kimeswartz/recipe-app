@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import allRecipeState from '../../state/Endpoints';
+import allRecipeState from '../../store/Endpoints';
 
 const ClearAPIComponent = () => {
 
@@ -7,9 +7,9 @@ const ClearAPIComponent = () => {
   const { clearAPI } = allRecipeState();
 
   const handleClick = () => {
-    if(window.confirm('Are you sure?????')){
+    if (window.confirm('Are you sure?????')) {
       clearAPI();
-    }else{
+    } else {
       console.log('user clicked cancel')
     }
   }
@@ -21,7 +21,7 @@ const ClearAPIComponent = () => {
       <div>
         <button className='main-button' hidden={dangerButton} onClick={handleClick}>DELETE ALL RECIPES</button>
       </div>
-      
+
     </div>
   )
 }

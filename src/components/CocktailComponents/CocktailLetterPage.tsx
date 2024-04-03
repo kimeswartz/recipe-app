@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CocktailInterface from '../../interfaces/CocktailInterfaces/CocktailInterface';
 import { useParams } from 'react-router-dom'; 
 import ListCocktailsAlphabet from './ListCocktailsAlphabet'; 
 import "../../styling/CocktailGrid.css"
 
-const CocktailLetterPage: React.FC = () => {
+const CocktailLetterPage = () => {
   const { letter } = useParams<{ letter: string | undefined }>();
   const [cocktails, setCocktails] = useState<CocktailInterface[]>([]);
 

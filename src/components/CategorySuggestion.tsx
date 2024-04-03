@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styling/CategoryTags.css";
-import allRecipeState from "../state/Endpoints";
+import allRecipeState from "../store/Endpoints";
 
 const CategorySuggestion = () => {
   const navigate = useNavigate();

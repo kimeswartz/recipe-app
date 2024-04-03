@@ -1,161 +1,94 @@
+//Malmcolm + Kim + Hampus
+
 import { useState } from "react";
-import allRecipeState from "../../state/Endpoints";
-import { RecipeInterface } from "../../interfaces/RecipeInterface";
+import allRecipeState from "../../store/Endpoints";
+import uploadUpdateRecipeState from "../../store/UpdateAndUpload";
+import '../../styling/AdminPage.css'
 
-// Destructuring addRecipe function from the Zusand store, with direct access to the function in /Endpoints
 const UploadRecipe = () => {
+
   const { addRecipe } = allRecipeState();
+  const {
+    recipe,
+    setTitle,
+    setDescription,
+    setImageUrl,
+    setTimeInMins,
+    setCategories,
+    setInstructions,
+    setIngredients,
+    removeInstruction,
+    removeIngredient,
+    emptyRecipe
+  } = uploadUpdateRecipeState();
 
-  // state to manage form data for uploading a recipe
-  const [recipeData, setRecipeData] = useState<RecipeInterface>({
-    title: "",
-    description: "",
-    ratings: [],
-    imageUrl: "",
-    timeInMins: 0,
-    categories: [],
-    instructions: [],
-    ingredients: [
-      {
-        name: "",
-        amount: 0,
-        unit: "",
-      },
-    ],
-  });
+  const [userInputInstructions, setUserInstructions] = useState('')
 
-  // Event handler function to handle input updates for recipe fields
-  const handleInputUpdate = (input: any) => {
-    const { name, value } = input.target;
-
-    setRecipeData((updateData) => ({
-      ...updateData,
-      [name]: value,
-    }));
-  };
-
-  // Function to add a new ingredient input to the recipe
-  const handleIngredientInput = (index: number, field: string, value: any) => {
-    setRecipeData((prevData) => {
-      const updatedIngredients = [...prevData.ingredients];
-      updatedIngredients[index] = {
-        ...updatedIngredients[index],
-        [field]: value,
-      };
-
-      return {
-        ...prevData,
-        ingredients: updatedIngredients,
-      };
-    });
-  };
-
-  // Function to add a new ingredient to the recipe
-  const addIngredient = () => {
-    setRecipeData((prevData) => ({
-      ...prevData,
-      ingredients: [...prevData.ingredients, { name: "", amount: 0, unit: "" }],
-    }));
-  };
-
-  // Function to handle input updates for instruction fields
-  const handleInstructionInput = (index: number, value: string) => {
-    setRecipeData((prevData) => {
-      const updateInstructions = [...prevData.instructions];
-      updateInstructions[index] = value;
-
-      return {
-        ...prevData,
-        instructions: updateInstructions,
-      };
-    });
-  };
-
-  // Function to add a new instruction to the recipe
-  const addInstruction = () => {
-    setRecipeData((prevData) => ({
-      ...prevData,
-      instructions: [...prevData.instructions, ""],
-    }));
-  };
+  const [newIngredient, setNewIngredient] = useState({ name: '', amount: 0, unit: '' })
 
   // Function to handle form submission
-  const handleSubmit = async (clickEvent: any) => {
+  const handleSubmit = (clickEvent: any) => {
     clickEvent.preventDefault();
 
-    try {
-      // Checking if any required fields are empty
-      if (
-        recipeData.title === "" ||
-        recipeData.description === "" ||
-        recipeData.imageUrl === "" ||
-        recipeData.timeInMins === 0 ||
-        recipeData.instructions.some((instruction: string) => instruction === "") ||
-        recipeData.ingredients.some(
-          (ingredient) => ingredient.name === "" || ingredient.amount === 0 || ingredient.unit === ""
-        ) ||
-        recipeData.categories.length === 0
-      ) {
-        throw new Error("Ett fält är tomt");
-      }
-
-      // Adding the recipe data to the database
-      addRecipe(recipeData);
-
-      // Resetting the form fields after submission
-      setRecipeData({
-        title: "",
-        description: "",
-        ratings: [],
-        imageUrl: "",
-        timeInMins: 0,
-        categories: [],
-        instructions: [],
-        ingredients: [
-          {
-            name: "",
-            amount: 0,
-            unit: "",
-          },
-        ],
-      });
-    } catch (error) {
-      alert("Vänligen fyll i alla fält");
-      return;
+    if (
+      recipe.title === "" ||
+      recipe.description === "" ||
+      recipe.imageUrl === "" ||
+      recipe.timeInMins === 0 ||
+      recipe.instructions.some((instruction: string) => instruction === "") ||
+      recipe.ingredients.some(
+        (ingredient) => ingredient.name === "" || ingredient.amount <= 0 || ingredient.unit === ""
+      ) ||
+      recipe.categories.length === 0
+    ) {
+      alert('One or more fields are empty')
+    } else {
+      console.log(recipe)
+      addRecipe(recipe);
+      emptyRecipe()
     }
   };
 
   // Preset categories for recipes
   const presetCategories = [
-    "Frukost",
+    "Breakfast",
     "Lunch",
-    "Middag",
+    "Dinner",
     "Vegetarian",
     "Party",
-    "Asiatisk",
+    "Asian",
     "Latin American",
   ];
 
   // Present unit for ingredients
-  const presentIngredientsUnit = ["l", "dl", "ml", "msk", "tsk", "g", "kg", "st"];
+  const presentIngredientsUnit = ["l", "dl", "ml", "tbsp", "tsp", "g", "kg", "noOf"];
 
   // Function to handle category changes
   const handleCategoryChange = (selectedCategory: string) => {
-    setRecipeData((prevData) => {
-      let updatedCategories;
+    const updatedCategories = recipe.categories.includes(selectedCategory)
+      ? recipe.categories.filter(category => category !== selectedCategory)
+      : [...recipe.categories, selectedCategory]
 
-      if (prevData.categories.includes(selectedCategory)) {
-        updatedCategories = prevData.categories.filter((category) => category !== selectedCategory);
-      } else {
-        updatedCategories = [...prevData.categories, selectedCategory];
-      }
-
-      return {
-        ...prevData,
-        categories: updatedCategories,
-      };
-    });
+    setCategories(updatedCategories);
   };
+
+  const handleSubmitInstruction = () => {
+    if (userInputInstructions === '') {
+      alert('field is empty')
+    } else {
+      setInstructions(userInputInstructions)
+      setUserInstructions('');
+    }
+  }
+
+  const handleSubmitIngredient = () => {
+    if (newIngredient.name === '' || newIngredient.amount <= 0 || newIngredient.unit === '') {
+      alert('one ore more fields are empty')
+    } else {
+      setIngredients(newIngredient)
+      setNewIngredient({ name: '', amount: 0, unit: '' })
+    }
+  }
 
   return (
     <div>
@@ -168,8 +101,8 @@ const UploadRecipe = () => {
               className="user-input"
               type="text"
               name="title"
-              value={recipeData.title}
-              onChange={handleInputUpdate}
+              value={recipe.title}
+              onChange={(input) => setTitle(input.target.value)}
             />
           </label>
           <label className="upload-label">
@@ -178,8 +111,8 @@ const UploadRecipe = () => {
               className="user-input"
               type="text"
               name="description"
-              value={recipeData.description}
-              onChange={handleInputUpdate}
+              value={recipe.description}
+              onChange={(input) => setDescription(input.target.value)}
             />
           </label>
           <label className="upload-label">
@@ -188,8 +121,8 @@ const UploadRecipe = () => {
               className="user-input"
               type="text"
               name="imageUrl"
-              value={recipeData.imageUrl}
-              onChange={handleInputUpdate}
+              value={recipe.imageUrl}
+              onChange={(input) => setImageUrl(input.target.value)}
             />
           </label>
           <label className="upload-label">
@@ -198,8 +131,8 @@ const UploadRecipe = () => {
               className="user-input"
               type="number"
               name="timeInMins"
-              value={recipeData.timeInMins}
-              onChange={handleInputUpdate}
+              value={recipe.timeInMins}
+              onChange={(input) => setTimeInMins(parseInt(input.target.value))}
             />
           </label>
 
@@ -210,75 +143,85 @@ const UploadRecipe = () => {
                 className="category-checkbox"
                 type="checkbox"
                 value={category}
-                checked={recipeData.categories.includes(category)}
+                checked={recipe.categories.includes(category)}
                 onChange={(e) => handleCategoryChange(e.target.value)}
               />
               {category}
             </label>
           ))}
 
+          <div>
+            <ul>
+              {recipe.instructions?.map((instruction, instructionNumber) => {
+                return (
+                  <li key={instructionNumber}>
+                    {instructionNumber + 1}:{instruction}
+                    <button onClick={() => removeInstruction(instructionNumber)} className="main-button">
+                      X
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+
           <h2 className="upload-h2">Instructions</h2>
-          {recipeData.instructions.map((instruction, index) => (
-            <div key={index}>
-              <label className="upload-label">
-                Instruction {index + 1}:
-                <input
-                  className="user-input"
-                  type="text"
-                  value={instruction}
-                  onChange={(e) =>
-                    handleInstructionInput(index, e.target.value)
-                  }
-                />
-              </label>
-            </div>
-          ))}
+          <div>
+            <label className="upload-label">
+              Instruction :
+              <input
+                className="user-input"
+                type="text"
+                name="instruction"
+                value={userInputInstructions}
+                onChange={(input) => setUserInstructions(input.target.value)}
+              />
+            </label>
+          </div>
           <button
             className="upload-button"
             type="button"
-            onClick={addInstruction}
+            onClick={() => handleSubmitInstruction()}
           >
             Add Instruction
           </button>
 
           <br />
+          <div>
+            <ul>
+              {recipe.ingredients?.map((ingredientInfo, ingredientKey) => {
+                return (
+                  <li key={ingredientKey}>
+                    {ingredientInfo.name} | {ingredientInfo.amount} | {ingredientInfo.unit}
+                    <button onClick={() => removeIngredient(ingredientKey)} className="main-button">
+                      X
+                    </button>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
 
           <h2 className="upload-h2">Ingredients</h2>
-          {recipeData.ingredients.map((ingredient, index) => (
-            <div key={index}>
-              <label className="upload-label">
-                Ingredient Name:
-                <input
-                  className="user-input"
-                  type="text"
-                  value={ingredient.name}
-                  onChange={(enteredByUser) =>
-                    handleIngredientInput(
-                      index,
-                      "name",
-                      enteredByUser.target.value
-                    )
-                  }
-                />
-              </label>
+          <div>
+            <label className="upload-label">
+              Ingredient Name:
+              <input
+                className="user-input"
+                type="text"
+                value={newIngredient.name}
+                onChange={(input) => setNewIngredient({ ...newIngredient, name: input.target.value })}
+              />
+            </label>
 
-
-<div className="amount-unit-container">
-
-
+            <div className="amount-unit-container">
               <label className="upload-label">
                 Amount:
                 <input
                   className="user-input"
                   type="number"
-                  value={ingredient.amount}
-                  onChange={(enteredByUser) =>
-                    handleIngredientInput(
-                      index,
-                      "amount",
-                      +enteredByUser.target.value
-                    )
-                  }
+                  value={newIngredient.amount}
+                  onChange={(input) => setNewIngredient({ ...newIngredient, amount: +input.target.value })}
                 />
               </label>
 
@@ -286,15 +229,10 @@ const UploadRecipe = () => {
                 Unit:
                 <select
                   className="user-input"
-                  value={ingredient.unit}
-                  onChange={(selectedByUser) =>
-                    handleIngredientInput(
-                      index,
-                      "unit",
-                      selectedByUser.target.value
-                    )
-                  }
+                  defaultValue=""
+                  onChange={(input) => setNewIngredient({ ...newIngredient, unit: input.target.value })}
                 >
+                  <option disabled hidden></option>
                   {presentIngredientsUnit.map((unit, index) => (
                     <option key={index} value={unit}>
                       {unit}
@@ -302,24 +240,20 @@ const UploadRecipe = () => {
                   ))}
                 </select>
               </label>
-
-              </div>
-
             </div>
-          ))}
-
+          </div>
           <button
             className="upload-button"
             type="button"
-            onClick={addIngredient}
+            onClick={() => handleSubmitIngredient()}
           >
             Add Ingredient
           </button>
 
-<div className="button-container">
-          <button className="upload-button" type="submit">
-            Submit recipe to database
-          </button>
+          <div className="button-container">
+            <button className="upload-button" type="submit">
+              Submit recipe to database
+            </button>
           </div>
         </form>
       </section>

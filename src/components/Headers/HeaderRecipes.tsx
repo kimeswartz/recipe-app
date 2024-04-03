@@ -1,7 +1,6 @@
-import React from 'react';
 import "../../styling/HeaderComponent.css";
 
-const HeaderRecipes: React.FC = () => {
+const HeaderRecipes = () => {
   return (
     <header className="home-header">
       <div className="header-content">
