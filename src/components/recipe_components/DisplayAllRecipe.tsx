@@ -1,11 +1,11 @@
 //Hampus
 
 import { useEffect } from "react";
-import allRecipeState from "../store/Endpoints";
+import allRecipeState from "../../store/Endpoints";
 import { useNavigate, useLocation } from "react-router-dom";
 
-import "../styling/Cards.css";
-import { RecipeInterface } from "../interfaces/RecipeInterface";
+import "../../styling/CardsStyle.css";
+import { RecipeInterface } from "../../interfaces/RecipeInterface";
 
 const DisplayAllRecipe = () => {
   const { recipeList, fetchAllRecipes, setOneRecipe, deleteRecipe } =

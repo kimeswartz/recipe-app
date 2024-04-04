@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import globalCocktailFunctions from "../../store/CocktailAPICalls";
-import "../../styling/CocktailGrid.css"
+import "../../styling/CocktailGridStyle.css"
 
 const DisplayAllCocktails = () => {
   const { cocktailList } = globalCocktailFunctions(); //vet inte om denna behövs längre
