@@ -134,7 +134,7 @@ const UpdateRecipe = () => {
   };
 
   const presentIngredientsUnit = [
-    "kg","hg","g","l","dl","ml","msk","tsk","krm","st",
+    "kg", "hg", "g", "l", "dl", "ml", "msk", "tsk", "krm", "st",
   ];
 
   // Return the UI for updating a recipe
@@ -197,7 +197,7 @@ const UpdateRecipe = () => {
                 );
                 setRecipeName(
                   filteredValue.charAt(0).toUpperCase() +
-                    filteredValue.slice(1).toLowerCase()
+                  filteredValue.slice(1).toLowerCase()
                 );
               }}
             />
@@ -294,10 +294,10 @@ const UpdateRecipe = () => {
               onChange={(input) => setIngrediantUnit(input.target.value)}
             >
               {presentIngredientsUnit.map((unit, index) => (
-              <option key={index} value={unit}>
-                {unit}
-              </option>
-            ))}
+                <option key={index} value={unit}>
+                  {unit}
+                </option>
+              ))}
             </select>
           </label>
           <br />

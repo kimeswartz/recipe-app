@@ -14,6 +14,7 @@ interface CocktailStateInterface {
   fetchCocktailByName: (cocktailName: string) => Promise<void>;
   fetchIngredient: (ingredientName: string) => Promise<void>;
   fetchRandomCocktail: () => Promise<void>;
+  fetchAllCocktails: () => Promise<void>;
   setOneCocktail: (cocktail: CocktailInterface) => void;
 }
 
@@ -55,6 +56,22 @@ const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
       }
     } catch (error) {
       console.log("something went wrong:", error);
+    }
+  },
+
+  fetchAllCocktails: async() => {
+    try{
+      const alcoholicResponse = await axios.get(`${cocktailURL}/filter.php?a=Alcoholic`);
+      const nonAlcoholicResponse = await axios.get(`${cocktailURL}/filter.php?a=Non_Alcoholic`);
+
+      if(alcoholicResponse.status === 200 && nonAlcoholicResponse.status === 200){
+        console.log('alcoholic', alcoholicResponse.data)
+        set({ cocktailList: alcoholicResponse.data })
+        console.log('non alco', nonAlcoholicResponse.data)
+        set((prevState) => ({
+          cocktailList: [prevState.cocktailList, nonAlcoholicResponse.data]
+        }))
+      }
     }
   },
 
