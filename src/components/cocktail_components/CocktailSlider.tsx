@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import CocktailInterface from '../../interfaces/CocktailInterfaces/CocktailInterface';
+import CocktailInterface from '../../interfaces/CocktailInterface';
 import Slider from 'react-slick';
 
 const CocktailSlider = () => {

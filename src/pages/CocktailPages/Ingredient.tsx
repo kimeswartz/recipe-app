@@ -1,4 +1,4 @@
-import DisplayIngredient from '../../components/CocktailComponents/DisplayIngredient'
+import DisplayIngredient from '../../components/cocktail_components/DisplayIngredient'
 
 function Ingredient() {
 

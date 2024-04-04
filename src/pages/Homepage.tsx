@@ -1,6 +1,5 @@
-
-import HeaderComponent from "../components/Headers/HeaderComponent";
-import RecipeSlider from "../components/RecipeSlider";
+import HeaderComponent from "../components/HeaderComponent";
+import RecipeSlider from "../components/recipe_components/RecipeSlider";
 
 const Home = () => {
   return (

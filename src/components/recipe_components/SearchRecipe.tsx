@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import allRecipeState from '../store/Endpoints';
+import allRecipeState from '../../store/Endpoints';
 import { useNavigate } from 'react-router-dom';
-import "../styling/SearchRecipe.css"
-import "../styling/Cards.css"
-import { RecipeInterface } from '../interfaces/RecipeInterface';
+import "../../styling/SearchRecipeStyle.css"
+import "../../styling/CardsStyle.css"
+import { RecipeInterface } from '../../interfaces/RecipeInterface';
 
 const SearchRecipe = () => {
   const { recipeList, fetchAllRecipes, setOneRecipe } = allRecipeState();
@@ -19,17 +19,17 @@ const SearchRecipe = () => {
   const handleNavigate = (recipe: RecipeInterface) => {
     setOneRecipe(recipe);
     navigate(`/recipe/${recipe._id}`);
-  }
+  };
 
   const performSearch = () => {
-    if (searchTerms.trim() !== '') {
+    if (searchTerms.trim() !== "") {
       setSearchPerformed(true);
     }
   };
 
   const handleInputChange = (value: string) => {
     setSearchTerms(value);
-    if (value.trim() === '') {
+    if (value.trim() === "") {
       setSuggestions([]);
       setSearchPerformed(false);
     } else {
@@ -39,8 +39,10 @@ const SearchRecipe = () => {
 
   const generateSuggestions = (value: string) => {
     const filteredSuggestions = recipeList
-      .filter(recipe => recipe.title.toLowerCase().includes(value.toLowerCase()))
-      .map(recipe => recipe.title);
+      .filter((recipe) =>
+        recipe.title.toLowerCase().includes(value.toLowerCase())
+      )
+      .map((recipe) => recipe.title);
     setSuggestions(filteredSuggestions);
   };
 
@@ -49,14 +51,16 @@ const SearchRecipe = () => {
     setSuggestions([]);
     performSearch(); // Perform search when suggestion is selected
     // Navigate to the recipe page
-    const selectedRecipe = recipeList.find(recipe => recipe.title.toLowerCase() === value.toLowerCase());
+    const selectedRecipe = recipeList.find(
+      (recipe) => recipe.title.toLowerCase() === value.toLowerCase()
+    );
     if (selectedRecipe) {
       handleNavigate(selectedRecipe);
     }
   };
 
   const handleClearSearch = () => {
-    setSearchTerms('');
+    setSearchTerms("");
     setSearchPerformed(false);
     setSuggestions([]);
   };
@@ -69,25 +73,25 @@ const SearchRecipe = () => {
 
   return (
     <>
-      <div className='search-bar'>
+      <div className="search-bar">
         <input
-          type='text'
+          type="text"
           value={searchTerms}
-          placeholder='Search recipes...'
+          placeholder="Search recipes..."
           onChange={(e) => handleInputChange(e.target.value)}
         />
-        {searchTerms.trim() !== '' ? (
+        {searchTerms.trim() !== "" ? (
           <button onClick={handleClearSearch}>Clear</button>
         ) : (
           <button onClick={performSearch}>Search</button>
         )}
 
-        {searchTerms.trim() !== '' && (
-          <div className='suggestions'>
+        {searchTerms.trim() !== "" && (
+          <div className="suggestions">
             {suggestions.map((suggestion, index) => (
               <div
                 key={index}
-                className='suggestion'
+                className="suggestion"
                 onClick={() => handleSuggestionClick(suggestion)}
               >
                 {suggestion}
@@ -100,14 +104,16 @@ const SearchRecipe = () => {
       {searchPerformed && searchTerms.trim() !== '' && (
         <div>
           {filteredRecipes.map((recipe) => (
-            <div className='recipe-card' key={recipe._id}
-              onClick={() => handleNavigate(recipe)}>
-            </div>
+            <div
+              className="recipe-card"
+              key={recipe._id}
+              onClick={() => handleNavigate(recipe)}
+            ></div>
           ))}
         </div>
       )}
     </>
-  )
+  );
 };
 
 export default SearchRecipe;

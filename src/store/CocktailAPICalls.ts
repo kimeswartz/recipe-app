@@ -1,10 +1,10 @@
 //Hampus
 
-import { create } from 'zustand';
-import CocktailInterface from '../interfaces/CocktailInterfaces/CocktailInterface';
-import axios from 'axios';
-import { cocktailURL } from '../constants/ApiUrl';
-import IngredientInterface from '../interfaces/CocktailInterfaces/IngredientInterface';
+import { create } from "zustand";
+import CocktailInterface from "../interfaces/CocktailInterface";
+import axios from "axios";
+import { cocktailURL } from "../constants/ApiUrl";
+import IngredientInterface from "../interfaces/IngredientInterface";
 
 
 interface CocktailStateInterface {
@@ -27,26 +27,26 @@ const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
   oneIngredient: {} as IngredientInterface,
   cocktailsByIngredient:[],
 
-  fetchCocktailByName: async(name) => {
-    try{
+  fetchCocktailByName: async (name) => {
+    try {
       const response = await axios.get(`${cocktailURL}/search.php?s=${name}`);
-      if(response.status === 200){
-        set({ oneCocktail: response.data})
+      if (response.status === 200) {
+        set({ oneCocktail: response.data });
       }
-    }catch(error){
-      console.log('something went wrong:', error)
+    } catch (error) {
+      console.log("something went wrong:", error);
     }
-  }, 
+  },
 
-  fetchIngredient: async(name) => {
-    try{
-      const response = await axios.get(`${cocktailURL}/search.php?i=${name}`)
-      if(response.status === 200){
-        console.log(response.data.ingredients[0])
-        set({ oneIngredient: response.data.ingredients[0]})
+  fetchIngredient: async (name) => {
+    try {
+      const response = await axios.get(`${cocktailURL}/search.php?i=${name}`);
+      if (response.status === 200) {
+        console.log(response.data.ingredients[0]);
+        set({ oneIngredient: response.data.ingredients[0] });
       }
-    }catch(error){
-      console.log('something went wrong:', error)
+    } catch (error) {
+      console.log("something went wrong:", error);
     }
   },
 
@@ -69,14 +69,14 @@ const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
         console.log(response.data.drinks[0])
         set({ randomCocktail: response.data.drinks[0] })
       }
-    }catch(error){
-      console.log('something went wrong:', error)
+    } catch (error) {
+      console.log("something went wrong:", error);
     }
   },
 
   setOneCocktail: (newCocktail) => {
-    set({ oneCocktail: newCocktail})
+    set({ oneCocktail: newCocktail });
   },
-}))
+}));
 
 export default globalCocktailFunctions;
