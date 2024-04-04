@@ -9,7 +9,6 @@ const ListCocktailsAlphabet = () => {
   const navigate = useNavigate();
 
   const getCocktailsByLetter = async (letter: string): Promise<void> => {
-
     console.log('this is the letter', letter)
     try {
       const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`);
@@ -39,17 +38,7 @@ const ListCocktailsAlphabet = () => {
             {letter}
           </a>
         </span>
-
       ))}
-
-      <ul>
-        {cocktails.map((cocktail) => (
-          <li key={cocktail.idDrink} onClick={() => navigate(`cocktails/${cocktail.idDrink}`)}>
-            <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} style={{ width: '100px', height: '100px' }} />
-            <p>{cocktail.strDrink}</p>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 };
