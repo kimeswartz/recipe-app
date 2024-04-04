@@ -38,14 +38,13 @@ const CocktailLetterPage = () => {
       <ListCocktailsAlphabet />
       <ul className="cocktail-list">
         {cocktails.map((cocktail) => (
-          <li key={cocktail.idDrink} className="cocktail-card">
+          <ul key={cocktail.idDrink} className="cocktail-card">
             <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
             <p>{cocktail.strDrink}</p>
-          </li>
+          </ul>
         ))}
       </ul>
     </div>
-
   );
 };
 

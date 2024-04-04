@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
 import allRecipeState from "../../store/Endpoints";
 import globalCartFunctions from "../../store/Cart";
-import "../../styling/RecipepageStyle.css";
+import "../../styling/OneRecipePageStyle.css";
 import "../../styling/CommentSectionStyle.css";
 import CocktailForRecipes from "../CocktailForRecipe";
 
@@ -47,11 +47,11 @@ const DisplayOneRecipe = () => {
 
   const handleAddComment = async () => {
     if (!commentText.trim()) {
-      alert("Kan inte lägga till en tom kommentar.");
+      alert("Cannot add an empty comment.");
       return;
     }
     if (!oneRecipe._id) {
-      alert("Recept-ID är odefinierat.");
+      alert("Recipe ID is undefined.");
       return;
     }
 
@@ -77,7 +77,7 @@ const DisplayOneRecipe = () => {
                 <div className="info-tag">
                   <p>
                     <FontAwesomeIcon icon={faClock} className="clock-icon" />{" "}
-                    {oneRecipe.timeInMins} Minuter
+                    {oneRecipe.timeInMins} Minutes
                   </p>
                 </div>
               </div>
@@ -89,7 +89,7 @@ const DisplayOneRecipe = () => {
                     {oneRecipe.avgRating !== null ? (
                       <span>{oneRecipe.avgRating?.toFixed(1)}/5</span>
                     ) : (
-                      <span>Review missing</span>
+                      <span>Missing grade</span>
                     )}
                   </p>
                 </div>
@@ -99,7 +99,7 @@ const DisplayOneRecipe = () => {
                 <div className="info-tag">
                   {/* Interaktiv ratingsystem */}
                   <p>
-                    Sätt ditt betyg på dena rätt: {""}
+                  Rate this dish: {""}
                     {[1, 2, 3, 4, 5].map((value) => (
                       <span
                         key={value}
@@ -156,7 +156,7 @@ const DisplayOneRecipe = () => {
           {/* Section for displaying ingredients */}
           <div className="ingredients-wrapper">
             <div className="centered-mobile">
-              <h2>Ingredienser</h2>
+              <h2>Ingredients</h2>
               <ul>
                 {/* Display ingredients with amount and unit */}
                 {oneRecipe.ingredients?.map((ingredient, index) => (
@@ -171,7 +171,7 @@ const DisplayOneRecipe = () => {
           {/* Section for displaying instructions */}
           <div className="instructions-wrapper">
             <div className="centered-mobile">
-              <h2>Gör såhär</h2>
+              <h2>Do like this</h2>
               <ol>
                 {/* Display step-by-step instructions */}
                 {oneRecipe.instructions?.map((instruction, index) => (

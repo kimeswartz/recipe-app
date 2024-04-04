@@ -2,6 +2,7 @@
 
 import axios from "axios";
 import { useState } from "react";
+import allRecipeState from "../../store/Endpoints";
 
 const UpdateRecipe = () => {
   // Define the base URL for API requests
@@ -16,9 +17,12 @@ const UpdateRecipe = () => {
   const [recipeTimeInMin, setRecipeTimeInMin] = useState(Number);
   const [recipeCategory, setRecipeCategory] = useState("");
   const [recipeIntructions, setRecipeInstructions] = useState("");
-  const [ingrediantName, setIngrediantName] = useState("");
-  const [ingrediantAmount, setIngrediantAmount] = useState("");
-  const [ingrediantUnit, setIngrediantUnit] = useState("");
+  const [ingredientName, setIngrediantName] = useState("");
+  const [ingredientAmount, setIngrediantAmount] = useState(Number);
+  const [ingredientUnit, setIngrediantUnit] = useState("");
+  const { recipeList } = allRecipeState();
+  const [searchTerms, setSearchTerms] = useState<string>("");
+  const [suggestions, setSuggestions] = useState<string[]>([]);
 
   // Function to fetch recipe details by its ID from the server
   const getRecipeById = async (recipeId: string) => {
@@ -65,17 +69,109 @@ const UpdateRecipe = () => {
     }
   };
 
+  const handleInputChange = (value: string) => {
+    setSearchTerms(value);
+    if (value.trim() === "") {
+      setSuggestions([]);
+    } else {
+      generateSuggestions(value);
+    }
+  };
+
+  const generateSuggestions = (value: string) => {
+    const filteredSuggestions = recipeList
+      .filter((recipe) =>
+        recipe.title.toLowerCase().includes(value.toLowerCase())
+      )
+      .map((recipe) => recipe.title);
+    setSuggestions(filteredSuggestions);
+  };
+
+  const handleSuggestionClick = (value: string) => {
+    setSearchTerms(value);
+    setSuggestions([]);
+    const selectedRecipe = recipeList.find(
+      (recipe) => recipe.title.toLowerCase() === value.toLowerCase()
+    );
+    if (selectedRecipe) {
+      // Fill in the form with information from the selected recipe.
+      setRecipeId(selectedRecipe._id || "");
+      setRecipeName(selectedRecipe.title);
+      setRecipeDescription(selectedRecipe.description);
+      setRecipeRating(
+        Array.isArray(selectedRecipe.ratings)
+          ? selectedRecipe.ratings[0]
+          : selectedRecipe.ratings || 0
+      );
+      setRecipeImageUrl(selectedRecipe.imageUrl);
+      setRecipeTimeInMin(selectedRecipe.timeInMins || 0);
+      setRecipeCategory(
+        Array.isArray(selectedRecipe.categories)
+          ? selectedRecipe.categories[0]
+          : selectedRecipe.categories || 0
+      );
+      setRecipeInstructions(
+        Array.isArray(selectedRecipe.instructions)
+          ? selectedRecipe.instructions[0]
+          : selectedRecipe.instructions || 0
+      );
+
+      // Update the state for ingredients if needed.
+      if (selectedRecipe.ingredients.length > 0) {
+        const firstIngredient = selectedRecipe.ingredients[0];
+        setIngrediantName(firstIngredient.name);
+        setIngrediantAmount(firstIngredient.amount);
+        setIngrediantUnit(firstIngredient.unit);
+      }
+    } else {
+      console.log("Error");
+    }
+  };
+
+  const handleClearSearch = () => {
+    setSearchTerms("");
+    setSuggestions([]);
+  };
+
+  const presentIngredientsUnit = [
+    "kg","hg","g","l","dl","ml","msk","tsk","krm","st",
+  ];
+
   // Return the UI for updating a recipe
   return (
     <>
       <div className="update-container">
-        <h2>Update Recipe</h2>
+        <h2>Update recipe</h2>
+        <div className="search-bar">
+          <input
+            type="text"
+            value={searchTerms}
+            placeholder="Search recipe..."
+            onChange={(e) => handleInputChange(e.target.value)}
+          />
+          <button onClick={handleClearSearch}>Clear</button>
 
+          {searchTerms.trim() !== "" && (
+            <div className="suggestions">
+              {suggestions.map((suggestion, index) => (
+                <div
+                  key={index}
+                  className="suggestion"
+                  onClick={() => handleSuggestionClick(suggestion)}
+                >
+                  {suggestion}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        <br />
+        <br />
         <form
           className="update-form"
           onSubmit={(e) => {
-            e.preventDefault(); // Prevent default form submission behavior
-            updateById(); // Call your update function
+            e.preventDefault();
+            updateById();
           }}
         >
           <label className="update-label">
@@ -84,17 +180,26 @@ const UpdateRecipe = () => {
               type="text"
               value={recipeId}
               onChange={(input) => setRecipeId(input.target.value)}
-              placeholder="Enter ID to update"
+              placeholder="Recipe ID here"
             />
           </label>
           <br />
           <label className="update-label">
-            Title:
+            Titel:
             <input
               type="text"
               name="title"
               value={recipeName}
-              onChange={(input) => setRecipeName(input.target.value)}
+              onChange={(input) => {
+                const filteredValue = input.target.value.replace(
+                  /[^a-zA-Z\s]/g,
+                  ""
+                );
+                setRecipeName(
+                  filteredValue.charAt(0).toUpperCase() +
+                    filteredValue.slice(1).toLowerCase()
+                );
+              }}
             />
           </label>
           <br />
@@ -109,7 +214,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Rating:
+            Grade:
             <input
               type="number"
               name="description"
@@ -129,7 +234,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Time in mins:
+            Time in min:
             <input
               type="number"
               name="timeInMins"
@@ -141,7 +246,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Category:
+            Categories:
             <input
               type="text"
               name="categories"
@@ -159,14 +264,15 @@ const UpdateRecipe = () => {
               onChange={(input) => setRecipeInstructions(input.target.value)}
             />
           </label>
+
           <br />
-          <h2>Update Ingredients</h2>
+          <h2>Update ingredients</h2>
           <label className="update-label">
-            Ingredient Name:
+            Ingrediens namn:
             <input
               type="text"
               name="ingredientName"
-              value={ingrediantName}
+              value={ingredientName}
               onChange={(input) => setIngrediantName(input.target.value)}
             />
           </label>
@@ -175,21 +281,29 @@ const UpdateRecipe = () => {
             <input
               type="number"
               name="amount"
-              value={ingrediantAmount}
-              onChange={(input) => setIngrediantAmount(input.target.value)}
+              value={ingredientAmount}
+              onChange={(input) =>
+                setIngrediantAmount(input.target.valueAsNumber)
+              }
             />
           </label>
           <label className="update-label">
             Unit:
-            <input
-              type="text"
-              name="unit"
-              value={ingrediantUnit}
+            <select
+              value={ingredientUnit}
               onChange={(input) => setIngrediantUnit(input.target.value)}
-            />
+            >
+              {presentIngredientsUnit.map((unit, index) => (
+              <option key={index} value={unit}>
+                {unit}
+              </option>
+            ))}
+            </select>
           </label>
           <br />
-          <button className="upload-button" type="submit">Submit Updates</button>
+          <button className="upload-button" type="submit">
+            Send updates
+          </button>
         </form>
       </div>
     </>
