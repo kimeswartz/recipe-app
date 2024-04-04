@@ -12,7 +12,7 @@ interface CocktailStateInterface {
   oneCocktail: CocktailInterface;
   oneIngredient: IngredientInterface;
   fetchCocktailByName: (cocktailName: string) => Promise<void>;
-  fetchCocktailById: (cocktailId: string) => Promise<void>; // Add this line
+  fetchCocktailById: (cocktailId: string) => Promise<void>;
   fetchIngredient: (ingredientName: string) => Promise<void>;
   fetchRandomCocktail: () => Promise<void>;
   setOneCocktail: (cocktail: CocktailInterface) => void;
