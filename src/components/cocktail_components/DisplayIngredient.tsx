@@ -11,7 +11,7 @@ const CocktailPage = () => {
   useEffect(() => {
     if (ingredientName.trim() !== '') {
       fetchIngredient(ingredientName.trim());
-      fetchCocktailsByIngredient(ingredientName.trim());
+      fetchCocktailsByIngredient(ingredientName.trim())
     }
   }, [ingredientName, fetchIngredient, fetchCocktailsByIngredient]);
 
