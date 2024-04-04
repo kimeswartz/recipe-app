@@ -1,6 +1,6 @@
 import React from 'react';
-import DisplayAllCocktails from '../../components/CocktailComponents/DisplayAllCocktails';
-import ListCocktailsAlphabet from '../../components/CocktailComponents/ListCocktailsAlphabet';
+import DisplayAllCocktails from '../../components/cocktail_components/DisplayAllCocktails';
+import ListCocktailsAlphabet from '../../components/cocktail_components/ListCocktailsAlphabet';
 
 const CocktailHomePage: React.FC = () => {
   return (

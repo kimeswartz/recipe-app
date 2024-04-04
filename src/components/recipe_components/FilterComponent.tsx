@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { RecipeInterface } from "../interfaces/RecipeInterface";
-import "../styling/Filter.css";
+import { RecipeInterface } from "../../interfaces/RecipeInterface";
+import "../../styling/FilterStyle.css";
 
 const FilterComponent = () => {
   // State variables to store recipe data, filtered recipes, user input, search ingredients, and suggestions
   const [recipeData, setRecipeData] = useState<RecipeInterface[]>([]);
   const [filteredRecipes, setFilteredRecipes] = useState<RecipeInterface[]>([]);
-  const [userInput, setUserInput] = useState<string>('');
+  const [userInput, setUserInput] = useState<string>("");
   const [searchIngredients, setSearchIngredients] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
 
@@ -38,9 +38,15 @@ const FilterComponent = () => {
     if (searchIngredients.length === 0) {
       setFilteredRecipes(recipeData);
     } else {
-      const filtered = recipeData.filter(recipe => {
-        const normalizedIngredients = recipe.ingredients.map(ingredient => normalizeIngredientName(ingredient.name));
-        return searchIngredients.every(searchIngredient => normalizedIngredients.includes(normalizeIngredientName(searchIngredient)));
+      const filtered = recipeData.filter((recipe) => {
+        const normalizedIngredients = recipe.ingredients.map((ingredient) =>
+          normalizeIngredientName(ingredient.name)
+        );
+        return searchIngredients.every((searchIngredient) =>
+          normalizedIngredients.includes(
+            normalizeIngredientName(searchIngredient)
+          )
+        );
       });
       setFilteredRecipes(filtered);
     }
@@ -50,11 +56,17 @@ const FilterComponent = () => {
   useEffect(() => {
     if (userInput.length > 0) {
       const normalizedInput = userInput.toLowerCase(); // Normalizing user input
-      const matchingSuggestions = Array.from(new Set(
-        recipeData
-          .flatMap(recipe => recipe.ingredients.map(ingredient => ingredient.name.toLowerCase())) // Normalizing ingredient names
-          .filter(ingredient => ingredient.startsWith(normalizedInput))
-      ));
+      const matchingSuggestions = Array.from(
+        new Set(
+          recipeData
+            .flatMap((recipe) =>
+              recipe.ingredients.map((ingredient) =>
+                ingredient.name.toLowerCase()
+              )
+            ) // Normalizing ingredient names
+            .filter((ingredient) => ingredient.startsWith(normalizedInput))
+        )
+      );
 
       setSuggestions(matchingSuggestions);
     } else {
@@ -69,14 +81,16 @@ const FilterComponent = () => {
 
   // Add selected suggestion to search ingredients
   const handleSuggestionClick = (suggestion: string) => {
-    setSearchIngredients(prevIngredients => [...prevIngredients, suggestion]);
-    setUserInput('');
+    setSearchIngredients((prevIngredients) => [...prevIngredients, suggestion]);
+    setUserInput("");
     setSuggestions([]);
   };
 
   // Remove ingredient from search ingredients
   const removeIngredient = (ingredient: string) => {
-    setSearchIngredients(prevIngredients => prevIngredients.filter(item => item !== ingredient));
+    setSearchIngredients((prevIngredients) =>
+      prevIngredients.filter((item) => item !== ingredient)
+    );
   };
 
   // Render UI
@@ -110,12 +124,14 @@ const FilterComponent = () => {
       {/* Display suggestions based on user input */}
       <ul>
         {suggestions.map((suggestion, index) => (
-          <li key={index} onClick={() => handleSuggestionClick(suggestion)}>{suggestion}</li>
+          <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
+            {suggestion}
+          </li>
         ))}
       </ul>
       {/* Display filtered recipes */}
       <ul>
-        {filteredRecipes.map(recipe => (
+        {filteredRecipes.map((recipe) => (
           <li key={recipe._id}>
             <img src={recipe.imageUrl} alt={recipe.title} />
             <h2>{recipe.title}</h2>
@@ -123,7 +139,9 @@ const FilterComponent = () => {
             <ul>
               {/* Display ingredients of each recipe */}
               {recipe.ingredients.map((ingredient, index) => (
-                <li key={index}>{`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`}</li>
+                <li
+                  key={index}
+                >{`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`}</li>
               ))}
             </ul>
             <p>{`Tid: ${recipe.timeInMins} minuter`}</p>

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import allRecipeState from "../../store/Endpoints";
 import uploadUpdateRecipeState from "../../store/UpdateAndUpload";
-import '../../styling/AdminPage.css'
+import '../../styling/AdminPageStyle.css'
 
 const UploadRecipe = () => {
 

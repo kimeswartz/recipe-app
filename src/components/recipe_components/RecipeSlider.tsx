@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import axios from "axios";
-import "../styling/SliderStyle.css";
+import "../../styling/SliderStyle.css";
 import { useNavigate } from "react-router-dom";
-import { RecipeInterface } from "../interfaces/RecipeInterface";
+import { RecipeInterface } from "../../interfaces/RecipeInterface";
 
 
 const RecipeSlider = () => {

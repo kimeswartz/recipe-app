@@ -1,5 +1,5 @@
-import "../../styling/HeaderComponent.css";
-import RecipeSearch from '../SearchRecipe';
+import "../styling/HeaderComponentStyle.css";
+import RecipeSearch from '../components/recipe_components/SearchRecipe';
 
 const HeaderComponent = () => {
   return (

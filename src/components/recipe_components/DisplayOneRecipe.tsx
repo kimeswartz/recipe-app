@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
-import allRecipeState from "../store/Endpoints";
-import globalCartFunctions from "../store/Cart";
-import "../styling/RecipepageStyle.css";
-import "../styling/CommentSectionStyle.css";
+import allRecipeState from "../../store/Endpoints";
+import globalCartFunctions from "../../store/Cart";
+import "../../styling/RecipePageStyle.css";
+import "../../styling/CommentSectionStyle.css";
 
 // Component for displaying a single recipe
 const DisplayOneRecipe = () => {
@@ -23,7 +23,7 @@ const DisplayOneRecipe = () => {
   const { addRecipeToCart } = globalCartFunctions();
 
   // Extracting recipeId from URL params
-  // we use useParams to acces dynamic parts in the URL, in this case, the recipe ID, that will route to the recipe URL request
+  // We use useParams to acces dynamic parts in the URL, in this case, the recipe ID, that will route to the recipe URL request
   const { recipeId } = useParams<{ recipeId: string }>();
   const [userRating, setUserRating] = useState<number>();
   const [commentText, setCommentText] = useState(""); //arash
@@ -133,7 +133,6 @@ const DisplayOneRecipe = () => {
             <img src={oneRecipe.imageUrl} alt={oneRecipe.title} />
           </div>
         </div>
-
         {/* Section displaying ingredients */}
         <div className="ingredients-container">
           <div className="upper">
@@ -153,7 +152,6 @@ const DisplayOneRecipe = () => {
             </div>
           </div>
         </div>
-
         {/* Section displaying instructions */}
         <div className="instructions-section">
           {/* Section for displaying ingredients */}

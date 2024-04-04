@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../styling/AboutUs.css";
+import "../styling/AboutUsStyle.css";
 import teamMembers from "../constants/TeamInfo";
 
 const AboutUs = () => {
