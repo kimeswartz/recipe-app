@@ -1,25 +1,23 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import CocktailInterface from "../../interfaces/CocktailInterface";
-import { useParams } from "react-router-dom";
-import ListCocktailsAlphabet from "./ListCocktailsAlphabet";
-import "../../styling/CocktailGridStyle.css";
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import CocktailInterface from '../../interfaces/CocktailInterface';
+import { useParams } from 'react-router-dom';
+import ListCocktailsAlphabet from './ListCocktailsAlphabet';
+import "../../styling/CocktailGridStyle.css"
 
-const CocktailLetterPage: React.FC = () => {
+const CocktailLetterPage = () => {
   const { letter } = useParams<{ letter: string | undefined }>();
   const [cocktails, setCocktails] = useState<CocktailInterface[]>([]);
 
   useEffect(() => {
     const fetchCocktailsByLetter = async () => {
+
       try {
-        const response = await axios.get(
-          `https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`
-        );
+        const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`);
         if (response.data.drinks) {
-          console.log(response.data.drinks);
-          const filteredCocktails = response.data.drinks.filter(
-            (cocktail: CocktailInterface) =>
-              cocktail.strDrink.charAt(0).toUpperCase() === letter
+          console.log(response.data.drinks)
+          const filteredCocktails = response.data.drinks.filter((cocktail: CocktailInterface) =>
+            cocktail.strDrink.charAt(0).toUpperCase() === letter
           );
           setCocktails(filteredCocktails);
         } else {
@@ -27,7 +25,7 @@ const CocktailLetterPage: React.FC = () => {
           setCocktails([]);
         }
       } catch (error) {
-        console.error("Error fetching cocktails by letter:", error);
+        console.error('Error fetching cocktails by letter:', error);
       }
     };
 
@@ -47,6 +45,7 @@ const CocktailLetterPage: React.FC = () => {
         ))}
       </ul>
     </div>
+
   );
 };
 

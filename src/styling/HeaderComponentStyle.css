@@ -9,9 +9,12 @@
   justify-content: center;
 }
 
+
+
 .header-content {
   text-align: center;
   width: 1000px;
+  padding: 30px;
 }
 
 .header-title {
@@ -34,5 +37,12 @@
   .header-title {
     font-size: 24px;
   }
+
+ .header-paragraph{
+    text-align: center;
+    width: auto;
+    padding: 50px;
+  }
+
 }
 

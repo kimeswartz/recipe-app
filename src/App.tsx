@@ -8,8 +8,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import RecipePageContent from "./pages/RecipePage";
 import FilterPage from "./pages/Filter";
-import Modal from "react-modal";
-import globalCartFunctions from "./state/Cart";
+import Modal from 'react-modal';
+import globalCartFunctions from "./store/Cart";
 import CartComponent from "./components/CartComponent";
 import PopularRecipes from "./pages/PopularRecipes";
 import AboutUsPage from "./pages/AboutUsPage";
@@ -33,13 +33,8 @@ function App() {
         >
           <div>
             <nav className="navbar">
-              <h2>Varukorg</h2>
-              <button
-                className="main-button"
-                onClick={() => toggleCart(displayCart)}
-              >
-                X
-              </button>
+              <h2>Shopping List</h2>
+              <button className="main-button" onClick={() => toggleCart(displayCart)}>X</button>
             </nav>
             <CartComponent />
           </div>
@@ -58,6 +53,7 @@ function App() {
           <Route path="/recipes" element={<RecipePageContent />} />
           <Route path="/popular" element={<PopularRecipes />} />
           <Route path="/about" element={<AboutUsPage />} />
+          {/* <Route path="/cocktails/:id" element={Lägg din komponent här arash} /> */}
         </Routes>
         <Footer />
       </BrowserRouter>

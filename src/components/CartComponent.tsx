@@ -1,10 +1,10 @@
 //Hampus
 
-import { RecipeInterface } from "../interfaces/RecipeInterface";
-import { useNavigate } from "react-router-dom";
-import globalCartFunctions from "../state/Cart";
-import "../styling/CartStyle.css";
-import allRecipeState from "../state/Endpoints";
+import { RecipeInterface } from "../interfaces/RecipeInterface"
+import { useNavigate } from "react-router-dom"
+import globalCartFunctions from "../store/Cart"
+import '../styling/CartStyle.css'
+import allRecipeState from "../store/Endpoints"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import CocktailInterface from "../interfaces/CocktailInterface";
@@ -25,7 +25,7 @@ const CartComponent = () => {
     return (
       <div className="centered-tags">
         <div className="info-tag">
-          <h1>Varukorgen är tom!</h1>
+          <h1>Nothing added yet!</h1>
         </div>
       </div>
     );

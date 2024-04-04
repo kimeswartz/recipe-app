@@ -1,9 +1,12 @@
 import { useEffect } from "react";
-import globalCocktailFunctions from "../../state/CocktailAPICalls";
+import globalCocktailFunctions from "../../store/CocktailAPICalls";
+import { useNavigate } from "react-router-dom";
 import "../../styling/CocktailGridStyle.css"
 
 const DisplayAllCocktails = () => {
   const { cocktailList } = globalCocktailFunctions(); //vet inte om denna behövs längre
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     //brukade fetcha allCocktails här
@@ -15,7 +18,7 @@ const DisplayAllCocktails = () => {
       <div className="cocktail-list">
         {/* Loop through all cocktails and render them as cards */}
         {cocktailList.map((cocktail) => (
-          <div key={cocktail.idDrink} className="cocktail-card">
+          <div key={cocktail.idDrink} className="cocktail-card" onClick={() => navigate(`cocktails/${cocktail.idDrink}`)}>
             <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
             <p>{cocktail.strDrink}</p>
           </div>

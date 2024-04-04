@@ -1,4 +1,3 @@
-import CocktailSlider from "../components/cocktail_components/CocktailSlider";
 import HeaderComponent from "../components/HeaderComponent";
 import RecipeSlider from "../components/recipe_components/RecipeSlider";
 
@@ -8,7 +7,6 @@ const Home = () => {
       <div className="card">
         <HeaderComponent />
         <RecipeSlider />
-        <CocktailSlider />
       </div>
     </div>
   );

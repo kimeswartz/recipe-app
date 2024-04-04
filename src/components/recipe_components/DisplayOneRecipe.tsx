@@ -1,16 +1,15 @@
 //Kim + Hampus + Malcolm + Arash
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
-import allRecipeState from "../../state/Endpoints";
-import globalCartFunctions from "../../state/Cart";
+import allRecipeState from "../../store/Endpoints";
+import globalCartFunctions from "../../store/Cart";
 import "../../styling/RecipePageStyle.css";
 
 // Component for displaying a single recipe
-// Using React.FC to define a function component
-const DisplayOneRecipe: React.FC = () => {
+const DisplayOneRecipe = () => {
   // Destructuring state and function from the state management
   const {
     oneRecipe,
@@ -63,7 +62,7 @@ const DisplayOneRecipe: React.FC = () => {
 
   // Conditional rendering based on whether the recipe has loaded or not
   if (!oneRecipe) {
-    return <div>Hämtar recept...</div>; // Display loading message
+    return <div>Loading recipe...</div>; // Display loading message
   } else {
     return (
       <div className="recipe-container">
@@ -117,12 +116,7 @@ const DisplayOneRecipe: React.FC = () => {
                   </p>
                 </div>
                 <div className="info-container">
-                  <button
-                    onClick={() => addRecipeToCart(oneRecipe)}
-                    className="main-button"
-                  >
-                    Lägg till
-                  </button>
+                  <button onClick={() => addRecipeToCart(oneRecipe)} className="main-button">Add to list</button>
                 </div>
               </div>
             </div>

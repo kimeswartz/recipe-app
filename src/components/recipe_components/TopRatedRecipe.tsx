@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import allRecipeState from "../../state/Endpoints";
+import allRecipeState from "../../store/Endpoints";
 import { useNavigate } from "react-router-dom";
 import { RecipeInterface } from "../../interfaces/RecipeInterface";
 import "../../styling/CardsStyle.css";
