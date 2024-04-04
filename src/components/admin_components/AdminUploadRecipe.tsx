@@ -96,7 +96,7 @@ const UploadRecipe = () => {
         <h1 className="upload-title">Upload Recipe</h1>
         <form onSubmit={handleSubmit} >
           <label className="upload-label">
-            Title:
+            Titel:
             <input
               className="user-input"
               type="text"
@@ -106,7 +106,7 @@ const UploadRecipe = () => {
             />
           </label>
           <label className="upload-label">
-            Description:
+            Descriptions:
             <input
               className="user-input"
               type="text"
@@ -126,7 +126,7 @@ const UploadRecipe = () => {
             />
           </label>
           <label className="upload-label">
-            Time in mins:
+            Time in min:
             <input
               className="user-input"
               type="number"
@@ -136,7 +136,7 @@ const UploadRecipe = () => {
             />
           </label>
 
-          <h2 className="upload-h2">Choose Category</h2>
+          <h2 className="upload-h2">Choose category</h2>
           {presetCategories.map((category, index) => (
             <label className="category-label" key={index}>
               <input
@@ -183,7 +183,7 @@ const UploadRecipe = () => {
             type="button"
             onClick={() => handleSubmitInstruction()}
           >
-            Add Instruction
+            Add instruction
           </button>
 
           <br />
@@ -247,7 +247,7 @@ const UploadRecipe = () => {
             type="button"
             onClick={() => handleSubmitIngredient()}
           >
-            Add Ingredient
+            Add instruction
           </button>
 
           <div className="button-container">
