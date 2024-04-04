@@ -5,7 +5,7 @@ import ListCocktailsAlphabet from '../../components/CocktailComponents/ListCockt
 const CocktailHomePage: React.FC = () => {
   return (
     <div>
-      <h1>Home Page</h1>
+      <h1>Cocktail Page</h1>
       <ListCocktailsAlphabet />
       <DisplayAllCocktails /> 
     </div>
