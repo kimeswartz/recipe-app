@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CocktailInterface from '../../interfaces/CocktailInterface';
 import { useParams } from 'react-router-dom';
-import ListCocktailsAlphabet from './ListCocktailsAlphabet';
-import "../../styling/CocktailGridStyle.css"
+import ListCocktailsAlphabet from '../CocktailComponents/ListCocktailsAlphabet';
+import "../../styling/CocktailGrid.css"
 
 const CocktailLetterPage = () => {
   const { letter } = useParams<{ letter: string | undefined }>();
