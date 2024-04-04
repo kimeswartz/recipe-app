@@ -185,7 +185,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Titel:
+            Title:
             <input
               type="text"
               name="title"
@@ -246,7 +246,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Categories:
+            Category:
             <input
               type="text"
               name="categories"
@@ -268,7 +268,7 @@ const UpdateRecipe = () => {
           <br />
           <h2>Update ingredients</h2>
           <label className="update-label">
-            Ingrediens namn:
+            Ingredient namn:
             <input
               type="text"
               name="ingredientName"
@@ -302,7 +302,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <button className="upload-button" type="submit">
-            Send updates
+            Send update
           </button>
         </form>
       </div>

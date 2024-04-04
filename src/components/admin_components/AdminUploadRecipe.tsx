@@ -96,7 +96,7 @@ const UploadRecipe = () => {
         <h1 className="upload-title">Upload Recipe</h1>
         <form onSubmit={handleSubmit} >
           <label className="upload-label">
-            Titel:
+            Title:
             <input
               className="user-input"
               type="text"
@@ -168,7 +168,7 @@ const UploadRecipe = () => {
           <h2 className="upload-h2">Instructions</h2>
           <div>
             <label className="upload-label">
-              Instruction :
+              Instruction:
               <input
                 className="user-input"
                 type="text"
@@ -202,7 +202,7 @@ const UploadRecipe = () => {
             </ul>
           </div>
 
-          <h2 className="upload-h2">Ingredients</h2>
+          <h2 className="upload-h2">Ingredient</h2>
           <div>
             <label className="upload-label">
               Ingredient Name:

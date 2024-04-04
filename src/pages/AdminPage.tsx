@@ -9,18 +9,18 @@ const AdminPage = () => {
   return (
     <div>
       <header className="header">
-        <h1>ENDAST ADMINS!</h1>
+        <h1>ONLY ADMINS!</h1>
         <RecipeSearch />
       </header>
 
       <div className="card">
-        <h2>HÄR KAN DU LADDA UPP ETT RECEPT</h2>
+        <h2>HERE IS WHERE YOU CAN UPLOAD A RECIPE</h2>
         <AdminUpload />
 
-        <h2>HÄR KAN DU TA BORT ETT RECEPT</h2>
+        <h2>HERE IS WHERE YOU DELETE RECEPIES</h2>
         <DisplayAllRecipe />
 
-        <h2>HÄR KAN DU UPPDATERA ETT RECEPT</h2>
+        <h2>HERE IS WHERE YOU UPDATE A RECIPE</h2>
         <AdminUpdate />
 
         <ClearAPIComponent />
