@@ -50,9 +50,9 @@ const DisplayAllRecipe = () => {
         </div>
         <div className="second-card-div">
           <h3>{recipe.title}</h3>
-          <span>Betyg</span>
+          <span>Grade</span>
           {recipe.avgRating === null ? (
-            <p>inga betyg</p>
+            <p>No grades</p>
           ) : (
             <p>{recipe.avgRating?.toFixed(1)}/5</p>
           )}
@@ -66,7 +66,7 @@ const DisplayAllRecipe = () => {
           }}
           className="main-button delete-button" // Added a class for potential styling
         >
-          Radera
+          Delete
         </button>
       )}
     </>
