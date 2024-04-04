@@ -1,4 +1,4 @@
-import "../../styling/HeaderComponent.css";
+import "../styling/HeaderComponentStyle.css";
 
 const HeaderRecipes = () => {
   return (

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import CocktailInterface from '../../interfaces/CocktailInterfaces/CocktailInterface';
+import CocktailInterface from '../../interfaces/CocktailInterface';
 import { useNavigate } from 'react-router-dom';
 
 const ListCocktailsAlphabet = () => {

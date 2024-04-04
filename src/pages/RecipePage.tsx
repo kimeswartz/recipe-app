@@ -1,6 +1,6 @@
-import CategorySuggestion from "../components/CategorySuggestion";
-import DisplayRecipes from "../components/DisplayAllRecipe";
-import HeaderRecipes from "../components/Headers/HeaderRecipes";
+import CategorySuggestion from "../components/recipe_components/CategorySuggestion";
+import DisplayRecipes from "../components/recipe_components/DisplayAllRecipe";
+import HeaderRecipes from "../components/HeaderRecipe";
 
 const RecipePageContent = () => {
   return (

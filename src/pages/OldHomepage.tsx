@@ -1,5 +1,4 @@
-import CategorySuggestion from "../components/CategorySuggestion";
-
+import CategorySuggestion from "../components/recipe_components/CategorySuggestion";
 
 const OldHomepage = () => {
   return (
