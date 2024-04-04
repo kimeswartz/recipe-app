@@ -6,7 +6,7 @@ const DisplayAllCocktails = () => {
   const { cocktailList } = globalCocktailFunctions(); //vet inte om denna behövs längre
 
   useEffect(() => {
-    //brukade fetcha allCocktails här
+    //tomt
   }, []);
 
   return (
