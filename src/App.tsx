@@ -43,7 +43,7 @@ function App() {
         <Routes>
           <Route path="/cocktails/:letter" element={<CocktailLetterPage />} />
           <Route path="/cocktails" element={<CocktailHomePage />} />
-          <Route path="/cocktails/:id" element={<DisplayOneCocktail />} /> {/* arash, med hjälp från hampus */}
+          <Route path="/cocktail/:id" element={<DisplayOneCocktail />} /> {/* arash, med hjälp från hampus */}
           <Route path="/filter" element={<FilterPage />} />
           <Route path="/" element={<Home />} />
           <Route
@@ -55,7 +55,6 @@ function App() {
           <Route path="/recipes" element={<RecipePageContent />} />
           <Route path="/popular" element={<PopularRecipes />} />
           <Route path="/about" element={<AboutUsPage />} />
-          
         
         </Routes>
         <Footer />

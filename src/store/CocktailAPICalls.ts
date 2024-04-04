@@ -35,9 +35,10 @@ const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
     }
   }, 
 
-  fetchCocktailById: async (Id) => {
+  fetchCocktailById: async (id) => {
     try {
-      const response = await axios.get(`${cocktailURL}/lookup.php?i=${Id}`);
+      const response = await axios.get(`${cocktailURL}/lookup.php?i=${id}`);
+      
       if(response.status === 200){
         set({ oneCocktail: response.data.drinks[0] }); 
       }
