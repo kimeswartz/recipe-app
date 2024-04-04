@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
 import allRecipeState from "../../store/Endpoints";
 import globalCartFunctions from "../../store/Cart";
-import "../../styling/RecipePageStyle.css";
+import "../../styling/RecipepageStyle.css";
 import "../../styling/CommentSectionStyle.css";
 
 // Component for displaying a single recipe
