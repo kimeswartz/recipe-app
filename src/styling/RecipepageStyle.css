@@ -15,6 +15,10 @@
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.12);
 }
 
+.adjust-content-with {
+  padding: 30px;
+}
+
 .text-container,
 .img-container {
   text-align: center;
@@ -25,7 +29,7 @@
   padding: 30px;
 }
 
-.text-container p{
+.text-container p {
   text-align: center;
 }
 
@@ -88,16 +92,19 @@
 
 .centered-tags {
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
+  width: 100%; /* Ensures the container takes up full width of its parent */
 }
 
 .list-objects {
   display: flex;
-  list-style-type: none; /* Remove default list styling */
-  padding: 0; /* Remove default padding */
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+  width: 100%;
+  margin: 0 auto;
+  list-style-type: none;
 }
 
 .ingredient-name {
@@ -122,23 +129,24 @@
   box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.12);
 }
 
-
 .ingredients-wrapper,
 .instructions-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
-padding: 50px;
+  padding: 50px;
   flex: 1;
 }
 
-.ingredients-wrapper, p{
-text-align: left;
+.ingredients-wrapper,
+p {
+  text-align: left;
 }
 
-.instructions-wrapper, p{
+.instructions-wrapper,
+p {
   text-align: left;
-  }
+}
 
 .ingredients-wrapper {
   background-color: #ececec;
@@ -147,7 +155,6 @@ text-align: left;
 }
 
 @media screen and (max-width: 990px) {
-
   .recipe-container {
     width: 100%;
     margin: 5;
@@ -169,7 +176,6 @@ text-align: left;
     border-bottom-left-radius: 15px;
   }
 
-
   .instructions-section {
     display: flex;
     flex-direction: column;
@@ -183,12 +189,11 @@ text-align: left;
 
   .to-do-step {
     background-color: #ececec;
-   padding: 12px;
+    padding: 12px;
     margin: 12px;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.12);
     border-radius: 15px;
   }
-
 
   .ingredients-wrapper,
   .instructions-wrapper {
@@ -196,14 +201,11 @@ text-align: left;
     width: auto;
   }
 
-
-
   .ingredients-wrapper {
     background-color: white;
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
   }
-
 
   .centered-mobile {
     display: flex;
@@ -211,9 +213,7 @@ text-align: left;
     align-items: center;
   }
 
-
-  .centered-mobile h2{
+  .centered-mobile h2 {
     text-align: center;
   }
-
 }

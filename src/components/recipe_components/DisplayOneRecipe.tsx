@@ -7,6 +7,7 @@ import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
 import allRecipeState from "../../store/Endpoints";
 import globalCartFunctions from "../../store/Cart";
 import "../../styling/RecipePageStyle.css";
+import "../../styling/CommentSectionStyle.css";
 
 // Component for displaying a single recipe
 const DisplayOneRecipe = () => {
@@ -116,7 +117,12 @@ const DisplayOneRecipe = () => {
                   </p>
                 </div>
                 <div className="info-container">
-                  <button onClick={() => addRecipeToCart(oneRecipe)} className="main-button">Add to list</button>
+                  <button
+                    onClick={() => addRecipeToCart(oneRecipe)}
+                    className="main-button"
+                  >
+                    Add to list
+                  </button>
                 </div>
               </div>
             </div>
@@ -130,7 +136,7 @@ const DisplayOneRecipe = () => {
         {/* Section displaying ingredients */}
         <div className="ingredients-container">
           <div className="upper">
-            <h2>Du behöver...</h2>
+            <h2>You need...</h2>
           </div>
 
           <div className="lower">
@@ -180,20 +186,23 @@ const DisplayOneRecipe = () => {
           </div>
         </div>
         <div className="comments-section">
-          <h2>Kommentarer</h2>
-          <textarea
-            value={commentText}
-            onChange={(e) => setCommentText(e.target.value)}
-            placeholder="Lämna en kommentar"
-          ></textarea>
-          <button onClick={handleAddComment}>Skicka</button>
-          <div>
-            {recipeComment.map((userReview, reviewKey) => (
-              <p key={reviewKey}>{userReview.comment}</p>
-            ))}
+          <h3>Comments for this recipe</h3>
+          <div className="adjust-content-with">
+            <textarea
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+              placeholder="Leave a comment"
+            ></textarea>
+            <div className="comments-button-container">
+              <button onClick={handleAddComment}>Send</button>
+            </div>
+            <div>
+              {recipeComment.map((userReview, reviewKey) => (
+                <p key={reviewKey}>{userReview.comment}</p>
+              ))}
+            </div>
           </div>
-        </div>{" "}
-        {/* arash */}
+        </div>
       </div>
     );
   }

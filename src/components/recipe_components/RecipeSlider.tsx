@@ -43,20 +43,20 @@ const RecipeSlider = () => {
 
   return (
     <div className="slider-section"> <h2>Discover Deliciousness</h2>
-    <div className="recipe-slider" ref={sliderRef}>
-      <div className="slider-container">
-        {randomRecipes.map((recipe) => (
-          <div
-            key={recipe._id}
-            className="image-slide"
-            onClick={() => navigate(`/recipe/${recipe._id}`)}
-          >
-            <img src={recipe.imageUrl} alt={recipe.title} />
-            <div className="cover">{recipe.title}</div>
-          </div>
-        
-        ))}
-      </div>
+      <div className="recipe-slider" ref={sliderRef}>
+        <div className="slider-container">
+          {randomRecipes.map((recipe) => (
+            <div
+              key={recipe._id}
+              className="image-slide"
+              onClick={() => navigate(`/recipe/${recipe._id}`)}
+            >
+              <img src={recipe.imageUrl} alt={recipe.title} />
+              <div className="cover">{recipe.title}</div>
+            </div>
+
+          ))}
+        </div>
       </div>
     </div>
   );
