@@ -106,7 +106,7 @@ const UploadRecipe = () => {
             />
           </label>
           <label className="upload-label">
-            Descriptions:
+            Description:
             <input
               className="user-input"
               type="text"
@@ -202,10 +202,10 @@ const UploadRecipe = () => {
             </ul>
           </div>
 
-          <h2 className="upload-h2">Ingredient</h2>
+          <h2 className="upload-h2">Ingredients</h2>
           <div>
             <label className="upload-label">
-              Ingredient Name:
+              Ingredient name:
               <input
                 className="user-input"
                 type="text"
