@@ -17,9 +17,9 @@ const UpdateRecipe = () => {
   const [recipeTimeInMin, setRecipeTimeInMin] = useState(Number);
   const [recipeCategory, setRecipeCategory] = useState("");
   const [recipeIntructions, setRecipeInstructions] = useState("");
-  const [ingrediantName, setIngrediantName] = useState("");
-  const [ingrediantAmount, setIngrediantAmount] = useState(Number);
-  const [ingrediantUnit, setIngrediantUnit] = useState("");
+  const [ingredientName, setIngrediantName] = useState("");
+  const [ingredientAmount, setIngrediantAmount] = useState(Number);
+  const [ingredientUnit, setIngrediantUnit] = useState("");
   const { recipeList } = allRecipeState();
   const [searchTerms, setSearchTerms] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -94,7 +94,7 @@ const UpdateRecipe = () => {
       (recipe) => recipe.title.toLowerCase() === value.toLowerCase()
     );
     if (selectedRecipe) {
-      // Fyll i formuläret med information från det valda receptet
+      // Fill in the form with information from the selected recipe.
       setRecipeId(selectedRecipe._id || "");
       setRecipeName(selectedRecipe.title);
       setRecipeDescription(selectedRecipe.description);
@@ -116,7 +116,7 @@ const UpdateRecipe = () => {
           : selectedRecipe.instructions || 0
       );
 
-      // Uppdatera staten för ingredienser också, om det behövs
+      // Update the state for ingredients if needed.
       if (selectedRecipe.ingredients.length > 0) {
         const firstIngredient = selectedRecipe.ingredients[0];
         setIngrediantName(firstIngredient.name);
@@ -141,15 +141,15 @@ const UpdateRecipe = () => {
   return (
     <>
       <div className="update-container">
-        <h2>Uppdatera recept</h2>
+        <h2>Update recipe</h2>
         <div className="search-bar">
           <input
             type="text"
             value={searchTerms}
-            placeholder="Sök recept..."
+            placeholder="Search recipe..."
             onChange={(e) => handleInputChange(e.target.value)}
           />
-          <button onClick={handleClearSearch}>Rensa</button>
+          <button onClick={handleClearSearch}>Clear</button>
 
           {searchTerms.trim() !== "" && (
             <div className="suggestions">
@@ -180,7 +180,7 @@ const UpdateRecipe = () => {
               type="text"
               value={recipeId}
               onChange={(input) => setRecipeId(input.target.value)}
-              placeholder="Recept ID här"
+              placeholder="Recipe ID here"
             />
           </label>
           <br />
@@ -204,7 +204,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Beskrivning:
+            Description:
             <input
               type="text"
               name="description"
@@ -214,7 +214,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Betyg:
+            Grade:
             <input
               type="number"
               name="description"
@@ -224,7 +224,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Bild URL:
+            Image URL:
             <input
               type="text"
               name="imageUrl"
@@ -234,7 +234,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Tid i min:
+            Time in min:
             <input
               type="number"
               name="timeInMins"
@@ -246,7 +246,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Kategori:
+            Categories:
             <input
               type="text"
               name="categories"
@@ -256,7 +256,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Instruktioner:
+            Instructions:
             <input
               type="text"
               name="instructions"
@@ -266,31 +266,31 @@ const UpdateRecipe = () => {
           </label>
 
           <br />
-          <h2>Uppdatera ingredienser</h2>
+          <h2>Update ingredients</h2>
           <label className="update-label">
             Ingrediens namn:
             <input
               type="text"
               name="ingredientName"
-              value={ingrediantName}
+              value={ingredientName}
               onChange={(input) => setIngrediantName(input.target.value)}
             />
           </label>
           <label className="update-label">
-            Antal:
+            Amount:
             <input
               type="number"
               name="amount"
-              value={ingrediantAmount}
+              value={ingredientAmount}
               onChange={(input) =>
                 setIngrediantAmount(input.target.valueAsNumber)
               }
             />
           </label>
           <label className="update-label">
-            Enhet:
+            Unit:
             <select
-              value={ingrediantUnit}
+              value={ingredientUnit}
               onChange={(input) => setIngrediantUnit(input.target.value)}
             >
               {presentIngredientsUnit.map((unit, index) => (
@@ -302,7 +302,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <button className="upload-button" type="submit">
-            Skicka uppdatering
+            Send updates
           </button>
         </form>
       </div>

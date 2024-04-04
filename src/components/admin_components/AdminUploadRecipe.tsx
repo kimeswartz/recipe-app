@@ -106,7 +106,7 @@ const UploadRecipe = () => {
             />
           </label>
           <label className="upload-label">
-            Beskrivning:
+            Descriptions:
             <input
               className="user-input"
               type="text"
@@ -116,7 +116,7 @@ const UploadRecipe = () => {
             />
           </label>
           <label className="upload-label">
-            Bild URL:
+            Image URL:
             <input
               className="user-input"
               type="text"
@@ -126,7 +126,7 @@ const UploadRecipe = () => {
             />
           </label>
           <label className="upload-label">
-            Tid i min:
+            Time in min:
             <input
               className="user-input"
               type="number"
@@ -136,7 +136,7 @@ const UploadRecipe = () => {
             />
           </label>
 
-          <h2 className="upload-h2">Välj Kategori</h2>
+          <h2 className="upload-h2">Choose category</h2>
           {presetCategories.map((category, index) => (
             <label className="category-label" key={index}>
               <input
@@ -183,7 +183,7 @@ const UploadRecipe = () => {
             type="button"
             onClick={() => handleSubmitInstruction()}
           >
-            Lägg till instruktion
+            Add instruction
           </button>
 
           <br />
@@ -216,7 +216,7 @@ const UploadRecipe = () => {
 
             <div className="amount-unit-container">
               <label className="upload-label">
-                Antal:
+                Amount:
                 <input
                   className="user-input"
                   type="number"
@@ -247,7 +247,7 @@ const UploadRecipe = () => {
             type="button"
             onClick={() => handleSubmitIngredient()}
           >
-            Lägg till ingrediens
+            Add instruction
           </button>
 
           <div className="button-container">
