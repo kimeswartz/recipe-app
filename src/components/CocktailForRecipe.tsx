@@ -5,7 +5,6 @@ const CocktailForRecipe = () => {
   const [recommendedCocktail, setRecommendedCocktail] = useState<CocktailInterface | null>(null);
 
   useEffect(() => {
-    // En lista med namn och bildlänkar för 15 cocktails
     const allCocktails: CocktailInterface[] = [
         {
             idDrink: "15941",
@@ -114,7 +113,6 @@ const CocktailForRecipe = () => {
           }
         ];
 
-    // Slumpmässigt välj en cocktail
     const randomIndex = Math.floor(Math.random() * allCocktails.length);
     setRecommendedCocktail(allCocktails[randomIndex]);
   }, []);

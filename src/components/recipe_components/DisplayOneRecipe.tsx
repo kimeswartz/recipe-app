@@ -202,7 +202,6 @@ const DisplayOneRecipe = () => {
             </div>
           </div>
         </div>
-        {/* Display the suggested cocktail */}
         <CocktailForRecipes />
       </div>
     );
