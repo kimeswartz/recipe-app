@@ -5,7 +5,8 @@ import allRecipeState from "../store/Endpoints";
 
 const CategorySuggestion = () => {
   const navigate = useNavigate();
-  const { categoryList, recipeList, fetchAllCategories, fetchOneCategory } = allRecipeState();
+  const { categoryList, recipeList, fetchAllCategories, fetchOneCategory } =
+    allRecipeState();
 
   // To fetch all categories when component first loads or when the categoryList changes
   useEffect(() => {

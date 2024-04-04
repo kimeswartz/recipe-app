@@ -51,7 +51,6 @@ function App() {
           <Route path="/recipes" element={<RecipePageContent />} />
           <Route path="/popular" element={<PopularRecipes />} />
           <Route path="/about" element={<AboutUsPage />} />
-          {/* <Route path="/cocktails/:id" element={Lägg din komponent här arash} /> */}
         </Routes>
         <Footer />
       </BrowserRouter>
