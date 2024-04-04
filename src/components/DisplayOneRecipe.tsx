@@ -128,7 +128,7 @@ const DisplayOneRecipe = () => {
         {/* Section displaying ingredients */}
         <div className="ingredients-container">
           <div className="upper">
-            <h2>Du behöver...</h2>
+            <h2>You need...</h2>
           </div>
 
           <div className="lower">
