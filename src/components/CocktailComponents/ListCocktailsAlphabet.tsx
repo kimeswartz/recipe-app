@@ -44,7 +44,7 @@ const ListCocktailsAlphabet = () => {
 
       <ul>
         {cocktails.map((cocktail) => (
-          <li key={cocktail.idDrink}>
+          <li key={cocktail.idDrink} onClick={() => navigate(`cocktails/${cocktail.idDrink}`)}>
             <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} style={{ width: '100px', height: '100px' }} />
             <p>{cocktail.strDrink}</p>
           </li>
