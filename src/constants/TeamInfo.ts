@@ -62,7 +62,7 @@ const teamMembers: TeamMemberInterface[] = [
     name: "Arash",
     jobTitle: "Developer",
     description:
-      "Hello, my name is Arash Sohrevardi, an enthusiastic full-stack developer with deep knowledge in Java, TypeScript, and React, as well as a solid understanding of CSS, Flexbox, and global state management. In addition to my technical skills, I bring experiences as a referee with the Swedish Floorball Federation and a background as an extreme sports enthusiast, which has taught me the importance of teamwork and keeping a cool head under pressure. As a 42-year-old with a passion for fitness and exploring new horizons, I am an outgoing and humble individual who strongly believes in the dynamics of teamwork. I aim to expand my career internationally in programming, where I feel I can significantly contribute to large-scale projects. I am convinced that my unique combination of technical expertise, team-oriented approach, and life experience makes me a valuable asset in any project.",
+    "Hello, my name is Arash Sohrevardi, a full-stack developer with a broad foundation in Java, TypeScript, React, and a good grasp of CSS and global state management. My experiences as a Swedish Floorball Federation referee and extreme sports enthusiast have honed my teamwork skills and ability to stay calm under pressure. At 42, I'm passionate about fitness and eager to explore new horizons, valuing humility and the dynamics of teamwork. I aim to take my programming career international, confident in contributing significantly to large-scale projects. My unique mix of technical know-how, team-oriented mindset, and diverse experiences makes me a valuable asset to any team.",
     image: ArashImage,
   },
 
