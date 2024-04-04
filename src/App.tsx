@@ -15,7 +15,7 @@ import PopularRecipes from "./pages/PopularRecipes";
 import AboutUsPage from "./pages/AboutUsPage";
 import CocktailLetterPage from "./components/cocktail_components/CocktailLetterPage";
 import CocktailHomePage from "./pages/CocktailHomePage";
-import DisplayOneCocktail from "./components/CocktailComponents/DisplayOneCocktail";
+import DisplayOneCocktail from "./components/cocktail_components/DisplayOneCocktail";
 
 Modal.setAppElement("#root");
 

@@ -1,8 +1,8 @@
 //Arash
 
-import { useEffect, useState } from "react";
+import { JSXElementConstructor, Key, ReactElement, ReactNode, ReactPortal, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import CocktailInterface from '../../interfaces/CocktailInterfaces/CocktailInterface';
+import CocktailInterface from '../../interfaces/CocktailInterface';
 import globalCocktailFunctions from "../../store/CocktailAPICalls";
 import { useNavigate } from 'react-router-dom';
 
@@ -61,7 +61,7 @@ export function DisplayOneCocktail() {
           <div className="lower">
             <div className="centered-tags">
               <ul className="list-objects">
-                {oneCocktail.ingredients.map((ingredient, index) => (
+                {oneCocktail.ingredients.map((ingredient: { amount: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; unit: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; strIngredient: string | number | boolean | ReactElement<any, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | null | undefined; }, index: Key | null | undefined) => (
                   <li key={index} className="ingredient-name">
                     {ingredient.amount} {ingredient.unit} {ingredient.strIngredient}
                   </li>
@@ -89,14 +89,13 @@ export function DisplayOneCocktail() {
         <div className="lower">
           <div className="centered-tags">
             <ul className="list-objects">
-              {oneCocktail.ingredients.map((ingredient, index) => (
+              {oneCocktail.ingredients.map((ingredient: any, index: number) => (
                 <li key={index} className="ingredient-name">
                   {ingredient.strIngredient}
                 </li>
               ))}
             </ul>
           </div>
-
         </div>
       </div>
 

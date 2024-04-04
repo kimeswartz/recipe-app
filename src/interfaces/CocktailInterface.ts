@@ -1,4 +1,5 @@
 interface CocktailInterface {
+  ingredients: any;
   idDrink: string;
   strDrink: string;
   strDrinkThumb: string;
