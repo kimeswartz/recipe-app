@@ -1,4 +1,4 @@
-import TopRatedRecipes from "../components/TopRatedRecipes";
+import TopRatedRecipes from "../components/recipe_components/TopRatedRecipe";
 
 // lägg till en navigate som navigerar till popular recipes page
 

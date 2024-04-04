@@ -1,12 +1,11 @@
-import RecipeSearch from "../components/SearchRecipe";
-import AdminUpdate from "../components/AdminComponents/AdminUpdate";
-import AdminUpload from "../components/AdminComponents/AdminUploadRecipe";
-import ClearAPIComponent from "../components/AdminComponents/ClearAPIComponent";
-import DisplayAllRecipe from "../components/DisplayAllRecipe";
-import "../styling/AdminPage.css";
+import RecipeSearch from "../components/recipe_components/SearchRecipe";
+import AdminUpdate from "../components/admin_components/AdminUpdate";
+import AdminUpload from "../components/admin_components/AdminUploadRecipe";
+import ClearAPIComponent from "../components/admin_components/ClearAPIComponent";
+import DisplayAllRecipe from "../components/recipe_components/DisplayAllRecipe";
+import "../styling/AdminPageStyle.css";
 
 const AdminPage = () => {
-
   return (
     <div>
       <header className="header">

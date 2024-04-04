@@ -1,11 +1,8 @@
 import { useEffect } from "react";
-import allRecipeState from "../store/Endpoints";
+import allRecipeState from "../../store/Endpoints";
 import { useNavigate } from "react-router-dom";
-import { RecipeInterface } from "../interfaces/RecipeInterface";
-import "../styling/Cards.css";
-
-//Same styling file as recipesByCategory
-//import "../styling/RecipiesByCategoryStyle.css";
+import { RecipeInterface } from "../../interfaces/RecipeInterface";
+import "../../styling/CardsStyle.css";
 
 const TopRatedRecipes = () => {
   const { recipeList, fetchAllRecipes, setOneRecipe } = allRecipeState();
