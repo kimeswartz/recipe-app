@@ -60,8 +60,8 @@ const DisplayAllRecipe = () => {
       </div>
       {location.pathname === "/AdminPage" && (
         <button
-          onClick={(e) => {
-            e.stopPropagation(); // Prevents the navigate action when clicking the button
+          onClick={(deleteRecipe) => {
+            deleteRecipe.stopPropagation(); // Prevents the navigate action when clicking the button
             handleDelete(recipe._id);
           }}
           className="main-button delete-button" // Added a class for potential styling

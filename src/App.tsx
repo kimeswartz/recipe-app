@@ -8,7 +8,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import RecipePageContent from "./pages/RecipePage";
 import FilterPage from "./pages/FilterPage";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import globalCartFunctions from "./store/Cart";
 import CartComponent from "./components/CartComponent";
 import PopularRecipes from "./pages/PopularRecipesPage";
@@ -34,7 +34,12 @@ function App() {
           <div>
             <nav className="navbar">
               <h2>Shopping List</h2>
-              <button className="main-button" onClick={() => toggleCart(displayCart)}>X</button>
+              <button
+                className="main-button"
+                onClick={() => toggleCart(displayCart)}
+              >
+                X
+              </button>
             </nav>
             <CartComponent />
           </div>
