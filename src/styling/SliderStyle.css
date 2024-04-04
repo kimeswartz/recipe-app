@@ -1,64 +1,55 @@
 .recipe-slider {
-  width: 80rem;
-  margin: 0 auto; /* Center the slider horizontally */
-  margin-top: 5rem;
-  margin-bottom: 5rem;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
 }
 
-.recipe-slider h2{
-margin-bottom: 30px;
+.slider-section {
+  padding-top: 40px;
+  padding-bottom: 40px;
 }
 
-.custom-prev-arrow,
-.custom-next-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 32px;
-  color: #333;
-  cursor: pointer;
-  background-color: transparent;
-  border-radius: 50%;
-  padding: 10px;
-}
-
-.custom-prev-arrow {
-  left: -50px;
-}
-
-.custom-next-arrow {
-  right: -50px;
-}
-
-.cover {
-  position: absolute;
-  max-width: 500px;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.877);
-  color: white;
-  text-align: center;
+.slider-container {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.image-slide:hover .cover {
-  opacity: 1;
-  cursor: pointer;
+  flex-wrap: nowrap;
 }
 
 .image-slide {
+  flex: 0 0 auto;
+  width: 25%; /* Each slide shows 25% of the container width, showing 4 items per slide */
   position: relative;
-  height: 300px;
+  scroll-snap-align: start;
+  cursor: pointer;
 }
 
 .image-slide img {
   width: 100%;
-  height: 100%;
+  height: 200px;
   object-fit: cover;
+  display: block;
+}
+
+.cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  opacity: 0;
+  transition: opacity .5s;
+}
+
+.image-slide:hover .cover {
+  opacity: 1;
+}
+
+@media (max-width: 600px) {
+  .image-slide {
+    width: 100%; /* On small screens, each slide takes full width, showing 1 item per slide */
+  }
 }

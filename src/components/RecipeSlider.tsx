@@ -1,86 +1,63 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import Slider from 'react-slick'; 
-import 'slick-carousel/slick/slick.css'; 
-import 'slick-carousel/slick/slick-theme.css'; 
-import { PiArrowSquareLeftFill, PiArrowSquareRightFill } from "react-icons/pi";
-import "../styling/SliderStyle.css" 
-import { useNavigate } from 'react-router-dom'; // Importera useNavigate här
-import { RecipeInterface } from '../interfaces/RecipeInterface';
+import { useState, useEffect, useRef } from "react";
+import axios from "axios";
+import "../styling/SliderStyle.css";
+import { useNavigate } from "react-router-dom";
+import { RecipeInterface } from "../interfaces/RecipeInterface";
+
 
 const RecipeSlider = () => {
-  
   const [randomRecipes, setRandomRecipes] = useState<RecipeInterface[]>([]);
-  const navigate = useNavigate(); // Använd useNavigate för att få navigationsfunktionen
+  const navigate = useNavigate();
+  // Specify the type of elements the ref will refer to - HTMLDivElement in this case
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Fetch random recipes when component mounts
+    const getRandomRecipes = async () => {
+      try {
+        const result = await axios.get<RecipeInterface[]>(
+          "https://sti-java-grupp4-s4yjx9.reky.se/recipes"
+        );
+        // Make sure to actually update the state with the sliced array
+        const shuffledRecipes = result.data
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 20);
+        setRandomRecipes(shuffledRecipes);
+      } catch (error) {
+        console.error("Error fetching random recipes", error);
+      }
+    };
+
     getRandomRecipes();
   }, []);
-  
-  const getRandomRecipes = async () => {
-    try {
-      // Fetch recipes from the API
-      const result = await axios.get<RecipeInterface[]>('https://sti-java-grupp4-s4yjx9.reky.se/recipes');
-      const shuffledRecipes = result.data.sort(() => Math.random() - 0.5);
-      shuffledRecipes.slice(0, 8); 
-      setRandomRecipes(shuffledRecipes);
-    } catch (error) {
-      // Handle errors if fetching fails
-      console.error('Error fetching random recipes', error);
-    }
-  };
 
+  useEffect(() => {
+    const autoScroll = setInterval(() => {
+      sliderRef.current?.scrollBy({
+        left: window.innerWidth,
+        behavior: "smooth",
+      });
+    }, 8000); // desired autoscroll delay (in milliseconds)
 
-  const CustomPrevArrow = (props: any) => {
-    const { onClick } = props;
-    return (
-      // Custom previous arrow component
-      <div className="custom-prev-arrow" onClick={onClick}>
-        <PiArrowSquareLeftFill size={50}/> 
-      </div>
-    );
-  };
-  
-  const CustomNextArrow = (props: any) => {
-    const { onClick } = props;
-    return (
-      // Custom next arrow component
-      <div className="custom-next-arrow" onClick={onClick}>
-        <PiArrowSquareRightFill size={50}/> 
-      </div>
-    );
-  };
-
-  // Configuration settings for the slider
-  const sliderSettings = {
-    dots: true,
-    infinite: true,
-    speed: 700,
-    slidesToShow: 4, 
-    slidesToScroll: 1,
-    autoplay: true,
-    prevArrow: <CustomPrevArrow />, 
-    nextArrow: <CustomNextArrow />
-  };
+    return () => clearInterval(autoScroll);
+  }, []);
 
   return (
-    // Wrapper for the recipe slider
-    <div className='recipe-slider'>
-      <h2>Inspireras av våra recept</h2>
-      {randomRecipes.length > 0 && (
-        <Slider {...sliderSettings}> 
-          {/* Map through random recipes and render each as a slide */}
-          {randomRecipes.map((recipe) => 
-            <div key={recipe._id} className='image-slide'>
-              <div onClick={() => navigate(`/recipe/${recipe._id}`)}> {/* Använd navigate här */}
-                <img src={recipe.imageUrl} alt={recipe.title}/> {/* Image for the recipe */}
-                <div className='cover'>{recipe.title}</div> {/* Title for the recipe */}
-              </div>
-            </div>
-          )}
-        </Slider>
-      )}
+    <div className="slider-section"> <h2>Discover Deliciousness</h2>
+    <div className="recipe-slider" ref={sliderRef}>
+      <div className="slider-container">
+        {randomRecipes.map((recipe) => (
+          <div
+            key={recipe._id}
+            className="image-slide"
+            onClick={() => navigate(`/recipe/${recipe._id}`)}
+          >
+            <img src={recipe.imageUrl} alt={recipe.title} />
+            <div className="cover">{recipe.title}</div>
+          </div>
+        
+        ))}
+      </div>
+      </div>
     </div>
   );
 };
