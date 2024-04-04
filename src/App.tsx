@@ -15,7 +15,7 @@ import PopularRecipes from "./pages/PopularRecipesPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import CocktailLetterPage from "./components/cocktail_components/CocktailLetter";
 import CocktailHomePage from "./pages/CocktailHomePage";
-import Ingredient from "./pages/CocktailPages/Ingredient";
+import IngredientPage from "./pages/IngredientPage";
 
 Modal.setAppElement("#root");
 
@@ -41,9 +41,9 @@ function App() {
           </div>
         </Modal>
         <Routes>
+          <Route path="/ingredient" element={<IngredientPage />} />
           <Route path="/cocktails/:letter" element={<CocktailLetterPage />} />
           <Route path="/cocktails" element={<CocktailHomePage />} />
-          <Route path="/ingredient" element ={<Ingredient />} />
           <Route path="/filter" element={<FilterPage />} />
           <Route path="/" element={<Home />} />
           <Route
