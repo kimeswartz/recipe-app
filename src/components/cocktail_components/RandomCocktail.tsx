@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import globalCocktailFunctions from "../../store/CocktailAPICalls";
-import CocktailInterface from '../../interfaces/CocktailInterfaces/CocktailInterface';
+import CocktailInterface from '../../interfaces/CocktailInterface';
 
 const RandomCocktail = () => {
   const { fetchRandomCocktail } = globalCocktailFunctions();

@@ -1,13 +1,12 @@
-//Kim + Hampus + Malcolm + Arash
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
 import allRecipeState from "../../store/Endpoints";
 import globalCartFunctions from "../../store/Cart";
-import "../../styling/RecipePageStyle.css";
+import "../../styling/RecipepageStyle.css";
 import "../../styling/CommentSectionStyle.css";
+import CocktailForRecipes from "../CocktailForRecipe";
 
 // Component for displaying a single recipe
 const DisplayOneRecipe = () => {
@@ -203,6 +202,8 @@ const DisplayOneRecipe = () => {
             </div>
           </div>
         </div>
+        {/* Display the suggested cocktail */}
+        <CocktailForRecipes />
       </div>
     );
   }
