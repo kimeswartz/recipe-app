@@ -4,7 +4,7 @@ import ListCocktailsAlphabet from "../components/cocktail_components/ListCocktai
 const CocktailHomePage = () => {
   return (
     <div>
-      <h1>Home Page</h1>
+      <h1>Cocktail Page</h1>
       <ListCocktailsAlphabet />
       <DisplayAllCocktails />
     </div>
