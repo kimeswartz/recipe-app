@@ -7,11 +7,19 @@ import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
 import allRecipeState from "../store/Endpoints";
 import globalCartFunctions from "../store/Cart";
 import "../styling/RecipepageStyle.css";
+import "../styling/CommentSectionStyle.css";
 
 // Component for displaying a single recipe
 const DisplayOneRecipe = () => {
   // Destructuring state and function from the state management
-  const { oneRecipe, fetchOneRecipe, addRating, fetchComments, addComment, recipeComment } = allRecipeState();
+  const {
+    oneRecipe,
+    fetchOneRecipe,
+    addRating,
+    fetchComments,
+    addComment,
+    recipeComment,
+  } = allRecipeState();
   const { addRecipeToCart } = globalCartFunctions();
 
   // Extracting recipeId from URL params
@@ -19,24 +27,22 @@ const DisplayOneRecipe = () => {
   const { recipeId } = useParams<{ recipeId: string }>();
   const [userRating, setUserRating] = useState<number>();
   const [commentText, setCommentText] = useState(""); //arash
-  const [trigger, setTrigger] = useState(false)
+  const [trigger, setTrigger] = useState(false);
 
   // Fetch the recipe details when the component mounts or recipeId changes
   useEffect(() => {
-    console.log('useEffect triggered with recipeId:', recipeId);
+    console.log("useEffect triggered with recipeId:", recipeId);
     if (recipeId) {
-      fetchOneRecipe(recipeId)
+      fetchOneRecipe(recipeId);
       fetchComments(recipeId); //arash
     }
   }, [trigger]);
 
   // This will send a review to database between 1-5
   const handleRatingChange = async (rating: number) => {
-
-    addRating(rating, oneRecipe._id)
-      .then(() => {
-        setTrigger(!trigger)
-      })
+    addRating(rating, oneRecipe._id).then(() => {
+      setTrigger(!trigger);
+    });
     setUserRating(rating);
   };
 
@@ -51,10 +57,9 @@ const DisplayOneRecipe = () => {
     }
 
     addComment(commentText.trim(), oneRecipe._id);
-    setTrigger(!trigger)
+    setTrigger(!trigger);
     setCommentText("");
   }; //arash
-
 
   // Conditional rendering based on whether the recipe has loaded or not
   if (!oneRecipe) {
@@ -112,7 +117,12 @@ const DisplayOneRecipe = () => {
                   </p>
                 </div>
                 <div className="info-container">
-                  <button onClick={() => addRecipeToCart(oneRecipe)} className="main-button">Add to list</button>
+                  <button
+                    onClick={() => addRecipeToCart(oneRecipe)}
+                    className="main-button"
+                  >
+                    Add to list
+                  </button>
                 </div>
               </div>
             </div>
@@ -127,7 +137,7 @@ const DisplayOneRecipe = () => {
         {/* Section displaying ingredients */}
         <div className="ingredients-container">
           <div className="upper">
-            <h2>Du behöver...</h2>
+            <h2>You need...</h2>
           </div>
 
           <div className="lower">
@@ -178,17 +188,23 @@ const DisplayOneRecipe = () => {
           </div>
         </div>
         <div className="comments-section">
-          <h2>Kommentarer</h2>
-          <textarea value={commentText} onChange={(e) => setCommentText(e.target.value)} placeholder="Lämna en kommentar"></textarea>
-          <button onClick={handleAddComment}>Skicka</button>
-          <div>
-            {recipeComment.map((userReview, reviewKey) => (
-              <p key={reviewKey}>{userReview.comment}</p>
-            ))}
+          <h3>Comments for this recipe</h3>
+          <div className="adjust-content-with">
+            <textarea
+              value={commentText}
+              onChange={(e) => setCommentText(e.target.value)}
+              placeholder="Leave a comment"
+            ></textarea>
+            <div className="comments-button-container">
+              <button onClick={handleAddComment}>Send</button>
+            </div>
+            <div>
+              {recipeComment.map((userReview, reviewKey) => (
+                <p key={reviewKey}>{userReview.comment}</p>
+              ))}
+            </div>
           </div>
-
-        </div> {/* arash */}
-
+        </div>
       </div>
     );
   }
