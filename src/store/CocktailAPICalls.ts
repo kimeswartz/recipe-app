@@ -12,6 +12,7 @@ interface CocktailStateInterface {
   oneCocktail: CocktailInterface;
   oneIngredient: IngredientInterface;
   fetchCocktailByName: (cocktailName: string) => Promise<void>;
+  fetchCocktailById: (cocktailId: string) => Promise<void>; // Add this line
   fetchIngredient: (ingredientName: string) => Promise<void>;
   fetchRandomCocktail: () => Promise<void>;
   setOneCocktail: (cocktail: CocktailInterface) => void;
@@ -33,6 +34,17 @@ const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
       console.log('something went wrong:', error)
     }
   }, 
+
+  fetchCocktailById: async (Id) => {
+    try {
+      const response = await axios.get(`${cocktailURL}/lookup.php?i=${Id}`);
+      if(response.status === 200){
+        set({ oneCocktail: response.data.drinks[0] }); 
+      }
+    } catch(error) {
+      console.log('something went wrong:', error);
+    }
+  },
 
   fetchIngredient: async(name) => {
     try{
