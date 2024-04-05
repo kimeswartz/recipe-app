@@ -38,8 +38,11 @@ const DisplayOneCocktail = () => {
       <div className="header-container">
         <div className="text-container">
           <h1>{oneCocktail.strDrink}</h1>
-          {oneCocktail.strInstructions && <p>{oneCocktail.strInstructions}</p>}
+          {oneCocktail.strCategory && <p>Category: {oneCocktail.strCategory}</p>}
+          {oneCocktail.strIBA && <p>Collection: {oneCocktail.strIBA}</p>}
           {oneCocktail.strAlcoholic && <p>{oneCocktail.strAlcoholic}</p>}
+          {oneCocktail.strGlass && <p>Serve in: {oneCocktail.strGlass}</p>}
+          
         </div>
         {oneCocktail.strDrinkThumb && (
           <div className="img-container">
@@ -57,8 +60,16 @@ const DisplayOneCocktail = () => {
               {generateIngredientsList(oneCocktail)}
             </ul>
           </div>
-        </div>
+        </div>  
       </div>
+      <div className="instructions-section">
+        <div className="ingredients-wrapper">
+          <div className="centered-mobile">
+            <h2>Instructions</h2>
+              <p className="to-do-step">{oneCocktail.strInstructions}</p>
+          </div>
+        </div> 
+    </div>
     </div>
   );
 };
