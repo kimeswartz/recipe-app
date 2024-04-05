@@ -50,9 +50,9 @@ const DisplayAllRecipe = () => {
         </div>
         <div className="second-card-div">
           <h3>{recipe.title}</h3>
-          <span>Grade</span>
+          <span>Rating</span>
           {recipe.avgRating === null ? (
-            <p>No grades</p>
+            <p>No rating</p>
           ) : (
             <p>{recipe.avgRating?.toFixed(1)}/5</p>
           )}

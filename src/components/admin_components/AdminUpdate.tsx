@@ -214,7 +214,7 @@ const UpdateRecipe = () => {
           </label>
           <br />
           <label className="update-label">
-            Grade:
+            Rating:
             <input
               type="number"
               name="description"
