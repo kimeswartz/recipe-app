@@ -1,0 +1,35 @@
+.alphabet-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 900px;
+  margin: auto;
+  padding: 10px;
+  /* justify-content: space-between;  Remove? //Kim*/
+}
+
+.alphabet-letter {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+  background-color: rgb(251, 251, 251);
+  cursor: pointer;
+}
+
+.alphabet-letter:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: rgb(255, 255, 255);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  .alphabet-container {
+    /*justify-content:start;  Remove? //Kim*/
+  }
+}
