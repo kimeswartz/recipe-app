@@ -62,7 +62,7 @@ const DisplayAllRecipe = () => {
                   deleteRecipe.stopPropagation(); // Prevents the navigate action when clicking the button
                   handleDelete(recipe._id);
                 }}
-                className="main-button delete-button" // Added a class for potential styling
+                className="main-button delete-button"
               >
                 Delete
               </button>
