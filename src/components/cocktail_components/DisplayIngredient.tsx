@@ -1,10 +1,10 @@
-// CocktailPage.js
+// 
 import React, { useState, useEffect } from 'react';
 import globalCocktailFunctions from '../../store/CocktailAPICalls';
 import '../../styling/CocktailGridStyle.css';
 import '../../styling/Ingredient.css'; 
 
-const CocktailPage = () => {
+const DisplayIngredient = () => {
   const { cocktailsByIngredient, fetchCocktailsByIngredient, oneIngredient, fetchIngredient } = globalCocktailFunctions();
   const [ingredientName, setIngredientName] = useState('');
 
@@ -59,4 +59,4 @@ const CocktailPage = () => {
   );
 };
 
-export default CocktailPage;
+export default DisplayIngredient;
