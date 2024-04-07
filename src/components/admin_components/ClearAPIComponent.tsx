@@ -1,10 +1,10 @@
 import { useState } from 'react'
-import allRecipeState from '../../store/Endpoints';
+import globalRecipeFunctions from '../../store/RecipeAPICalls';
 
 const ClearAPIComponent = () => {
 
   const [dangerButton, setDangerButton] = useState(true);
-  const { clearAPI } = allRecipeState();
+  const { clearAPI } = globalRecipeFunctions();
 
   const handleClick = () => {
     if (window.confirm('Are you sure?????')) {
