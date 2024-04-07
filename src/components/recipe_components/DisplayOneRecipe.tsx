@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
-import globalCartFunctions from "../../store/Cart";
+import globalCartFunctions from "../../store/GlobalCart";
 import "../../styling/OneRecipePageStyle.css";
 import "../../styling/CommentSectionStyle.css";
 

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
-import uploadUpdateRecipeState from "../../store/UpdateAndUpload";
+import uploadUpdateRecipeState from "../../store/GlobalUpdateAndUpload";
 import '../../styling/AdminPageStyle.css'
 
 const UploadRecipe = () => {
