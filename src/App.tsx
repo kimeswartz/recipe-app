@@ -55,7 +55,7 @@ function App() {
           <Route path="/recipes" element={<RecipePageContent />} />
           <Route path="/popular" element={<PopularRecipes />} />
           <Route path="/about" element={<AboutUsPage />} />
-        
+
         </Routes>
         <Footer />
       </BrowserRouter>
