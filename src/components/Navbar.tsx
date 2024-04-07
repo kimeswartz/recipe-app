@@ -18,10 +18,10 @@ const Navbar = () => {
       </a>
       <div className="nav-links">
         <a onClick={() => handleNavigation("/")}>Home</a>
-        <a onClick={() => handleNavigation("/Cocktails")}>Cocktails</a>
-        <a onClick={() => handleNavigation("/Filter")}>Filter</a>
-        <a onClick={() => handleNavigation("/Recipes")}>Recipes</a>
-        <a onClick={() => handleNavigation("/AdminPage")}>Admin</a>
+        <a onClick={() => handleNavigation("/cocktails")}>Cocktails</a>
+        <a onClick={() => handleNavigation("/filter")}>Filter</a>
+        <a onClick={() => handleNavigation("/recipes")}>Recipes</a>
+        <a onClick={() => handleNavigation("/adminpage")}>Admin</a>
         <a onClick={() => handleNavigation("/popular")}>Popular</a>
         <button className="main-button" onClick={() => toggleCart(displayCart)}>Shopping list</button>
       </div>

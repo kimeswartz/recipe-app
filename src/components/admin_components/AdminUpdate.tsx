@@ -2,7 +2,7 @@
 
 import axios from "axios";
 import { useState } from "react";
-import allRecipeState from "../../store/Endpoints";
+import globalRecipeFunctions from "../../store/RecipeAPICalls";
 
 const UpdateRecipe = () => {
   // Define the base URL for API requests
@@ -20,7 +20,7 @@ const UpdateRecipe = () => {
   const [ingredientName, setIngrediantName] = useState("");
   const [ingredientAmount, setIngrediantAmount] = useState(Number);
   const [ingredientUnit, setIngrediantUnit] = useState("");
-  const { recipeList } = allRecipeState();
+  const { recipeList } = globalRecipeFunctions();
   const [searchTerms, setSearchTerms] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
 

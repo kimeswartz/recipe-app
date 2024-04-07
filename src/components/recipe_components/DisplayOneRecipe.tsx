@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
-import allRecipeState from "../../store/Endpoints";
+import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import globalCartFunctions from "../../store/Cart";
 import "../../styling/OneRecipePageStyle.css";
 import "../../styling/CommentSectionStyle.css";
@@ -19,7 +19,7 @@ const DisplayOneRecipe = () => {
     fetchComments,
     addComment,
     recipeComment,
-  } = allRecipeState();
+  } = globalRecipeFunctions();
   const { addRecipeToCart } = globalCartFunctions();
 
   // Extracting recipeId from URL params
@@ -100,7 +100,7 @@ const DisplayOneRecipe = () => {
                 <div className="info-tag">
                   {/* Interaktiv ratingsystem */}
                   <p>
-                  Rate this dish: {""}
+                    Rate this dish: {""}
                     {[1, 2, 3, 4, 5].map((value) => (
                       <span
                         key={value}

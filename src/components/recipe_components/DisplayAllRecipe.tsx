@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import allRecipeState from "../../store/Endpoints";
+import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import "../../styling/CardsStyle.css";
@@ -7,7 +7,7 @@ import { RecipeInterface } from "../../interfaces/RecipeInterface";
 
 const DisplayAllRecipe = () => {
   const { recipeList, fetchAllRecipes, setOneRecipe, deleteRecipe } =
-    allRecipeState();
+    globalRecipeFunctions();
 
   const location = useLocation();
   const navigate = useNavigate();

@@ -1,12 +1,13 @@
-import DisplayAllCocktails from "../components/cocktail_components/DisplayAllCocktails";
+
+import CocktailLetters from "../components/cocktail_components/CocktailLetter";
 import ListCocktailsAlphabet from "../components/cocktail_components/ListCocktailsAlphabet";
 
 const CocktailHomePage = () => {
   return (
     <div>
       <h1>Cocktail Page</h1>
-      <DisplayAllCocktails />
       <ListCocktailsAlphabet />
+      <CocktailLetters />
     </div>
   );
 };
