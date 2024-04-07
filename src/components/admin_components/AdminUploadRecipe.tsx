@@ -63,14 +63,9 @@ const UploadRecipe = () => {
   // Present unit for ingredients
   const presentIngredientsUnit = ["l", "dl", "ml", "tbsp", "tsp", "g", "kg", "noOf"];
 
-  // Function to handle category changes
-  const handleCategoryChange = (selectedCategory: string) => {
-    const updatedCategories = recipe.categories.includes(selectedCategory)
-      ? recipe.categories.filter(category => category !== selectedCategory)
-      : [...recipe.categories, selectedCategory]
-
-    setCategories(updatedCategories);
-  };
+  const handleCategoryChange = (selectCategory: string) => {
+    setCategories(selectCategory)
+  }
 
   const handleSubmitInstruction = () => {
     if (userInputInstructions === '') {
@@ -144,7 +139,7 @@ const UploadRecipe = () => {
                 type="checkbox"
                 value={category}
                 checked={recipe.categories.includes(category)}
-                onChange={(e) => handleCategoryChange(e.target.value)}
+                onChange={() => handleCategoryChange(category)}
               />
               {category}
             </label>
@@ -247,7 +242,7 @@ const UploadRecipe = () => {
             type="button"
             onClick={() => handleSubmitIngredient()}
           >
-            Add instruction
+            Add ingredient
           </button>
 
           <div className="button-container">

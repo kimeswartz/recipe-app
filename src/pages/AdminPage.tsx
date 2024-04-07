@@ -1,7 +1,7 @@
 import RecipeSearch from "../components/recipe_components/SearchRecipe";
-import AdminUpdate from "../components/admin_components/AdminUpdate";
 import AdminUpload from "../components/admin_components/AdminUploadRecipe";
 import ClearAPIComponent from "../components/admin_components/ClearAPIComponent";
+import AdminUpdateRecipe from "../components/admin_components/AdminUpdateRecipe";
 import DisplayAllRecipe from "../components/recipe_components/DisplayAllRecipe";
 import "../styling/AdminPageStyle.css";
 
@@ -20,8 +20,8 @@ const AdminPage = () => {
         <h2>HÄR KAN DU TA BORT ETT RECEPT</h2>
         <DisplayAllRecipe />
 
-        <h2>HÄR KAN DU UPPDATERA ETT RECEPT</h2>
-        <AdminUpdate />
+        <h2>NEW UPDATE RECIPE</h2>
+        <AdminUpdateRecipe />
 
         <ClearAPIComponent />
       </div>
