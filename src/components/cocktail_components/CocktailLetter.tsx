@@ -6,6 +6,7 @@ import ListCocktailsAlphabet from './ListCocktailsAlphabet';
 import "../../styling/CocktailGridStyle.css"
 import { useNavigate } from 'react-router-dom';
 import globalCocktailFunctions from '../../store/CocktailAPICalls';
+import CocktailInterface from '../../interfaces/CocktailInterface';
 
 const CocktailLetterPage = () => {
   const { letter } = useParams<{ letter: string | undefined }>();

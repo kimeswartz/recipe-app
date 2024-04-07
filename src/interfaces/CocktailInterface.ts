@@ -1,4 +1,4 @@
- export default interface CocktailInterface {
+export default interface CocktailInterface {
   idDrink: string;
   strDrink: string;
   strDrinkThumb: string;
@@ -10,6 +10,3 @@
   [key: `strIngredient${number}`]: string | undefined;
   [key: `strMeasure${number}`]: string | undefined;
 }
-
-
-
