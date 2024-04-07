@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import allRecipeState from "../../store/Endpoints";
+import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import { useNavigate } from "react-router-dom";
 import { RecipeInterface } from "../../interfaces/RecipeInterface";
 import "../../styling/CardsStyle.css";
 
 const TopRatedRecipes = () => {
-  const { recipeList, fetchAllRecipes, setOneRecipe } = allRecipeState();
+  const { recipeList, fetchAllRecipes, setOneRecipe } = globalRecipeFunctions();
   const navigate = useNavigate();
 
   // Fetch all recipes when component first loads or recipeList changes

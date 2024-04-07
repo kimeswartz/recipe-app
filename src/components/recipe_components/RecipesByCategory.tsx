@@ -1,13 +1,13 @@
 import { useNavigate, useParams } from "react-router-dom";
 import "../../styling/CardsStyle.css";
-import allRecipeState from "../../store/Endpoints";
+import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import { RecipeInterface } from "../../interfaces/RecipeInterface";
 import CategorySuggestion from "./CategorySuggestion";
 
 const RecipesByCategory = () => {
   const { categoryName } = useParams(); // Accessing the category name parameter from the route URL
   const navigate = useNavigate();
-  const { categoryRecipeList, setOneRecipe } = allRecipeState();
+  const { categoryRecipeList, setOneRecipe } = globalRecipeFunctions();
 
   // Function to handle a click on a specific recipe
   const handleRecipeClick = (recipe: RecipeInterface) => {
