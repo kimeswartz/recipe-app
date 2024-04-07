@@ -9,8 +9,6 @@
   justify-content: center;
 }
 
-
-
 .header-content {
   text-align: center;
   width: 1000px;
@@ -38,11 +36,9 @@
     font-size: 24px;
   }
 
- .header-paragraph{
+  .header-paragraph {
     text-align: center;
     width: auto;
     padding: 50px;
   }
-
 }
-

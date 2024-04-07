@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import allRecipeState from '../../store/Endpoints';
+import globalRecipeFunctions from '../../store/RecipeAPICalls';
 import { useNavigate } from 'react-router-dom';
 import "../../styling/SearchRecipeStyle.css"
 import "../../styling/CardsStyle.css"
 import { RecipeInterface } from '../../interfaces/RecipeInterface';
 
 const SearchRecipe = () => {
-  const { recipeList, fetchAllRecipes, setOneRecipe } = allRecipeState();
+  const { recipeList, fetchAllRecipes, setOneRecipe } = globalRecipeFunctions();
   const [searchTerms, setSearchTerms] = useState<string>('');
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [searchPerformed, setSearchPerformed] = useState(false);

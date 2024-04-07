@@ -4,7 +4,7 @@ import { RecipeInterface } from "../interfaces/RecipeInterface"
 import { useNavigate } from "react-router-dom"
 import globalCartFunctions from "../store/Cart"
 import '../styling/CartStyle.css'
-import allRecipeState from "../store/Endpoints"
+import globalRecipeFunctions from "../store/RecipeAPICalls"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import CocktailInterface from "../interfaces/CocktailInterface";
@@ -18,7 +18,7 @@ const CartComponent = () => {
     removeCocktailFromCart,
     toggleCart,
   } = globalCartFunctions();
-  const { setOneRecipe } = allRecipeState();
+  const { setOneRecipe } = globalRecipeFunctions();
   const navigate = useNavigate();
 
   if (cartRecipes.length === 0 && cartCocktails.length === 0) {
