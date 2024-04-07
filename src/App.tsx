@@ -8,13 +8,14 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import RecipePageContent from "./pages/RecipePage";
 import FilterPage from "./pages/FilterPage";
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import globalCartFunctions from "./store/Cart";
 import CartComponent from "./components/CartComponent";
 import PopularRecipes from "./pages/PopularRecipesPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import CocktailLetterPage from "./components/cocktail_components/CocktailLetter";
 import CocktailHomePage from "./pages/CocktailHomePage";
+import IngredientPage from "./pages/IngredientPage";
 import DisplayOneCocktail from "./components/cocktail_components/DisplayOneCocktail";
 
 Modal.setAppElement("#root");
@@ -35,12 +36,18 @@ function App() {
           <div>
             <nav className="navbar">
               <h2>Shopping List</h2>
-              <button className="main-button" onClick={() => toggleCart(displayCart)}>X</button>
+              <button
+                className="main-button"
+                onClick={() => toggleCart(displayCart)}
+              >
+                X
+              </button>
             </nav>
             <CartComponent />
           </div>
         </Modal>
         <Routes>
+          <Route path="/ingredient/" element={<IngredientPage />} />
           <Route path="/cocktails/:letter" element={<CocktailLetterPage />} />
           <Route path="/cocktails" element={<CocktailHomePage />} />
           <Route path="/cocktail/:id" element={<DisplayOneCocktail />} /> {/* arash, med hjälp från hampus */}

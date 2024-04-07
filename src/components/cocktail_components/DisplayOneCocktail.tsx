@@ -1,37 +1,54 @@
-//Arash
-
-
+import React, { useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import globalCocktailFunctions from "../../store/CocktailAPICalls";
-import { useNavigate } from 'react-router-dom';
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
 
-// Component for displaying a single cocktail
 const DisplayOneCocktail = () => {
-  // Destructuring state and function from the state management
-
-  const { oneCocktail, fetchCocktailById } = globalCocktailFunctions(); // Fetching the function from the state management
-  const { id } = useParams<{id: string}>();
+  const { oneCocktail, fetchCocktailById } = globalCocktailFunctions();
+  const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
-    if(id){
-      fetchCocktailById(id)
+    if (id) {
+      fetchCocktailById(id);
     }
-  }, [])
+  }, [id, fetchCocktailById]);
 
-  const navigate = useNavigate();
-  
+  const generateIngredientsList = (cocktail: {
+    [ingredientName: string]: any;
+  }) => {
+    const ingredientsList = [];
+
+    for (let i = 1; i <= 15; i++) {
+      const ingredientKey = `strIngredient${i}`;
+      const measureKey = `strMeasure${i}`;
+      if (cocktail[ingredientKey]) {
+        ingredientsList.push(
+          <li key={i}>
+            {cocktail[ingredientKey]} amount:{" "}
+            {cocktail[measureKey] || "To taste"}
+          </li>
+        );
+      }
+    }
+
+    return ingredientsList;
+  };
+
   return (
     <div className="cocktail-container">
       <div className="header-container">
         <div className="text-container">
           <h1>{oneCocktail.strDrink}</h1>
-          {oneCocktail && <p>{oneCocktail.strInstructions}</p>}
-          {oneCocktail && <p>{oneCocktail.strAlcoholic}</p>}
+          {oneCocktail.strCategory && <p>Category: {oneCocktail.strCategory}</p>}
+          {oneCocktail.strIBA && <p>Collection: {oneCocktail.strIBA}</p>}
+          {oneCocktail.strAlcoholic && <p>{oneCocktail.strAlcoholic}</p>}
+          {oneCocktail.strGlass && <p>Serve in: {oneCocktail.strGlass}</p>}
+          
         </div>
-        <div className="img-container">
-          <img src={oneCocktail.strDrinkThumb} alt={oneCocktail.strDrink} />
-        </div>
+        {oneCocktail.strDrinkThumb && (
+          <div className="img-container">
+            <img src={oneCocktail.strDrinkThumb} alt={oneCocktail.strDrink} />
+          </div>
+        )}
       </div>
       <div className="ingredients-container">
         <div className="upper">
@@ -39,41 +56,22 @@ const DisplayOneCocktail = () => {
         </div>
         <div className="lower">
           <div className="centered-tags">
-            <ul className="list-objects"> {/*List of ingredients and their measures.If the ingredient exists, it will be displayed*/}
-            {oneCocktail.strIngredient1 && (<li>{oneCocktail.strIngredient1} amount : {oneCocktail.strMeasure1}</li>)}
-            {oneCocktail.strIngredient2 && (<li>{oneCocktail.strIngredient2} amount : {oneCocktail.strMeasure2}</li>)}
-            {oneCocktail.strIngredient3 && (<li>{oneCocktail.strIngredient3} amount : {oneCocktail.strMeasure3}</li>)}
-            {oneCocktail.strIngredient4 && (<li>{oneCocktail.strIngredient4} amount : {oneCocktail.strMeasure4}</li>)}
-            {oneCocktail.strIngredient5 && (<li>{oneCocktail.strIngredient5} amount : {oneCocktail.strMeasure5}</li>)}
-            {oneCocktail.strIngredient6 && (<li>{oneCocktail.strIngredient6} amount : {oneCocktail.strMeasure6}</li>)}
-            {oneCocktail.strIngredient7 && (<li>{oneCocktail.strIngredient7} amount : {oneCocktail.strMeasure7}</li>)}
-            {oneCocktail.strIngredient8 && (<li>{oneCocktail.strIngredient8} amount : {oneCocktail.strMeasure8}</li>)}
-            {oneCocktail.strIngredient9 && (<li>{oneCocktail.strIngredient9} amount : {oneCocktail.strMeasure9}</li>)}
-            {oneCocktail.strIngredient10 && (<li>{oneCocktail.strIngredient10} amount : {oneCocktail.strMeasure10}</li>)}
-            {oneCocktail.strIngredient11 && (<li>{oneCocktail.strIngredient11} amount : {oneCocktail.strMeasure11}</li>)}
-            {oneCocktail.strIngredient12 && (<li>{oneCocktail.strIngredient12} amount : {oneCocktail.strMeasure12}</li>)}
-            {oneCocktail.strIngredient13 && (<li>{oneCocktail.strIngredient13} amount : {oneCocktail.strMeasure13}</li>)}
-            {oneCocktail.strIngredient14 && (<li>{oneCocktail.strIngredient14} amount : {oneCocktail.strMeasure14}</li>)}
-            {oneCocktail.strIngredient15 && (<li>{oneCocktail.strIngredient15} amount : {oneCocktail.strMeasure15}</li>)}
+            <ul className="list-objects">
+              {generateIngredientsList(oneCocktail)}
             </ul>
           </div>
-        </div>
+        </div>  
       </div>
-      {/* Can't map ingredients, because of API. Therefore no ingredients?.map */}
       <div className="instructions-section">
         <div className="ingredients-wrapper">
           <div className="centered-mobile">
             <h2>Instructions</h2>
-              <p className="to-do-step">
-                {oneCocktail.strInstructions}
-              </p>
+              <p className="to-do-step">{oneCocktail.strInstructions}</p>
           </div>
-        </div>
-
-      </div>
-      
+        </div> 
+    </div>
     </div>
   );
-}
+};
 
 export default DisplayOneCocktail;

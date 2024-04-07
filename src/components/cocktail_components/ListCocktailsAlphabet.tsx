@@ -1,22 +1,17 @@
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import "../../styling/CocktailAlphabetStyle.css";
 
 const ListCocktailsAlphabet = () => {
-
   const navigate = useNavigate();
 
-  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
   return (
-    <div>
+    <div className="alphabet-container">
       {alphabet.map((letter: string, index) => (
-        <span key={index}>
-          <span>
-            {index === 0 ? <span></span> : <span>/</span>}
-          </span>
-          <a onClick={() => navigate(`/cocktails/${letter}`)}>
-            {letter}
-          </a>
-        </span>
+        <div key={index} className="alphabet-letter">
+          <a onClick={() => navigate(`/cocktails/${letter}`)}>{letter}</a>
+        </div>
       ))}
     </div>
   );
