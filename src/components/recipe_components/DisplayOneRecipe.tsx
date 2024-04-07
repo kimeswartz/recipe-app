@@ -3,11 +3,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
 import allRecipeState from "../../store/Endpoints";
 import globalCartFunctions from "../../store/Cart";
 import "../../styling/OneRecipePageStyle.css";
 import "../../styling/CommentSectionStyle.css";
+import RatingComponent from "./RatingComponent";
 
 // Component for displaying a single recipe
 const DisplayOneRecipe = () => {
@@ -15,7 +16,6 @@ const DisplayOneRecipe = () => {
   const {
     oneRecipe,
     fetchOneRecipe,
-    addRating,
     fetchComments,
     addComment,
     recipeComment,
@@ -25,7 +25,6 @@ const DisplayOneRecipe = () => {
   // Extracting recipeId from URL params
   // We use useParams to acces dynamic parts in the URL, in this case, the recipe ID, that will route to the recipe URL request
   const { recipeId } = useParams<{ recipeId: string }>();
-  const [userRating, setUserRating] = useState<number>();
   const [commentText, setCommentText] = useState(""); //arash
   const [trigger, setTrigger] = useState(false);
 
@@ -37,14 +36,6 @@ const DisplayOneRecipe = () => {
       fetchComments(recipeId); //arash
     }
   }, [trigger]);
-
-  // This will send a review to database between 1-5
-  const handleRatingChange = async (rating: number) => {
-    addRating(rating, oneRecipe._id).then(() => {
-      setTrigger(!trigger);
-    });
-    setUserRating(rating);
-  };
 
   const handleAddComment = async () => {
     if (!commentText.trim()) {
@@ -82,40 +73,10 @@ const DisplayOneRecipe = () => {
                   </p>
                 </div>
               </div>
-
-              <div className="info-container">
-                <div className="info-tag">
-                  <p>
-                    <FontAwesomeIcon icon={faStar} className="star-icon" />{" "}
-                    {oneRecipe.avgRating !== null ? (
-                      <span>{oneRecipe.avgRating?.toFixed(1)}/5</span>
-                    ) : (
-                      <span>Missing grade</span>
-                    )}
-                  </p>
-                </div>
+              <div>
+                <RatingComponent />
               </div>
-
               <div className="info-container">
-                <div className="info-tag">
-                  {/* Interaktiv ratingsystem */}
-                  <p>
-                  Rate this dish: {""}
-                    {[1, 2, 3, 4, 5].map((value) => (
-                      <span
-                        key={value}
-                        style={{ cursor: "pointer" }}
-                        onClick={() => handleRatingChange(value)}
-                      >
-                        <FontAwesomeIcon
-                          icon={faStar}
-                          className="star-icon"
-                          color={value <= (userRating || 0) ? "yellow" : "red"}
-                        />
-                      </span>
-                    ))}
-                  </p>
-                </div>
                 <div className="info-container">
                   <button
                     onClick={() => addRecipeToCart(oneRecipe)}
