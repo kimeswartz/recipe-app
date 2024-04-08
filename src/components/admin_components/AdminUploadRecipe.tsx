@@ -151,7 +151,7 @@ const UploadRecipe = () => {
                 return (
                   <li key={instructionNumber}>
                     {instructionNumber + 1}:{instruction}
-                    <button onClick={() => removeInstruction(instructionNumber)} className="main-button">
+                    <button onClick={(e) => { e.preventDefault(); removeInstruction(instructionNumber); }} className="main-button">
                       X
                     </button>
                   </li>
@@ -188,7 +188,7 @@ const UploadRecipe = () => {
                 return (
                   <li key={ingredientKey}>
                     {ingredientInfo.name} | {ingredientInfo.amount} | {ingredientInfo.unit}
-                    <button onClick={() => removeIngredient(ingredientKey)} className="main-button">
+                    <button onClick={(e) => { e.preventDefault(); removeIngredient(ingredientKey); }} className="main-button">
                       X
                     </button>
                   </li>

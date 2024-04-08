@@ -7,20 +7,20 @@ import "../styling/AdminPageStyle.css";
 
 const AdminPage = () => {
   return (
-    <div>
+    <div>git
       <header className="header">
-        <h1>ONLY ADMINS!</h1>
+        <h1>ADMINS ONLY!</h1>
         <RecipeSearch />
       </header>
 
       <div className="card">
-        <h2>HERE IS WHERE YOU CAN UPLOAD A RECIPE</h2>
+        <h2>UPLOAD RECIPE</h2>
         <AdminUpload />
 
-        <h2>HERE IS WHERE YOU DELETE RECEPIES</h2>
+        <h2>DELETE RECIPE</h2>
         <DisplayAllRecipe />
 
-        <h2>NEW UPDATE RECIPE</h2>
+        <h2>UPDATE RECIPE</h2>
         <AdminUpdateRecipe />
 
         <ClearAPIComponent />
