@@ -20,6 +20,7 @@ interface CocktailStateInterface {
   setOneCocktail: (cocktail: CocktailInterface) => void;
   fetchCocktailsByIngredient: (ingredientByName: string) => Promise<void>;
   fetchCocktailsByLetter: (letter: string) => Promise<void>;
+  emptyCocktailList: () => void;
 }
 
 const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
@@ -103,6 +104,10 @@ const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
       console.error('Error fetching cocktails by letter:', error);
       set({cocktailList: []})
     }
+  },
+
+  emptyCocktailList: () => {
+    set({ cocktailList: [] })
   },
 
   setOneCocktail: (newCocktail) => {
