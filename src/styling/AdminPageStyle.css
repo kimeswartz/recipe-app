@@ -1,15 +1,3 @@
-.recipes-card{
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  height: 500px; /*ÄNDRADE TILL 500 SÅ ATT BETYGEN KOMMER MED I KORTEN*/
-  width: 200px;
-  margin: 10px 20px 20px 20px;
-  cursor: pointer;
-  border-radius: 10px;
-  background-color: rgb(250, 235, 215);
-}
-  
 .first-cards-div{
   position: relative;
 }
@@ -85,6 +73,7 @@ h2{
 
 .category-label{
   font-size: 22px;
+  color: #1a1a1a;
 }
 
 .category-checkbox {
@@ -102,6 +91,7 @@ h2{
 
 .upload-label{
   margin: 10px;
+  color: #1a1a1a;
 }
 
 /*FOR UPLOAD SECTION*/
@@ -142,6 +132,7 @@ h2{
   margin: 5px;
   border: none;
   border-radius: 15px;
+  color: #1a1a1a;
 }
 
 .amount-unit-container {
@@ -156,6 +147,7 @@ h2{
 
 .upload-button{
   margin: 15px;
+  color: #1a1a1a;
   transition: .3s ease;
 }
 

@@ -2,7 +2,6 @@ import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import "../../styling/RatingComponent.css";
 
 
 const RatingComponent = () => {
@@ -19,6 +18,10 @@ const RatingComponent = () => {
         setUserRating(rating);
       };
 
+      const handleRatingHover = (rating: number) => {
+        setUserRating(rating);
+    };
+
 
   return (
     <div className="info-container">
@@ -28,7 +31,7 @@ const RatingComponent = () => {
                     {oneRecipe.avgRating !== null ? (
                       <span>{oneRecipe.avgRating?.toFixed(1)}/5</span>
                     ) : (
-                      <span>Missing grade</span>
+                      <span>No rating</span>
                     )}
                   </p>
                 </div>
@@ -41,11 +44,13 @@ const RatingComponent = () => {
                         key={value}
                         style={{ cursor: "pointer" }}
                         onClick={() => handleRatingChange(value)}
+                        onMouseEnter={() => handleRatingHover(value)} 
+                        onMouseLeave={() => handleRatingHover(0)}
                       >
                         <FontAwesomeIcon
                           icon={faStar}
                           className="star-icon"
-                          color={value <= (userRating || 0) ? "yellow" : "red"}
+                          color={value <= (userRating || 0) ? "white" : "red"}
                         />
                       </span>
                     ))}
