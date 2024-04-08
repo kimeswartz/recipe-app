@@ -8,6 +8,7 @@ import globalRecipeFunctions from "../store/RecipeAPICalls"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import CocktailInterface from "../interfaces/CocktailInterface";
+import globalCocktailFunctions from "../store/CocktailAPICalls"
 
 const CartComponent = () => {
   const {
@@ -19,7 +20,9 @@ const CartComponent = () => {
     toggleCart,
   } = globalCartFunctions();
   const { setOneRecipe } = globalRecipeFunctions();
+  const {setOneCocktail} = globalCocktailFunctions();
   const navigate = useNavigate();
+
 
   if (cartRecipes.length === 0 && cartCocktails.length === 0) {
     return (
@@ -40,9 +43,28 @@ const CartComponent = () => {
 
   const cocktailNavigate = (cocktail: CocktailInterface) => {
     toggleCart(displayCart);
-    //setOneCocktail
-    navigate(`/cocktails/${cocktail.idDrink}`);
+    setOneCocktail(cocktail)
+    navigate(`/cocktail/${cocktail.idDrink}`);
     window.scrollTo(0, 0);
+  };
+
+  const generateIngredientsList = (cocktail: {
+    [ingredientName: string]: any;
+  }) => {
+    const ingredientsList = [];
+
+    for (let i = 1; i <= 15; i++) {
+      const ingredientKey = `strIngredient${i}`;
+      if (cocktail[ingredientKey]) {
+        ingredientsList.push(
+          <li key={i} className="ingredient-name">
+            {cocktail[ingredientKey]}
+          </li>
+        );
+      }
+    }
+
+    return ingredientsList;
   };
 
   return (
@@ -60,7 +82,7 @@ const CartComponent = () => {
                 onClick={() => recipeNavigate(recipe)}
               />
 
-              <div className="item-info">
+              <div className="item-info scroll-window">
                 <b>{recipe.title}</b>
                 <ul className="list-objects">
                   {recipe.ingredients.map((ingredient, indexKey) => (
@@ -102,10 +124,12 @@ const CartComponent = () => {
                 className="cart-img"
                 onClick={() => cocktailNavigate(cocktail)}
               />
-              <div className="item-info">
+              <div className="item-info scroll-window">
                 <b>{cocktail.strDrink}</b>
-                <p className="cart-description">{cocktail.strInstructions}</p>
-                <p className="cart-rating">{cocktail.strAlcoholic}</p>
+                <ul className="list-objects" >
+                  {generateIngredientsList(cocktail)}
+                </ul>
+                
               </div>
               <button
                 className="exit-button"
@@ -113,6 +137,9 @@ const CartComponent = () => {
               >
                 X
               </button>
+              <b className="cart-rating">
+                {cocktail.strAlcoholic}
+              </b>
             </div>
           );
         })}
