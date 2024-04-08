@@ -6,6 +6,7 @@ const AdminUpdateRecipe = () => {
 
   const { recipe, setTitle, setDescription, setImageUrl, setTimeInMins, setCategories, setIngredients, setInstructions, removeIngredient, removeInstruction, emptyRecipe } = uploadUpdateRecipeState();
   const { recipeList, fetchAllRecipes, updateRecipe } = globalRecipeFunctions();
+  const [recipeId, setRecipeId] = useState<string | undefined>('');
   const [userInputInstructions, setUserInstructions] = useState('')
   const [searchTerms, setSearchTerms] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -44,14 +45,14 @@ const AdminUpdateRecipe = () => {
     const selectedRecipe = recipeList.find((recipe) => recipe.title.toLowerCase() === value.toLowerCase())
     console.log(selectedRecipe)
     if (selectedRecipe) {
-      setTitle(selectedRecipe.title);
+      setRecipeId(selectedRecipe._id)
+      setTitle(selectedRecipe.title)
       setDescription(selectedRecipe.description);
       setImageUrl(selectedRecipe.imageUrl);
       setTimeInMins(selectedRecipe.timeInMins)
-      selectedRecipe.categories.map((categoryName) => setCategories(categoryName))
-      selectedRecipe.instructions.map((instruction) => setInstructions(instruction))
-      selectedRecipe.ingredients.map((ingredient) => setIngredients(ingredient))
-      console.log('after values are set', recipe)
+      selectedRecipe.categories.forEach((categoryName) => setCategories(categoryName))
+      selectedRecipe.instructions.forEach((instruction) => setInstructions(instruction))
+      selectedRecipe.ingredients.forEach((ingredient) => setIngredients(ingredient))
     }
     setSuggestions([]);
   };
@@ -118,7 +119,7 @@ const AdminUpdateRecipe = () => {
         )}
       </div>
 
-      <form className="update-form" onSubmit={() => updateRecipe(recipe, recipe._id)}>
+      <form className="update-form" onSubmit={(e) => {e.preventDefault(); updateRecipe(recipe, recipeId); emptyRecipe(); setSearchTerms('')}}>
         <label className="upload-label">
           Title:
           <input

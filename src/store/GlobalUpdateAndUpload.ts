@@ -29,8 +29,9 @@ const initialRecipe: RecipeInterface = {
 const uploadUpdateRecipeState = create<globalRecipeState>((set) => ({
   recipe: { ...initialRecipe },
 
-  setTitle: (newTitle) =>
-    set((state) => ({ recipe: { ...state.recipe, title: newTitle } })),
+  setTitle: (newTitle) => {
+    set((state) => ({ recipe: { ...state.recipe, title: newTitle } }))
+  },
 
   setDescription: (newDescription) =>
     set((state) => ({ recipe: { ...state.recipe, description: newDescription } })),
