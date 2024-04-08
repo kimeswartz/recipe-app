@@ -11,7 +11,7 @@ const FilterComponent = () => {
   const [userInput, setUserInput] = useState<string>("");
   const [searchIngredients, setSearchIngredients] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  const { setOneRecipe } = globalRecipeFunctions();
+  const {setOneRecipe} = globalRecipeFunctions();
 
   const navigate = useNavigate();
 
@@ -77,12 +77,6 @@ const FilterComponent = () => {
     setSearchIngredients((prevIngredients) =>
       prevIngredients.filter((item) => item !== ingredient)
     );
-  };
-
-  const handleNavigate = (recipe: RecipeInterface) => {
-    setOneRecipe(recipe);
-    navigate(`/recipe/${recipe._id}`);
-    window.scrollTo(0, 0);
   };
 
   const handleNavigate = (recipe: RecipeInterface) => {

@@ -20,7 +20,6 @@ import "./App.css";
 Modal.setAppElement("#root");
 
 function App() {
-
   const { displayCart, toggleCart } = globalCartFunctions();
 
   // Menu items defined
@@ -31,6 +30,7 @@ function App() {
     { title: "About", path: "/about" },
     { title: "Contact", path: "/contact" },
     { title: "Popular", path: "/popular" },
+    { title: "Filter", path: "/FilterPage" },
     { title: "Your list", path: "/cart" },
   ];
 
@@ -62,10 +62,12 @@ function App() {
           <Route path="/ingredient/" element={<IngredientPage />} />
           <Route path="/cocktails" element={<CocktailHomePage />} />
           <Route path="/cocktail/:id" element={<DisplayOneCocktail />} />{" "}
-          {/* arash, med hjälp från hampus */}
-          <Route path="/filter" element={<FilterPage />} />
+          <Route path="/FilterPage" element={<FilterPage />} />
           <Route path="/" element={<Home />} />
-          <Route path="/category/:categoryName" element={<RecipesByCategory />}/>
+          <Route
+            path="/category/:categoryName"
+            element={<RecipesByCategory />}
+          />
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
           <Route path="/adminpage" element={<AdminPage />} />
           <Route path="/recipes" element={<RecipePageContent />} />
