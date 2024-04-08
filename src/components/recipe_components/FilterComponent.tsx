@@ -85,6 +85,12 @@ const FilterComponent = () => {
     window.scrollTo(0, 0);
   };
 
+  const handleNavigate = (recipe: RecipeInterface) => {
+    setOneRecipe(recipe);
+    navigate(`/recipe/${recipe._id}`);
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="filter-component-container">
       <div>

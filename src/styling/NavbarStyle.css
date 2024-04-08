@@ -42,6 +42,13 @@
   margin: 3px;
 }
 
+.list-container{
+  display: flex;
+  justify-content: center;
+  width: 2rem;
+  height: auto;
+}
+
 .nav-menu {
   display: flex;
   align-items: center;

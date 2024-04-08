@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import RecipePageContent from "./pages/RecipePage";
 import FilterPage from "./pages/FilterPage";
 import Modal from "react-modal";
-import globalCartFunctions from "./store/Cart";
+import globalCartFunctions from "./store/GlobalCart";
 import CartComponent from "./components/CartComponent";
 import PopularRecipes from "./pages/PopularRecipesPage";
 import AboutUsPage from "./pages/AboutUsPage";
@@ -20,6 +20,7 @@ import "./App.css";
 Modal.setAppElement("#root");
 
 function App() {
+
   const { displayCart, toggleCart } = globalCartFunctions();
 
   // Menu items defined
@@ -64,10 +65,7 @@ function App() {
           {/* arash, med hjälp från hampus */}
           <Route path="/filter" element={<FilterPage />} />
           <Route path="/" element={<Home />} />
-          <Route
-            path="/category/:categoryName"
-            element={<RecipesByCategory />}
-          />
+          <Route path="/category/:categoryName" element={<RecipesByCategory />}/>
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
           <Route path="/adminpage" element={<AdminPage />} />
           <Route path="/recipes" element={<RecipePageContent />} />
