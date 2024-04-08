@@ -122,6 +122,56 @@ p {
   transition: box-shadow 0.3s ease; /* Smooth transition for the shadow */
 }
 
+
+.search-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.suggestions {
+  margin-top: 5px;
+  position: absolute;
+  top: calc(100% + 0px);
+  left: 0;
+  min-width: 400px;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #ffffffdf;
+  border: none;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.suggestion {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestion:hover {
+  background-color: #f2f2f2;
+}
+
+.suggestions::-webkit-scrollbar {
+  width: 5px;
+}
+
+.suggestions::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.suggestions::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+.suggestions::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+
 .margin-container {
   padding: 3em;
 }

@@ -1,50 +1,45 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import logo from "../assets/logo/favicon-32x32.png";
-import "../styling/NavbarStyle.css";
+import { useNavigate } from "react-router-dom";
+import globalCartFunctions from "../store/GlobalCart";
+import uploadUpdateRecipeState from "../store/GlobalUpdateAndUpload";
+import "../styling/TopNavStyle.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import listIcon from "../assets/logo/favicon-32x32.png";
 
-interface MenuItem {
-  title: string;
-  path: string;
-}
+const Navbar = () => {
+  const navigate = useNavigate();
+  const { emptyRecipe } = uploadUpdateRecipeState();
+  const { displayCart, toggleCart } = globalCartFunctions();
+  const [isResponsive, setIsResponsive] = useState(false);
 
-interface NavbarProps {
-  menuItems: MenuItem[];
-}
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    emptyRecipe();
+    setIsResponsive(false); // Close the responsive menu on navigation
+  };
 
-const Navbar = ({ menuItems }: NavbarProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
+  const toggleResponsive = () => {
+    setIsResponsive(!isResponsive);
   };
 
   return (
-    <nav className="navbar">
-      <div className="navbar-logo">
-        <Link to="/">
-          <img src={logo} alt="Logo" />
-          <p className="logo-text">Food Haven</p>
-        </Link>
+    <div className={`topnav ${isResponsive ? "responsive" : ""}`}>
+      <div className="nav-links">
+        <a onClick={() => handleNavigation("/")}>Home</a>
+        <a onClick={() => handleNavigation("/cocktails")}>Cocktails</a>
+        <a onClick={() => handleNavigation("/filter")}>Filter</a>
+        <a onClick={() => handleNavigation("/recipes")}>Recipes</a>
+        <a onClick={() => handleNavigation("/adminpage")}>Admin</a>
+        <a onClick={() => handleNavigation("/popular")}>Popular</a>
+        <a className="icon" onClick={toggleResponsive}>
+          <FontAwesomeIcon icon={faBars} />
+        </a>
+        <a onClick={() => toggleCart(displayCart)} className="list-container">
+          <img src={listIcon} alt="Your list of recipes" />
+        </a>
       </div>
-      <div className={`menu-icon ${isOpen ? "open" : ""}`} onClick={toggleMenu}>
-        <div className="menu-line" />
-        <div className="menu-line" />
-        <div className="menu-line" />
-      </div>
-      <ul className={`nav-menu ${isOpen ? "active" : ""}`}>
-        {menuItems.map((item, index) => (
-          <li key={index}>
-            <Link
-              to={item.path}
-              className={item.title === "Your list" ? "main-button" : ""}
-            >
-              {item.title}
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    </div>
   );
 };
 

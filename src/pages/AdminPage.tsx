@@ -3,27 +3,29 @@ import AdminUpload from "../components/admin_components/AdminUploadRecipe";
 import ClearAPIComponent from "../components/admin_components/ClearAPIComponent";
 import AdminUpdateRecipe from "../components/admin_components/AdminUpdateRecipe";
 import DisplayAllRecipe from "../components/recipe_components/DisplayAllRecipe";
+import "../styling/AdminPageStyle.css";
 
 const AdminPage = () => {
   return (
     <div>
       <header className="header">
-        <h1>ENDAST ADMINS!</h1>
+        <h1>ADMINS ONLY!</h1>
         <RecipeSearch />
       </header>
 
-
-        <h2>HÄR KAN DU LADDA UPP ETT RECEPT</h2>
+      <div className="card">
+        <h2>UPLOAD RECIPE</h2>
         <AdminUpload />
 
-        <h2>HÄR KAN DU TA BORT ETT RECEPT</h2>
+        <h2>DELETE RECIPE</h2>
         <DisplayAllRecipe />
 
-        <h2>NEW UPDATE RECIPE</h2>
+        <h2>UPDATE RECIPE</h2>
         <AdminUpdateRecipe />
 
         <ClearAPIComponent />
       </div>
+    </div>
   );
 };
 

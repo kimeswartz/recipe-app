@@ -1,6 +1,7 @@
 import uploadUpdateRecipeState from "../../store/GlobalUpdateAndUpload"
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import { useEffect, useState } from "react";
+import "../../styling/SearchRecipeStyle.css";
 
 const AdminUpdateRecipe = () => {
 
@@ -186,7 +187,7 @@ const AdminUpdateRecipe = () => {
               return (
                 <li key={instructionNumber}>
                   {instructionNumber + 1}:{instruction}
-                  <button onClick={() => removeInstruction(instructionNumber)} className="main-button">
+                  <button onClick={(e) => {e.preventDefault(); removeInstruction(instructionNumber);}} className="main-button">
                     X
                   </button>
                 </li>
@@ -209,21 +210,20 @@ const AdminUpdateRecipe = () => {
           </label>
         </div>
         <button
-          className="upload-button"
+          className="main-button"
           type="button"
           onClick={() => handleSubmitInstruction()}
         >
           Add instruction
         </button>
-
-
+        <br /><br /><br />
         <div>
           <ul>
             {recipe.ingredients?.map((ingredientInfo, ingredientKey) => {
               return (
                 <li key={ingredientKey}>
                   {ingredientInfo.name} | {ingredientInfo.amount} | {ingredientInfo.unit}
-                  <button onClick={() => removeIngredient(ingredientKey)} className="main-button">
+                  <button onClick={(e) => {e.preventDefault(); removeIngredient(ingredientKey);}} className="main-button">
                     X
                   </button>
                 </li>
@@ -273,13 +273,13 @@ const AdminUpdateRecipe = () => {
           </div>
         </div>
         <button
-          className="upload-button"
+          className="main-button"
           type="button"
           onClick={() => handleSubmitIngredient()}
         >
           Add ingredient
         </button>
-        <br />
+        <br /><br /><br /><br />
         <button className="main-button" type="submit">
           Send updates
         </button>
@@ -289,4 +289,4 @@ const AdminUpdateRecipe = () => {
   )
 }
 
-export default AdminUpdateRecipe
+export default AdminUpdateRecipe;
