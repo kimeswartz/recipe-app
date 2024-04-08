@@ -64,7 +64,7 @@ const DisplayOneRecipe = () => {
             <h1>{oneRecipe.title}</h1> {/* Display recipe title */}
             <p>{oneRecipe.description}</p> {/* Display recipe description */}
             <br />
-            <h3>Vi rekomenderar ... till detta recept</h3>
+            <h3>... pairs well with this dish.</h3>
             {/* Display recipe time and rating */}
             <div className="time-review-section">
               <div className="info-container">
@@ -135,7 +135,7 @@ const DisplayOneRecipe = () => {
           {/* Section for displaying instructions */}
           <div className="instructions-wrapper">
             <div className="centered-mobile">
-              <h2>Do like this</h2>
+              <h2>Instructions</h2>
               <ol>
                 {/* Display step-by-step instructions */}
                 {oneRecipe.instructions?.map((instruction, index) => (
