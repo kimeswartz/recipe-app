@@ -31,12 +31,19 @@
   }
 }
 
+.list-container{
+  display: flex;
+  justify-content: center;
+  width: 2rem;
+  height: auto;
+}
+
 .container{
   padding-inline: 15vw;
 }
 
 .nav-links{
-  a{
+  a, img{
     margin-left: 1em;
     color: var(--text-light);
     letter-spacing: 1px;

@@ -169,7 +169,7 @@ const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
     } catch (error) {
       console.error("Error adding comment:", error);
     }
-}, //arash
+  }, //arash
 
   updateRecipe: async(updatedRecipe, id) => {
     try{
@@ -196,7 +196,6 @@ const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
       console.log('Could not clear database', error);
     }
   }
-
 }));
 
 export default globalRecipeFunctions;
