@@ -56,7 +56,7 @@ const DisplayAllRecipe = () => {
                 )}
               </div>
             </div>
-            {location.pathname === "/AdminPage" && (
+            {location.pathname === "/adminpage" && (
               <button
                 onClick={(deleteRecipe) => {
                   deleteRecipe.stopPropagation(); // Prevents the navigate action when clicking the button

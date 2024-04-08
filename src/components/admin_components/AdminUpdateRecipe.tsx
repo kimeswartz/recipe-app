@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 
 const AdminUpdateRecipe = () => {
 
-  const { recipe, setTitle, setDescription, setImageUrl, setTimeInMins, setCategories, setIngredients, setInstructions ,removeIngredient, removeInstruction ,emptyRecipe } = uploadUpdateRecipeState();
-  const { recipeList, fetchAllRecipes } = globalRecipeFunctions();
+  const { recipe, setTitle, setDescription, setImageUrl, setTimeInMins, setCategories, setIngredients, setInstructions, removeIngredient, removeInstruction, emptyRecipe } = uploadUpdateRecipeState();
+  const { recipeList, fetchAllRecipes, updateRecipe } = globalRecipeFunctions();
   const [userInputInstructions, setUserInstructions] = useState('')
   const [searchTerms, setSearchTerms] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
@@ -14,8 +14,6 @@ const AdminUpdateRecipe = () => {
   useEffect(() => {
     fetchAllRecipes();
   }, [])
-
-  
 
   const handleInputChange = (value: string) => {
     setSearchTerms(value);
@@ -45,7 +43,7 @@ const AdminUpdateRecipe = () => {
     setSearchTerms(value);
     const selectedRecipe = recipeList.find((recipe) => recipe.title.toLowerCase() === value.toLowerCase())
     console.log(selectedRecipe)
-    if(selectedRecipe){
+    if (selectedRecipe) {
       setTitle(selectedRecipe.title);
       setDescription(selectedRecipe.description);
       setImageUrl(selectedRecipe.imageUrl);
@@ -53,8 +51,8 @@ const AdminUpdateRecipe = () => {
       selectedRecipe.categories.map((categoryName) => setCategories(categoryName))
       selectedRecipe.instructions.map((instruction) => setInstructions(instruction))
       selectedRecipe.ingredients.map((ingredient) => setIngredients(ingredient))
+      console.log('after values are set', recipe)
     }
-   
     setSuggestions([]);
   };
 
@@ -120,9 +118,9 @@ const AdminUpdateRecipe = () => {
         )}
       </div>
 
-      <form className="update-form">
+      <form className="update-form" onSubmit={() => updateRecipe(recipe, recipe._id)}>
         <label className="upload-label">
-          Id:
+          Title:
           <input
             className="user-input"
             type="text"
@@ -280,8 +278,10 @@ const AdminUpdateRecipe = () => {
         >
           Add ingredient
         </button>
-          
-
+        <br />
+        <button className="main-button" type="submit">
+          Send updates
+        </button>
       </form>
 
     </div>
