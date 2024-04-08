@@ -3,7 +3,6 @@ import AdminUpdate from "../components/admin_components/AdminUpdate";
 import AdminUpload from "../components/admin_components/AdminUploadRecipe";
 import ClearAPIComponent from "../components/admin_components/ClearAPIComponent";
 import DisplayAllRecipe from "../components/recipe_components/DisplayAllRecipe";
-import "../styling/AdminPageStyle.css";
 
 const AdminPage = () => {
   return (
@@ -13,7 +12,7 @@ const AdminPage = () => {
         <RecipeSearch />
       </header>
 
-      <div className="card">
+
         <h2>HÄR KAN DU LADDA UPP ETT RECEPT</h2>
         <AdminUpload />
 
@@ -25,7 +24,6 @@ const AdminPage = () => {
 
         <ClearAPIComponent />
       </div>
-    </div>
   );
 };
 

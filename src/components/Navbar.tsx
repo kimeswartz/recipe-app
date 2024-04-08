@@ -1,31 +1,50 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import logo from "../assets/logo/favicon-32x32.png";
 import "../styling/NavbarStyle.css";
-import { To, useNavigate } from "react-router-dom";
-import globalCartFunctions from "../store/Cart"
 
-const Navbar = () => {
-  const navigate = useNavigate();
+interface MenuItem {
+  title: string;
+  path: string;
+}
 
-  const handleNavigation = (path: To) => {
-    navigate(path);
+interface NavbarProps {
+  menuItems: MenuItem[];
+}
+
+const Navbar = ({ menuItems }: NavbarProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
   };
 
-  const { displayCart, toggleCart } = globalCartFunctions();
-
   return (
-    <div className="navbar container">
-      <a className="logo" onClick={() => handleNavigation("/")}>
-        Logo
-      </a>
-      <div className="nav-links">
-        <a onClick={() => handleNavigation("/")}>Home</a>
-        <a onClick={() => handleNavigation("/cocktails")}>Cocktails</a>
-        <a onClick={() => handleNavigation("/filter")}>Filter</a>
-        <a onClick={() => handleNavigation("/recipes")}>Recipes</a>
-        <a onClick={() => handleNavigation("/adminpage")}>Admin</a>
-        <a onClick={() => handleNavigation("/popular")}>Popular</a>
-        <button className="main-button" onClick={() => toggleCart(displayCart)}>Shopping list</button>
+    <nav className="navbar">
+      <div className="navbar-logo">
+        <Link to="/">
+          <img src={logo} alt="Logo" />
+          <p className="logo-text">Food Haven</p>
+        </Link>
       </div>
-    </div>
+      <div className={`menu-icon ${isOpen ? "open" : ""}`} onClick={toggleMenu}>
+        <div className="menu-line" />
+        <div className="menu-line" />
+        <div className="menu-line" />
+      </div>
+      <ul className={`nav-menu ${isOpen ? "active" : ""}`}>
+        {menuItems.map((item, index) => (
+          <li key={index}>
+            <Link
+              to={item.path}
+              className={item.title === "Your list" ? "main-button" : ""}
+            >
+              {item.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 

@@ -1,9 +1,8 @@
 import { useEffect } from "react";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import { useNavigate, useLocation } from "react-router-dom";
-
-import "../../styling/CardsStyle.css";
 import { RecipeInterface } from "../../interfaces/RecipeInterface";
+import "../../styling/CardsStyle.css";
 
 const DisplayAllRecipe = () => {
   const { recipeList, fetchAllRecipes, setOneRecipe, deleteRecipe } =
@@ -44,6 +43,7 @@ const DisplayAllRecipe = () => {
                   src={recipe.imageUrl}
                   alt={recipe.title}
                 />
+
                 <b className="card-category">{recipe.categories[0]}</b>
               </div>
               <div className="second-card-div">
@@ -55,18 +55,19 @@ const DisplayAllRecipe = () => {
                   <p>{recipe.avgRating?.toFixed(1)}/5</p>
                 )}
               </div>
+
+              {location.pathname === "/adminpage" && (
+                <button
+                  onClick={(deleteRecipe) => {
+                    deleteRecipe.stopPropagation(); // Prevents the navigate action when clicking the button
+                    handleDelete(recipe._id);
+                  }}
+                  className="delete-button"
+                >
+                  Delete
+                </button>
+              )}
             </div>
-            {location.pathname === "/AdminPage" && (
-              <button
-                onClick={(deleteRecipe) => {
-                  deleteRecipe.stopPropagation(); // Prevents the navigate action when clicking the button
-                  handleDelete(recipe._id);
-                }}
-                className="main-button delete-button"
-              >
-                Delete
-              </button>
-            )}
           </>
         ))}
       </div>

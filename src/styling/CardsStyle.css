@@ -49,11 +49,15 @@
 
 .card-category {
   position: absolute;
+  border-radius: 20px;
   bottom: 10px;
   right: 10px;
   background-color: #009e74;
   color: white;
-  padding: 4px 10px;
+  padding: 10px 15px;
+  min-width: 150px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
 .second-card-div {
@@ -69,6 +73,21 @@
 .second-card-div p {
   font-weight: 900;
   color: #009e74;
+}
+
+.delete-button {
+  max-height: 50px;
+  transition: .3s ease;
+  padding: 10px;
+  border-style: none;
+  color: white;
+  background-color: red;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.delete-button :hover{
+  box-shadow: none;
 }
 
 /* Responsive design for smaller screens */

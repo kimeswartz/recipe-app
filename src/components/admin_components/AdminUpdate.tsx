@@ -134,7 +134,16 @@ const UpdateRecipe = () => {
   };
 
   const presentIngredientsUnit = [
-    "kg", "hg", "g", "l", "dl", "ml", "msk", "tsk", "krm", "st",
+    "kg",
+    "hg",
+    "g",
+    "l",
+    "dl",
+    "ml",
+    "msk",
+    "tsk",
+    "krm",
+    "st",
   ];
 
   // Return the UI for updating a recipe
@@ -144,12 +153,15 @@ const UpdateRecipe = () => {
         <h2>Update recipe</h2>
         <div className="search-bar">
           <input
+            className="user-input"
             type="text"
             value={searchTerms}
             placeholder="Search recipe..."
             onChange={(e) => handleInputChange(e.target.value)}
           />
-          <button onClick={handleClearSearch}>Clear</button>
+          <button className="main-button" onClick={handleClearSearch}>
+            Clear
+          </button>
 
           {searchTerms.trim() !== "" && (
             <div className="suggestions">
@@ -177,6 +189,7 @@ const UpdateRecipe = () => {
           <label className="update-label">
             Id:
             <input
+              className="user-input"
               type="text"
               value={recipeId}
               onChange={(input) => setRecipeId(input.target.value)}
@@ -187,6 +200,7 @@ const UpdateRecipe = () => {
           <label className="update-label">
             Titel:
             <input
+              className="user-input"
               type="text"
               name="title"
               value={recipeName}
@@ -197,7 +211,7 @@ const UpdateRecipe = () => {
                 );
                 setRecipeName(
                   filteredValue.charAt(0).toUpperCase() +
-                  filteredValue.slice(1).toLowerCase()
+                    filteredValue.slice(1).toLowerCase()
                 );
               }}
             />
@@ -206,6 +220,7 @@ const UpdateRecipe = () => {
           <label className="update-label">
             Description:
             <input
+              className="user-input"
               type="text"
               name="description"
               value={recipeDescription}
@@ -216,6 +231,7 @@ const UpdateRecipe = () => {
           <label className="update-label">
             Grade:
             <input
+              className="user-input"
               type="number"
               name="description"
               value={recipeRating}
@@ -226,6 +242,7 @@ const UpdateRecipe = () => {
           <label className="update-label">
             Image URL:
             <input
+              className="user-input"
               type="text"
               name="imageUrl"
               value={recipeImageUrl}
@@ -236,6 +253,7 @@ const UpdateRecipe = () => {
           <label className="update-label">
             Time in min:
             <input
+              className="user-input"
               type="number"
               name="timeInMins"
               value={recipeTimeInMin}
@@ -248,6 +266,7 @@ const UpdateRecipe = () => {
           <label className="update-label">
             Categories:
             <input
+              className="user-input"
               type="text"
               name="categories"
               value={recipeCategory}
@@ -258,6 +277,7 @@ const UpdateRecipe = () => {
           <label className="update-label">
             Instructions:
             <input
+              className="user-input"
               type="text"
               name="instructions"
               value={recipeIntructions}
@@ -270,6 +290,7 @@ const UpdateRecipe = () => {
           <label className="update-label">
             Ingrediens namn:
             <input
+              className="user-input"
               type="text"
               name="ingredientName"
               value={ingredientName}
@@ -279,6 +300,7 @@ const UpdateRecipe = () => {
           <label className="update-label">
             Amount:
             <input
+              className="user-input"
               type="number"
               name="amount"
               value={ingredientAmount}
@@ -290,6 +312,7 @@ const UpdateRecipe = () => {
           <label className="update-label">
             Unit:
             <select
+              className="user-input"
               value={ingredientUnit}
               onChange={(input) => setIngrediantUnit(input.target.value)}
             >
@@ -301,7 +324,7 @@ const UpdateRecipe = () => {
             </select>
           </label>
           <br />
-          <button className="upload-button" type="submit">
+          <button className="main-button" type="submit">
             Send updates
           </button>
         </form>
