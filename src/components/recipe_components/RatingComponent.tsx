@@ -2,6 +2,7 @@ import allRecipeState from "../../store/Endpoints";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import "../../styling/RatingComponent.css";
 
 
 const RatingComponent = () => {

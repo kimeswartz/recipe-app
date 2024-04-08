@@ -63,6 +63,8 @@ const DisplayOneRecipe = () => {
           <div className="text-container">
             <h1>{oneRecipe.title}</h1> {/* Display recipe title */}
             <p>{oneRecipe.description}</p> {/* Display recipe description */}
+            <br />
+            <h3>Vi rekomenderar ... till detta recept</h3>
             {/* Display recipe time and rating */}
             <div className="time-review-section">
               <div className="info-container">
