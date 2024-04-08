@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import globalCartFunctions from "../../store/GlobalCart";
 import globalCocktailFunctions from "../../store/CocktailAPICalls";
 

@@ -3,10 +3,9 @@
 import { useState } from "react";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import uploadUpdateRecipeState from "../../store/GlobalUpdateAndUpload";
-import '../../styling/AdminPageStyle.css'
+import "../../styling/AdminPageStyle.css";
 
 const UploadRecipe = () => {
-
   const { addRecipe } = globalRecipeFunctions();
   const {
     recipe,
@@ -19,12 +18,16 @@ const UploadRecipe = () => {
     setIngredients,
     removeInstruction,
     removeIngredient,
-    emptyRecipe
+    emptyRecipe,
   } = uploadUpdateRecipeState();
 
-  const [userInputInstructions, setUserInstructions] = useState('')
+  const [userInputInstructions, setUserInstructions] = useState("");
 
-  const [newIngredient, setNewIngredient] = useState({ name: '', amount: 0, unit: '' })
+  const [newIngredient, setNewIngredient] = useState({
+    name: "",
+    amount: 0,
+    unit: "",
+  });
 
   // Function to handle form submission
   const handleSubmit = (clickEvent: any) => {
@@ -37,15 +40,18 @@ const UploadRecipe = () => {
       recipe.timeInMins === 0 ||
       recipe.instructions.some((instruction: string) => instruction === "") ||
       recipe.ingredients.some(
-        (ingredient) => ingredient.name === "" || ingredient.amount <= 0 || ingredient.unit === ""
+        (ingredient) =>
+          ingredient.name === "" ||
+          ingredient.amount <= 0 ||
+          ingredient.unit === ""
       ) ||
       recipe.categories.length === 0
     ) {
-      alert('One or more fields are empty')
+      alert("One or more fields are empty");
     } else {
-      console.log(recipe)
+      console.log(recipe);
       addRecipe(recipe);
-      emptyRecipe()
+      emptyRecipe();
     }
   };
 
@@ -61,39 +67,53 @@ const UploadRecipe = () => {
   ];
 
   // Present unit for ingredients
-  const presentIngredientsUnit = ["l", "dl", "ml", "tbsp", "tsp", "g", "kg", "noOf"];
+  const presentIngredientsUnit = [
+    "l",
+    "dl",
+    "ml",
+    "tbsp",
+    "tsp",
+    "g",
+    "kg",
+    "noOf",
+  ];
 
   const handleCategoryChange = (selectCategory: string) => {
-    setCategories(selectCategory)
-  }
+    setCategories(selectCategory);
+  };
 
   const handleSubmitInstruction = () => {
-    if (userInputInstructions === '') {
-      alert('field is empty')
+    if (userInputInstructions === "") {
+      alert("field is empty");
     } else {
-      setInstructions(userInputInstructions)
-      setUserInstructions('');
+      setInstructions(userInputInstructions);
+      setUserInstructions("");
     }
-  }
+  };
 
   const handleSubmitIngredient = () => {
-    if (newIngredient.name === '' || newIngredient.amount <= 0 || newIngredient.unit === '') {
-      alert('one ore more fields are empty')
+    if (
+      newIngredient.name === "" ||
+      newIngredient.amount <= 0 ||
+      newIngredient.unit === ""
+    ) {
+      alert("one ore more fields are empty");
     } else {
-      setIngredients(newIngredient)
-      setNewIngredient({ name: '', amount: 0, unit: '' })
+      setIngredients(newIngredient);
+      setNewIngredient({ name: "", amount: 0, unit: "" });
     }
-  }
+  };
 
   return (
     <div>
       <section className="upload-container">
         <h1 className="upload-title">Upload Recipe</h1>
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit}>
           <label className="upload-label">
             Titel:
             <input
               className="user-input"
+              id="addTitle"
               type="text"
               name="title"
               value={recipe.title}
@@ -104,6 +124,7 @@ const UploadRecipe = () => {
             Descriptions:
             <input
               className="user-input"
+              id="addDescription"
               type="text"
               name="description"
               value={recipe.description}
@@ -114,6 +135,7 @@ const UploadRecipe = () => {
             Image URL:
             <input
               className="user-input"
+              id="addImageUrl"
               type="text"
               name="imageUrl"
               value={recipe.imageUrl}
@@ -124,6 +146,7 @@ const UploadRecipe = () => {
             Time in min:
             <input
               className="user-input"
+              id="addTimeInMin"
               type="number"
               name="timeInMins"
               value={recipe.timeInMins}
@@ -151,11 +174,14 @@ const UploadRecipe = () => {
                 return (
                   <li key={instructionNumber}>
                     {instructionNumber + 1}:{instruction}
-                    <button onClick={() => removeInstruction(instructionNumber)} className="main-button">
+                    <button
+                      onClick={() => removeInstruction(instructionNumber)}
+                      className="main-button"
+                    >
                       X
                     </button>
                   </li>
-                )
+                );
               })}
             </ul>
           </div>
@@ -166,6 +192,7 @@ const UploadRecipe = () => {
               Instruction :
               <input
                 className="user-input"
+                id="addInstruction"
                 type="text"
                 name="instruction"
                 value={userInputInstructions}
@@ -175,6 +202,7 @@ const UploadRecipe = () => {
           </div>
           <button
             className="upload-button"
+            id="addInstructionBtn"
             type="button"
             onClick={() => handleSubmitInstruction()}
           >
@@ -187,12 +215,16 @@ const UploadRecipe = () => {
               {recipe.ingredients?.map((ingredientInfo, ingredientKey) => {
                 return (
                   <li key={ingredientKey}>
-                    {ingredientInfo.name} | {ingredientInfo.amount} | {ingredientInfo.unit}
-                    <button onClick={() => removeIngredient(ingredientKey)} className="main-button">
+                    {ingredientInfo.name} | {ingredientInfo.amount} |{" "}
+                    {ingredientInfo.unit}
+                    <button
+                      onClick={() => removeIngredient(ingredientKey)}
+                      className="main-button"
+                    >
                       X
                     </button>
                   </li>
-                )
+                );
               })}
             </ul>
           </div>
@@ -203,9 +235,15 @@ const UploadRecipe = () => {
               Ingredient Name:
               <input
                 className="user-input"
+                id="addIngredient"
                 type="text"
                 value={newIngredient.name}
-                onChange={(input) => setNewIngredient({ ...newIngredient, name: input.target.value })}
+                onChange={(input) =>
+                  setNewIngredient({
+                    ...newIngredient,
+                    name: input.target.value,
+                  })
+                }
               />
             </label>
 
@@ -214,9 +252,15 @@ const UploadRecipe = () => {
                 Amount:
                 <input
                   className="user-input"
+                  id="addAmount"
                   type="number"
                   value={newIngredient.amount}
-                  onChange={(input) => setNewIngredient({ ...newIngredient, amount: +input.target.value })}
+                  onChange={(input) =>
+                    setNewIngredient({
+                      ...newIngredient,
+                      amount: +input.target.value,
+                    })
+                  }
                 />
               </label>
 
@@ -224,8 +268,14 @@ const UploadRecipe = () => {
                 Unit:
                 <select
                   className="user-input"
+                  id="addIngredientUnit"
                   defaultValue=""
-                  onChange={(input) => setNewIngredient({ ...newIngredient, unit: input.target.value })}
+                  onChange={(input) =>
+                    setNewIngredient({
+                      ...newIngredient,
+                      unit: input.target.value,
+                    })
+                  }
                 >
                   <option disabled hidden></option>
                   {presentIngredientsUnit.map((unit, index) => (
@@ -239,6 +289,7 @@ const UploadRecipe = () => {
           </div>
           <button
             className="upload-button"
+            id="addIngredientBtn"
             type="button"
             onClick={() => handleSubmitIngredient()}
           >
@@ -246,7 +297,7 @@ const UploadRecipe = () => {
           </button>
 
           <div className="button-container">
-            <button className="upload-button" type="submit">
+            <button className="upload-button" id="submitBtn" type="submit">
               Submit recipe to database
             </button>
           </div>
