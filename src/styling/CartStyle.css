@@ -8,6 +8,8 @@
   display: flex;
   flex: 1;
   flex-direction: column;
+  margin-left: 1rem;
+  margin-right: 1rem;
   width: 40rem;
   border-radius: 10px;
 }
@@ -24,9 +26,17 @@
 
 .item-info{
   padding-left: 1rem;
-  padding-right: 1rem;
+  padding-right: 3rem;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.scroll-window{
+  overflow-y: auto;
+}
+
+.scroll-window::-webkit-scrollbar {
+  display: none;
 }
 
 .cart-description{
@@ -50,7 +60,7 @@
 .cart-rating{
   position: absolute;
   bottom: 1rem;
-  right: 1rem;
+  right: 0.5rem;
 }
 
 .cart-img{
