@@ -28,7 +28,7 @@ const CartComponent = () => {
     return (
       <div className="centered-tags">
         <div className="info-tag">
-          <h1>Nothing added yet!</h1>
+          <h3>Nothing added yet!</h3>
         </div>
       </div>
     );
@@ -106,7 +106,7 @@ const CartComponent = () => {
                 className="exit-button"
                 onClick={() => removeRecipeFromCart(recipeIndex)}
               >
-                X
+                Close
               </button>
             </div>
           );
@@ -135,7 +135,7 @@ const CartComponent = () => {
                 className="exit-button"
                 onClick={() => removeCocktailFromCart(cocktailIndex)}
               >
-                X
+               Close
               </button>
               <b className="cart-rating">
                 {cocktail.strAlcoholic}
