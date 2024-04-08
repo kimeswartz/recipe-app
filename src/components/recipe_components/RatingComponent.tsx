@@ -1,4 +1,4 @@
-import allRecipeState from "../../store/Endpoints";
+import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
@@ -7,7 +7,7 @@ import "../../styling/RatingComponent.css";
 
 const RatingComponent = () => {
 
-    const { oneRecipe, addRating } = allRecipeState();
+    const { oneRecipe, addRating } = globalRecipeFunctions();
     const [userRating, setUserRating] = useState<number>();
     const [trigger, setTrigger] = useState(false);
 

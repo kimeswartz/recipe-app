@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { RecipeInterface } from "../../interfaces/RecipeInterface";
+import { useNavigate } from "react-router-dom";
+import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import "../../styling/FilterComponentStyle.css";
 
 const FilterComponent = () => {
@@ -9,6 +11,9 @@ const FilterComponent = () => {
   const [userInput, setUserInput] = useState<string>("");
   const [searchIngredients, setSearchIngredients] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const {setOneRecipe} = globalRecipeFunctions();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,6 +79,12 @@ const FilterComponent = () => {
     );
   };
 
+  const handleNavigate = (recipe: RecipeInterface) => {
+    setOneRecipe(recipe);
+    navigate(`/recipe/${recipe._id}`);
+    window.scrollTo(0, 0);
+  };
+
   return (
     <div className="filter-component-container">
       <div>
@@ -107,7 +118,7 @@ const FilterComponent = () => {
       </ul>
       <div className="card-grid">
         {filteredRecipes.map((recipe) => (
-          <div className="recipe-card" key={recipe._id}>
+          <div className="recipe-card" key={recipe._id} onClick={() => handleNavigate(recipe)}>
             <img
               className="recipe-card-img"
               src={recipe.imageUrl}

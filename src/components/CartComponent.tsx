@@ -2,9 +2,9 @@
 
 import { RecipeInterface } from "../interfaces/RecipeInterface"
 import { useNavigate } from "react-router-dom"
-import globalCartFunctions from "../store/Cart"
+import globalCartFunctions from "../store/GlobalCart"
 import '../styling/CartStyle.css'
-import allRecipeState from "../store/Endpoints"
+import globalRecipeFunctions from "../store/RecipeAPICalls"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import CocktailInterface from "../interfaces/CocktailInterface";
@@ -18,7 +18,7 @@ const CartComponent = () => {
     removeCocktailFromCart,
     toggleCart,
   } = globalCartFunctions();
-  const { setOneRecipe } = allRecipeState();
+  const { setOneRecipe } = globalRecipeFunctions();
   const navigate = useNavigate();
 
   if (cartRecipes.length === 0 && cartCocktails.length === 0) {
@@ -47,6 +47,8 @@ const CartComponent = () => {
 
   return (
     <div className="flex-box">
+
+      {/* Presents all recipes */}
       <div className="v-flex-box">
         {cartRecipes.map((recipe, recipeIndex) => {
           return (
@@ -60,7 +62,13 @@ const CartComponent = () => {
 
               <div className="item-info">
                 <b>{recipe.title}</b>
-                <p className="cart-description">{recipe.description}</p>
+                <ul className="list-objects">
+                  {recipe.ingredients.map((ingredient, indexKey) => (
+                    <li key={indexKey} className="ingredient-name">
+                      {ingredient.name}
+                    </li>
+                  ))}
+                </ul>
               </div>
 
               <p className="cart-rating">
@@ -82,6 +90,8 @@ const CartComponent = () => {
           );
         })}
       </div>
+
+      {/* Presents all cocktails */}
       <div className="v-flex-box">
         {cartCocktails.map((cocktail, cocktailIndex) => {
           return (

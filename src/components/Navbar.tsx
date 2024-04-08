@@ -1,6 +1,7 @@
 import "../styling/NavbarStyle.css";
 import { To, useNavigate } from "react-router-dom";
-import globalCartFunctions from "../store/Cart"
+import globalCartFunctions from "../store/GlobalCart"
+import ShoppingList from '../assets/Shoppinglist.svg'
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -18,12 +19,12 @@ const Navbar = () => {
       </a>
       <div className="nav-links">
         <a onClick={() => handleNavigation("/")}>Home</a>
-        <a onClick={() => handleNavigation("/Cocktails")}>Cocktails</a>
-        <a onClick={() => handleNavigation("/Filter")}>Filter</a>
-        <a onClick={() => handleNavigation("/Recipes")}>Recipes</a>
-        <a onClick={() => handleNavigation("/AdminPage")}>Admin</a>
+        <a onClick={() => handleNavigation("/cocktails")}>Cocktails</a>
+        <a onClick={() => handleNavigation("/filter")}>Filter</a>
+        <a onClick={() => handleNavigation("/recipes")}>Recipes</a>
+        <a onClick={() => handleNavigation("/adminpage")}>Admin</a>
         <a onClick={() => handleNavigation("/popular")}>Popular</a>
-        <button className="main-button" onClick={() => toggleCart(displayCart)}>Shopping list</button>
+        <a onClick={() => toggleCart(displayCart)} className="list-container"><img src={ShoppingList} alt="Shopping list"/></a>
       </div>
     </div>
   );
