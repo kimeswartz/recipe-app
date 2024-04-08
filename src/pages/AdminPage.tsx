@@ -7,7 +7,7 @@ import "../styling/AdminPageStyle.css";
 
 const AdminPage = () => {
   return (
-    <div>git
+    <div>
       <header className="header">
         <h1>ADMINS ONLY!</h1>
         <RecipeSearch />
