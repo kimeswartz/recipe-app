@@ -13,7 +13,6 @@ import globalCartFunctions from "./store/Cart";
 import CartComponent from "./components/CartComponent";
 import PopularRecipes from "./pages/PopularRecipesPage";
 import AboutUsPage from "./pages/AboutUsPage";
-import CocktailLetterPage from "./components/cocktail_components/CocktailLetter";
 import CocktailHomePage from "./pages/CocktailHomePage";
 import IngredientPage from "./pages/IngredientPage";
 import DisplayOneCocktail from "./components/cocktail_components/DisplayOneCocktail";
@@ -48,7 +47,6 @@ function App() {
         </Modal>
         <Routes>
           <Route path="/ingredient/" element={<IngredientPage />} />
-          <Route path="/cocktails/:letter" element={<CocktailLetterPage />} />
           <Route path="/cocktails" element={<CocktailHomePage />} />
           <Route path="/cocktail/:id" element={<DisplayOneCocktail />} /> {/* arash, med hjälp från hampus */}
           <Route path="/filter" element={<FilterPage />} />
@@ -62,7 +60,7 @@ function App() {
           <Route path="/recipes" element={<RecipePageContent />} />
           <Route path="/popular" element={<PopularRecipes />} />
           <Route path="/about" element={<AboutUsPage />} />
-        
+
         </Routes>
         <Footer />
       </BrowserRouter>
