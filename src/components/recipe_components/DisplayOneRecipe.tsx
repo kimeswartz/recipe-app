@@ -4,9 +4,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import globalCartFunctions from "../../store/GlobalCart";
+import CocktailForRecipe from "../CocktailForRecipe";
 import "../../styling/OneRecipePageStyle.css";
 import "../../styling/CommentSectionStyle.css";
-import CocktailForRecipes from "../CocktailForRecipe";
 
 // Component for displaying a single recipe
 const DisplayOneRecipe = () => {
@@ -201,8 +201,8 @@ const DisplayOneRecipe = () => {
               ))}
             </div>
           </div>
+          <CocktailForRecipe /> {/* Använd CocktailForRecipe */}
         </div>
-        <CocktailForRecipes />
       </div>
     );
   }
