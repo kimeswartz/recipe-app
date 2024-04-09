@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
-import uploadUpdateRecipeState from "../../store/UpdateAndUpload";
+import uploadUpdateRecipeState from "../../store/GlobalUpdateAndUpload";
 import '../../styling/AdminPageStyle.css'
 
 const UploadRecipe = () => {
@@ -63,14 +63,9 @@ const UploadRecipe = () => {
   // Present unit for ingredients
   const presentIngredientsUnit = ["l", "dl", "ml", "tbsp", "tsp", "g", "kg", "noOf"];
 
-  // Function to handle category changes
-  const handleCategoryChange = (selectedCategory: string) => {
-    const updatedCategories = recipe.categories.includes(selectedCategory)
-      ? recipe.categories.filter(category => category !== selectedCategory)
-      : [...recipe.categories, selectedCategory]
-
-    setCategories(updatedCategories);
-  };
+  const handleCategoryChange = (selectCategory: string) => {
+    setCategories(selectCategory)
+  }
 
   const handleSubmitInstruction = () => {
     if (userInputInstructions === '') {
@@ -144,7 +139,7 @@ const UploadRecipe = () => {
                 type="checkbox"
                 value={category}
                 checked={recipe.categories.includes(category)}
-                onChange={(e) => handleCategoryChange(e.target.value)}
+                onChange={() => handleCategoryChange(category)}
               />
               {category}
             </label>
@@ -156,7 +151,7 @@ const UploadRecipe = () => {
                 return (
                   <li key={instructionNumber}>
                     {instructionNumber + 1}:{instruction}
-                    <button onClick={() => removeInstruction(instructionNumber)} className="main-button">
+                    <button onClick={(e) => { e.preventDefault(); removeInstruction(instructionNumber); }} className="main-button">
                       X
                     </button>
                   </li>
@@ -193,7 +188,7 @@ const UploadRecipe = () => {
                 return (
                   <li key={ingredientKey}>
                     {ingredientInfo.name} | {ingredientInfo.amount} | {ingredientInfo.unit}
-                    <button onClick={() => removeIngredient(ingredientKey)} className="main-button">
+                    <button onClick={(e) => { e.preventDefault(); removeIngredient(ingredientKey); }} className="main-button">
                       X
                     </button>
                   </li>
@@ -247,7 +242,7 @@ const UploadRecipe = () => {
             type="button"
             onClick={() => handleSubmitIngredient()}
           >
-            Add instruction
+            Add ingredient
           </button>
 
           <div className="button-container">
