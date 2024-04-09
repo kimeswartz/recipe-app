@@ -30,7 +30,6 @@ const Navbar = () => {
         <a onClick={() => handleNavigation("/cocktails")}>Cocktails</a>
         <a onClick={() => handleNavigation("/filter")}>Filter</a>
         <a onClick={() => handleNavigation("/recipes")}>Recipes</a>
-        <a onClick={() => handleNavigation("/popular")}>Popular</a>
         <a className="icon" onClick={toggleResponsive}>
           <FontAwesomeIcon icon={faBars} />
         </a>

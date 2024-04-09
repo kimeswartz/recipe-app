@@ -30,9 +30,6 @@ const Footer = () => {
               <a onClick={() => handleNavigation("/AdminPage")}>Admin</a>
             </li>
             <li>
-              <a onClick={() => handleNavigation("/popular")}>Popular</a>
-            </li>
-            <li>
               <a onClick={() => handleNavigation("/about")}>About Us</a>
             </li>
           </ul>

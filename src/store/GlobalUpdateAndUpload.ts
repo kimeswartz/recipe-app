@@ -12,14 +12,15 @@ interface globalRecipeState{
   setIngredients: (newIngredient: {name: string, amount: number, unit: string}) => void;
   removeInstruction: (position: number) => void;
   removeIngredient: (position: number) => void;
+  setPrice: (newPrice: number) => void;
   emptyRecipe: () => void;
 }
 
 const initialRecipe: RecipeInterface = {
   title: "",
   description: "",
-  ratings: [],
   imageUrl: "",
+  price: 0,
   timeInMins: 0,
   categories: [],
   instructions: [],
@@ -41,6 +42,10 @@ const uploadUpdateRecipeState = create<globalRecipeState>((set) => ({
 
   setTimeInMins: (newTimeInMins) =>
     set((state) => ({ recipe: { ...state.recipe, timeInMins: newTimeInMins } })),
+
+  setPrice: (newPrice) => {
+    set((state) => ({recipe: {...state.recipe, price: newPrice}}))
+  },
 
   setCategories: (selectedCategory) => {
     set((state) => {

@@ -25,7 +25,7 @@ const TopRatedRecipes = () => {
       <div className="card-grid">
         {recipeList
           .filter(
-            (recipe) => recipe.avgRating !== undefined && recipe.avgRating >= 3
+            (recipe) => recipe.avgRating !== undefined && recipe.avgRating >= 4
           )
           .sort((a, b) => (b.avgRating ?? 0) - (a.avgRating ?? 0))
           .map((recipe) => (

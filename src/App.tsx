@@ -11,7 +11,6 @@ import FilterPage from "./pages/FilterPage";
 import Modal from "react-modal";
 import globalCartFunctions from "./store/GlobalCart";
 import CartComponent from "./components/CartComponent";
-import PopularRecipes from "./pages/PopularRecipesPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import CocktailHomePage from "./pages/CocktailHomePage";
 import IngredientPage from "./pages/IngredientPage";
@@ -39,7 +38,7 @@ function App() {
                 className="main-button"
                 onClick={() => toggleCart(displayCart)}
               >
-                X
+                Close
               </button>
             </nav>
             <CartComponent />
@@ -59,7 +58,6 @@ function App() {
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
           <Route path="/adminpage" element={<AdminPage />} />
           <Route path="/recipes" element={<RecipePageContent />} />
-          <Route path="/popular" element={<PopularRecipes />} />
           <Route path="/about" element={<AboutUsPage />} />
         </Routes>
         <Footer />

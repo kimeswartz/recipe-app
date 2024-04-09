@@ -11,6 +11,7 @@ const UploadRecipe = () => {
     setTitle,
     setDescription,
     setImageUrl,
+    setPrice,
     setTimeInMins,
     setCategories,
     setInstructions,
@@ -100,7 +101,7 @@ const UploadRecipe = () => {
       alert("one ore more fields are empty");
     } else {
       setIngredients(newIngredient);
-      setNewIngredient({ name: "", amount: 0, unit: "" });
+      setNewIngredient({...newIngredient, name: "", amount: 0 });
     }
   };
 
@@ -143,6 +144,16 @@ const UploadRecipe = () => {
                   name="imageUrl"
                   value={recipe.imageUrl}
                   onChange={(input) => setImageUrl(input.target.value)}
+                />
+              </label>
+              <label className="form-input">
+                Price:
+                <input
+                  className="user-input"
+                  type="number"
+                  name="Price"
+                  value={recipe.price}
+                  onChange={(input) => setPrice(parseInt(input.target.value))}
                 />
               </label>
               <label className="form-input">
