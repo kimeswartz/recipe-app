@@ -1,11 +1,10 @@
-//Kim + Hampus + Malcolm + Arash
-
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import globalCartFunctions from "../../store/GlobalCart";
+import CocktailForRecipe from "../CocktailForRecipe";
 import "../../styling/OneRecipePageStyle.css";
 import "../../styling/CommentSectionStyle.css";
 import CommentComponent from "../recipe_components/CommentComponent";
@@ -177,6 +176,7 @@ const DisplayOneRecipe = () => {
             />
             </div>
           </div>
+          <CocktailForRecipe /> {/* Använd CocktailForRecipe */}
         </div>
     );
     
