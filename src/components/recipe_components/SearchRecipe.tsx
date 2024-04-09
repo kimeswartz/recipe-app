@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
-import { useNavigate } from "react-router-dom";
-import "../../styling/SearchRecipeStyle.css";
-import "../../styling/CardsStyle.css";
 import { RecipeInterface } from "../../interfaces/RecipeInterface";
+import { useNavigate } from "react-router-dom";
+import "../../styling/CardsStyle.css";
 
 const SearchRecipe = () => {
   const { recipeList, fetchAllRecipes, setOneRecipe } = globalRecipeFunctions();
@@ -73,7 +72,8 @@ const SearchRecipe = () => {
 
   return (
     <>
-      <div className="search-bar">
+    <div className="flex-horizontally-container">
+      <div className="form-input" style={{ position: "relative" }}>
         <input
           className="user-input"
           type="text"
@@ -90,6 +90,7 @@ const SearchRecipe = () => {
             Search
           </button>
         )}
+        
 
         {searchTerms.trim() !== "" && (
           <div className="suggestions">
@@ -105,6 +106,7 @@ const SearchRecipe = () => {
           </div>
         )}
       </div>
+      </div>
 
       {searchPerformed && searchTerms.trim() !== "" && (
         <div>
@@ -114,8 +116,10 @@ const SearchRecipe = () => {
               key={recipe._id}
               onClick={() => handleNavigate(recipe)}
             ></div>
+            
           ))}
         </div>
+        
       )}
     </>
   );
