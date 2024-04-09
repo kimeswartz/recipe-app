@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
-import allRecipeState from '../../store/Endpoints';
-import { useNavigate } from 'react-router-dom';
-import "../../styling/SearchRecipeStyle.css"
-import "../../styling/CardsStyle.css"
-import { RecipeInterface } from '../../interfaces/RecipeInterface';
+import { useEffect, useState } from "react";
+import globalRecipeFunctions from "../../store/RecipeAPICalls";
+import { RecipeInterface } from "../../interfaces/RecipeInterface";
+import { useNavigate } from "react-router-dom";
+import "../../styling/CardsStyle.css";
 
 const SearchRecipe = () => {
-  const { recipeList, fetchAllRecipes, setOneRecipe } = allRecipeState();
-  const [searchTerms, setSearchTerms] = useState<string>('');
+  const { recipeList, fetchAllRecipes, setOneRecipe } = globalRecipeFunctions();
+  const [searchTerms, setSearchTerms] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
   const navigate = useNavigate();
@@ -65,26 +64,33 @@ const SearchRecipe = () => {
     setSuggestions([]);
   };
 
-  const filteredRecipes = recipeList.filter(recipe =>
-    searchTerms.split(' ').every(term =>
-      recipe.title.toLowerCase().includes(term.toLowerCase())
-    )
+  const filteredRecipes = recipeList.filter((recipe) =>
+    searchTerms
+      .split(" ")
+      .every((term) => recipe.title.toLowerCase().includes(term.toLowerCase()))
   );
 
   return (
     <>
-      <div className="search-bar">
+    <div className="flex-horizontally-container">
+      <div className="form-input" style={{ position: "relative" }}>
         <input
+          className="user-input"
           type="text"
           value={searchTerms}
           placeholder="Search recipes..."
           onChange={(e) => handleInputChange(e.target.value)}
         />
         {searchTerms.trim() !== "" ? (
-          <button onClick={handleClearSearch}>Clear</button>
+          <button className="main-button" onClick={handleClearSearch}>
+            Clear
+          </button>
         ) : (
-          <button onClick={performSearch}>Search</button>
+          <button className="main-button" onClick={performSearch}>
+            Search
+          </button>
         )}
+        
 
         {searchTerms.trim() !== "" && (
           <div className="suggestions">
@@ -100,8 +106,9 @@ const SearchRecipe = () => {
           </div>
         )}
       </div>
+      </div>
 
-      {searchPerformed && searchTerms.trim() !== '' && (
+      {searchPerformed && searchTerms.trim() !== "" && (
         <div>
           {filteredRecipes.map((recipe) => (
             <div
@@ -109,8 +116,10 @@ const SearchRecipe = () => {
               key={recipe._id}
               onClick={() => handleNavigate(recipe)}
             ></div>
+            
           ))}
         </div>
+        
       )}
     </>
   );

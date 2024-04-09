@@ -1,10 +1,15 @@
+import CocktailLetters from "../components/cocktail_components/CocktailLetter";
 import ListCocktailsAlphabet from "../components/cocktail_components/ListCocktailsAlphabet";
 
 const CocktailHomePage = () => {
   return (
     <div>
-      <h1>Cocktail Page</h1>
+      <div className="spacer-container">
+        <h1>Our Cocktails</h1>
+      </div>
+
       <ListCocktailsAlphabet />
+      <CocktailLetters />
     </div>
   );
 };

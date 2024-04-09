@@ -26,7 +26,7 @@ interface recipeStateInterface {
   clearAPI: () => Promise<void>;
 }
 
-const allRecipeState = create<recipeStateInterface>()((set) => ({
+const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
   recipeList: [],
   oneRecipe: {} as RecipeInterface,
   recipeComment: [],
@@ -169,7 +169,7 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
     } catch (error) {
       console.error("Error adding comment:", error);
     }
-}, //arash
+  }, //arash
 
   updateRecipe: async(updatedRecipe, id) => {
     try{
@@ -196,7 +196,6 @@ const allRecipeState = create<recipeStateInterface>()((set) => ({
       console.log('Could not clear database', error);
     }
   }
-
 }));
 
-export default allRecipeState;
+export default globalRecipeFunctions;

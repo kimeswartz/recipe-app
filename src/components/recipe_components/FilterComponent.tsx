@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { RecipeInterface } from "../../interfaces/RecipeInterface";
-import "../../styling/FilterComponentStyle.css";
+import { useNavigate } from "react-router-dom";
+import globalRecipeFunctions from "../../store/RecipeAPICalls";
+import "../../styling/CardsStyle.css";
 
 const FilterComponent = () => {
   const [recipeData, setRecipeData] = useState<RecipeInterface[]>([]);
@@ -9,6 +11,9 @@ const FilterComponent = () => {
   const [userInput, setUserInput] = useState<string>("");
   const [searchIngredients, setSearchIngredients] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
+  const { setOneRecipe } = globalRecipeFunctions();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,8 +79,14 @@ const FilterComponent = () => {
     );
   };
 
+  const handleNavigate = (recipe: RecipeInterface) => {
+    setOneRecipe(recipe);
+    navigate(`/recipe/${recipe._id}`);
+    window.scrollTo(0, 0);
+  };
+
   return (
-    <div className="filter-component-container">
+    <section className="standard-container">
       <div>
         {searchIngredients.length > 0 && (
           <div>
@@ -92,12 +103,15 @@ const FilterComponent = () => {
           <p>No recipes found matching the selected ingredients.</p>
         )}
       </div>
-      <input
-        type="text"
-        placeholder="Search ingredient"
-        value={userInput}
-        onChange={handleInputChange}
-      />
+      <div className="spacer-container">
+        <input
+          className="user-input"
+          type="text"
+          placeholder="Search ingredient"
+          value={userInput}
+          onChange={handleInputChange}
+        />
+      </div>
       <ul>
         {suggestions.map((suggestion, index) => (
           <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
@@ -107,34 +121,26 @@ const FilterComponent = () => {
       </ul>
       <div className="card-grid">
         {filteredRecipes.map((recipe) => (
-          <div className="recipe-card" key={recipe._id}>
-            <img
-              className="recipe-card-img"
-              src={recipe.imageUrl}
-              alt={recipe.title}
-            />
-            <div className="recipe-card-content">
+          <div
+            className="recipe-card"
+            key={recipe._id}
+            onClick={() => handleNavigate(recipe)}
+          >
+            <div className="first-card-div">
+              <img
+                className="display-recipe-img"
+                src={recipe.imageUrl}
+                alt={recipe.title}
+              />
+              <b className="card-category">{recipe.categories[0]}</b>
+            </div>
+            <div className="second-card-div">
               <h3>{recipe.title}</h3>
-              <p>{recipe.description}</p>
-              <ul>
-                {recipe.ingredients.map((ingredient, index) => (
-                  <li
-                    key={index}
-                  >{`${ingredient.amount} ${ingredient.unit} ${ingredient.name}`}</li>
-                ))}
-              </ul>
-              <p>{`Time: ${recipe.timeInMins} minutes`}</p>
-              <p>{`Categories: ${recipe.categories.join(", ")}`}</p>
-              <ul>
-                {recipe.instructions.map((instruction, index) => (
-                  <li key={index}>{instruction}</li>
-                ))}
-              </ul>
             </div>
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

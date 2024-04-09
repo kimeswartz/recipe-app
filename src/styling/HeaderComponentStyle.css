@@ -1,5 +1,5 @@
 .home-header {
-  background-image: url('../assets/HeaderImage.jpg');
+  background-image: url("../assets/HeaderImage.jpg");
   background-color: #007bff;
   background-size: cover;
   background-position: center;
@@ -31,14 +31,8 @@
   }
 }
 
-@media only screen and (max-width: 576px) {
-  .header-title {
-    font-size: 24px;
-  }
-
-  .header-paragraph {
-    text-align: center;
-    width: auto;
-    padding: 50px;
-  }
+.header-paragraph {
+  text-align: center;
+  width: auto;
+  padding: 50px;
 }
