@@ -51,6 +51,7 @@ const UploadRecipe = () => {
       console.log(recipe);
       addRecipe(recipe);
       emptyRecipe();
+      alert("Recipe is added to the database");
     }
   };
 
@@ -108,158 +109,143 @@ const UploadRecipe = () => {
       <section className="standard-container">
         <div className="centered-container">
           <form onSubmit={handleSubmit}>
-            <h2>Upload Recipe</h2>
-            <p>
-              Upload your recipe step by step, all fields must be filled in for
-              the recipe to be added to the database!
-            </p>
-            <label className="form-input">
-              Titel:
-              <input
-                className="user-input"
-                type="text"
-                name="title"
-                value={recipe.title}
-                onChange={(input) => setTitle(input.target.value)}
-              />
-            </label>
-            <label className="form-input">
-              Descriptions:
-              <input
-                className="user-input"
-                type="text"
-                name="description"
-                value={recipe.description}
-                onChange={(input) => setDescription(input.target.value)}
-              />
-            </label>
-            <label className="form-input">
-              Image URL:
-              <input
-                className="user-input"
-                type="text"
-                name="imageUrl"
-                value={recipe.imageUrl}
-                onChange={(input) => setImageUrl(input.target.value)}
-              />
-            </label>
-            <label className="form-input">
-              Time in min:
-              <input
-                className="user-input"
-                type="number"
-                name="timeInMins"
-                value={recipe.timeInMins}
-                onChange={(input) =>
-                  setTimeInMins(parseInt(input.target.value))
-                }
-              />
-            </label>
-          </form>
-        </div>
-
-        <div className="spacer-container">
-          <form onSubmit={handleSubmit}>
-            <h2>Choose category</h2>
-            {presetCategories.map((category, index) => (
-              <label className="category-label" key={index}>
-                <input
-                  className="input-checkbox"
-                  type="checkbox"
-                  value={category}
-                  checked={recipe.categories.includes(category)}
-                  onChange={() => handleCategoryChange(category)}
-                />
-                {category}
-              </label>
-            ))}
-          </form>
-        </div>
-
-        <div className="centered-container">
-          <form onSubmit={handleSubmit}>
-            <div>
-              <ul>
-                {recipe.instructions?.map((instruction, instructionNumber) => {
-                  return (
-                    <li key={instructionNumber}>
-                      {instructionNumber + 1}:{instruction}
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          removeInstruction(instructionNumber);
-                        }}
-                        className="main-button"
-                      >
-                        Remove
-                      </button>
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          </form>
-
-          <form onSubmit={handleSubmit}>
-            <h2>Add the Instructions here!</h2>
-            <p>
-              Please input each instruction line by line. After publishing, the
-              output will automatically add a clear number to each instruction
-              for easy reference.
-            </p>
-            <div>
+            <div className="spacer-container">
+              <h2>Upload Recipe</h2>
+              <p>
+                Upload your recipe step by step, all fields must be filled in
+                for the recipe to be added to the database!
+              </p>
               <label className="form-input">
-                Instruction :
+                Titel:
                 <input
                   className="user-input"
                   type="text"
-                  name="instruction"
-                  value={userInputInstructions}
-                  onChange={(input) => setUserInstructions(input.target.value)}
+                  name="title"
+                  value={recipe.title}
+                  onChange={(input) => setTitle(input.target.value)}
+                />
+              </label>
+              <label className="form-input">
+                Descriptions:
+                <input
+                  className="user-input"
+                  type="text"
+                  name="description"
+                  value={recipe.description}
+                  onChange={(input) => setDescription(input.target.value)}
+                />
+              </label>
+              <label className="form-input">
+                Image URL:
+                <input
+                  className="user-input"
+                  type="text"
+                  name="imageUrl"
+                  value={recipe.imageUrl}
+                  onChange={(input) => setImageUrl(input.target.value)}
+                />
+              </label>
+              <label className="form-input">
+                Time in min:
+                <input
+                  className="user-input"
+                  type="number"
+                  name="timeInMins"
+                  value={recipe.timeInMins}
+                  onChange={(input) =>
+                    setTimeInMins(parseInt(input.target.value))
+                  }
                 />
               </label>
             </div>
 
-            <div className="spacer-container">
-              <button
-                className="main-button"
-                type="button"
-                onClick={() => handleSubmitInstruction()}
-              >
-                Add instruction
-              </button>
-            </div>
-          </form>
-        </div>
+            <h2>Choose category</h2>
 
-        <div className="centered-container">
-          <form onSubmit={handleSubmit}>
+            {presetCategories.map((category, index) => (
+              <div className="spacer-container">
+                <label className="category-label" key={index}>
+                  <input
+                    className="input-checkbox"
+                    type="checkbox"
+                    value={category}
+                    checked={recipe.categories.includes(category)}
+                    onChange={() => handleCategoryChange(category)}
+                  />
+                  {category}
+                </label>
+              </div>
+            ))}
+            <div>
+              <ul>
+                {recipe.instructions?.map((instruction, instructionNumber) => (
+                  <li key={instructionNumber}>
+                    {instructionNumber + 1}:{instruction}
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        removeInstruction(instructionNumber);
+                      }}
+                      className="main-button"
+                    >
+                      Remove
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="spacer-container">
+              <h2>Add the Instructions here!</h2>
+
+              <p>
+                Please input each instruction line by line. After publishing,
+                the output will automatically add a clear number to each
+                instruction for easy reference.
+              </p>
+              <div>
+                <label className="form-input">
+                  Instruction :
+                  <input
+                    className="user-input"
+                    type="text"
+                    name="instruction"
+                    value={userInputInstructions}
+                    onChange={(input) =>
+                      setUserInstructions(input.target.value)
+                    }
+                  />
+                </label>
+              </div>
+              <div className="spacer-container">
+                <button
+                  className="main-button"
+                  type="button"
+                  onClick={() => handleSubmitInstruction()}
+                >
+                  Add instruction
+                </button>
+              </div>
+            </div>
             <br />
             <div>
               <ul>
-                {recipe.ingredients?.map((ingredientInfo, ingredientKey) => {
-                  return (
-                    <li key={ingredientKey}>
-                      {ingredientInfo.name} | {ingredientInfo.amount} |{" "}
-                      {ingredientInfo.unit}
-                      <button
-                        onClick={(e) => {
-                          e.preventDefault();
-                          removeIngredient(ingredientKey);
-                        }}
-                        className="main-button"
-                      >
-                        Remove
-                      </button>
-                    </li>
-                  );
-                })}
+                {recipe.ingredients?.map((ingredientInfo, ingredientKey) => (
+                  <li key={ingredientKey}>
+                    {ingredientInfo.name} | {ingredientInfo.amount} |{" "}
+                    {ingredientInfo.unit}
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        removeIngredient(ingredientKey);
+                      }}
+                      className="main-button"
+                    >
+                      Remove
+                    </button>
+                  </li>
+                ))}
               </ul>
             </div>
-
-            <div className="spacer-container">
-              <h2>Ingredients</h2>
-            </div>
+            <h2>Ingredients</h2>
             <div>
               <label className="form-input">
                 Ingredient Name:
@@ -275,7 +261,6 @@ const UploadRecipe = () => {
                   }
                 />
               </label>
-
               <label className="form-input">
                 Amount:
                 <input
@@ -290,7 +275,6 @@ const UploadRecipe = () => {
                   }
                 />
               </label>
-
               <label className="form-input toggle-input">
                 Unit:
                 <select
@@ -312,7 +296,6 @@ const UploadRecipe = () => {
                 </select>
               </label>
             </div>
-
             <div className="spacer-container">
               <button
                 className="main-button"
@@ -322,14 +305,12 @@ const UploadRecipe = () => {
                 Add ingredient
               </button>
             </div>
+            <div className="button-container">
+              <button className="main-button" type="submit">
+                Submit recipe to database
+              </button>
+            </div>
           </form>
-        </div>
-        <div className="spacer-container">
-          <div className="button-container">
-            <button className="main-button" type="submit">
-              Submit recipe to database
-            </button>
-          </div>
         </div>
       </section>
     </div>

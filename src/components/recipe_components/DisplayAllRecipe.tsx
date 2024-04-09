@@ -62,6 +62,7 @@ const DisplayAllRecipe = () => {
                     onClick={(deleteRecipe) => {
                       deleteRecipe.stopPropagation(); // Prevents the navigate action when clicking the button
                       handleDelete(recipe._id);
+                      alert("Recipe is deleted from the database");
                     }}
                     className="delete-button"
                   >
