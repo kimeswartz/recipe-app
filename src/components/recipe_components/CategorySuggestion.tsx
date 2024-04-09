@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../styling/CategoryTagsStyle.css";
-import allRecipeState from "../../store/Endpoints";
+import globalRecipeFunctions from "../../store/RecipeAPICalls";
 
 const CategorySuggestion = () => {
   const navigate = useNavigate();
   const { categoryList, recipeList, fetchAllCategories, fetchOneCategory } =
-    allRecipeState();
+    globalRecipeFunctions();
 
   // To fetch all categories when component first loads or when the categoryList changes
   useEffect(() => {

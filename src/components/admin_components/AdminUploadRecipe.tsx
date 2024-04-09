@@ -1,13 +1,13 @@
 //Malmcolm + Kim + Hampus
 
 import { useState } from "react";
-import allRecipeState from "../../store/Endpoints";
+import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import uploadUpdateRecipeState from "../../store/UpdateAndUpload";
 import '../../styling/AdminPageStyle.css'
 
 const UploadRecipe = () => {
 
-  const { addRecipe } = allRecipeState();
+  const { addRecipe } = globalRecipeFunctions();
   const {
     recipe,
     setTitle,

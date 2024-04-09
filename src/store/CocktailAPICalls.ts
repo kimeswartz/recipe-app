@@ -19,6 +19,7 @@ interface CocktailStateInterface {
   fetchRandomCocktail: () => Promise<void>;
   setOneCocktail: (cocktail: CocktailInterface) => void;
   fetchCocktailsByIngredient: (ingredientByName: string) => Promise<void>;
+  fetchCocktailsByLetter: (letter: string) => Promise<void>;
 }
 
 const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
@@ -84,6 +85,23 @@ const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
       }
     } catch (error) {
       console.log("something went wrong:", error);
+    }
+  },
+
+  fetchCocktailsByLetter: async(letter) => {
+    console.log(letter)
+    try {
+      const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`);
+      if(response.data.drinks === null){
+        set({cocktailList: []})
+      }else if (response.data.drinks) {
+        console.log(response.data.drinks)
+        set({cocktailList: response.data.drinks})
+      } 
+    } catch (error) {
+      // If no drinks found for the letter, set cocktails to an empty array
+      console.error('Error fetching cocktails by letter:', error);
+      set({cocktailList: []})
     }
   },
 
