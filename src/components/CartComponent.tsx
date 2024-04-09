@@ -20,19 +20,8 @@ const CartComponent = () => {
     toggleCart,
   } = globalCartFunctions();
   const { setOneRecipe } = globalRecipeFunctions();
-  const {setOneCocktail} = globalCocktailFunctions();
+  const { setOneCocktail } = globalCocktailFunctions();
   const navigate = useNavigate();
-
-
-  if (cartRecipes.length === 0 && cartCocktails.length === 0) {
-    return (
-      <div className="centered-tags">
-        <div className="info-tag">
-          <h3>Nothing added yet!</h3>
-        </div>
-      </div>
-    );
-  }
 
   const recipeNavigate = (recipe: RecipeInterface) => {
     toggleCart(displayCart);
@@ -63,87 +52,100 @@ const CartComponent = () => {
         );
       }
     }
-
     return ingredientsList;
-  };
+  }
+
+  if (cartRecipes.length === 0 && cartCocktails.length === 0) {
+    return (
+      <div className="centered-tags">
+        <div className="info-tag">
+          <h3>Nothing added yet!</h3>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <div className="flex-box">
-      {/* Presents all recipes */}
-      <div className="v-flex-box">
-        {cartRecipes.map((recipe, recipeIndex) => {
-          return (
-            <div className="item-box" key={recipeIndex}>
-              <img
-                src={recipe.imageUrl}
-                alt={recipe.title}
-                className="cart-img"
-                onClick={() => recipeNavigate(recipe)}
-              />
+    <div>
+      <h2>Total recipe cost: {cartRecipes.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)}</h2>
+      <div className="flex-box">
+        {/* Presents all recipes */}
+        <div className="v-flex-box">
+          {cartRecipes.map((recipe, recipeIndex) => {
+            return (
+              <div className="item-box" key={recipeIndex}>
+                <img
+                  src={recipe.imageUrl}
+                  alt={recipe.title}
+                  className="cart-img"
+                  onClick={() => recipeNavigate(recipe)}
+                />
 
-              <div className="item-info scroll-window">
-                <b>{recipe.title}</b>
-                <ul className="list-objects">
-                  {recipe.ingredients.map((ingredient, indexKey) => (
-                    <li key={indexKey} className="ingredient-name">
-                      {ingredient.name}
-                    </li>
-                  ))}
-                </ul>
+                <div className="item-info scroll-window">
+                  <b>{recipe.title}</b>
+                  <ul className="list-objects">
+                    {recipe.ingredients.map((ingredient, indexKey) => (
+                      <li key={indexKey} className="ingredient-name">
+                        {ingredient.name}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <p className="cart-rating">
+                  <FontAwesomeIcon icon={faStar} className="star-icon" />{" "}
+                  {recipe.avgRating === null ? (
+                    <span>0</span>
+                  ) : (
+                    <span>{recipe.avgRating?.toFixed(1)}</span>
+                  )}
+                  /5
+                </p>
+                <button
+                  className="exit-button"
+                  onClick={() => removeRecipeFromCart(recipeIndex)}
+                >
+                  Delete
+                </button>
               </div>
+            );
+          })}
+        </div>
 
-              <p className="cart-rating">
-                <FontAwesomeIcon icon={faStar} className="star-icon" />{" "}
-                {recipe.avgRating === null ? (
-                  <span>0</span>
-                ) : (
-                  <span>{recipe.avgRating?.toFixed(1)}</span>
-                )}
-                /5
-              </p>
-              <button
-                className="exit-button"
-                onClick={() => removeRecipeFromCart(recipeIndex)}
-              >
-                Close
-              </button>
-            </div>
-          );
-        })}
-      </div>
+        {/* Presents all cocktails */}
+        <div className="v-flex-box">
+          {cartCocktails.map((cocktail, cocktailIndex) => {
+            return (
+              <div className="item-box" key={cocktailIndex}>
+                <img
+                  src={cocktail.strDrinkThumb}
+                  alt={cocktail.strDrink}
+                  className="cart-img"
+                  onClick={() => cocktailNavigate(cocktail)}
+                />
+                <div className="item-info scroll-window">
+                  <b>{cocktail.strDrink}</b>
+                  <ul className="list-objects" >
+                    {generateIngredientsList(cocktail)}
+                  </ul>
 
-      {/* Presents all cocktails */}
-      <div className="v-flex-box">
-        {cartCocktails.map((cocktail, cocktailIndex) => {
-          return (
-            <div className="item-box" key={cocktailIndex}>
-              <img
-                src={cocktail.strDrinkThumb}
-                alt={cocktail.strDrink}
-                className="cart-img"
-                onClick={() => cocktailNavigate(cocktail)}
-              />
-              <div className="item-info scroll-window">
-                <b>{cocktail.strDrink}</b>
-                <ul className="list-objects" >
-                  {generateIngredientsList(cocktail)}
-                </ul>
-                
+                </div>
+                <button
+                  className="exit-button"
+                  onClick={() => removeCocktailFromCart(cocktailIndex)}
+                >
+                  Close
+                </button>
+                <b className="cart-rating">
+                  {cocktail.strAlcoholic}
+                </b>
               </div>
-              <button
-                className="exit-button"
-                onClick={() => removeCocktailFromCart(cocktailIndex)}
-              >
-               Close
-              </button>
-              <b className="cart-rating">
-                {cocktail.strAlcoholic}
-              </b>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
+
   );
 };
 
