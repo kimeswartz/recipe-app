@@ -39,32 +39,30 @@ const AdminPage = () => {
   };
 
   return (
-
     <section className="standard-container">
+      <div>
+        <h1>Welcome, Admin!</h1>
 
-    <div>
-      <h1>Welcome, Admin!</h1>
+        <div className="standard-container pointer" onClick={toggleUpload}>
+          {showUpload ? "Close Upload Recipe" : "Open Upload Recipe"}
+        </div>
+        {showUpload && <AdminUpload />}
 
-      <div className="standard-container pointer" onClick={toggleUpload}>
-        {showUpload ? "Close Upload Recipe" : "Open Upload Recipe"}
+        <div className="standard-container pointer" onClick={toggleDelete}>
+          {showDelete ? "Close Delete Recipe" : "Open Delete Recipe"}
+        </div>
+        {showDelete && <DisplayAllRecipe />}
+
+        <div className="standard-container pointer" onClick={toggleEdit}>
+          {showEdit ? "Close Edit a Recipe" : "Open Edit a Recipe"}
+        </div>
+        {showEdit && <AdminUpdateRecipe />}
+
+        <div className="standard-container pointer" onClick={toggleClear}>
+          {showClear ? "Close Clear All Recipes" : "Open Clear All Recipes"}
+        </div>
+        {showClear && <ClearAPIComponent />}
       </div>
-      {showUpload && <AdminUpload />}
-
-      <div className="standard-container pointer" onClick={toggleDelete}>
-        {showDelete ? "Close Delete Recipe" : "Open Delete Recipe"}
-      </div>
-      {showDelete && <DisplayAllRecipe />}
-
-      <div className="standard-container pointer" onClick={toggleEdit}>
-        {showEdit ? "Close Edit a Recipe" : "Open Edit a Recipe"}
-      </div>
-      {showEdit && <AdminUpdateRecipe />}
-
-      <div className="standard-container pointer" onClick={toggleClear}>
-        {showClear ? "Close Clear All Recipes" : "Open Clear All Recipes"}
-      </div>
-      {showClear && <ClearAPIComponent />}
-    </div>
     </section>
   );
 };

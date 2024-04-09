@@ -11,7 +11,7 @@ const FilterComponent = () => {
   const [userInput, setUserInput] = useState<string>("");
   const [searchIngredients, setSearchIngredients] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  const {setOneRecipe} = globalRecipeFunctions();
+  const { setOneRecipe } = globalRecipeFunctions();
 
   const navigate = useNavigate();
 
@@ -104,13 +104,13 @@ const FilterComponent = () => {
         )}
       </div>
       <div className="spacer-container">
-      <input
-        className="user-input"
-        type="text"
-        placeholder="Search ingredient"
-        value={userInput}
-        onChange={handleInputChange}
-      />
+        <input
+          className="user-input"
+          type="text"
+          placeholder="Search ingredient"
+          value={userInput}
+          onChange={handleInputChange}
+        />
       </div>
       <ul>
         {suggestions.map((suggestion, index) => (

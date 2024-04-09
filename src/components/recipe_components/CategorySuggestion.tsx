@@ -19,26 +19,26 @@ const CategorySuggestion = () => {
     // Using await to fetch all recipies from specific category before navigating
     await fetchOneCategory(categoryName);
     navigate(`/category/${categoryName}`); // Navigate to category page with selected category
-    if (location.pathname === '/recipes') {
+    if (location.pathname === "/recipes") {
       window.scrollTo(0, 0);
     }
   };
 
   return (
     <section className="standard-container">
-    <div className="tag-grid category-suggestion-container">
-      {categoryList.map((category, index) => (
-        <div
-          key={index}
-          onClick={() => handleCategoryClick(category)}
-          className="recipe-tag category"
-        >
-          <div className="tag-div">
-            <h3>{category}</h3>
+      <div className="tag-grid category-suggestion-container">
+        {categoryList.map((category, index) => (
+          <div
+            key={index}
+            onClick={() => handleCategoryClick(category)}
+            className="recipe-tag category"
+          >
+            <div className="tag-div">
+              <h3>{category}</h3>
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
     </section>
   );
 };

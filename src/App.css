@@ -72,11 +72,6 @@ p {
   transition: box-shadow 0.3s ease;
 }
 
-.main-button {
-  font-size: 1 em;
-  line-height: 1.6;
-}
-
 .main-button .green {
   background-color: #009e74;
 }
