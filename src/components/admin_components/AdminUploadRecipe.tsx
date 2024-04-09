@@ -153,6 +153,7 @@ const UploadRecipe = () => {
                 Price:
                 <input
                   className="user-input"
+                  id= "addPrice"
                   type="number"
                   name="Price"
                   value={recipe.price}

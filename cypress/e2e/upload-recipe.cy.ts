@@ -2,7 +2,7 @@
 
 describe("upload a recipe", () => {
   it("passes", () => {
-    cy.visit("http://localhost:5173/adminpage");
+    cy.visit("http://localhost:5173/AdminPage");
 
     const imageUrl = "https://pongmarket.se/thumb/13087/1280x0/KFG0440.png";
 
@@ -10,6 +10,7 @@ describe("upload a recipe", () => {
     cy.get("#addTitle").type("Banan");
     cy.get("#addDescription").type("En banan är gott");
     cy.get("#addImageUrl").type(imageUrl);
+    cy.get("#addPrice").type("50");
     cy.get("#addTimeInMin").type("5");
     cy.get('#chooseCategoryCheckbox[value="Lunch"]').check();
     cy.get("#addInstruction").type("buy banan");
