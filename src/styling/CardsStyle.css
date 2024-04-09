@@ -90,13 +90,6 @@
   box-shadow: none;
 }
 
-/* Responsive design for smaller screens */
-@media (max-width: 768px) {
-  .recipe-card {
-    width: 100%; /* Each card takes full width of its container */
-    max-width: none; /* Override max-width for full container width */
-  }
-}
 
 .card-grid h2 {
   width: 100%; /* Make the header span the full width of the grid */

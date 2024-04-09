@@ -4,7 +4,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { RecipeInterface } from "../../interfaces/RecipeInterface";
 import "../../styling/CardsStyle.css";
 
-const DisplayAllRecipe = () => {
+const DisplayRecipes = () => {
   const { recipeList, fetchAllRecipes, setOneRecipe, deleteRecipe } =
     globalRecipeFunctions();
 
@@ -78,4 +78,4 @@ const DisplayAllRecipe = () => {
   );
 };
 
-export default DisplayAllRecipe;
+export default DisplayRecipes;
