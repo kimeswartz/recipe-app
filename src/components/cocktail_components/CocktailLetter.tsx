@@ -3,6 +3,7 @@ import "../../styling/CocktailGridStyle.css"
 import { useNavigate } from 'react-router-dom';
 import globalCocktailFunctions from '../../store/CocktailAPICalls';
 
+
 const CocktailLetters = () => {
   const { setOneCocktail, cocktailList } = globalCocktailFunctions();
   const navigate = useNavigate();
