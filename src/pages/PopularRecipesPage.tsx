@@ -5,6 +5,9 @@ import TopRatedRecipes from "../components/recipe_components/TopRatedRecipe";
 const PopularRecipes = () => {
   return (
     <div>
+      <div className="spacer-container">
+        <h1>Popular recipes</h1>
+      </div>
       <TopRatedRecipes />
     </div>
   );

@@ -10,7 +10,7 @@ describe("upload a recipe", () => {
     cy.get("#addDescription").type("En banan är gott");
     cy.get("#addImageUrl").type(imageUrl);
     cy.get("#addTimeInMin").type("5");
-    cy.get('.category-checkbox[value="Lunch"]').check();
+    cy.get('.input-checkbox[value="Lunch"]').check();
     cy.get("#addInstruction").type("buy banan");
     cy.get("#addInstructionBtn").click();
     cy.get("#addIngredient").type("banan");

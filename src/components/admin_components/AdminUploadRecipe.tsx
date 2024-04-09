@@ -3,7 +3,6 @@
 import { useState } from "react";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import uploadUpdateRecipeState from "../../store/GlobalUpdateAndUpload";
-import "../../styling/AdminPageStyle.css";
 
 const UploadRecipe = () => {
   const { addRecipe } = globalRecipeFunctions();
@@ -52,6 +51,7 @@ const UploadRecipe = () => {
       console.log(recipe);
       addRecipe(recipe);
       emptyRecipe();
+      alert("Recipe is added to the database");
     }
   };
 
@@ -106,149 +106,169 @@ const UploadRecipe = () => {
 
   return (
     <div>
-      <section className="upload-container">
-        <h1 className="upload-title">Upload Recipe</h1>
-        <form onSubmit={handleSubmit}>
-          <label className="upload-label">
-            Titel:
-            <input
-              className="user-input"
-              id="addTitle"
-              type="text"
-              name="title"
-              value={recipe.title}
-              onChange={(input) => setTitle(input.target.value)}
-            />
-          </label>
-          <label className="upload-label">
-            Descriptions:
-            <input
-              className="user-input"
-              id="addDescription"
-              type="text"
-              name="description"
-              value={recipe.description}
-              onChange={(input) => setDescription(input.target.value)}
-            />
-          </label>
-          <label className="upload-label">
-            Image URL:
-            <input
-              className="user-input"
-              id="addImageUrl"
-              type="text"
-              name="imageUrl"
-              value={recipe.imageUrl}
-              onChange={(input) => setImageUrl(input.target.value)}
-            />
-          </label>
-          <label className="upload-label">
-            Time in min:
-            <input
-              className="user-input"
-              id="addTimeInMin"
-              type="number"
-              name="timeInMins"
-              value={recipe.timeInMins}
-              onChange={(input) => setTimeInMins(parseInt(input.target.value))}
-            />
-          </label>
+      <section className="standard-container">
+        <div className="centered-container">
+          <form onSubmit={handleSubmit}>
+            <div className="spacer-container">
+              <h2>Upload Recipe</h2>
+              <p>
+                Upload your recipe step by step, all fields must be filled in
+                for the recipe to be added to the database!
+              </p>
+              <label className="form-input">
+                Titel:
+                <input
+                  className="user-input"
+                  id="addTitle"
+                  type="text"
+                  name="title"
+                  value={recipe.title}
+                  onChange={(input) => setTitle(input.target.value)}
+                />
+              </label>
+              <label className="form-input">
+                Descriptions:
+                <input
+                  className="user-input"
+                  id="addDescription"
+                  type="text"
+                  name="description"
+                  value={recipe.description}
+                  onChange={(input) => setDescription(input.target.value)}
+                />
+              </label>
+              <label className="form-input">
+                Image URL:
+                <input
+                  className="user-input"
+                  id="addImageUrl"
+                  type="text"
+                  name="imageUrl"
+                  value={recipe.imageUrl}
+                  onChange={(input) => setImageUrl(input.target.value)}
+                />
+              </label>
+              <label className="form-input">
+                Time in min:
+                <input
+                  className="user-input"
+                  id="addTimeInMin"
+                  type="number"
+                  name="timeInMins"
+                  value={recipe.timeInMins}
+                  onChange={(input) =>
+                    setTimeInMins(parseInt(input.target.value))
+                  }
+                />
+              </label>
+            </div>
 
-          <h2 className="upload-h2">Choose category</h2>
-          {presetCategories.map((category, index) => (
-            <label className="category-label" key={index}>
-              <input
-                className="category-checkbox"
-                type="checkbox"
-                value={category}
-                checked={recipe.categories.includes(category)}
-                onChange={() => handleCategoryChange(category)}
-              />
-              {category}
-            </label>
-          ))}
+            <h2>Choose category</h2>
 
-          <div>
-            <ul>
-              {recipe.instructions?.map((instruction, instructionNumber) => {
-                return (
+            {presetCategories.map((category, index) => (
+              <div className="spacer-container">
+                <label className="category-label" key={index}>
+                  <input
+                    className="input-checkbox"
+                    type="checkbox"
+                    value={category}
+                    checked={recipe.categories.includes(category)}
+                    onChange={() => handleCategoryChange(category)}
+                  />
+                  {category}
+                </label>
+              </div>
+            ))}
+            <div>
+              <ul>
+                {recipe.instructions?.map((instruction, instructionNumber) => (
                   <li key={instructionNumber}>
                     {instructionNumber + 1}:{instruction}
                     <button
-                      onClick={() => removeInstruction(instructionNumber)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        removeInstruction(instructionNumber);
+                      }}
                       className="main-button"
                     >
-                      X
+                      Remove
                     </button>
                   </li>
-                );
-              })}
-            </ul>
-          </div>
+                ))}
+              </ul>
+            </div>
+            <div className="spacer-container">
+              <h2>Add the Instructions here!</h2>
 
-          <h2 className="upload-h2">Instructions</h2>
-          <div>
-            <label className="upload-label">
-              Instruction :
-              <input
-                className="user-input"
-                id="addInstruction"
-                type="text"
-                name="instruction"
-                value={userInputInstructions}
-                onChange={(input) => setUserInstructions(input.target.value)}
-              />
-            </label>
-          </div>
-          <button
-            className="upload-button"
-            id="addInstructionBtn"
-            type="button"
-            onClick={() => handleSubmitInstruction()}
-          >
-            Add instruction
-          </button>
-
-          <br />
-          <div>
-            <ul>
-              {recipe.ingredients?.map((ingredientInfo, ingredientKey) => {
-                return (
+              <p>
+                Please input each instruction line by line. After publishing,
+                the output will automatically add a clear number to each
+                instruction for easy reference.
+              </p>
+              <div>
+                <label className="form-input">
+                  Instruction :
+                  <input
+                    className="user-input"
+                    id="addInstruction"
+                    type="text"
+                    name="instruction"
+                    value={userInputInstructions}
+                    onChange={(input) =>
+                      setUserInstructions(input.target.value)
+                    }
+                  />
+                </label>
+              </div>
+              <div className="spacer-container">
+                <button
+                  className="main-button"
+                  id="addInstructionBtn"
+                  type="button"
+                  onClick={() => handleSubmitInstruction()}
+                >
+                  Add instruction
+                </button>
+              </div>
+            </div>
+            <br />
+            <div>
+              <ul>
+                {recipe.ingredients?.map((ingredientInfo, ingredientKey) => (
                   <li key={ingredientKey}>
                     {ingredientInfo.name} | {ingredientInfo.amount} |{" "}
                     {ingredientInfo.unit}
                     <button
-                      onClick={() => removeIngredient(ingredientKey)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        removeIngredient(ingredientKey);
+                      }}
                       className="main-button"
                     >
-                      X
+                      Remove
                     </button>
                   </li>
-                );
-              })}
-            </ul>
-          </div>
-
-          <h2 className="upload-h2">Ingredients</h2>
-          <div>
-            <label className="upload-label">
-              Ingredient Name:
-              <input
-                className="user-input"
-                id="addIngredient"
-                type="text"
-                value={newIngredient.name}
-                onChange={(input) =>
-                  setNewIngredient({
-                    ...newIngredient,
-                    name: input.target.value,
-                  })
-                }
-              />
-            </label>
-
-            <div className="amount-unit-container">
-              <label className="upload-label">
+                ))}
+              </ul>
+            </div>
+            <h2>Ingredients</h2>
+            <div>
+              <label className="form-input">
+                Ingredient Name:
+                <input
+                  className="user-input"
+                  id="addIngredient"
+                  type="text"
+                  value={newIngredient.name}
+                  onChange={(input) =>
+                    setNewIngredient({
+                      ...newIngredient,
+                      name: input.target.value,
+                    })
+                  }
+                />
+              </label>
+              <label className="form-input">
                 Amount:
                 <input
                   className="user-input"
@@ -263,8 +283,7 @@ const UploadRecipe = () => {
                   }
                 />
               </label>
-
-              <label className="upload-label">
+              <label className="form-input toggle-input">
                 Unit:
                 <select
                   className="user-input"
@@ -286,22 +305,23 @@ const UploadRecipe = () => {
                 </select>
               </label>
             </div>
-          </div>
-          <button
-            className="upload-button"
-            id="addIngredientBtn"
-            type="button"
-            onClick={() => handleSubmitIngredient()}
-          >
-            Add ingredient
-          </button>
-
-          <div className="button-container">
-            <button className="upload-button" id="submitBtn" type="submit">
-              Submit recipe to database
-            </button>
-          </div>
-        </form>
+            <div className="spacer-container">
+              <button
+                className="main-button"
+                id="addIngredientBtn"
+                type="button"
+                onClick={() => handleSubmitIngredient()}
+              >
+                Add ingredient
+              </button>
+            </div>
+            <div className="button-container">
+              <button className="main-button" id="submitBtn" type="submit">
+                Submit recipe to database
+              </button>
+            </div>
+          </form>
+        </div>
       </section>
     </div>
   );
