@@ -4,14 +4,14 @@
   align-items: center;
   flex-wrap: wrap;
   padding-top: 20px;
-padding: 30px;
+  padding: 30px;
   margin-bottom: 10px;
   overflow: hidden;
   background-color: white;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+  border-radius: 25px;
 }
-
 
 .topnav a {
   min-width: 70px;
@@ -22,7 +22,6 @@ padding: 30px;
   text-decoration: none;
   font-size: 17px;
   cursor: pointer;
-  
 }
 
 .topnav a:hover {
@@ -35,7 +34,6 @@ padding: 30px;
   background-color: #04aa6d;
   color: white;
 }
-
 
 .topnav .icon {
   display: none;
@@ -64,7 +62,4 @@ padding: 30px;
     text-align: center;
     width: 100%;
   }
-
 }
-
-

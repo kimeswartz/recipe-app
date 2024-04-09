@@ -86,7 +86,7 @@ const FilterComponent = () => {
   };
 
   return (
-    <div className="filter-component-container">
+    <section className="standard-container">
       <div>
         {searchIngredients.length > 0 && (
           <div>
@@ -103,6 +103,7 @@ const FilterComponent = () => {
           <p>No recipes found matching the selected ingredients.</p>
         )}
       </div>
+      <div className="spacer-container">
       <input
         className="user-input"
         type="text"
@@ -110,6 +111,7 @@ const FilterComponent = () => {
         value={userInput}
         onChange={handleInputChange}
       />
+      </div>
       <ul>
         {suggestions.map((suggestion, index) => (
           <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
@@ -138,7 +140,7 @@ const FilterComponent = () => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

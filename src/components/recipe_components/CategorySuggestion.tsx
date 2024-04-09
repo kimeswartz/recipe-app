@@ -25,6 +25,7 @@ const CategorySuggestion = () => {
   };
 
   return (
+    <section className="standard-container">
     <div className="tag-grid category-suggestion-container">
       {categoryList.map((category, index) => (
         <div
@@ -38,6 +39,7 @@ const CategorySuggestion = () => {
         </div>
       ))}
     </div>
+    </section>
   );
 };
 

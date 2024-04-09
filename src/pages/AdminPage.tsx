@@ -39,6 +39,9 @@ const AdminPage = () => {
   };
 
   return (
+
+    <section className="standard-container">
+
     <div>
       <h1>Welcome, Admin!</h1>
 
@@ -62,6 +65,7 @@ const AdminPage = () => {
       </div>
       {showClear && <ClearAPIComponent />}
     </div>
+    </section>
   );
 };
 

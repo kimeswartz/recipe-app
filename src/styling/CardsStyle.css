@@ -98,7 +98,7 @@
   }
 }
 
-.card-grid > h2 {
+.card-grid h2 {
   width: 100%; /* Make the header span the full width of the grid */
   text-align: center; /* Center the text */
   margin: 20px 0; /* Add some margin around the header */
@@ -146,6 +146,7 @@ font-size: smaller;
 .tag-div h2, .tag-div span {
   margin: 3px 0;
 }
+
 
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
