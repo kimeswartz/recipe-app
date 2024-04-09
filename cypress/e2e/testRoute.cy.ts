@@ -1,3 +1,5 @@
+/// <reference types="Cypress" />
+
 describe("test route about", () => {
   it("passes", () => {
     cy.visit("http://localhost:5173/");
