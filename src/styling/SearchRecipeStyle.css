@@ -1,82 +1,47 @@
 .search-container {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-  
-  .search-bar {
-    display: inline-block;
-    position: relative;
-  }
-  
-  .search-bar input[type="text"] {
-    border: none;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 25px;
-    width: 300px;
-    margin-right: 10px;
-    font-weight: bolder;
-  }
-  
-  .search-bar button {
-    padding: 8px 12px;
-    background-color: #FF1312;
-    color: #fff;
-    border: none;
-   border: none;
-   border-radius: 25px;
-    cursor: pointer;
-    width: 100px;
-  }
-  
-  .search-bar button:hover {
-    background-color: #0056b3;
-  }
-  
-  .suggestions {
-    margin-top: 5px;
-    position: absolute;
-    top: calc(100% + 0px); 
-    left: 0;
-    min-width: 400px;
-    width: 100%;
-    max-height: 200px;
-    overflow-y: auto;
-    background-color: #ffffffdf;
-    border: none;
-    border-radius: 5px;
-    z-index: 1;
-    font-weight: bolder;
-    color: #1a1a1a;
-  }
-  
-  .suggestion {
-    padding: 8px;
-    cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
 
-  }
+.suggestions {
+  margin-top: 5px;
+  position: absolute;
+  top: calc(100% + 0px);
+  left: 0;
+  min-width: 400px;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background-color: #ffffffdf;
+  border: none;
+  border-radius: 5px;
+  z-index: 1;
+}
 
-  .suggestion:hover {
-    background-color: #f2f2f2;
-  }
-  
-  /* Styla scrollbaren */
-  .suggestions::-webkit-scrollbar {
-    width: 5px;
-  }
-  
-  .suggestions::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  
-  .suggestions::-webkit-scrollbar-thumb {
-    background: #888;
-    border-radius: 5px;
-  }
-  
-  .suggestions::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-  
+.suggestion {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestion:hover {
+  background-color: #f2f2f2;
+}
+
+.suggestions::-webkit-scrollbar {
+  width: 5px;
+}
+
+.suggestions::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.suggestions::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+.suggestions::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

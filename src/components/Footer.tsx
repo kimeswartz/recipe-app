@@ -18,11 +18,6 @@ const Footer = () => {
               <a onClick={() => handleNavigation("/")}>Home</a>
             </li>
             <li>
-              <a onClick={() => handleNavigation("/CategoryPage")}>
-                Categories
-              </a>
-            </li>
-            <li>
               <a onClick={() => handleNavigation("/Cocktails")}>Cocktails</a>
             </li>
             <li>
@@ -35,10 +30,7 @@ const Footer = () => {
               <a onClick={() => handleNavigation("/AdminPage")}>Admin</a>
             </li>
             <li>
-              <a onClick={() => handleNavigation("/popular")}>Popular</a>
-            </li>
-            <li>
-              <a onClick={() => handleNavigation("/about")}>About Us</a>
+              <a id="footerNavigateAbout" onClick={() => handleNavigation("/about")}>About Us</a>
             </li>
           </ul>
         </nav>

@@ -21,39 +21,40 @@ const TopRatedRecipes = () => {
   };
 
   return (
-    <div className="card-grid">
-      <h2>Top Rated Recipes</h2>
-      {recipeList
-        .filter(
-          (recipe) => recipe.avgRating !== undefined && recipe.avgRating >= 3
-        )
-        .sort((a, b) => (b.avgRating ?? 0) - (a.avgRating ?? 0))
-        .map((recipe) => (
-          <div
-            key={recipe._id}
-            className="recipe-card"
-            onClick={() => handleNavigate(recipe)}
-          >
-            <div className="first-card-div">
-              {" "}
-              {/* Image container */}
-              <img
-                className="display-recipe-img"
-                src={recipe.imageUrl}
-                alt={recipe.title}
-              />
-              <b className="card-category">
-                {recipe.avgRating?.toFixed(1) || "No rating"}
-              </b>
+    <section className="standard-container">
+      <div className="card-grid">
+        {recipeList
+          .filter(
+            (recipe) => recipe.avgRating !== undefined && recipe.avgRating >= 4
+          )
+          .sort((a, b) => (b.avgRating ?? 0) - (a.avgRating ?? 0))
+          .map((recipe) => (
+            <div
+              key={recipe._id}
+              className="recipe-card"
+              onClick={() => handleNavigate(recipe)}
+            >
+              <div className="first-card-div">
+                {" "}
+                {/* Image container */}
+                <img
+                  className="display-recipe-img"
+                  src={recipe.imageUrl}
+                  alt={recipe.title}
+                />
+                <b className="card-category">
+                  {recipe.avgRating?.toFixed(1) || "No rating"}
+                </b>
+              </div>
+              <div className="second-card-div">
+                {" "}
+                {/* Content below the image */}
+                <h3>{recipe.title}</h3>
+              </div>
             </div>
-            <div className="second-card-div">
-              {" "}
-              {/* Content below the image */}
-              <h3>{recipe.title}</h3>
-            </div>
-          </div>
-        ))}
-    </div>
+          ))}
+      </div>
+    </section>
   );
 };
 
