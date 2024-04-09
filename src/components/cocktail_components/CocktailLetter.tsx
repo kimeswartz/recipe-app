@@ -13,6 +13,8 @@ const CocktailLetters = () => {
   }
 
   return (
+
+    <section className="standard-container">
     <div className="cocktail-grid">
 
       <ul className="cocktail-list">
@@ -24,6 +26,7 @@ const CocktailLetters = () => {
         ))}
       </ul>
     </div>
+    </section>
   );
 };
 

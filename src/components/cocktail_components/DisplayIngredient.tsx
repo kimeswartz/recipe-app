@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import globalCocktailFunctions from '../../store/CocktailAPICalls';
 import '../../styling/CocktailGridStyle.css';
-import '../../styling/Ingredient.css'; 
+import '../../styling/Ingredient.css';
 
 const DisplayIngredient = () => {
   const { cocktailsByIngredient, fetchCocktailsByIngredient, oneIngredient, fetchIngredient } = globalCocktailFunctions();

@@ -1,31 +1,69 @@
-import RecipeSearch from "../components/recipe_components/SearchRecipe";
+import { useState } from "react";
 import AdminUpload from "../components/admin_components/AdminUploadRecipe";
-import ClearAPIComponent from "../components/admin_components/ClearAPIComponent";
-import AdminUpdateRecipe from "../components/admin_components/AdminUpdateRecipe";
 import DisplayAllRecipe from "../components/recipe_components/DisplayAllRecipe";
-import "../styling/AdminPageStyle.css";
+import AdminUpdateRecipe from "../components/admin_components/AdminUpdateRecipe";
+import ClearAPIComponent from "../components/admin_components/ClearAPIComponent";
 
 const AdminPage = () => {
+  const [showUpload, setShowUpload] = useState(false);
+  const [showDelete, setShowDelete] = useState(false);
+  const [showEdit, setShowEdit] = useState(false);
+  const [showClear, setShowClear] = useState(false);
+
+  const toggleUpload = () => {
+    setShowUpload(!showUpload);
+    setShowDelete(false);
+    setShowEdit(false);
+    setShowClear(false);
+  };
+
+  const toggleDelete = () => {
+    setShowUpload(false);
+    setShowDelete(!showDelete);
+    setShowEdit(false);
+    setShowClear(false);
+  };
+
+  const toggleEdit = () => {
+    setShowUpload(false);
+    setShowDelete(false);
+    setShowEdit(!showEdit);
+    setShowClear(false);
+  };
+
+  const toggleClear = () => {
+    setShowUpload(false);
+    setShowDelete(false);
+    setShowEdit(false);
+    setShowClear(!showClear);
+  };
+
   return (
-    <div>
-      <header className="header">
-        <h1>ADMINS ONLY!</h1>
-        <RecipeSearch />
-      </header>
+    <section className="standard-container">
+      <div>
+        <h1>Welcome, Admin!</h1>
 
-      <div className="card">
-        <h2>UPLOAD RECIPE</h2>
-        <AdminUpload />
+        <div className="standard-container pointer" onClick={toggleUpload}>
+          {showUpload ? "Close Upload Recipe" : "Open Upload Recipe"}
+        </div>
+        {showUpload && <AdminUpload />}
 
-        <h2>DELETE RECIPE</h2>
-        <DisplayAllRecipe />
+        <div className="standard-container pointer" onClick={toggleDelete}>
+          {showDelete ? "Close Delete Recipe" : "Open Delete Recipe"}
+        </div>
+        {showDelete && <DisplayAllRecipe />}
 
-        <h2>UPDATE RECIPE</h2>
-        <AdminUpdateRecipe />
+        <div className="standard-container pointer" onClick={toggleEdit}>
+          {showEdit ? "Close Edit a Recipe" : "Open Edit a Recipe"}
+        </div>
+        {showEdit && <AdminUpdateRecipe />}
 
-        <ClearAPIComponent />
+        <div className="standard-container pointer" onClick={toggleClear}>
+          {showClear ? "Close Clear All Recipes" : "Open Clear All Recipes"}
+        </div>
+        {showClear && <ClearAPIComponent />}
       </div>
-    </div>
+    </section>
   );
 };
 
