@@ -20,9 +20,8 @@ import DisplayOneCocktail from "./components/cocktail_components/DisplayOneCockt
 Modal.setAppElement("#root");
 
 function App() {
-
   const { displayCart, toggleCart } = globalCartFunctions();
-  
+
   return (
     <>
       <BrowserRouter>
@@ -49,10 +48,14 @@ function App() {
         <Routes>
           <Route path="/ingredient/:ingredientId" element={<IngredientPage />} />
           <Route path="/cocktails" element={<CocktailHomePage />} />
-          <Route path="/cocktail/:id" element={<DisplayOneCocktail />} /> {/* arash, med hjälp från hampus */}
+          <Route path="/cocktail/:id" element={<DisplayOneCocktail />} />{" "}
+          {/* arash, med hjälp från hampus */}
           <Route path="/filter" element={<FilterPage />} />
           <Route path="/" element={<Home />} />
-          <Route path="/category/:categoryName" element={<RecipesByCategory />}/>
+          <Route
+            path="/category/:categoryName"
+            element={<RecipesByCategory />}
+          />
           <Route path="/recipe/:recipeId" element={<DisplayOneRecipe />} />
           <Route path="/adminpage" element={<AdminPage />} />
           <Route path="/recipes" element={<RecipePageContent />} />

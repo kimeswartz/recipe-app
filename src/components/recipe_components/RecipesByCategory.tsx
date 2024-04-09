@@ -16,34 +16,39 @@ const RecipesByCategory = () => {
   };
 
   return (
-    <div className="category-conatiner">
-      <CategorySuggestion />
+    <div>
+      <div className="spacer-container">
+        <h1>{categoryName} recipes</h1>
+      </div>
 
-      <div>
-        <h1>{categoryName} recept</h1>
-        <div className="card-grid">
-          {categoryRecipeList.map((recipe) => (
-            <div
-              className="recipe-card"
-              key={recipe._id}
-              onClick={() => handleRecipeClick(recipe)}
-            >
-              <div className="first-card-div">
-                {/* Image container */}
-                <img
-                  className="display-recipe-img"
-                  src={recipe.imageUrl}
-                  alt={recipe.title}
-                />
-                <b className="card-category">{recipe.categories[0]}</b>
+      <div className="category-conatiner">
+        <CategorySuggestion />
+
+        <section className="standard-container">
+          <div className="card-grid">
+            {categoryRecipeList.map((recipe) => (
+              <div
+                className="recipe-card"
+                key={recipe._id}
+                onClick={() => handleRecipeClick(recipe)}
+              >
+                <div className="first-card-div">
+                  {/* Image container */}
+                  <img
+                    className="display-recipe-img"
+                    src={recipe.imageUrl}
+                    alt={recipe.title}
+                  />
+                  <b className="card-category">{recipe.categories[0]}</b>
+                </div>
+                <div className="second-card-div">
+                  {/* Assuming you want to display category as a badge */}
+                  <h3>{recipe.title}</h3>
+                </div>
               </div>
-              <div className="second-card-div">
-                {/* Assuming you want to display category as a badge */}
-                <h3>{recipe.title}</h3>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );

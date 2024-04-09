@@ -29,23 +29,6 @@
   width: 100%;
 }
 
-.comments-section button {
-  background-color: #009e74;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  display: inline-block;
-
-  box-sizing: border-box;
-  margin-bottom: 20px;
-}
-
-.comments-section button:hover {
-  background-color: #008060;
-}
-
 .comments-section div {
   margin-top: 10px;
 }
