@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import globalCartFunctions from "../../store/GlobalCart";
 import globalCocktailFunctions from "../../store/CocktailAPICalls";
@@ -6,7 +6,7 @@ import globalCocktailFunctions from "../../store/CocktailAPICalls";
 const DisplayOneCocktail = () => {
   const { oneCocktail, fetchCocktailById } = globalCocktailFunctions();
   const { addCocktailToCart } = globalCartFunctions();
-
+  const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
 
   useEffect(() => {
@@ -15,24 +15,33 @@ const DisplayOneCocktail = () => {
     }
   }, [id, fetchCocktailById]);
 
+  const handleClick = (name: string) => {
+    navigate(`/ingredient/${name}`)
+    window.scrollTo(0,0)
+  }
+
   const generateIngredientsList = (cocktail: {
     [ingredientName: string]: any;
   }) => {
     const ingredientsList = [];
-
+  
     for (let i = 1; i <= 15; i++) {
       const ingredientKey = `strIngredient${i}`;
       const measureKey = `strMeasure${i}`;
-      if (cocktail[ingredientKey]) {
+      const ingredientName = cocktail[ingredientKey];
+      const measure = cocktail[measureKey];
+      if (ingredientName) {
+        const imageUrl = `https://www.thecocktaildb.com/images/ingredients/${ingredientName}-Small.png`;
         ingredientsList.push(
-          <li key={i}>
-            {cocktail[ingredientKey]} amount:{" "}
-            {cocktail[measureKey] || "To taste"}
+          <li key={i} onClick={() => handleClick(ingredientName)}>
+            <img src={imageUrl} alt={ingredientName} />
+            {ingredientName} :{" "}
+            {measure ? `${measure} ` : "To taste"}
           </li>
         );
       }
     }
-
+  
     return ingredientsList;
   };
 

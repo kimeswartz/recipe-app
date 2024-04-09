@@ -1,29 +1,42 @@
-import { useState } from 'react'
-import globalRecipeFunctions from '../../store/RecipeAPICalls';
+import { useState } from "react";
+import globalRecipeFunctions from "../../store/RecipeAPICalls";
 
 const ClearAPIComponent = () => {
-
   const [dangerButton, setDangerButton] = useState(true);
   const { clearAPI } = globalRecipeFunctions();
 
   const handleClick = () => {
-    if (window.confirm('Are you sure?????')) {
+    if (window.confirm("Are you sure?????")) {
       clearAPI();
     } else {
-      console.log('user clicked cancel')
+      console.log("user clicked cancel");
     }
-  }
+  };
 
   return (
-    <div>
-      <h1>DANGER ZONE</h1>
-      <button className='main-button' onClick={() => setDangerButton(!dangerButton)}>SHOW/HIDE DANGER BUTTON</button>
+    <section className="standard-container">
       <div>
-        <button className='main-button' hidden={dangerButton} onClick={handleClick}>DELETE ALL RECIPES</button>
+        <h2>DANGER ZONE</h2>
+        <div className="spacer-container">
+          <button
+            className="main-button"
+            onClick={() => setDangerButton(!dangerButton)}
+          >
+            SHOW/HIDE DANGER BUTTON
+          </button>
+        </div>
+        <div className="spacer-container">
+          <button
+            className="main-button"
+            hidden={dangerButton}
+            onClick={handleClick}
+          >
+            DELETE ALL RECIPES
+          </button>
+        </div>
       </div>
+    </section>
+  );
+};
 
-    </div>
-  )
-}
-
-export default ClearAPIComponent
+export default ClearAPIComponent;

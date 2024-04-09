@@ -57,7 +57,6 @@ const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
     try {
       const response = await axios.get(`${cocktailURL}/search.php?i=${name}`);
       if (response.status === 200) {
-        console.log(response.data.ingredients[0]);
         set({ oneIngredient: response.data.ingredients[0] });
       }
     } catch (error) {

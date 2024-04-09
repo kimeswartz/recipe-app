@@ -193,7 +193,9 @@ const DisplayOneRecipe = () => {
               placeholder="Leave a comment"
             ></textarea>
             <div className="comments-button-container">
-              <button onClick={handleAddComment}>Send</button>
+              <button className="main-button" onClick={handleAddComment}>
+                Send
+              </button>
             </div>
             <div>
               {recipeComment.map((userReview, reviewKey) => (
