@@ -18,11 +18,6 @@ const Footer = () => {
               <a onClick={() => handleNavigation("/")}>Home</a>
             </li>
             <li>
-              <a onClick={() => handleNavigation("/CategoryPage")}>
-                Categories
-              </a>
-            </li>
-            <li>
               <a onClick={() => handleNavigation("/Cocktails")}>Cocktails</a>
             </li>
             <li>
