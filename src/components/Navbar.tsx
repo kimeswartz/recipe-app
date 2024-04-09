@@ -28,7 +28,7 @@ const Navbar = () => {
       <div className="nav-links">
         <a onClick={() => handleNavigation("/")}>Home</a>
         <a onClick={() => handleNavigation("/cocktails")}>Cocktails</a>
-        <a onClick={() => handleNavigation("/filter")}>Filter</a>
+        <a id="headerNavigateFilter" onClick={() => handleNavigation("/filter")}>Filter</a>
         <a onClick={() => handleNavigation("/recipes")}>Recipes</a>
         <a className="icon" onClick={toggleResponsive}>
           <FontAwesomeIcon icon={faBars} />

@@ -30,7 +30,7 @@ const Footer = () => {
               <a onClick={() => handleNavigation("/AdminPage")}>Admin</a>
             </li>
             <li>
-              <a onClick={() => handleNavigation("/about")}>About Us</a>
+              <a id="footerNavigateAbout" onClick={() => handleNavigation("/about")}>About Us</a>
             </li>
           </ul>
         </nav>

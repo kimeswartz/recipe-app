@@ -120,6 +120,7 @@ const UploadRecipe = () => {
                 Titel:
                 <input
                   className="user-input"
+                  id="addTitle"
                   type="text"
                   name="title"
                   value={recipe.title}
@@ -130,6 +131,7 @@ const UploadRecipe = () => {
                 Descriptions:
                 <input
                   className="user-input"
+                  id="addDescription"
                   type="text"
                   name="description"
                   value={recipe.description}
@@ -140,6 +142,7 @@ const UploadRecipe = () => {
                 Image URL:
                 <input
                   className="user-input"
+                  id="addImageUrl"
                   type="text"
                   name="imageUrl"
                   value={recipe.imageUrl}
@@ -150,6 +153,7 @@ const UploadRecipe = () => {
                 Price:
                 <input
                   className="user-input"
+                  id= "addPrice"
                   type="number"
                   name="Price"
                   value={recipe.price}
@@ -160,6 +164,7 @@ const UploadRecipe = () => {
                 Time in min:
                 <input
                   className="user-input"
+                  id="addTimeInMin"
                   type="number"
                   name="timeInMins"
                   value={recipe.timeInMins}
@@ -177,6 +182,7 @@ const UploadRecipe = () => {
                 <label className="category-label" key={index}>
                   <input
                     className="input-checkbox"
+                    id = "chooseCategoryCheckbox"
                     type="checkbox"
                     value={category}
                     checked={recipe.categories.includes(category)}
@@ -217,6 +223,7 @@ const UploadRecipe = () => {
                   Instruction :
                   <input
                     className="user-input"
+                    id="addInstruction"
                     type="text"
                     name="instruction"
                     value={userInputInstructions}
@@ -229,6 +236,7 @@ const UploadRecipe = () => {
               <div className="spacer-container">
                 <button
                   className="main-button"
+                  id="addInstructionBtn"
                   type="button"
                   onClick={() => handleSubmitInstruction()}
                 >
@@ -262,6 +270,7 @@ const UploadRecipe = () => {
                 Ingredient Name:
                 <input
                   className="user-input"
+                  id="addIngredient"
                   type="text"
                   value={newIngredient.name}
                   onChange={(input) =>
@@ -276,6 +285,7 @@ const UploadRecipe = () => {
                 Amount:
                 <input
                   className="user-input"
+                  id="addAmount"
                   type="number"
                   value={newIngredient.amount}
                   onChange={(input) =>
@@ -290,6 +300,7 @@ const UploadRecipe = () => {
                 Unit:
                 <select
                   className="user-input"
+                  id="addIngredientUnit"
                   defaultValue=""
                   onChange={(input) =>
                     setNewIngredient({
@@ -310,6 +321,7 @@ const UploadRecipe = () => {
             <div className="spacer-container">
               <button
                 className="main-button"
+                id="addIngredientBtn"
                 type="button"
                 onClick={() => handleSubmitIngredient()}
               >
@@ -317,7 +329,7 @@ const UploadRecipe = () => {
               </button>
             </div>
             <div className="button-container">
-              <button className="main-button" type="submit">
+              <button className="main-button" id="submitBtn" type="submit">
                 Submit recipe to database
               </button>
             </div>
