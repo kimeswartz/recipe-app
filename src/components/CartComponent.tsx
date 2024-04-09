@@ -69,7 +69,6 @@ const CartComponent = () => {
 
   return (
     <div className="flex-box">
-
       {/* Presents all recipes */}
       <div className="v-flex-box">
         {cartRecipes.map((recipe, recipeIndex) => {
