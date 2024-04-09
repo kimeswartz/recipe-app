@@ -47,7 +47,7 @@ function App() {
           </div>
         </Modal>
         <Routes>
-          <Route path="/ingredient/" element={<IngredientPage />} />
+          <Route path="/ingredient/:ingredientId" element={<IngredientPage />} />
           <Route path="/cocktails" element={<CocktailHomePage />} />
           <Route path="/cocktail/:id" element={<DisplayOneCocktail />} /> {/* arash, med hjälp från hampus */}
           <Route path="/filter" element={<FilterPage />} />

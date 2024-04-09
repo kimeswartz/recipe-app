@@ -22,6 +22,7 @@ const DisplayAllRecipe = () => {
     }
   };
 
+
   const handleNavigate = (recipe: RecipeInterface) => {
     setOneRecipe(recipe);
     navigate(`/recipe/${recipe._id}`);
