@@ -6,11 +6,12 @@ describe("upload a recipe", () => {
 
     const imageUrl = "https://pongmarket.se/thumb/13087/1280x0/KFG0440.png";
 
+    cy.get("#clickOpenUpload").click();
     cy.get("#addTitle").type("Banan");
     cy.get("#addDescription").type("En banan är gott");
     cy.get("#addImageUrl").type(imageUrl);
     cy.get("#addTimeInMin").type("5");
-    cy.get('.input-checkbox[value="Lunch"]').check();
+    cy.get('#chooseCategoryCheckbox[value="Lunch"]').check();
     cy.get("#addInstruction").type("buy banan");
     cy.get("#addInstructionBtn").click();
     cy.get("#addIngredient").type("banan");

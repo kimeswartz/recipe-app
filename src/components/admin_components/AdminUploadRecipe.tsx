@@ -170,6 +170,7 @@ const UploadRecipe = () => {
                 <label className="category-label" key={index}>
                   <input
                     className="input-checkbox"
+                    id = "chooseCategoryCheckbox"
                     type="checkbox"
                     value={category}
                     checked={recipe.categories.includes(category)}
