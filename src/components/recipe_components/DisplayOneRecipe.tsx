@@ -8,6 +8,7 @@ import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import globalCartFunctions from "../../store/GlobalCart";
 import "../../styling/OneRecipePageStyle.css";
 import "../../styling/CommentSectionStyle.css";
+import CommentComponent from "../recipe_components/CommentComponent";
 
 // Component for displaying a single recipe
 const DisplayOneRecipe = () => {
@@ -17,8 +18,6 @@ const DisplayOneRecipe = () => {
     fetchOneRecipe,
     addRating,
     fetchComments,
-    addComment,
-    recipeComment,
   } = globalRecipeFunctions();
   const { addRecipeToCart } = globalCartFunctions();
 
@@ -26,7 +25,6 @@ const DisplayOneRecipe = () => {
   // We use useParams to acces dynamic parts in the URL, in this case, the recipe ID, that will route to the recipe URL request
   const { recipeId } = useParams<{ recipeId: string }>();
   const [userRating, setUserRating] = useState<number>();
-  const [commentText, setCommentText] = useState(""); //arash
   const [trigger, setTrigger] = useState(false);
 
   // Fetch the recipe details when the component mounts or recipeId changes
@@ -46,20 +44,7 @@ const DisplayOneRecipe = () => {
     setUserRating(rating);
   };
 
-  const handleAddComment = async () => {
-    if (!commentText.trim()) {
-      alert("Cannot add an empty comment.");
-      return;
-    }
-    if (!oneRecipe._id) {
-      alert("Recipe ID is undefined.");
-      return;
-    }
 
-    addComment(commentText.trim(), oneRecipe._id);
-    setTrigger(!trigger);
-    setCommentText("");
-  }; //arash
 
   // Conditional rendering based on whether the recipe has loaded or not
   if (!oneRecipe) {
@@ -184,29 +169,17 @@ const DisplayOneRecipe = () => {
               </ol>
             </div>
           </div>
-        </div>
-        <div className="comments-section">
-          <h3>Comments for this recipe</h3>
+        </div> 
+        {/* Section for displaying comments */}
+        <div className="comments-section"> 
           <div className="adjust-content-with">
-            <textarea
-              value={commentText}
-              onChange={(e) => setCommentText(e.target.value)}
-              placeholder="Leave a comment"
-            ></textarea>
-            <div className="comments-button-container">
-              <button className="main-button" onClick={handleAddComment}>
-                Send
-              </button>
-            </div>
-            <div>
-              {recipeComment.map((userReview, reviewKey) => (
-                <p key={reviewKey}>{userReview.comment}</p>
-              ))}
+            <CommentComponent
+            />
             </div>
           </div>
         </div>
-      </div>
     );
+    
   }
 };
 
