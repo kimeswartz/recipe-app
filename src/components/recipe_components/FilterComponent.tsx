@@ -35,10 +35,14 @@ const FilterComponent = () => {
       setFilteredRecipes(recipeData);
     } else {
       const filtered = recipeData.filter((recipe) =>
-        recipe.ingredients.some((ingredient) =>
-          searchIngredients.includes(ingredient.name.toLowerCase())
+        searchIngredients.every((ingredient) =>
+          recipe.ingredients.some(
+            (recipeIngredient) =>
+              recipeIngredient.name.toLowerCase() === ingredient.toLowerCase()
+          )
         )
       );
+
       setFilteredRecipes(filtered);
     }
   }, [searchIngredients, recipeData]);
