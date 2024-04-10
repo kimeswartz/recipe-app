@@ -47,7 +47,7 @@
 
 .exit-button{
   position: absolute;
-  top: 1rem;
+  top: 3rem;
   right: 1rem;
   padding: 5px 10px 5px 10px;
   background-color: red;
@@ -67,4 +67,20 @@
   width: 10rem;
   height: 10rem;
   cursor: pointer;
+}
+
+.q-button {
+  padding: 5px 10px; 
+  font-size: 0.8rem; 
+  background-color: red;
+  border-radius: 8px;
+  color: white;
+  border-color: red;
+  cursor: pointer;
+  height: 30px;
+  
+}
+
+.q-button:hover {
+  background-color: rgb(53, 165, 92); 
 }

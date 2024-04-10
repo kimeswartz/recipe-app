@@ -10,7 +10,7 @@ import listIcon from "../assets/logo/favicon-32x32.png";
 const Navbar = () => {
   const navigate = useNavigate();
   const { emptyRecipe } = uploadUpdateRecipeState();
-  const { displayCart, toggleCart } = globalCartFunctions();
+  const { displayCart, toggleCart, cartRecipes, cartCocktails } = globalCartFunctions();
   const [isResponsive, setIsResponsive] = useState(false);
 
   const handleNavigation = (path: string) => {
@@ -22,6 +22,7 @@ const Navbar = () => {
   const toggleResponsive = () => {
     setIsResponsive(!isResponsive);
   };
+  const totalItemsInCart = cartRecipes.reduce((total, recipe) => total + recipe.quantity, 0) + cartCocktails.reduce((total, cocktail) => total + cocktail.quantity, 0);
 
   return (
     <div className={`topnav ${isResponsive ? "responsive" : ""}`}>
@@ -35,6 +36,7 @@ const Navbar = () => {
         </a>
         <a onClick={() => toggleCart(displayCart)} className="list-container">
           <img src={listIcon} alt="Your list of recipes" />
+          {totalItemsInCart > 0 && <span className="item-count">{totalItemsInCart}</span>}
         </a>
       </div>
     </div>

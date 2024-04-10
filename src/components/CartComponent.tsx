@@ -1,4 +1,4 @@
-//Hampus
+// Hampus
 
 import { RecipeInterface } from "../interfaces/RecipeInterface"
 import { useNavigate } from "react-router-dom"
@@ -18,6 +18,10 @@ const CartComponent = () => {
     removeRecipeFromCart,
     removeCocktailFromCart,
     toggleCart,
+    increaseRecipeQuantity,
+    decreaseRecipeQuantity,
+    increaseCocktailQuantity,
+    decreaseCocktailQuantity,
   } = globalCartFunctions();
   const { setOneRecipe } = globalRecipeFunctions();
   const { setOneCocktail } = globalCocktailFunctions();
@@ -55,9 +59,9 @@ const CartComponent = () => {
     return ingredientsList;
   }
 
-  const totalItemsInCart = cartRecipes.length + cartCocktails.length;
-  const totalPrice = cartRecipes.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.price,
+  const totalItemsInCart = cartRecipes.reduce((total, recipe) => total + recipe.quantity, 0) + cartCocktails.reduce((total, cocktail) => total + cocktail.quantity, 0);
+  const totalRecipePrice = cartRecipes.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.recipe.price * currentValue.quantity,
     0
   );
 
@@ -70,14 +74,16 @@ const CartComponent = () => {
       </div>
     );
   }
+
   return (
     <div>
       <h2>Total items: {totalItemsInCart}</h2>
-      <h2>Total cost: {totalPrice}</h2>
+      <h2>Total recipe cost: {totalRecipePrice}</h2>
       <div className="flex-box">
         {/* Presents all recipes */}
         <div className="v-flex-box">
-          {cartRecipes.map((recipe, recipeIndex) => {
+          {cartRecipes.map((cartItem, recipeIndex) => {
+            const { recipe, quantity } = cartItem;
             return (
               <div className="item-box" key={recipeIndex}>
                 <img
@@ -113,6 +119,15 @@ const CartComponent = () => {
                 >
                   Delete
                 </button>
+                
+                <button 
+                    className="q-button" 
+                    onClick={() => increaseRecipeQuantity(recipeIndex)}>+</button>
+                    <span>{quantity}</span>
+                <button
+                  className="q-button" 
+                  onClick={() => decreaseRecipeQuantity(recipeIndex)}>-</button>
+                
               </div>
             );
           })}
@@ -120,7 +135,8 @@ const CartComponent = () => {
 
         {/* Presents all cocktails */}
         <div className="v-flex-box">
-          {cartCocktails.map((cocktail, cocktailIndex) => {
+          {cartCocktails.map((cartItem, cocktailIndex) => {
+            const { cocktail, quantity } = cartItem;
             return (
               <div className="item-box" key={cocktailIndex}>
                 <img
@@ -140,8 +156,19 @@ const CartComponent = () => {
                   className="exit-button"
                   onClick={() => removeCocktailFromCart(cocktailIndex)}
                 >
-                  Close
+                  Delete
                 </button>
+                
+                <button
+                  className="q-button"
+                    onClick={() => increaseCocktailQuantity(cocktailIndex)}>+
+                </button>
+                    <span>{quantity}</span>
+                <button
+                    className="q-button"
+                    onClick={() => decreaseCocktailQuantity(cocktailIndex)}>-
+                </button>
+                
                 <b className="cart-rating">
                   {cocktail.strAlcoholic}
                 </b>

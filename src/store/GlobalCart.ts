@@ -5,26 +5,29 @@ import { RecipeInterface } from "../interfaces/RecipeInterface";
 import CocktailInterface from "../interfaces/CocktailInterface";
 
 interface GlobalCartInterface {
-  cartRecipes: RecipeInterface[];
-  cartCocktails: CocktailInterface[];
+  cartRecipes: { recipe: RecipeInterface; quantity: number }[];
+  cartCocktails: { cocktail: CocktailInterface; quantity: number }[];
   displayCart: boolean;
   addRecipeToCart: (recipe: RecipeInterface) => void;
   removeRecipeFromCart: (recipePosition: number) => void;
-  toggleCart: (mode: boolean) => void;
   addCocktailToCart: (recipe: CocktailInterface) => void;
-  removeCocktailFromCart: (cocktail: number) => void;
+  removeCocktailFromCart: (cocktailPosition: number) => void;
+  toggleCart: (mode: boolean) => void;
+  increaseRecipeQuantity: (recipePosition: number) => void;
+  decreaseRecipeQuantity: (recipePosition: number) => void;
+  increaseCocktailQuantity: (cocktailPosition: number) => void; 
+  decreaseCocktailQuantity: (cocktailPosition: number) => void; 
 }
 
-const globalCartFunctions = create<GlobalCartInterface>()((set) => ({
+const globalCartFunctions = create<GlobalCartInterface>((set) => ({
   cartRecipes: [],
   cartCocktails: [],
   displayCart: false,
 
-
   addRecipeToCart: (recipe) => {
     alert("Varan har lagts till");
     set((prevState) => ({
-      cartRecipes: [...prevState.cartRecipes, recipe],
+      cartRecipes: [...prevState.cartRecipes, { recipe, quantity: 1 }],
     }));
   },
 
@@ -36,13 +39,32 @@ const globalCartFunctions = create<GlobalCartInterface>()((set) => ({
     }));
   },
 
+  increaseRecipeQuantity: (recipePosition) => {
+    set((prevState) => {
+      const updatedCartRecipes = [...prevState.cartRecipes];
+      updatedCartRecipes[recipePosition].quantity++;
+      return { cartRecipes: updatedCartRecipes };
+    });
+  },
+
+  decreaseRecipeQuantity: (recipePosition) => {
+    set((prevState) => {
+      const updatedCartRecipes = [...prevState.cartRecipes];
+      if (updatedCartRecipes[recipePosition].quantity > 1) {
+        updatedCartRecipes[recipePosition].quantity--;
+      }
+      return { cartRecipes: updatedCartRecipes };
+    });
+  },
+
   addCocktailToCart: (cocktail) => {
     alert("Cocktail har lagts till");
     set((prevState) => ({
-      prevState,
-      cartCocktails: [...prevState.cartCocktails, cocktail],
+      ...prevState,
+      cartCocktails: [...prevState.cartCocktails, { cocktail, quantity: 1 }],
     }));
   },
+  
 
   removeCocktailFromCart: (cocktailPosition) => {
     set((prevState) => ({
@@ -53,9 +75,28 @@ const globalCartFunctions = create<GlobalCartInterface>()((set) => ({
     }));
   },
 
+  increaseCocktailQuantity: (cocktailPosition) => {
+    set((prevState) => {
+      const updatedCartCocktails = [...prevState.cartCocktails];
+      updatedCartCocktails[cocktailPosition].quantity++;
+      return { cartCocktails: updatedCartCocktails };
+    });
+  },
+
+  decreaseCocktailQuantity: (cocktailPosition) => {
+    set((prevState) => {
+      const updatedCartCocktails = [...prevState.cartCocktails];
+      if (updatedCartCocktails[cocktailPosition].quantity > 1) {
+        updatedCartCocktails[cocktailPosition].quantity--;
+      }
+      return { cartCocktails: updatedCartCocktails };
+    });
+  },
+
   toggleCart: (mode) => {
     set({ displayCart: !mode });
   },
+
 
 
 }));
