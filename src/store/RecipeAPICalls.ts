@@ -10,7 +10,6 @@ interface recipeStateInterface {
   recipeList: RecipeInterface[];
   oneRecipe: RecipeInterface;
   recipeComment: CommentInterface[];
-  randomizedRecipeList: RecipeInterface[];
   categoryList: [];
   categoryRecipeList: RecipeInterface[];
   setOneRecipe: (recipe: RecipeInterface) => void;
@@ -29,7 +28,6 @@ interface recipeStateInterface {
 
 const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
   recipeList: [],
-  randomizedRecipeList: [],
   oneRecipe: {} as RecipeInterface,
   recipeComment: [],
   categoryList: [],
