@@ -21,9 +21,12 @@ const ListCocktailsAlphabet = () => {
   return (
     <section className="standard-container">
       <div>
-        <div className="spacer-container">
-          <h2>Cocktails by the letter {selectedLetter} </h2>
+        <div className="spacer-container centered-container">
+          <p>
+            Find cocktails starting at...<strong> {selectedLetter} </strong>
+          </p>
         </div>
+
         <div className="alphabet-container">
           {alphabet.map((letter: string, index) => (
             <div

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import globalRecipeFunctions from '../../store/RecipeAPICalls';
+import "../../styling/CommentSectionStyle.css"
 
 const CommentComponent = () => {
   const [commentText, setCommentText] = useState("");
