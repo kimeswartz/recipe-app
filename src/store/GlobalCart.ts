@@ -25,11 +25,22 @@ const globalCartFunctions = create<GlobalCartInterface>((set) => ({
   displayCart: false,
 
   addRecipeToCart: (recipe) => {
-    alert("Varan har lagts till");
-    set((prevState) => ({
-      cartRecipes: [...prevState.cartRecipes, { recipe, quantity: 1 }],
-    }));
+    set((state) => {
+      
+      const existingRecipeIndex = state.cartRecipes.findIndex(item => item.recipe._id === recipe._id);
+  
+      if (existingRecipeIndex !== -1) {
+      
+        const updatedCartRecipes = [...state.cartRecipes];
+        updatedCartRecipes[existingRecipeIndex].quantity++;
+        return { cartRecipes: updatedCartRecipes };
+      } else {
+        
+        return { cartRecipes: [...state.cartRecipes, { recipe, quantity: 1 }] };
+      }
+    });
   },
+  
 
   removeRecipeFromCart: (recipePosition) => {
     set((prevState) => ({
@@ -58,11 +69,20 @@ const globalCartFunctions = create<GlobalCartInterface>((set) => ({
   },
 
   addCocktailToCart: (cocktail) => {
-    alert("Cocktail har lagts till");
-    set((prevState) => ({
-      ...prevState,
-      cartCocktails: [...prevState.cartCocktails, { cocktail, quantity: 1 }],
-    }));
+    set((state) => {
+      
+      const existingCocktailIndex = state.cartCocktails.findIndex(item => item.cocktail.idDrink === cocktail.idDrink);
+  
+      if (existingCocktailIndex !== -1) {
+        
+        const updatedCartCocktails = [...state.cartCocktails];
+        updatedCartCocktails[existingCocktailIndex].quantity++;
+        return { cartCocktails: updatedCartCocktails };
+      } else {
+        
+        return { cartCocktails: [...state.cartCocktails, { cocktail, quantity: 1 }] };
+      }
+    });
   },
   
 
