@@ -67,7 +67,7 @@ const SearchRecipe = () => {
   const filteredRecipes = recipeList.filter((recipe) =>
     searchTerms
       .split(" ")
-      .every((term) => recipe.title.toLowerCase().includes(term.toLowerCase()))
+      .every((term) => recipe.title?.toLowerCase().includes(term.toLowerCase()))
   );
 
   return (
