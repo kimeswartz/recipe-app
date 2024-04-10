@@ -10,6 +10,7 @@ interface recipeStateInterface {
   recipeList: RecipeInterface[];
   oneRecipe: RecipeInterface;
   recipeComment: CommentInterface[];
+  randomizedRecipeList: RecipeInterface[];
   categoryList: [];
   categoryRecipeList: RecipeInterface[];
   setOneRecipe: (recipe: RecipeInterface) => void;
@@ -28,6 +29,7 @@ interface recipeStateInterface {
 
 const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
   recipeList: [],
+  randomizedRecipeList: [],
   oneRecipe: {} as RecipeInterface,
   recipeComment: [],
   categoryList: [],
@@ -42,6 +44,7 @@ const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
       const response = await axios.get(`${recipeURL}/recipes`);
       if (response.status === 200) {
         set({ recipeList: response.data });
+        set({randomizedRecipeList: response.data.sort(() => Math.random() - 0.5).slice(0,20)})
         console.log('Fetched all recipes')
       }
     } catch (error) {
