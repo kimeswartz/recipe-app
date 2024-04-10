@@ -20,6 +20,7 @@ const globalCartFunctions = create<GlobalCartInterface>()((set) => ({
   cartCocktails: [],
   displayCart: false,
 
+
   addRecipeToCart: (recipe) => {
     alert("Varan har lagts till");
     set((prevState) => ({
@@ -55,6 +56,8 @@ const globalCartFunctions = create<GlobalCartInterface>()((set) => ({
   toggleCart: (mode) => {
     set({ displayCart: !mode });
   },
+
+
 }));
 
 export default globalCartFunctions;

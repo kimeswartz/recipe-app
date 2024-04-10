@@ -55,7 +55,13 @@ const CartComponent = () => {
     return ingredientsList;
   }
 
-  if (cartRecipes.length === 0 && cartCocktails.length === 0) {
+  const totalItemsInCart = cartRecipes.length + cartCocktails.length;
+  const totalPrice = cartRecipes.reduce(
+    (accumulator, currentValue) => accumulator + currentValue.price,
+    0
+  );
+
+  if (totalItemsInCart === 0) {
     return (
       <div className="centered-tags">
         <div className="info-tag">
@@ -64,10 +70,10 @@ const CartComponent = () => {
       </div>
     );
   }
-
   return (
     <div>
-      <h2>Total recipe cost: {cartRecipes.reduce((accumulator, currentValue) => accumulator + currentValue.price, 0)}</h2>
+      <h2>Total items: {totalItemsInCart}</h2>
+      <h2>Total cost: {totalPrice}</h2>
       <div className="flex-box">
         {/* Presents all recipes */}
         <div className="v-flex-box">
