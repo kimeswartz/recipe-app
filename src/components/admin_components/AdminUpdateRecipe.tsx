@@ -211,15 +211,15 @@ const AdminUpdateRecipe = () => {
           </label>
 
           <label className="form-input">
-                Price:
-                <input
-                  className="user-input"
-                  type="number"
-                  name="Price"
-                  value={recipe.price}
-                  onChange={(input) => setPrice(parseInt(input.target.value))}
-                />
-              </label>
+            Price:
+            <input
+              className="user-input"
+              type="number"
+              name="Price"
+              value={recipe.price}
+              onChange={(input) => setPrice(parseInt(input.target.value))}
+            />
+          </label>
 
           <label className="form-input">
             Time in min:
