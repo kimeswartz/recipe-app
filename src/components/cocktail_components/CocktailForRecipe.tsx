@@ -43,10 +43,10 @@ const CocktailForRecipe = () => {
   return (
     <div>
       <div>
-        <p onClick={handleNavigate}>To this recipe we recommend:</p>
-        <p className="pointer">
-          <strong>{oneCocktail?.strDrink}</strong>
-        </p>
+        To this recipe we recommend :
+        <strong>
+          <p onClick={handleNavigate}>{oneCocktail?.strDrink}</p>
+        </strong>
       </div>
     </div>
   );
