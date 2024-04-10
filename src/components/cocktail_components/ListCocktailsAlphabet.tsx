@@ -10,7 +10,7 @@ const ListCocktailsAlphabet = () => {
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 
   useEffect(() => {
-    fetchCocktailsByLetter("A"); // Automatiskt hämta cocktails som börjar på "A"
+    fetchCocktailsByLetter("A");
   }, []);
 
   const handleSelectLetter = (letter: string) => {
