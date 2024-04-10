@@ -1,26 +1,24 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faClock } from "@fortawesome/free-solid-svg-icons";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import globalCartFunctions from "../../store/GlobalCart";
 import CocktailForRecipe from "../cocktail_components/CocktailForRecipe";
 import "../../styling/OneRecipePageStyle.css";
 import "../../styling/CommentSectionStyle.css";
+import RatingComponent from "./RatingComponent";
 import CommentComponent from "../recipe_components/CommentComponent";
 
 // Component for displaying a single recipe
 const DisplayOneRecipe = () => {
   // Destructuring state and function from the state management
-  const { oneRecipe, fetchOneRecipe, addRating, fetchComments } =
-    globalRecipeFunctions();
+  const { oneRecipe, fetchOneRecipe, fetchComments } = globalRecipeFunctions();
   const { addRecipeToCart } = globalCartFunctions();
 
   // Extracting recipeId from URL params
   // We use useParams to acces dynamic parts in the URL, in this case, the recipe ID, that will route to the recipe URL request
   const { recipeId } = useParams<{ recipeId: string }>();
-  const [userRating, setUserRating] = useState<number>();
-  const [trigger, setTrigger] = useState(false);
 
   // Fetch the recipe details when the component mounts or recipeId changes
   useEffect(() => {
@@ -29,15 +27,7 @@ const DisplayOneRecipe = () => {
       fetchOneRecipe(recipeId);
       fetchComments(recipeId); //arash
     }
-  }, [trigger]);
-
-  // This will send a review to database between 1-5
-  const handleRatingChange = async (rating: number) => {
-    addRating(rating, oneRecipe._id).then(() => {
-      setTrigger(!trigger);
-    });
-    setUserRating(rating);
-  };
+  }, []);
 
   // Conditional rendering based on whether the recipe has loaded or not
   if (!oneRecipe) {
@@ -62,44 +52,11 @@ const DisplayOneRecipe = () => {
                       {oneRecipe.timeInMins} Minutes
                     </p>
                   </div>
+                  <RatingComponent />
                 </div>
-
-                <div className="info-container">
-                  <div className="info-tag">
-                    <p>
-                      <FontAwesomeIcon icon={faStar} className="star-icon" />{" "}
-                      {oneRecipe.avgRating !== null ? (
-                        <span>{oneRecipe.avgRating?.toFixed(1)}/5</span>
-                      ) : (
-                        <span>Missing grade</span>
-                      )}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="info-container">
-                  <div className="info-tag">
-                    {/* Interaktiv ratingsystem */}
-                    <p>
-                      Rate this dish: {""}
-                      {[1, 2, 3, 4, 5].map((value) => (
-                        <span
-                          key={value}
-                          style={{ cursor: "pointer" }}
-                          onClick={() => handleRatingChange(value)}
-                        >
-                          <FontAwesomeIcon
-                            icon={faStar}
-                            className="star-icon"
-                            color={
-                              value <= (userRating || 0) ? "yellow" : "red"
-                            }
-                          />
-                        </span>
-                      ))}
-                    </p>
-                  </div>
-                </div>
+                {/* <div className="spacer-container">
+                  <RatingComponent />
+                </div> */}
                 <div className="spacer-container">
                   <CocktailForRecipe />
                 </div>

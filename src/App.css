@@ -2,7 +2,7 @@
 
 * {
   font-family: "Poppins", sans-serif;
-  color: #1a1a1a;
+  /* color: #1a1a1a; */
   box-sizing: border-box;
 }
 
@@ -37,6 +37,25 @@ h5 {
 p {
   font-size: 1 em;
   line-height: 1.6;
+}
+
+a,
+b,
+p,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+input,
+textarea,
+span,
+button,
+.suggestion,
+.standard-container,
+.user-input {
+  color: #1a1a1a;
 }
 
 .recipe-link {

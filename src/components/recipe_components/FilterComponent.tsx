@@ -1,40 +1,27 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { RecipeInterface } from "../../interfaces/RecipeInterface";
 import { useNavigate } from "react-router-dom";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import "../../styling/CardsStyle.css";
 
 const FilterComponent = () => {
-  const [recipeData, setRecipeData] = useState<RecipeInterface[]>([]);
   const [filteredRecipes, setFilteredRecipes] = useState<RecipeInterface[]>([]);
   const [userInput, setUserInput] = useState<string>("");
   const [searchIngredients, setSearchIngredients] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  const { setOneRecipe } = globalRecipeFunctions();
+  const { setOneRecipe, fetchAllRecipes, recipeList } = globalRecipeFunctions();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get<RecipeInterface[]>(
-          "https://sti-java-grupp4-s4yjx9.reky.se/recipes"
-        );
-        setRecipeData(response.data);
-        console.log("Success fetching data from the recipe API");
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchData();
+    fetchAllRecipes();
   }, []);
 
   useEffect(() => {
     if (searchIngredients.length === 0) {
-      setFilteredRecipes(recipeData);
+      setFilteredRecipes(recipeList);
     } else {
-      const filtered = recipeData.filter((recipe) =>
+      const filtered = recipeList.filter((recipe) =>
         searchIngredients.every((ingredient) =>
           recipe.ingredients.some(
             (recipeIngredient) =>
@@ -45,14 +32,14 @@ const FilterComponent = () => {
 
       setFilteredRecipes(filtered);
     }
-  }, [searchIngredients, recipeData]);
+  }, [searchIngredients, recipeList]);
 
   useEffect(() => {
     if (userInput.length > 0) {
       const normalizedInput = userInput.toLowerCase();
       const matchingSuggestions = Array.from(
         new Set(
-          recipeData
+          recipeList
             .flatMap((recipe) =>
               recipe.ingredients.map((ingredient) =>
                 ingredient.name.toLowerCase()
@@ -65,7 +52,7 @@ const FilterComponent = () => {
     } else {
       setSuggestions([]);
     }
-  }, [userInput, recipeData]);
+  }, [userInput, recipeList]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserInput(e.target.value);
