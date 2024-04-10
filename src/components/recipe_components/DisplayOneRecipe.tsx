@@ -1,4 +1,4 @@
-import { useEffect} from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock } from "@fortawesome/free-solid-svg-icons";
@@ -13,8 +13,7 @@ import CommentComponent from "../recipe_components/CommentComponent";
 // Component for displaying a single recipe
 const DisplayOneRecipe = () => {
   // Destructuring state and function from the state management
-  const { oneRecipe, fetchOneRecipe, fetchComments } =
-    globalRecipeFunctions();
+  const { oneRecipe, fetchOneRecipe, fetchComments } = globalRecipeFunctions();
   const { addRecipeToCart } = globalCartFunctions();
 
   // Extracting recipeId from URL params
@@ -52,9 +51,12 @@ const DisplayOneRecipe = () => {
                       <FontAwesomeIcon icon={faClock} className="clock-icon" />{" "}
                       {oneRecipe.timeInMins} Minutes
                     </p>
-                    <RatingComponent />
                   </div>
+                  <RatingComponent />
                 </div>
+                {/* <div className="spacer-container">
+                  <RatingComponent />
+                </div> */}
                 <div className="spacer-container">
                   <CocktailForRecipe />
                 </div>
