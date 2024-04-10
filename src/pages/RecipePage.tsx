@@ -7,19 +7,13 @@ const RecipePageContent = () => {
     <>
       <h1>Our Recipes</h1>
 
-      <div className="spacer-container">
-        <CategorySuggestion />
-      </div>
+      <CategorySuggestion />
 
-      <div className="spacer-container">
-        <h2>Trending recipes</h2>
-        <TopRatedRecipes />
-      </div>
+      <h2>Trending recipes</h2>
+      <TopRatedRecipes />
 
-      <div className="spacer-container">
-        <h2>All our recipes</h2>
-        <DisplayRecipes />
-      </div>
+      <h2>All our recipes</h2>
+      <DisplayRecipes />
     </>
   );
 };
