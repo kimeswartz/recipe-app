@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClock, faStar } from "@fortawesome/free-solid-svg-icons";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import globalCartFunctions from "../../store/GlobalCart";
-import CocktailForRecipe from "../CocktailForRecipe";
+import CocktailForRecipe from "../cocktail_components/CocktailForRecipe";
 import "../../styling/OneRecipePageStyle.css";
 import "../../styling/CommentSectionStyle.css";
 import CommentComponent from "../recipe_components/CommentComponent";
@@ -168,18 +168,18 @@ const DisplayOneRecipe = () => {
               </ol>
             </div>
           </div>
-        </div> 
+        </div>
         {/* Section for displaying comments */}
-        <div className="comments-section"> 
+        <div className="comments-section">
           <div className="adjust-content-with">
             <CommentComponent
             />
-            </div>
           </div>
-          <CocktailForRecipe /> {/* Använd CocktailForRecipe */}
         </div>
+        <CocktailForRecipe /> {/* Använd CocktailForRecipe */}
+      </div>
     );
-    
+
   }
 };
 
