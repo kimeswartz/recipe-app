@@ -53,4 +53,9 @@
     text-align: center;
     width: 100%;
   }
+
+  .item-count{
+    font-size: 1.2rem;
+    font-weight: bolder;
+  }
 }

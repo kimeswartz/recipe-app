@@ -9,7 +9,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 const Navbar = () => {
   const navigate = useNavigate();
   const { emptyRecipe } = uploadUpdateRecipeState();
-  const { displayCart, toggleCart } = globalCartFunctions();
+  const { displayCart, toggleCart, cartRecipes, cartCocktails } = globalCartFunctions();
   const [isResponsive, setIsResponsive] = useState(false);
 
   const handleNavigation = (path: string) => {
@@ -21,6 +21,7 @@ const Navbar = () => {
   const toggleResponsive = () => {
     setIsResponsive(!isResponsive);
   };
+  const totalItemsInCart = cartRecipes.reduce((total, recipe) => total + recipe.quantity, 0) + cartCocktails.reduce((total, cocktail) => total + cocktail.quantity, 0);
 
   return (
     <section className="standard-container">
@@ -43,6 +44,7 @@ const Navbar = () => {
           <a className="icon" onClick={toggleResponsive}>
             <FontAwesomeIcon icon={faBars} />
           </a>
+          {totalItemsInCart > 0 && <span className="item-count">{totalItemsInCart}</span>}
         </div>
       </div>
     </section>
