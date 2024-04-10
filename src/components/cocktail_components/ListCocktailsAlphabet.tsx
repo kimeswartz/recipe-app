@@ -5,9 +5,13 @@ import globalCocktailFunctions from "../../store/CocktailAPICalls";
 const ListCocktailsAlphabet = () => {
   const { fetchCocktailsByLetter, emptyCocktailList } =
     globalCocktailFunctions();
-  const [selectedLetter, setSelectedLetter] = useState("");
+  const [selectedLetter, setSelectedLetter] = useState("A");
 
   const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+  useEffect(() => {
+    fetchCocktailsByLetter("A"); // Automatiskt hämta cocktails som börjar på "A"
+  }, []);
 
   const handleSelectLetter = (letter: string) => {
     setSelectedLetter(letter);

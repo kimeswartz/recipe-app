@@ -10,6 +10,7 @@ const CocktailHomePage = () => {
 
       <ListCocktailsAlphabet />
       <CocktailLetters />
+      
     </div>
   );
 };
