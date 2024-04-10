@@ -10,6 +10,7 @@ const RecipesByCategory = () => {
   const navigate = useNavigate();
   const { categoryRecipeList, setOneRecipe, fetchOneCategory } = globalRecipeFunctions();
 
+  //Fetches recipies from the category when categoryName changes
   useEffect(() => {
     if (categoryName) {
       fetchOneCategory(categoryName);
