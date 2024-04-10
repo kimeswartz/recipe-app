@@ -28,7 +28,7 @@ const RatingComponent = () => {
           {oneRecipe.avgRating !== null ? (
             <span>{oneRecipe.avgRating?.toFixed(1)}/5</span>
           ) : (
-            <span>No rating</span>
+            <span>0/5</span>
           )}
         </p>
       </div>
@@ -47,7 +47,7 @@ const RatingComponent = () => {
               <FontAwesomeIcon
                 icon={faStar}
                 className="star-icon"
-                color={value <= (userRating || 0) ? "white" : "red"}
+                color={value <= (userRating || 0) ? "green" : "grey"}
               />
             </span>
           ))}

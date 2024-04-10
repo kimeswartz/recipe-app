@@ -52,7 +52,7 @@ const DisplayRecipes = () => {
                   <h3>{recipe.title}</h3>
                   <span>Grade</span>
                   {recipe.avgRating === null ? (
-                    <p>No grades</p>
+                    <p>0/5</p>
                   ) : (
                     <p>{recipe.avgRating?.toFixed(1)}/5</p>
                   )}
