@@ -47,11 +47,13 @@ const DisplayOneCocktail = () => {
 
   return (
     <>
-      <div className="standard-container">
+      <section className="standard-container">
+        <h1>{oneCocktail.strDrink}</h1>
+      </section>
+
+      <section className="standard-container">
         <div className="flex-header-container">
           <div className="text-container">
-            <h1>{oneCocktail.strDrink}</h1>
-
             <div className=".centered-container">
               {oneCocktail.strCategory && (
                 <p>
@@ -85,7 +87,8 @@ const DisplayOneCocktail = () => {
             <img src={oneCocktail.strDrinkThumb} alt={oneCocktail.strDrink} />
           </div>
         </div>
-      </div>
+      </section>
+
       <div className="standard-container">
         <div className="upper">
           <h2>You need...</h2>
