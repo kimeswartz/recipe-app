@@ -1,12 +1,25 @@
 .home-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: rgb(240, 240, 240);
+  border: none;
+  border-radius: 25px;
+  width: 90%;
+  min-height: 600px;
+  height: auto;
+  padding-bottom: 30px;
+  padding-top: 30px;
   background-image: url("../assets/HeaderImage.jpg");
   background-color: #007bff;
   background-size: cover;
   background-position: center;
-  height: 700px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
 .header-content {

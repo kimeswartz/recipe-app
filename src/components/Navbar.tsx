@@ -24,25 +24,29 @@ const Navbar = () => {
   };
 
   return (
-    <div className={`topnav ${isResponsive ? "responsive" : ""}`}>
-      <div className="nav-links">
-        <a onClick={() => handleNavigation("/")}>Home</a>
-        <a onClick={() => handleNavigation("/cocktails")}>Cocktails</a>
-        <a
-          id="headerNavigateFilter"
-          onClick={() => handleNavigation("/filter")}
-        >
-          Filter
-        </a>
-        <a onClick={() => handleNavigation("/recipes")}>Recipes</a>
-        <a className="icon" onClick={toggleResponsive}>
-          <FontAwesomeIcon icon={faBars} />
-        </a>
-        <a onClick={() => toggleCart(displayCart)} className="list-container">
-          <img src={listIcon} alt="Your list of recipes" />
-        </a>
+    <section className="standard-container">
+      <div className={`topnav ${isResponsive ? "responsive" : ""}`}>
+        <div className="nav-links">
+          <a onClick={() => handleNavigation("/")}>Home</a>
+          <a onClick={() => handleNavigation("/cocktails")}>Cocktails</a>
+          <a
+            id="headerNavigateFilter"
+            onClick={() => handleNavigation("/filter")}
+          >
+            Filter
+          </a>
+          <a onClick={() => handleNavigation("/recipes")}>Recipes</a>
+
+          <a className="icon" onClick={toggleResponsive}>
+            <FontAwesomeIcon icon={faBars} />
+          </a>
+
+          <a onClick={() => toggleCart(displayCart)}>
+            📋 <strong>Your List</strong>
+          </a>
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

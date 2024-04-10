@@ -1,10 +1,20 @@
 /* Basic styling for the footer */
+
 .footer {
-  height: 30rem;
   display: flex;
   justify-content: center;
-  background-color: rgb(234, 234, 234);
-  padding: 20px 0;
+  height: 20rem;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  background-color: rgb(240, 240, 240);
+  border: none;
+  border-radius: 25px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  padding: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
 .footer-container {
@@ -19,7 +29,7 @@
 
 .footer-nav {
   flex: 1;
-  text-align: center; 
+  text-align: center;
 }
 
 .footer-nav-list {
@@ -27,12 +37,12 @@
   padding: 0;
   margin: 0;
   display: flex;
-  justify-content: center; 
-  flex-wrap: wrap; 
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .footer-nav-list li {
-  margin: 0 10px; 
+  margin: 0 10px;
 }
 
 .footer-nav-list a {

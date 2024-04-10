@@ -26,6 +26,7 @@ const ListCocktailsAlphabet = () => {
             Find cocktails starting at...<strong> {selectedLetter} </strong>
           </p>
         </div>
+        
         <div className="alphabet-container">
           {alphabet.map((letter: string, index) => (
             <div
