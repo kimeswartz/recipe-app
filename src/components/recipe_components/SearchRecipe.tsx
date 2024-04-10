@@ -72,55 +72,54 @@ const SearchRecipe = () => {
 
   return (
     <>
-    <div className="flex-horizontally-container">
-      <div className="form-input" style={{ position: "relative" }}>
-        <input
-          className="user-input"
-          type="text"
-          value={searchTerms}
-          placeholder="Search recipes..."
-          onChange={(e) => handleInputChange(e.target.value)}
-        />
-        {searchTerms.trim() !== "" ? (
-          <button className="main-button" onClick={handleClearSearch}>
-            Clear
-          </button>
-        ) : (
-          <button className="main-button" onClick={performSearch}>
-            Search
-          </button>
-        )}
-        
+      <div className="maximum-width-container">
+        <div className="flex-horizontally-container">
+          <div className="form-input" style={{ position: "relative" }}>
+            <input
+              className="user-input"
+              type="text"
+              value={searchTerms}
+              placeholder="Search recipes..."
+              onChange={(e) => handleInputChange(e.target.value)}
+            />
+            {searchTerms.trim() !== "" ? (
+              <button className="main-button" onClick={handleClearSearch}>
+                Clear
+              </button>
+            ) : (
+              <button className="main-button" onClick={performSearch}>
+                Search
+              </button>
+            )}
 
-        {searchTerms.trim() !== "" && (
-          <div className="suggestions">
-            {suggestions.map((suggestion, index) => (
-              <div
-                key={index}
-                className="suggestion"
-                onClick={() => handleSuggestionClick(suggestion)}
-              >
-                {suggestion}
+            {searchTerms.trim() !== "" && (
+              <div className="suggestions">
+                {suggestions.map((suggestion, index) => (
+                  <div
+                    key={index}
+                    className="suggestion"
+                    onClick={() => handleSuggestionClick(suggestion)}
+                  >
+                    {suggestion}
+                  </div>
+                ))}
               </div>
+            )}
+          </div>
+        </div>
+
+        {searchPerformed && searchTerms.trim() !== "" && (
+          <div>
+            {filteredRecipes.map((recipe) => (
+              <div
+                className="recipe-card"
+                key={recipe._id}
+                onClick={() => handleNavigate(recipe)}
+              ></div>
             ))}
           </div>
         )}
       </div>
-      </div>
-
-      {searchPerformed && searchTerms.trim() !== "" && (
-        <div>
-          {filteredRecipes.map((recipe) => (
-            <div
-              className="recipe-card"
-              key={recipe._id}
-              onClick={() => handleNavigate(recipe)}
-            ></div>
-            
-          ))}
-        </div>
-        
-      )}
     </>
   );
 };
