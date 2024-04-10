@@ -6,13 +6,13 @@ import globalRecipeFunctions from "../../store/RecipeAPICalls";
 const CategorySuggestion = () => {
   const navigate = useNavigate();
   const location = useLocation();
-  const { categoryList, recipeList, fetchAllCategories, fetchOneCategory } =
+  const { categoryList, fetchAllCategories, fetchOneCategory } =
     globalRecipeFunctions();
 
   // To fetch all categories when component first loads or when the categoryList changes
   useEffect(() => {
     fetchAllCategories();
-  }, [recipeList]);
+  }, []);
 
   // Function to handle a click on a specific category
   const handleCategoryClick = async (categoryName: string) => {

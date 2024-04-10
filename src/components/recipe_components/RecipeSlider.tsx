@@ -6,7 +6,7 @@ import globalRecipeFunctions from "../../store/RecipeAPICalls";
 
 
 const RecipeSlider = () => {
-  const { setOneRecipe, randomizedRecipeList } = globalRecipeFunctions();
+  const { setOneRecipe, recipeList } = globalRecipeFunctions();
   const navigate = useNavigate();
   // Specify the type of elements the ref will refer to - HTMLDivElement in this case
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -21,7 +21,7 @@ const RecipeSlider = () => {
     }, 8000); // desired autoscroll delay (in milliseconds)
 
     return () => clearInterval(autoScroll);
-  }, [randomizedRecipeList]);
+  }, [recipeList]);
 
   const handleNavigate = (recipe: RecipeInterface) => {
     setOneRecipe(recipe);
@@ -29,7 +29,7 @@ const RecipeSlider = () => {
     window.scrollTo(0,0);
   }
 
-  if(randomizedRecipeList.length === 0){
+  if(recipeList.length === 0){
     return(
       <div className="slider-section">
         <h1>loading slider...</h1>
@@ -41,7 +41,7 @@ const RecipeSlider = () => {
     <div className="slider-section"> <h2>Discover Deliciousness</h2>
       <div className="recipe-slider" ref={sliderRef}>
         <div className="slider-container">
-          {randomizedRecipeList.map((recipe) => (
+          {recipeList.map((recipe) => (
             <div
               key={recipe._id}
               className="image-slide"
