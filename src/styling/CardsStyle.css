@@ -77,7 +77,7 @@
 
 .delete-button {
   max-height: 50px;
-  transition: .3s ease;
+  transition: 0.3s ease;
   padding: 10px;
   border-style: none;
   color: white;
@@ -86,10 +86,9 @@
   border-bottom-right-radius: 10px;
 }
 
-.delete-button :hover{
+.delete-button :hover {
   box-shadow: none;
 }
-
 
 .card-grid h2 {
   width: 100%; /* Make the header span the full width of the grid */
@@ -125,26 +124,36 @@
 }
 
 .tag-div h3 {
-font-size: smaller;
+  font-size: smaller;
 }
 
 .recipe-tag:hover {
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
 }
 
 .tag-div {
   padding: 15px;
 }
 
-.tag-div h2, .tag-div span {
+.tag-div h2,
+.tag-div span {
   margin: 3px 0;
 }
-
 
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .recipe-tag {
-    width: 100%; /* Each card takes full width of its container */
-    max-width: none; /* Override max-width for full container width */
+    width: 100%;
+    max-width: none;
+  }
+
+  .card-grid {
+    flex-direction: column;
+    justify-content: center; /* Centers items vertically */
+    align-items: center; /* Centers items horizontally */
+  }
+
+  .recipe-card {
+    width: 100%;
   }
 }

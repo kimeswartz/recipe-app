@@ -12,7 +12,6 @@ const FilterComponent = () => {
   const [searchIngredients, setSearchIngredients] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const { setOneRecipe } = globalRecipeFunctions();
-  
 
   const navigate = useNavigate();
 
@@ -91,61 +90,75 @@ const FilterComponent = () => {
   };
 
   return (
-    <section className="standard-container">
-      <div>
-        {searchIngredients.length > 0 && (
-          <div>
-            <h2>Selected Ingredients:</h2>
-            {searchIngredients.map((ingredient, index) => (
-              <span key={index}>
-                {ingredient}
-                <button onClick={() => removeIngredient(ingredient)}>X</button>
-              </span>
-            ))}
-          </div>
-        )}
-        {searchIngredients.length > 0 && filteredRecipes.length === 0 && (
-          <p>No recipes found matching the selected ingredients.</p>
-        )}
-      </div>
-      <div className="spacer-container">
-        <input
-          className="user-input"
-          type="text"
-          placeholder="Search ingredient"
-          value={userInput}
-          onChange={handleInputChange}
-        />
-      </div>
-      <ul>
-        {suggestions.map((suggestion, index) => (
-          <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
-            {suggestion}
-          </li>
-        ))}
-      </ul>
-      <div className="card-grid">
-        {filteredRecipes.map((recipe) => (
-          <div
-            className="recipe-card"
-            key={recipe._id}
-            onClick={() => handleNavigate(recipe)}
-          >
-            <div className="first-card-div">
-              <img
-                className="display-recipe-img"
-                src={recipe.imageUrl}
-                alt={recipe.title}
-              />
-              <b className="card-category">{recipe.categories[0]}</b>
+    <>
+      <section className="standard-container">
+        <div>
+          {searchIngredients.length > 0 && (
+            <div>
+              <p className="centered-container">
+                <strong>Selected Ingredients</strong>
+              </p>
+              {searchIngredients.map((ingredient, index) => (
+                <span key={index}>
+                  {ingredient}
+                  <div className="button-container">
+                    <button
+                      className="main-button"
+                      onClick={() => removeIngredient(ingredient)}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </span>
+              ))}
             </div>
-            <div className="second-card-div">
-              <h3>{recipe.title}</h3>
+          )}
+          {searchIngredients.length > 0 && filteredRecipes.length === 0 && (
+            <p>No recipes found matching the selected ingredients.</p>
+          )}
+        </div>
+
+        <div className="spacer-container">
+          <input
+            className="user-input"
+            type="text"
+            placeholder="Search ingredient"
+            value={userInput}
+            onChange={handleInputChange}
+          />
+        </div>
+        <ul className="filter-suggestions">
+          {suggestions.map((suggestion, index) => (
+            <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
+              {suggestion}
+            </li>
+          ))}
+        </ul>
+      </section>
+      <section className="standard-container">
+        <div className="card-grid">
+          {filteredRecipes.map((recipe) => (
+            <div
+              className="recipe-card"
+              key={recipe._id}
+              onClick={() => handleNavigate(recipe)}
+            >
+              <div className="first-card-div">
+                <img
+                  className="display-recipe-img"
+                  src={recipe.imageUrl}
+                  alt={recipe.title}
+                />
+                <b className="card-category">{recipe.categories[0]}</b>
+              </div>
+              <div className="second-card-div">
+                <h3>{recipe.title}</h3>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </section>
+          ))}
+        </div>
+      </section>
+    </>
   );
 };
 
