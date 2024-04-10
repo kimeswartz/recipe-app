@@ -122,7 +122,7 @@ const DisplayOneRecipe = () => {
         </section>
 
         {/* Section displaying ingredients */}
-        <section className="standard-container">
+        <section className="standard-container green-background">
           <div className="upper">
             <h2>You need...</h2>
           </div>

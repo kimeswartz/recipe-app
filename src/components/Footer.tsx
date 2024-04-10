@@ -10,6 +10,7 @@ const Footer = () => {
   };
 
   return (
+    
     <footer className="footer">
       <div className="footer-container">
         <nav className="footer-nav">
