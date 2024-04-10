@@ -5,7 +5,6 @@ import uploadUpdateRecipeState from "../store/GlobalUpdateAndUpload";
 import "../styling/TopNavStyle.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import listIcon from "../assets/logo/favicon-32x32.png";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -37,12 +36,12 @@ const Navbar = () => {
           </a>
           <a onClick={() => handleNavigation("/recipes")}>Recipes</a>
 
-          <a className="icon" onClick={toggleResponsive}>
-            <FontAwesomeIcon icon={faBars} />
+          <a onClick={() => toggleCart(displayCart)}>
+            📋 <strong> Your List</strong>
           </a>
 
-          <a onClick={() => toggleCart(displayCart)}>
-            📋 <strong>Your List</strong>
+          <a className="icon" onClick={toggleResponsive}>
+            <FontAwesomeIcon icon={faBars} />
           </a>
         </div>
       </div>

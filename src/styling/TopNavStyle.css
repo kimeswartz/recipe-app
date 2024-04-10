@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  padding-top: 20px;
+  padding: 30px;
   overflow: hidden;
 }
 
