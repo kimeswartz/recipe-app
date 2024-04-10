@@ -101,7 +101,7 @@ const UploadRecipe = () => {
       alert("one ore more fields are empty");
     } else {
       setIngredients(newIngredient);
-      setNewIngredient({...newIngredient, name: "", amount: 0 });
+      setNewIngredient({ ...newIngredient, name: "", amount: 0 });
     }
   };
 
@@ -153,7 +153,7 @@ const UploadRecipe = () => {
                 Price:
                 <input
                   className="user-input"
-                  id= "addPrice"
+                  id="addPrice"
                   type="number"
                   name="Price"
                   value={recipe.price}
@@ -176,22 +176,23 @@ const UploadRecipe = () => {
             </div>
 
             <h2>Choose category</h2>
-
-            {presetCategories.map((category, index) => (
-              <div className="spacer-container">
-                <label className="category-label" key={index}>
-                  <input
-                    className="input-checkbox"
-                    id = "chooseCategoryCheckbox"
-                    type="checkbox"
-                    value={category}
-                    checked={recipe.categories.includes(category)}
-                    onChange={() => handleCategoryChange(category)}
-                  />
-                  {category}
-                </label>
-              </div>
-            ))}
+            <div className="flex-container">
+              {presetCategories.map((category, index) => (
+                <div className="spacer-container">
+                  <label className="category-label" key={index}>
+                    <input
+                      className="input-checkbox"
+                      id="chooseCategoryCheckbox"
+                      type="checkbox"
+                      value={category}
+                      checked={recipe.categories.includes(category)}
+                      onChange={() => handleCategoryChange(category)}
+                    />
+                    {category}
+                  </label>
+                </div>
+              ))}
+            </div>
             <div>
               <ul>
                 {recipe.instructions?.map((instruction, instructionNumber) => (

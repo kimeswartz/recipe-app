@@ -1,4 +1,5 @@
 export default interface CocktailInterface {
+  quantity: any;
   idDrink: string;
   strDrink: string;
   strDrinkThumb: string;
