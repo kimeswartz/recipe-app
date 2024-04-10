@@ -1,4 +1,5 @@
 import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 import "../../styling/CardsStyle.css";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import { RecipeInterface } from "../../interfaces/RecipeInterface";
@@ -7,7 +8,13 @@ import CategorySuggestion from "./CategorySuggestion";
 const RecipesByCategory = () => {
   const { categoryName } = useParams(); // Accessing the category name parameter from the route URL
   const navigate = useNavigate();
-  const { categoryRecipeList, setOneRecipe } = globalRecipeFunctions();
+  const { categoryRecipeList, setOneRecipe, fetchOneCategory } = globalRecipeFunctions();
+
+  useEffect(() => {
+    if (categoryName) {
+      fetchOneCategory(categoryName);
+    }
+  }, [categoryName]);
 
   // Function to handle a click on a specific recipe
   const handleRecipeClick = (recipe: RecipeInterface) => {
