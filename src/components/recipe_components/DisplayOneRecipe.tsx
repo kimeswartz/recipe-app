@@ -45,10 +45,11 @@ const DisplayOneRecipe = () => {
   } else {
     return (
       <>
-        <div className="standard-container">
+        <section className="standard-container">
           <h1>{oneRecipe.title}</h1> {/* Display recipe title */}
-        </div>
-        <div className="standard-container">
+        </section>
+
+        <section className="standard-container">
           <div className="flex-header-container">
             <div className="text-container">
               <p>{oneRecipe.description}</p> {/* Display recipe description */}
@@ -118,10 +119,10 @@ const DisplayOneRecipe = () => {
               <img src={oneRecipe.imageUrl} alt={oneRecipe.title} />
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Section displaying ingredients */}
-        <div className="standard-container">
+        <section className="standard-container">
           <div className="upper">
             <h2>You need...</h2>
           </div>
@@ -140,10 +141,10 @@ const DisplayOneRecipe = () => {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Instructions Section*/}
-        <div className="standard-container">
+        <section className="standard-container">
           <div className="flex-container">
             <div className="ingredients-wrapper">
               <div className="centered-mobile">
@@ -174,14 +175,14 @@ const DisplayOneRecipe = () => {
               </div>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Comments Section */}
-        <div className="standard-container">
+        <section className="standard-container">
           <div className="adjust-content-with">
             <CommentComponent />
           </div>
-        </div>
+        </section>
       </>
     );
   }
