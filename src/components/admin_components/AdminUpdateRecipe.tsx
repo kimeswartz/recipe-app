@@ -30,7 +30,7 @@ const AdminUpdateRecipe = () => {
 
   useEffect(() => {
     fetchAllRecipes();
-  }, []);
+  }, [fetchAllRecipes]);
 
   const handleInputChange = (value: string) => {
     setSearchTerms(value);
