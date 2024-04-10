@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import globalCartFunctions from "../../store/GlobalCart";
 import globalCocktailFunctions from "../../store/CocktailAPICalls";
+import "../../styling/OneRecipePageStyle.css";
 
 const DisplayOneCocktail = () => {
   const { oneCocktail, fetchCocktailById } = globalCocktailFunctions();
@@ -16,15 +17,15 @@ const DisplayOneCocktail = () => {
   }, [id, fetchCocktailById]);
 
   const handleClick = (name: string) => {
-    navigate(`/ingredient/${name}`)
-    window.scrollTo(0,0)
-  }
+    navigate(`/ingredient/${name}`);
+    window.scrollTo(0, 0);
+  };
 
   const generateIngredientsList = (cocktail: {
     [ingredientName: string]: any;
   }) => {
     const ingredientsList = [];
-  
+
     for (let i = 1; i <= 15; i++) {
       const ingredientKey = `strIngredient${i}`;
       const measureKey = `strMeasure${i}`;
@@ -35,38 +36,61 @@ const DisplayOneCocktail = () => {
         ingredientsList.push(
           <li key={i} onClick={() => handleClick(ingredientName)}>
             <img src={imageUrl} alt={ingredientName} />
-            {ingredientName} :{" "}
-            {measure ? `${measure} ` : "To taste"}
+            {ingredientName} : {measure ? `${measure} ` : "To taste"}
           </li>
         );
       }
     }
-  
+
     return ingredientsList;
   };
 
   return (
-    <div className="cocktail-container">
-      <div className="header-container">
-        <div className="text-container">
-          <h1>{oneCocktail.strDrink}</h1>
-          {oneCocktail.strCategory && <p>Category: {oneCocktail.strCategory}</p>}
-          {oneCocktail.strIBA && <p>Collection: {oneCocktail.strIBA}</p>}
-          {oneCocktail.strAlcoholic && <p>{oneCocktail.strAlcoholic}</p>}
-          {oneCocktail.strGlass && <p>Serve in: {oneCocktail.strGlass}</p>}
-          <button className="main-button" onClick={() => addCocktailToCart(oneCocktail)}>Add to List</button>
+    <>
+      <div className="standard-container">
+        <div className="flex-header-container">
+          <div className="text-container">
+            <h1>{oneCocktail.strDrink}</h1>
 
-        </div>
-        {oneCocktail.strDrinkThumb && (
+            <div className=".centered-container">
+              {oneCocktail.strCategory && (
+                <p>
+                  <strong>Category:</strong> {oneCocktail.strCategory}
+                </p>
+              )}
+              {oneCocktail.strIBA && <p>Collection: {oneCocktail.strIBA}</p>}
+              {oneCocktail.strAlcoholic && (
+                <p>
+                  <strong>{oneCocktail.strAlcoholic}</strong>
+                </p>
+              )}
+              {oneCocktail.strGlass && (
+                <p>
+                  <strong>Serve in:</strong> {oneCocktail.strGlass}
+                </p>
+              )}
+
+              <div className="button-container">
+                <button
+                  className="main-button"
+                  onClick={() => addCocktailToCart(oneCocktail)}
+                >
+                  Add to List
+                </button>
+              </div>
+            </div>
+          </div>
+
           <div className="img-container">
             <img src={oneCocktail.strDrinkThumb} alt={oneCocktail.strDrink} />
           </div>
-        )}
-      </div>
-      <div className="ingredients-container">
-        <div className="upper">
-          <h2>Ingredients</h2>
         </div>
+      </div>
+      <div className="standard-container">
+        <div className="upper">
+          <h2>You need...</h2>
+        </div>
+
         <div className="lower">
           <div className="centered-tags">
             <ul className="list-objects">
@@ -75,15 +99,17 @@ const DisplayOneCocktail = () => {
           </div>
         </div>
       </div>
-      <div className="instructions-section">
-        <div className="ingredients-wrapper">
-          <div className="centered-mobile">
-            <h2>Instructions</h2>
-            <p className="to-do-step">{oneCocktail.strInstructions}</p>
+      <div className="standard-container">
+        <div className="centered-mobile">
+          <h2>How to make it...</h2>
+          <div className="centered-container">
+            <ol>
+              <p className="to-do-step">{oneCocktail.strInstructions}</p>
+            </ol>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

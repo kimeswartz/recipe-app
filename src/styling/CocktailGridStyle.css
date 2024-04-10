@@ -12,7 +12,6 @@
 }
 
 .cocktail-card {
-  background-color: #ffffff;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px;
@@ -20,9 +19,14 @@
   width: 200px; /* Adjust based on your design */
 }
 
+.cocktail-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: rgb(255, 255, 255);
+}
+
 .cocktail-card img {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   object-fit: cover;
   border-radius: 50%;
   margin-bottom: 10px;
@@ -35,6 +39,6 @@
   }
 
   .cocktail-card {
-    width: 80%; /* Adjust based on your design */
+    width: 100%; /* Adjust based on your design */
   }
 }
