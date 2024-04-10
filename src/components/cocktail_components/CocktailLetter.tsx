@@ -14,7 +14,7 @@ const CocktailLetters = () => {
   };
 
   return (
-    <section className="standard-container">
+    <section className="standard-container  green-background">
       <div className="cocktail-grid">
         <ul className="cocktail-list">
           {cocktailList.map((cocktail) => (
