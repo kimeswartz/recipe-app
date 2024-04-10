@@ -41,7 +41,8 @@ const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
     try {
       const response = await axios.get(`${recipeURL}/recipes`);
       if (response.status === 200) {
-        set({ recipeList: response.data });
+        const result = response.data.sort(() => Math.random() - 0.5).slice() 
+        set({ recipeList: result });
         console.log('Fetched all recipes')
       }
     } catch (error) {

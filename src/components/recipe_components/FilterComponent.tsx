@@ -12,6 +12,7 @@ const FilterComponent = () => {
   const [searchIngredients, setSearchIngredients] = useState<string[]>([]);
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const { setOneRecipe } = globalRecipeFunctions();
+  
 
   const navigate = useNavigate();
 
