@@ -1,26 +1,19 @@
-import { useEffect } from "react";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import { useNavigate, useLocation } from "react-router-dom";
 import { RecipeInterface } from "../../interfaces/RecipeInterface";
 import "../../styling/CardsStyle.css";
 
 const DisplayRecipes = () => {
-  const { recipeList, fetchAllRecipes, setOneRecipe, deleteRecipe } =
-    globalRecipeFunctions();
+  const { recipeList, setOneRecipe, deleteRecipe } = globalRecipeFunctions();
 
   const location = useLocation();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchAllRecipes();
-  }, []);
 
   const handleDelete = async (recipeId: string | undefined) => {
     if (recipeId) {
       deleteRecipe(recipeId);
     }
   };
-
 
   const handleNavigate = (recipe: RecipeInterface) => {
     setOneRecipe(recipe);

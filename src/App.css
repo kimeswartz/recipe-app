@@ -3,8 +3,6 @@
 * {
   font-family: "Poppins", sans-serif;
   color: #1a1a1a;
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
@@ -90,7 +88,7 @@ p {
 .standard-container {
   margin-top: 30px;
   margin-bottom: 30px;
-  background-color: rgb(248, 248, 248);
+  background-color: rgb(255, 255, 255);
   border: none;
   border-radius: 25px;
   margin-left: auto;
@@ -110,13 +108,31 @@ p {
   padding: 20px;
 }
 
+/* Good to use for centering items */
 .centered-container p {
   text-align: center;
   padding: 20px;
 }
 
+.maximum-width-container {
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 .spacer-container {
   margin: 30px;
+}
+
+.button-container {
+  padding: 30px;
 }
 
 /* Applies to forms and search bars */
@@ -157,7 +173,16 @@ p {
   z-index: 1;
 }
 
+.green-background {
+  background-color: #009e7439;
+}
+
 .pointer {
+  cursor: pointer;
+}
+
+.filter-suggestions {
+  list-style-type: none;
   cursor: pointer;
 }
 
@@ -187,13 +212,6 @@ p {
   background: #555;
 }
 
-@media (max-width: 768px) {
-  .standard-container {
-    width: 100%;
-    margin: 10px;
-  }
-}
-
 :root {
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
@@ -208,4 +226,28 @@ p {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 3.5em;
+  }
+
+  .standard-container {
+    width: 100%;
+  }
+
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  #root {
+    margin: 0 auto;
+    padding: 1rem;
+    text-align: center;
+  }
 }
