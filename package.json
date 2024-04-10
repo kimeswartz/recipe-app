@@ -5,7 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "start-server": "npx vite",
+    "cypress:run": "cypress run",
+    "build": "tsc && vite build && npm run run-tests",
+    "run-tests": "start-server-and-test dev http://localhost:5173/ cypress:run",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -40,9 +43,11 @@
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "cypress": "^13.7.2",
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "start-server-and-test": "^2.0.3",
     "terser-brunch": "^4.1.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.4"
