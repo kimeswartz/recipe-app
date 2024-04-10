@@ -45,10 +45,13 @@ const DisplayOneRecipe = () => {
   } else {
     return (
       <>
+       <div className="standard-container">
+       <h1>{oneRecipe.title}</h1> {/* Display recipe title */}
+       </div>
         <div className="standard-container">
           <div className="flex-header-container">
             <div className="text-container">
-              <h1>{oneRecipe.title}</h1> {/* Display recipe title */}
+              
               <p>{oneRecipe.description}</p> {/* Display recipe description */}
               {/* Display recipe time and rating */}
               <div className="time-review-section">
