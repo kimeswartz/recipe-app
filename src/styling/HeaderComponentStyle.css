@@ -9,7 +9,8 @@
   border: none;
   border-radius: 25px;
   width: 90%;
-  min-height: 600px;
+  min-height: 400px;
+  max-height: 400px;
   height: auto;
   padding-bottom: 30px;
   padding-top: 30px;
@@ -34,18 +35,22 @@
 .header-content {
   text-align: center;
   width: 1000px;
+  max-height: 470px;
   padding: 30px;
 }
 
 .header-title {
   color: white;
   margin-bottom: 20px;
+  margin-top: 0px;
 }
 
 .header-paragraph {
   text-align: center;
   color: white;
 }
+
+
 
 @media only screen and (max-width: 768px) {
   .headergit {
@@ -57,8 +62,4 @@
   }
 }
 
-.header-paragraph {
-  text-align: center;
-  width: auto;
-  padding: 50px;
-}
+
