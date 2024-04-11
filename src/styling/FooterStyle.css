@@ -13,6 +13,7 @@
   margin-right: auto;
   width: 90%;
   padding: 30px;
+  max-height: 10rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 }
@@ -21,10 +22,12 @@
   max-width: 1200px;
   display: flex;
   align-items: center;
+  max-height: 10rem;
 }
 
 .footer-container a {
   cursor: pointer;
+  font-size: large;
 }
 
 .footer-nav {
