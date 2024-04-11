@@ -111,8 +111,7 @@ const globalCartFunctions = create<GlobalCartInterface>((set) => {
           updatedCartCocktails[existingCocktailIndex].quantity++;
 
           // Update localStorage after changes
-          localStorage.setItem(
-            "cartCocktails",
+          localStorage.setItem("cartCocktails",
             JSON.stringify(updatedCartCocktails)
           );
 
