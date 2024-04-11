@@ -21,6 +21,7 @@ const RecipesByCategory = () => {
   const handleRecipeClick = (recipe: RecipeInterface) => {
     setOneRecipe(recipe);
     navigate(`/recipe/${recipe._id}`); // Navigating to the recipe page with the selected recipe id
+    window.scrollTo(0,0);
   };
 
   return (
