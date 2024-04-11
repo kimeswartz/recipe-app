@@ -32,8 +32,8 @@ const AboutUs = () => {
       </header>
 
       <section className="standard-container">
+        <h2>We're always open for coding adventures!</h2>
         <p className="centered-container">
-          <h2>We're always open for coding adventures!</h2>
           Welcome to Group 4! We are a diverse group of individuals from various
           lifestyles, all diving into programming together. From those with a
           bit more experience to curious enthusiasts, we are a versatile bunch
