@@ -27,9 +27,12 @@ const Navbar = () => {
     cartCocktails.reduce((total, cocktail) => total + cocktail.quantity, 0);
 
   return (
-    <section className="standard-container">
+    <section className="standard-container sticky">
       <div className={`topnav ${isResponsive ? "responsive" : ""}`}>
         <div className="nav-links">
+          <a className="icon" onClick={toggleResponsive}>
+            <FontAwesomeIcon icon={faBars} />
+          </a>
           <a onClick={() => handleNavigation("/")}>Home</a>
           <a onClick={() => handleNavigation("/cocktails")}>Cocktails</a>
           <a
@@ -42,10 +45,6 @@ const Navbar = () => {
 
           <a onClick={() => toggleCart(displayCart)}>
             📋 <strong> Your List</strong>
-          </a>
-
-          <a className="icon" onClick={toggleResponsive}>
-            <FontAwesomeIcon icon={faBars} />
           </a>
           {totalItemsInCart > 0 && (
             <span className="item-count">{totalItemsInCart}</span>

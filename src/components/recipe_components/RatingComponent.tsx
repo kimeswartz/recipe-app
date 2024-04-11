@@ -10,7 +10,7 @@ const RatingComponent = () => {
   // This will send a review to database between 1-5
   const handleRatingChange = async (rating: number) => {
     addRating(rating, oneRecipe._id).then(() => {
-      if(oneRecipe._id){
+      if (oneRecipe._id) {
         fetchOneRecipe(oneRecipe._id);
         fetchAllRecipes();
       }
