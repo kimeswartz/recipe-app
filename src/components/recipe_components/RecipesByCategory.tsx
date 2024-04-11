@@ -21,18 +21,16 @@ const RecipesByCategory = () => {
   const handleRecipeClick = (recipe: RecipeInterface) => {
     setOneRecipe(recipe);
     navigate(`/recipe/${recipe._id}`); // Navigating to the recipe page with the selected recipe id
+    window.scrollTo(0,0);
   };
 
   return (
     <div>
-      <div className="spacer-container">
-        <h1>{categoryName} recipes</h1>
-      </div>
-
       <div className="category-conatiner">
         <CategorySuggestion />
 
         <section className="standard-container">
+        <h1>{categoryName} recipes</h1>
           <div className="card-grid">
             {categoryRecipeList.map((recipe) => (
               <div
