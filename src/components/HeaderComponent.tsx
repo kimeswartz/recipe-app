@@ -3,7 +3,7 @@ import RecipeSearch from "../components/recipe_components/SearchRecipe";
 
 const HeaderComponent = () => {
   return (
-    <header className="home-header">
+    <header className="header home-header">
       <div className="header-content">
         <h1 className="header-title">Fresh, Flavorful Recipes Await!</h1>
         <p className="header-paragraph">
