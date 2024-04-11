@@ -89,16 +89,9 @@ const SearchRecipe = () => {
               placeholder="Search recipes..."
               onChange={(e) => handleInputChange(e.target.value)}
             />
-            {searchTerms.trim() !== "" ? (
-              <button className="main-button" onClick={handleClearSearch}>
-                Clear
-              </button>
-            ) : (
-              <button className="main-button" onClick={performSearch}>
-                Search
-              </button>
-            )}
-
+            <button className="main-button" onClick={handleClearSearch}>
+              Clear
+            </button>
             {searchTerms.trim() !== "" && (
               <div className="suggestions">
                 {suggestions.map((suggestion, index) => (
