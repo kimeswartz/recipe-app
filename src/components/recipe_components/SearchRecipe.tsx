@@ -72,7 +72,7 @@ const SearchRecipe = () => {
       .every(
         (term) =>
           recipe.title &&
-          recipe.title.toLowerCase().includes(term.toLowerCase())
+          recipe.title?.toLowerCase().includes(term.toLowerCase())
       )
   );
 
