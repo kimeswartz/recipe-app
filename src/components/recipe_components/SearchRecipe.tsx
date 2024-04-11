@@ -12,7 +12,9 @@ const SearchRecipe = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+
     fetchAllRecipes();
+    console.log("Fetching recipes...");
   }, []);
 
   const handleNavigate = (recipe: RecipeInterface) => {
