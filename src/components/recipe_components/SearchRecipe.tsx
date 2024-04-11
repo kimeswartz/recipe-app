@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styling/CardsStyle.css";
 
 const SearchRecipe = () => {
-  const { recipeList, fetchAllRecipes, setOneRecipe } = globalRecipeFunctions();
+  const { recipeList, setOneRecipe, fetchAllRecipes } = globalRecipeFunctions();
   const [searchTerms, setSearchTerms] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
@@ -13,7 +13,7 @@ const SearchRecipe = () => {
 
   useEffect(() => {
     fetchAllRecipes();
-  }, []);
+  }, [])
 
   const handleNavigate = (recipe: RecipeInterface) => {
     setOneRecipe(recipe);
@@ -38,8 +38,10 @@ const SearchRecipe = () => {
 
   const generateSuggestions = (value: string) => {
     const filteredSuggestions = recipeList
-      .filter((recipe) =>
-        recipe.title.toLowerCase().includes(value.toLowerCase())
+      .filter(
+        (recipe) =>
+          recipe.title &&
+          recipe.title.toLowerCase().includes(value.toLowerCase())
       )
       .map((recipe) => recipe.title);
     setSuggestions(filteredSuggestions);
@@ -67,7 +69,11 @@ const SearchRecipe = () => {
   const filteredRecipes = recipeList.filter((recipe) =>
     searchTerms
       .split(" ")
-      .every((term) => recipe.title?.toLowerCase().includes(term.toLowerCase()))
+      .every(
+        (term) =>
+          recipe.title &&
+          recipe.title?.toLowerCase().includes(term.toLowerCase())
+      )
   );
 
   return (

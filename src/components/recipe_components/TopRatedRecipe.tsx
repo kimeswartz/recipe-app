@@ -5,17 +5,11 @@ import { RecipeInterface } from "../../interfaces/RecipeInterface";
 import "../../styling/CardsStyle.css";
 
 const TopRatedRecipes = () => {
-  const { recipeList, fetchAllRecipes, setOneRecipe } = globalRecipeFunctions();
+  const { recipeList, setOneRecipe } = globalRecipeFunctions();
   const navigate = useNavigate();
   const [displayedRecipes, setDisplayedRecipes] = useState<RecipeInterface[]>(
     []
   );
-
-  useEffect(() => {
-    if(recipeList.length === 0){
-      fetchAllRecipes();
-    }
-  }, []);
 
   const handleNavigate = (recipe: RecipeInterface) => {
     setOneRecipe(recipe);

@@ -2,7 +2,7 @@
 
 * {
   font-family: "Poppins", sans-serif;
-  color: #1a1a1a;
+  /* color: #1a1a1a; */
   box-sizing: border-box;
 }
 
@@ -37,6 +37,25 @@ h5 {
 p {
   font-size: 1 em;
   line-height: 1.6;
+}
+
+a,
+b,
+p,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+input,
+textarea,
+span,
+button,
+.suggestion,
+.standard-container,
+.user-input {
+  color: #1a1a1a;
 }
 
 .recipe-link {
@@ -112,6 +131,19 @@ p {
 .centered-container p {
   text-align: center;
   padding: 20px;
+}
+
+/* Mainly applied to cocktail ingredients on the side showing a cocktail //Kim */
+.centered-tags li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
 }
 
 .maximum-width-container {
@@ -224,7 +256,7 @@ p {
 
 #root {
   margin: 0 auto;
-  padding: 2rem;
+  padding: 0rem, 2rem, 2rem, 2rem;
   text-align: center;
 }
 

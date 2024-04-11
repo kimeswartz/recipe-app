@@ -1,25 +1,28 @@
+import { useEffect } from "react";
 import CategorySuggestion from "../components/recipe_components/CategorySuggestion";
 import DisplayRecipes from "../components/recipe_components/DisplayAllRecipe";
 import TopRatedRecipes from "../components/recipe_components/TopRatedRecipe";
+import globalRecipeFunctions from "../store/RecipeAPICalls";
 
 const RecipePageContent = () => {
+  
+  const { fetchAllRecipes } = globalRecipeFunctions();
+
+  useEffect(() => {
+    fetchAllRecipes();
+  }, [])
+
   return (
     <>
       <h1>Our Recipes</h1>
 
-      <div className="spacer-container">
-        <CategorySuggestion />
-      </div>
+      <CategorySuggestion />
 
-      <div className="spacer-container">
-        <h2>Trending recipes</h2>
-        <TopRatedRecipes />
-      </div>
+      <h2>Trending recipes</h2>
+      <TopRatedRecipes />
 
-      <div className="spacer-container">
-        <h2>All our recipes</h2>
-        <DisplayRecipes />
-      </div>
+      <h2>All our recipes</h2>
+      <DisplayRecipes />
     </>
   );
 };

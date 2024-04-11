@@ -95,7 +95,7 @@ const DisplayOneCocktail = () => {
         </div>
 
         <div className="lower">
-          <div className="centered-tags">
+          <div className="centered-tags pointer">
             <ul className="list-objects">
               {generateIngredientsList(oneCocktail)}
             </ul>

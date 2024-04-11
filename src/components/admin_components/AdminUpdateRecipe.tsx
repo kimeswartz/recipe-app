@@ -1,6 +1,7 @@
 import uploadUpdateRecipeState from "../../store/GlobalUpdateAndUpload";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { presetCategories, presetUnits } from "../../constants/RecipeConstants";
 
 const AdminUpdateRecipe = () => {
   const {
@@ -17,20 +18,18 @@ const AdminUpdateRecipe = () => {
     removeInstruction,
     emptyRecipe,
   } = uploadUpdateRecipeState();
-  const { recipeList, fetchAllRecipes, updateRecipe } = globalRecipeFunctions();
+
+  const { recipeList, updateRecipe } = globalRecipeFunctions();
   const [recipeId, setRecipeId] = useState<string | undefined>("");
   const [userInputInstructions, setUserInstructions] = useState("");
   const [searchTerms, setSearchTerms] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
+
   const [newIngredient, setNewIngredient] = useState({
     name: "",
     amount: 0,
     unit: "",
   });
-
-  useEffect(() => {
-    fetchAllRecipes();
-  }, []);
 
   const handleInputChange = (value: string) => {
     setSearchTerms(value);
@@ -48,9 +47,13 @@ const AdminUpdateRecipe = () => {
 
   const generateSuggestions = (value: string) => {
     const filteredSuggestions = recipeList
-      .filter((recipe) =>
-        recipe.title.toLowerCase().includes(value.toLowerCase())
-      )
+      .filter((recipe) => {
+        return (
+          recipe &&
+          recipe.title &&
+          recipe.title.toLowerCase().includes(value.toLowerCase())
+        );
+      })
       .map((recipe) => recipe.title);
     setSuggestions(filteredSuggestions);
   };
@@ -61,14 +64,13 @@ const AdminUpdateRecipe = () => {
     const selectedRecipe = recipeList.find(
       (recipe) => recipe.title.toLowerCase() === value.toLowerCase()
     );
-    console.log(selectedRecipe);
     if (selectedRecipe) {
       setRecipeId(selectedRecipe._id);
       setTitle(selectedRecipe.title);
       setDescription(selectedRecipe.description);
       setImageUrl(selectedRecipe.imageUrl);
       setTimeInMins(selectedRecipe.timeInMins);
-      setPrice(selectedRecipe.price)
+      setPrice(selectedRecipe.price);
       selectedRecipe.categories.forEach((categoryName) =>
         setCategories(categoryName)
       );
@@ -103,29 +105,6 @@ const AdminUpdateRecipe = () => {
       setUserInstructions("");
     }
   };
-
-  // Preset categories for recipes
-  const presetCategories = [
-    "Breakfast",
-    "Lunch",
-    "Dinner",
-    "Vegetarian",
-    "Party",
-    "Asian",
-    "Latin American",
-  ];
-
-  // Present unit for ingredients
-  const presentIngredientsUnit = [
-    "l",
-    "dl",
-    "ml",
-    "tbsp",
-    "tsp",
-    "g",
-    "kg",
-    "noOf",
-  ];
 
   const handleCategoryChange = (selectCategory: string) => {
     setCategories(selectCategory);
@@ -211,15 +190,15 @@ const AdminUpdateRecipe = () => {
           </label>
 
           <label className="form-input">
-                Price:
-                <input
-                  className="user-input"
-                  type="number"
-                  name="Price"
-                  value={recipe.price}
-                  onChange={(input) => setPrice(parseInt(input.target.value))}
-                />
-              </label>
+            Price:
+            <input
+              className="user-input"
+              type="number"
+              name="Price"
+              value={recipe.price}
+              onChange={(input) => setPrice(parseInt(input.target.value))}
+            />
+          </label>
 
           <label className="form-input">
             Time in min:
@@ -365,7 +344,7 @@ const AdminUpdateRecipe = () => {
                   }
                 >
                   <option disabled hidden></option>
-                  {presentIngredientsUnit.map((unit, index) => (
+                  {presetUnits.map((unit, index) => (
                     <option key={index} value={unit}>
                       {unit}
                     </option>

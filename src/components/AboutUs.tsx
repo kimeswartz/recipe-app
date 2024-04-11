@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "../styling/HeaderComponentStyle.css";
 import "../styling/AboutUsStyle.css";
 import teamMembers from "../constants/TeamInfo";
 
@@ -23,18 +24,16 @@ const AboutUs = () => {
   }, [selectedMember]);
 
   return (
-    <div className="about-us-container">
-      <div className="about-us-header-section">
-        <div className="about-us-background-image">
-          <img
-            src="https://eep.io/images/yzco4xsimv0y/6aZY89JahywcsYcUkC6seq/88f9ad3c2c5004fd2166b1b5b7ee6567/hero_our-story.jpg?w=1520&fm=avif&q=60"
-            alt="Group 4"
-          />
-          <h1 className="about-us-group-name">Group 4</h1>
+    <>
+      <header className="header team-header">
+        <div className="header-content">
+          <h1 className="header-title">The Team</h1>
         </div>
-      </div>
-      <div className="about-us-description-section">
-        <p>
+      </header>
+
+      <section className="standard-container">
+        <h2>We're always open for coding adventures!</h2>
+        <p className="centered-container">
           Welcome to Group 4! We are a diverse group of individuals from various
           lifestyles, all diving into programming together. From those with a
           bit more experience to curious enthusiasts, we are a versatile bunch
@@ -43,20 +42,10 @@ const AboutUs = () => {
           friendships. Come join us on this programming journey where learning
           is fun and friendship is key.
         </p>
-      </div>
-      <div className="about-us-info-section">
-        <div className="about-us-info-card">
-          <h2>Events</h2>
-          <p>Weekly After Work hangouts are mandatory!</p>
-        </div>
-        <div className="about-us-info-card">
-          <h2>Opening Hours</h2>
-          <p>We're always open for coding adventures!</p>
-        </div>
-      </div>
-      {/* Team/crew section */}
-      <div className="about-us-crew-section">
-        <h2>The Team</h2>
+      </section>
+
+      <section className="standard-container">
+        <h2>Meet us</h2>
         <div className="about-us-crew">
           {teamMembers.map((member, index) => (
             <div
@@ -69,19 +58,22 @@ const AboutUs = () => {
             </div>
           ))}
         </div>
-      </div>
+      </section>
 
-      {/* Details about the selected team member */}
-      {/* If selectedMember exists(aka not null) the code is executed */}
       {selectedMember && (
-        <div id="about-us-selected-member" className="about-us-selected-member">
-          <img src={selectedMember.image} alt={selectedMember.name} />
-          <h3>{selectedMember.name}</h3>
-          <p>{selectedMember.jobTitle}</p>
-          <p>{selectedMember.description}</p>
-        </div>
+        <section className="standard-container">
+          <div
+            id="about-us-selected-member"
+            className="about-us-selected-member"
+          >
+            <img src={selectedMember.image} alt={selectedMember.name} />
+            <h3>{selectedMember.name}</h3>
+            <p>{selectedMember.jobTitle}</p>
+            <p>{selectedMember.description}</p>
+          </div>
+        </section>
       )}
-    </div>
+    </>
   );
 };
 
