@@ -38,8 +38,10 @@ const SearchRecipe = () => {
 
   const generateSuggestions = (value: string) => {
     const filteredSuggestions = recipeList
-      .filter((recipe) =>
-        recipe.title.toLowerCase().includes(value.toLowerCase())
+      .filter(
+        (recipe) =>
+          recipe.title &&
+          recipe.title.toLowerCase().includes(value.toLowerCase())
       )
       .map((recipe) => recipe.title);
     setSuggestions(filteredSuggestions);

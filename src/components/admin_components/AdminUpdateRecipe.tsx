@@ -47,10 +47,16 @@ const AdminUpdateRecipe = () => {
   };
 
   const generateSuggestions = (value: string) => {
+    console.log("Recipe List: ", recipeList); // Debug: Check the entire list
     const filteredSuggestions = recipeList
-      .filter((recipe) =>
-        recipe.title.toLowerCase().includes(value.toLowerCase())
-      )
+      .filter((recipe) => {
+        console.log("Checking recipe: ", recipe); // Debug: Check each recipe
+        return (
+          recipe &&
+          recipe.title &&
+          recipe.title.toLowerCase().includes(value.toLowerCase())
+        );
+      })
       .map((recipe) => recipe.title);
     setSuggestions(filteredSuggestions);
   };
@@ -68,7 +74,7 @@ const AdminUpdateRecipe = () => {
       setDescription(selectedRecipe.description);
       setImageUrl(selectedRecipe.imageUrl);
       setTimeInMins(selectedRecipe.timeInMins);
-      setPrice(selectedRecipe.price)
+      setPrice(selectedRecipe.price);
       selectedRecipe.categories.forEach((categoryName) =>
         setCategories(categoryName)
       );
