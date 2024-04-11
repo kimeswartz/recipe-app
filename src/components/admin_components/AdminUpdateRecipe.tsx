@@ -1,6 +1,7 @@
 import uploadUpdateRecipeState from "../../store/GlobalUpdateAndUpload";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { presetCategories, presetUnits } from "../../constants/RecipeConstants";
 
 const AdminUpdateRecipe = () => {
   const {
@@ -17,20 +18,18 @@ const AdminUpdateRecipe = () => {
     removeInstruction,
     emptyRecipe,
   } = uploadUpdateRecipeState();
-  const { recipeList, fetchAllRecipes, updateRecipe } = globalRecipeFunctions();
+
+  const { recipeList, updateRecipe } = globalRecipeFunctions();
   const [recipeId, setRecipeId] = useState<string | undefined>("");
   const [userInputInstructions, setUserInstructions] = useState("");
   const [searchTerms, setSearchTerms] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
+
   const [newIngredient, setNewIngredient] = useState({
     name: "",
     amount: 0,
     unit: "",
   });
-
-  useEffect(() => {
-    fetchAllRecipes();
-  }, []);
 
   const handleInputChange = (value: string) => {
     setSearchTerms(value);
@@ -47,10 +46,8 @@ const AdminUpdateRecipe = () => {
   };
 
   const generateSuggestions = (value: string) => {
-    console.log("Recipe List: ", recipeList); // Debug: Check the entire list
     const filteredSuggestions = recipeList
       .filter((recipe) => {
-        console.log("Checking recipe: ", recipe); // Debug: Check each recipe
         return (
           recipe &&
           recipe.title &&
@@ -67,7 +64,6 @@ const AdminUpdateRecipe = () => {
     const selectedRecipe = recipeList.find(
       (recipe) => recipe.title.toLowerCase() === value.toLowerCase()
     );
-    console.log(selectedRecipe);
     if (selectedRecipe) {
       setRecipeId(selectedRecipe._id);
       setTitle(selectedRecipe.title);
@@ -109,29 +105,6 @@ const AdminUpdateRecipe = () => {
       setUserInstructions("");
     }
   };
-
-  // Preset categories for recipes
-  const presetCategories = [
-    "Breakfast",
-    "Lunch",
-    "Dinner",
-    "Vegetarian",
-    "Party",
-    "Asian",
-    "Latin American",
-  ];
-
-  // Present unit for ingredients
-  const presentIngredientsUnit = [
-    "l",
-    "dl",
-    "ml",
-    "tbsp",
-    "tsp",
-    "g",
-    "kg",
-    "noOf",
-  ];
 
   const handleCategoryChange = (selectCategory: string) => {
     setCategories(selectCategory);
@@ -371,7 +344,7 @@ const AdminUpdateRecipe = () => {
                   }
                 >
                   <option disabled hidden></option>
-                  {presentIngredientsUnit.map((unit, index) => (
+                  {presetUnits.map((unit, index) => (
                     <option key={index} value={unit}>
                       {unit}
                     </option>

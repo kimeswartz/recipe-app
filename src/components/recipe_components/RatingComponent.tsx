@@ -4,14 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const RatingComponent = () => {
-  const { oneRecipe, addRating } = globalRecipeFunctions();
+  const { oneRecipe, addRating, fetchOneRecipe, fetchAllRecipes } = globalRecipeFunctions();
   const [userRating, setUserRating] = useState<number>();
-  const [trigger, setTrigger] = useState(false);
 
   // This will send a review to database between 1-5
   const handleRatingChange = async (rating: number) => {
     addRating(rating, oneRecipe._id).then(() => {
-      setTrigger(!trigger);
+      if(oneRecipe._id){
+        fetchOneRecipe(oneRecipe._id);
+        fetchAllRecipes();
+      }
     });
     setUserRating(rating);
   };
