@@ -1,4 +1,5 @@
-.home-header {
+/* Base class for shared properties */
+.header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -12,7 +13,6 @@
   height: auto;
   padding-bottom: 30px;
   padding-top: 30px;
-  background-image: url("../assets/HeaderImage.jpg");
   background-color: #007bff;
   background-size: cover;
   background-position: center;
@@ -20,6 +20,15 @@
   margin-right: auto;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
+}
+
+/* Specific classes for unique properties */
+.home-header {
+  background-image: url("../assets/HeaderImage.jpg");
+}
+
+.team-header {
+  background-image: url("../assets/Team.jpg");
 }
 
 .header-content {
@@ -39,7 +48,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .home-header {
+  .headergit {
     width: 100%;
   }
 

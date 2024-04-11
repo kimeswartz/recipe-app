@@ -133,6 +133,19 @@ button,
   padding: 20px;
 }
 
+/* Mainly applied to cocktail ingredients on the side showing a cocktail //Kim */
+.centered-tags li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  margin: 10px;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
 .maximum-width-container {
   max-width: 400px;
   margin-left: auto;
