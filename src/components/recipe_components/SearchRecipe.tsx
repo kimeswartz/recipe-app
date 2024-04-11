@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../../styling/CardsStyle.css";
 
 const SearchRecipe = () => {
-  const { recipeList, fetchAllRecipes, setOneRecipe } = globalRecipeFunctions();
+  const { recipeList, setOneRecipe, fetchAllRecipes } = globalRecipeFunctions();
   const [searchTerms, setSearchTerms] = useState<string>("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [searchPerformed, setSearchPerformed] = useState(false);
@@ -13,7 +13,7 @@ const SearchRecipe = () => {
 
   useEffect(() => {
     fetchAllRecipes();
-  }, []);
+  }, [])
 
   const handleNavigate = (recipe: RecipeInterface) => {
     setOneRecipe(recipe);
