@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 const RatingComponent = () => {
-  const { oneRecipe, addRating, fetchOneRecipe } = globalRecipeFunctions();
+  const { oneRecipe, addRating, fetchOneRecipe, fetchAllRecipes } = globalRecipeFunctions();
   const [userRating, setUserRating] = useState<number>();
 
   // This will send a review to database between 1-5
@@ -12,6 +12,7 @@ const RatingComponent = () => {
     addRating(rating, oneRecipe._id).then(() => {
       if(oneRecipe._id){
         fetchOneRecipe(oneRecipe._id);
+        fetchAllRecipes();
       }
     });
     setUserRating(rating);
