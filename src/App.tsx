@@ -21,6 +21,7 @@ Modal.setAppElement("#root");
 function App() {
   const { displayCart, toggleCart } = globalCartFunctions();
 
+
   return (
     <>
       <BrowserRouter>
