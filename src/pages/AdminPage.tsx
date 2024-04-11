@@ -1,14 +1,20 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import AdminUpload from "../components/admin_components/AdminUploadRecipe";
 import DisplayAllRecipe from "../components/recipe_components/DisplayAllRecipe";
 import AdminUpdateRecipe from "../components/admin_components/AdminUpdateRecipe";
 import ClearAPIComponent from "../components/admin_components/ClearAPIComponent";
+import globalRecipeFunctions from "../store/RecipeAPICalls";
 
 const AdminPage = () => {
   const [showUpload, setShowUpload] = useState(false);
   const [showDelete, setShowDelete] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
   const [showClear, setShowClear] = useState(false);
+  const {fetchAllRecipes} = globalRecipeFunctions();
+
+  useEffect(() => {
+    fetchAllRecipes();
+  }, []);
 
   const toggleUpload = () => {
     setShowUpload(!showUpload);

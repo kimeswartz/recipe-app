@@ -3,6 +3,7 @@
 import { useState } from "react";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import uploadUpdateRecipeState from "../../store/GlobalUpdateAndUpload";
+import { presetCategories, presetUnits } from "../../constants/RecipeConstants";
 
 const UploadRecipe = () => {
   const { addRecipe } = globalRecipeFunctions();
@@ -37,7 +38,8 @@ const UploadRecipe = () => {
       recipe.title === "" ||
       recipe.description === "" ||
       recipe.imageUrl === "" ||
-      recipe.timeInMins === 0 ||
+      recipe.timeInMins < 1 ||
+      recipe.price < 1 ||
       recipe.instructions.some((instruction: string) => instruction === "") ||
       recipe.ingredients.some(
         (ingredient) =>
@@ -47,37 +49,15 @@ const UploadRecipe = () => {
       ) ||
       recipe.categories.length === 0
     ) {
-      alert("One or more fields are empty");
+      alert("Incorrect data input");
     } else {
       console.log(recipe);
       addRecipe(recipe);
       emptyRecipe();
-      alert("Recipe is added to the database");
+      setNewIngredient({name: '', amount: 0, unit: ''})
+      alert("Recipe added to the database");
     }
   };
-
-  // Preset categories for recipes
-  const presetCategories = [
-    "Breakfast",
-    "Lunch",
-    "Dinner",
-    "Vegetarian",
-    "Party",
-    "Asian",
-    "Latin American",
-  ];
-
-  // Present unit for ingredients
-  const presentIngredientsUnit = [
-    "l",
-    "dl",
-    "ml",
-    "tbsp",
-    "tsp",
-    "g",
-    "kg",
-    "noOf",
-  ];
 
   const handleCategoryChange = (selectCategory: string) => {
     setCategories(selectCategory);
@@ -178,7 +158,7 @@ const UploadRecipe = () => {
             <h2>Choose category</h2>
             <div className="flex-container">
               {presetCategories.map((category, index) => (
-                <div className="spacer-container">
+                <div className="spacer-container" key={index}>
                   <label className="category-label" key={index}>
                     <input
                       className="input-checkbox"
@@ -311,7 +291,7 @@ const UploadRecipe = () => {
                   }
                 >
                   <option disabled hidden></option>
-                  {presentIngredientsUnit.map((unit, index) => (
+                  {presetUnits.map((unit, index) => (
                     <option key={index} value={unit}>
                       {unit}
                     </option>
