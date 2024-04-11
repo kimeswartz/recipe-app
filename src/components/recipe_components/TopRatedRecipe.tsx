@@ -30,6 +30,7 @@ const TopRatedRecipes = () => {
 
   return (
     <section className="standard-container green-background">
+      <h2>Trending recipes</h2>
       <div className="card-grid">
         {displayedRecipes.map((recipe) => (
           <div
