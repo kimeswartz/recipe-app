@@ -24,6 +24,9 @@ const globalCartFunctions = create<GlobalCartInterface>((set) => ({
   cartCocktails: [],
   displayCart: false,
 
+
+
+
   addRecipeToCart: (recipe) => {
     set((state) => {
       
