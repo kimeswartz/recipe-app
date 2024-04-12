@@ -24,24 +24,22 @@ const ListCocktailsAlphabet = () => {
 
   return (
     <section className="standard-container">
-      <div>
-        <div className="spacer-container centered-container">
-          <p>
-            Find cocktails starting at...<strong> {selectedLetter} </strong>
-          </p>
-        </div>
+      <div className="centered-container">
+        <h2 className="find-cocktails">
+          Find cocktails starting with...<span> {selectedLetter} </span>
+        </h2>
+      </div>
 
-        <div className="alphabet-container">
-          {alphabet.map((letter: string, index) => (
-            <div
-              key={index}
-              className="alphabet-letter"
-              onClick={() => handleSelectLetter(letter)}
-            >
-              <a>{letter}</a>
-            </div>
-          ))}
-        </div>
+      <div className="alphabet-container">
+        {alphabet.map((letter: string, index) => (
+          <div
+            key={index}
+            className="alphabet-letter"
+            onClick={() => handleSelectLetter(letter)}
+          >
+            <a>{letter}</a>
+          </div>
+        ))}
       </div>
     </section>
   );
