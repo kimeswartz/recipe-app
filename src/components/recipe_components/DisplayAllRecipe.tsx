@@ -24,6 +24,7 @@ const DisplayRecipes = () => {
   return (
     <>
       <section className="standard-container">
+      <h2>All recipes</h2>
         <div className="card-grid">
           {recipeList.map((recipe) => (
             <div

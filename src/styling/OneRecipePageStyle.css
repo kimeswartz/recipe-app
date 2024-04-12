@@ -8,6 +8,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  max-height: 50rem;
   width: 100%;
   border-radius: 15px;
 }
@@ -23,7 +24,7 @@
 }
 
 .text-container {
-  padding: 30px;
+  padding: 2rem;
 }
 
 .text-container p {
@@ -38,7 +39,7 @@
 
 .img-container img {
   width: 100%;
-  height: 100%;
+  height: 40rem;
   object-fit: cover;
   border-radius: 15px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -57,9 +58,9 @@
   justify-content: center;
   align-items: center;
   border-radius: 15px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 30px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem 1rem 0rem 1rem;
 }
 
 .info-tag {
@@ -69,6 +70,7 @@
   margin: 3px;
   font-size: inherit;
   font-family: inherit;
+  justify-content: center;
   background-color: rgb(234, 234, 234);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
@@ -124,18 +126,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 50px;
+  align-self: flex-start;
+  padding: 1rem;
   flex: 1;
 }
 
 .ingredients-wrapper,
 p {
   text-align: left;
+  line-height: 2rem;
 }
 
 .instructions-wrapper,
 p {
   text-align: left;
+  line-height: 2rem;
 }
 
 .ingredients-wrapper {
@@ -143,7 +148,7 @@ p {
   border-bottom-left-radius: 15px;
 }
 
-@media screen and (max-width: 990px) {
+@media screen and (max-width: 1037px) {
   .recipe-container {
     width: 100%;
     margin: 5;
@@ -177,6 +182,7 @@ p {
   .instructions-wrapper {
     padding: 30px;
     width: auto;
+    justify-content: flex-start;
   }
 
   .ingredients-wrapper {
@@ -188,10 +194,19 @@ p {
   .centered-mobile {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-self: center;
   }
 
   .centered-mobile h2 {
     text-align: center;
+  }
+
+  .flex-header-container{
+    max-height: 100rem;
+  }
+
+  .info-container{
+    flex-wrap: wrap;
+    flex-direction: column;
   }
 }

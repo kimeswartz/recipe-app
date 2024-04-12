@@ -49,7 +49,7 @@ const RatingComponent = () => {
               <FontAwesomeIcon
                 icon={faStar}
                 className="star-icon"
-                color={value <= (userRating || 0) ? "green" : "grey"}
+                color={value <= (userRating || 0) ? "gold" : "grey"}
               />
             </span>
           ))}
