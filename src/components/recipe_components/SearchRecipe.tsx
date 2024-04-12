@@ -99,7 +99,7 @@ const SearchRecipe = () => {
                     className="suggestion"
                     onClick={() => handleSuggestionClick(suggestion)}
                   >
-                    {suggestion}
+                    <b>{suggestion}</b>
                   </div>
                 ))}
               </div>

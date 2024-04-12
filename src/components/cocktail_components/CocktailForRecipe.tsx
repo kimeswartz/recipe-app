@@ -41,13 +41,11 @@ const CocktailForRecipe = () => {
   };
 
   return (
-    <div>
-      <div>
-        To this recipe we recommend :
-        <strong>
-          <p onClick={handleNavigate}>{oneCocktail?.strDrink}</p>
-        </strong>
-      </div>
+    <div className="spacer-container">
+      To this recipe we recommend :
+      <strong>
+        <span onClick={handleNavigate} className="lightup-text pointer"> {oneCocktail?.strDrink}</span>
+      </strong>
     </div>
   );
 };

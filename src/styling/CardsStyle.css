@@ -102,12 +102,9 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 30px;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  border-radius: 30px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: rgb(234, 234, 234);
+  padding: 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .recipe-tag {
@@ -119,7 +116,7 @@
   border-radius: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
-  background-color: white;
+  background-color: rgb(238, 238, 238);
   cursor: pointer;
 }
 
@@ -128,11 +125,13 @@
 }
 
 .recipe-tag:hover {
-  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.3);
 }
 
 .tag-div {
   padding: 15px;
+  background-color: #f8f8f8;
+  border-radius: 30px;
 }
 
 .tag-div h2,

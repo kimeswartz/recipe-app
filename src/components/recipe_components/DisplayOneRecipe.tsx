@@ -36,12 +36,9 @@ const DisplayOneRecipe = () => {
     return (
       <>
         <section className="standard-container">
-          <h1>{oneRecipe.title}</h1> {/* Display recipe title */}
-        </section>
-
-        <section className="standard-container">
           <div className="flex-header-container">
             <div className="text-container">
+              <h1>{oneRecipe.title}</h1> {/* Display recipe title */}
               <p>{oneRecipe.description}</p> {/* Display recipe description */}
               {/* Display recipe time and rating */}
               <div className="time-review-section">
@@ -57,18 +54,17 @@ const DisplayOneRecipe = () => {
                 {/* <div className="spacer-container">
                   <RatingComponent />
                 </div> */}
-                <div className="spacer-container">
+                <div>
                   <CocktailForRecipe />
+                  <button
+                    onClick={() => addRecipeToCart(oneRecipe)}
+                    className="main-button"
+                  >
+                    Add this recipe
+                  </button>
                 </div>
               </div>
-              <div className="spacer-container">
-                <button
-                  onClick={() => addRecipeToCart(oneRecipe)}
-                  className="main-button"
-                >
-                  Add to list
-                </button>
-              </div>
+
             </div>
 
             {/* Display recipe image */}
@@ -103,17 +99,15 @@ const DisplayOneRecipe = () => {
         {/* Instructions Section*/}
         <section className="standard-container">
           <div className="flex-container">
-            <div className="ingredients-wrapper">
-              <div className="centered-mobile">
-                <h2>Ingredients</h2>
-                <ul>
-                  {oneRecipe.ingredients?.map((ingredient, index) => (
-                    <li key={index}>
-                      {ingredient.amount} {ingredient.unit} {ingredient.name}
-                    </li>
-                  ))}
-                </ul>
-              </div>
+            <div className="ingredients-wrapper centered-mobile">
+              <h2>Ingredients</h2>
+              <ul>
+                {oneRecipe.ingredients?.map((ingredient, index) => (
+                  <li key={index}>
+                    {ingredient.amount} {ingredient.unit} {ingredient.name}
+                  </li>
+                ))}
+              </ul>
             </div>
 
             {/* Section for displaying instructions */}

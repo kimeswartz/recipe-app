@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import "../../styling/CategoryTagsStyle.css";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 
 const CategorySuggestion = () => {
@@ -26,7 +25,7 @@ const CategorySuggestion = () => {
 
   return (
     <section className="standard-container">
-      <div className="tag-grid category-suggestion-container">
+      <div className="tag-grid">
         {categoryList.map((category, index) => (
           <div
             key={index}

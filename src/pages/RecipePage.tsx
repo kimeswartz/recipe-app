@@ -14,14 +14,8 @@ const RecipePageContent = () => {
 
   return (
     <>
-      <h1>Our Recipes</h1>
-
       <CategorySuggestion />
-
-      <h2>Trending recipes</h2>
       <TopRatedRecipes />
-
-      <h2>All our recipes</h2>
       <DisplayRecipes />
     </>
   );
