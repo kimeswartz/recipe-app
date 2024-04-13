@@ -77,8 +77,8 @@ const CartComponent = () => {
 
   return (
     <div>
-      <h2>Total items: {totalItemsInCart}</h2>
-      <h2>Total recipe cost: {totalRecipePrice}</h2>
+      <h3>Total items: {totalItemsInCart}</h3>
+      <p>Total recipe cost: {totalRecipePrice} btc</p>
       <div className="flex-box">
         {/* Presents all recipes */}
         <div className="v-flex-box">

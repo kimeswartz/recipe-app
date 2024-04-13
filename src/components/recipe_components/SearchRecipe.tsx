@@ -12,6 +12,7 @@ const SearchRecipe = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+
     fetchAllRecipes();
   }, [])
 

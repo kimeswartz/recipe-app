@@ -34,26 +34,22 @@ const DisplayOneCocktail = () => {
       if (ingredientName) {
         const imageUrl = `https://www.thecocktaildb.com/images/ingredients/${ingredientName}-Small.png`;
         ingredientsList.push(
-          <li key={i} onClick={() => handleClick(ingredientName)}>
+          <li key={i} onClick={() => handleClick(ingredientName)} className="pointer recipe-tag">
             <img src={imageUrl} alt={ingredientName} />
             {ingredientName} : {measure ? `${measure} ` : "To taste"}
           </li>
         );
       }
     }
-
     return ingredientsList;
   };
 
   return (
     <>
       <section className="standard-container">
-        <h1>{oneCocktail.strDrink}</h1>
-      </section>
-
-      <section className="standard-container">
         <div className="flex-header-container">
           <div className="text-container">
+            <h1>{oneCocktail.strDrink}</h1>
             <div className=".centered-container">
               {oneCocktail.strCategory && (
                 <p>
@@ -95,7 +91,7 @@ const DisplayOneCocktail = () => {
         </div>
 
         <div className="lower">
-          <div className="centered-tags pointer">
+          <div className="centered-tags">
             <ul className="list-objects">
               {generateIngredientsList(oneCocktail)}
             </ul>
@@ -106,9 +102,7 @@ const DisplayOneCocktail = () => {
         <div className="centered-mobile">
           <h2>How to make it...</h2>
           <div className="centered-container">
-            <ol>
-              <p className="to-do-step">{oneCocktail.strInstructions}</p>
-            </ol>
+            <p className="to-do-step">{oneCocktail.strInstructions}</p>
           </div>
         </div>
       </div>

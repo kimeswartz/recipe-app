@@ -24,7 +24,7 @@ const CocktailLetters = () => {
               onClick={() => handleNavigate(cocktail)}
             >
               <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
-              <p className="centered-container">{cocktail.strDrink}</p>
+              <h3 className="centered-container find-cocktails">{cocktail.strDrink}</h3>
             </ul>
           ))}
         </ul>
