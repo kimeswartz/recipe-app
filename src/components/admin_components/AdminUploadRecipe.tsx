@@ -1,6 +1,6 @@
 //Malmcolm + Kim + Hampus
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import uploadUpdateRecipeState from "../../store/GlobalUpdateAndUpload";
 import { presetCategories, presetUnits } from "../../constants/RecipeConstants";
@@ -23,6 +23,16 @@ const UploadRecipe = () => {
   } = uploadUpdateRecipeState();
 
   const [userInputInstructions, setUserInstructions] = useState("");
+  const [resetUnit, setResetUnit] = useState(false);
+  const [unitInputKey, setUnitInputKey] = useState(0);
+
+  useEffect(() => {
+    if(resetUnit){
+      setNewIngredient({ name: "", amount: 0, unit: ""})
+      setUnitInputKey(prevKey => prevKey + 1); 
+      setResetUnit(false)
+    }
+  }, [resetUnit])
 
   const [newIngredient, setNewIngredient] = useState({
     name: "",
@@ -55,6 +65,7 @@ const UploadRecipe = () => {
       addRecipe(recipe);
       emptyRecipe();
       setNewIngredient({name: '', amount: 0, unit: ''})
+      setResetUnit(true);
       alert("Recipe added to the database");
     }
   };
@@ -282,7 +293,8 @@ const UploadRecipe = () => {
                 <select
                   className="user-input"
                   id="addIngredientUnit"
-                  defaultValue=""
+                  defaultValue={""}
+                  key={unitInputKey}
                   onChange={(input) =>
                     setNewIngredient({
                       ...newIngredient,
