@@ -4,7 +4,7 @@ const FilterPage = () => {
   return (
     <div>
       <div className="spacer-container">
-        <h1>Filter recipes</h1>
+        
       </div>
       <FilterComponent />
     </div>
