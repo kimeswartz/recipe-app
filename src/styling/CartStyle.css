@@ -1,12 +1,11 @@
-.flex-box{
+.flex-box {
   display: flex;
   justify-content: space-between;
   padding: 2rem 5rem 2rem 5rem;
 }
 
-.v-flex-box{
+.v-flex-box {
   display: flex;
-  flex: 1;
   flex-direction: column;
   margin-left: 1rem;
   margin-right: 1rem;
@@ -14,7 +13,7 @@
   border-radius: 10px;
 }
 
-.item-box{
+.item-box {
   height: 10rem;
   display: flex;
   position: relative;
@@ -24,14 +23,14 @@
   margin-bottom: 1rem;
 }
 
-.item-info{
+.item-info {
   padding-left: 1rem;
   padding-right: 3rem;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-.scroll-window{
+.scroll-window {
   overflow-y: auto;
 }
 
@@ -39,13 +38,13 @@
   display: none;
 }
 
-.cart-description{
+.cart-description {
   overflow: hidden;
   text-overflow: ellipsis;
   padding-right: 3rem;
 }
 
-.exit-button{
+.exit-button {
   position: absolute;
   top: 3rem;
   right: 1rem;
@@ -57,30 +56,40 @@
   cursor: pointer;
 }
 
-.cart-rating{
+.cart-rating {
   position: absolute;
   bottom: 1rem;
   right: 0.5rem;
 }
 
-.cart-img{
+.cart-img {
   width: 10rem;
   height: 10rem;
   cursor: pointer;
 }
 
 .q-button {
-  padding: 5px 10px; 
-  font-size: 0.8rem; 
+  padding: 5px 10px;
+  font-size: 0.8rem;
   background-color: red;
   border-radius: 8px;
   color: white;
   border-color: red;
   cursor: pointer;
   height: 30px;
-  
 }
 
 .q-button:hover {
-  background-color: rgb(53, 165, 92); 
+  background-color: rgb(53, 165, 92);
+}
+
+@media screen and (max-width: 768px) {
+  .flex-box {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .v-flex-box {
+    width: 100%; /* Adjust width to auto to allow stacking */
+  }
 }
