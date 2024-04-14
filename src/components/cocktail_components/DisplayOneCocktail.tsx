@@ -5,7 +5,7 @@ import globalCocktailFunctions from "../../store/CocktailAPICalls";
 import "../../styling/OneRecipePageStyle.css";
 
 const DisplayOneCocktail = () => {
-  const { oneCocktail, fetchCocktailById } = globalCocktailFunctions();
+  const { oneCocktail, fetchCocktailById, fetchCocktailsByIngredient, fetchIngredient } = globalCocktailFunctions();
   const { addCocktailToCart } = globalCartFunctions();
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
@@ -17,10 +17,13 @@ const DisplayOneCocktail = () => {
   }, [id, fetchCocktailById]);
 
   const handleClick = (name: string) => {
-    navigate(`/ingredient/${name}`);
-    window.scrollTo(0, 0);
+    fetchIngredient(name.trim()).then(() => {
+      navigate(`/ingredient/${name}`);
+      window.scrollTo(0, 0);
+    })
+    fetchCocktailsByIngredient(name.trim())
   };
-
+  
   const generateIngredientsList = (cocktail: {
     [ingredientName: string]: any;
   }) => {
@@ -50,7 +53,7 @@ const DisplayOneCocktail = () => {
         <div className="flex-header-container">
           <div className="text-container">
             <h1>{oneCocktail.strDrink}</h1>
-            <div className=".centered-container">
+            <div>
               {oneCocktail.strCategory && (
                 <p>
                   <strong>Category:</strong> {oneCocktail.strCategory}

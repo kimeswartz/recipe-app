@@ -3,9 +3,10 @@ import globalCocktailFunctions from '../../store/CocktailAPICalls';
 import '../../styling/CocktailGridStyle.css';
 import '../../styling/Ingredient.css'; 
 import { useNavigate, useParams } from 'react-router-dom';
+import CocktailInterface from '../../interfaces/CocktailInterface';
 
 const DisplayIngredient = () => {
-  const { cocktailsByIngredient, fetchCocktailsByIngredient, oneIngredient, fetchIngredient } = globalCocktailFunctions();
+  const { cocktailsByIngredient, fetchCocktailsByIngredient, oneIngredient, setOneCocktail, fetchIngredient } = globalCocktailFunctions();
   const navigate = useNavigate();
   const { ingredientId } = useParams<{ ingredientId?: string }>(); 
   
@@ -17,42 +18,51 @@ const DisplayIngredient = () => {
     }
   }, [ingredientId, fetchIngredient, fetchCocktailsByIngredient]); 
 
-  const handleClick = (id: string) => {
-    navigate(`/cocktail/${id}`)
+  const handleClick = (cocktail: CocktailInterface) => {
+    setOneCocktail(cocktail)
+    navigate(`/cocktail/${cocktail.idDrink}`)
     window.scrollTo(0,0)
   }
 
   return (
-    <div className="cocktail-page">
-      <div className="display-ingredient-container">
-        {oneIngredient.strIngredient && (
-          <div className="display-ingredient-info">
-            <h3 className="ingredient-name"> {oneIngredient.strIngredient}</h3>
-
-            <img
-              src={`https://www.thecocktaildb.com/images/ingredients/${oneIngredient.strIngredient}-Medium.png`}
-              alt={oneIngredient.strIngredient}
-              className="ingredient-image"
-            />
-            <p className="ingredient-type">Alcoholic: {oneIngredient.strAlcohol}</p>
-            <p className="ingredient-description"> {oneIngredient.strDescription}</p>
-          </div>
-        )}
-      </div>
-
-      <div className="cocktail-grid">
-        <h2>Cocktails with {oneIngredient.strIngredient} </h2>
-        <div className="cocktail-list">
-          {cocktailsByIngredient.map((cocktail) => (
-            <div key={cocktail.idDrink} className="cocktail-card" onClick={() => handleClick(cocktail.idDrink)}>
-              <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
-              <p>{cocktail.strDrink}</p>
-              <p>{cocktail.strInstructions}</p>
+    <>
+      <section className='standard-container'>
+        <div className='flex-header-container'>
+          <div className='text-container'>
+            {oneIngredient.strIngredient && (
+              <h1>{oneIngredient.strIngredient}</h1>
+            )}
+            <div className='ingredient-desc'>
+              {oneIngredient.strDescription && (
+                <p>{oneIngredient.strDescription}</p>
+              )}
             </div>
-          ))}
+          </div>
+          <div className='img-container'>
+            <img 
+              src={`https://www.thecocktaildb.com/images/ingredients/${oneIngredient.strIngredient}.png`} 
+              alt={oneIngredient.strIngredient}
+              className='ingredient-img' />
+          </div>
         </div>
-      </div>
-    </div>
+      </section>
+      <section className='standard-container green-background'>
+        <div className='cocktail-grid'>
+          <ul className='cocktail-list'>
+            {cocktailsByIngredient.map((cocktail, cocktailKey) => (
+              <ul
+                key={cocktailKey}
+                className='cocktail-card pointer'
+                onClick={() => handleClick(cocktail)}
+              >
+                <img src={cocktail.strDrinkThumb} alt={cocktail.strDrink} />
+                <h3>{cocktail.strDrink}</h3>
+              </ul>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </>
   );
 };
 
