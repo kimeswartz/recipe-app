@@ -30,6 +30,7 @@ const UploadRecipe = () => {
     if(resetUnit){
       setNewIngredient({ name: "", amount: 0, unit: ""})
       setUnitInputKey(prevKey => prevKey + 1); 
+      setResetUnit(false)
     }
   }, [resetUnit])
 
