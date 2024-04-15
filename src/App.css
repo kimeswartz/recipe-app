@@ -79,7 +79,24 @@ button,
   display: none;
 }
 
-.find-cocktails {
+.filtered-box{
+  display: inline-block;
+  border: solid gray;
+  border-radius: 10px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
+.filtered-ingredient{
+  margin: 3px;
+}
+
+.filtered-box:hover{
+  background-color: gray;
+}
+
+
+.find-cocktails{
   padding-top: 0rem;
   padding-bottom: 0rem;
   margin-top: 0rem;
@@ -112,6 +129,10 @@ button,
 .main-button:hover .green {
   border-color: none;
   background-color: #1daf88;
+}
+
+.filter-delete{
+  cursor: pointer;
 }
 
 /* Containers - all components must be wrapped inside the .standard-container*/
