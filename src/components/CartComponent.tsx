@@ -1,14 +1,11 @@
-// Hampus
-
-import { RecipeInterface } from "../interfaces/RecipeInterface"
-import { useNavigate } from "react-router-dom"
-import globalCartFunctions from "../store/GlobalCart"
-import '../styling/CartStyle.css'
-import globalRecipeFunctions from "../store/RecipeAPICalls"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+import { RecipeInterface } from "../interfaces/RecipeInterface";
+import { useNavigate } from "react-router-dom";
+import globalCartFunctions from "../store/GlobalCart";
+import globalRecipeFunctions from "../store/RecipeAPICalls";
 import CocktailInterface from "../interfaces/CocktailInterface";
-import globalCocktailFunctions from "../store/CocktailAPICalls"
+import globalCocktailFunctions from "../store/CocktailAPICalls";
+
+import "../styling/CardsStyle.css";
 
 const CartComponent = () => {
   const {
@@ -36,7 +33,7 @@ const CartComponent = () => {
 
   const cocktailNavigate = (cocktail: CocktailInterface) => {
     toggleCart(displayCart);
-    setOneCocktail(cocktail)
+    setOneCocktail(cocktail);
     navigate(`/cocktail/${cocktail.idDrink}`);
     window.scrollTo(0, 0);
   };
@@ -50,18 +47,22 @@ const CartComponent = () => {
       const ingredientKey = `strIngredient${i}`;
       if (cocktail[ingredientKey]) {
         ingredientsList.push(
-          <li key={i} className="ingredient-name">
+          <li key={i} className="cart-ingredient">
             {cocktail[ingredientKey]}
           </li>
         );
       }
     }
-    return ingredientsList;
-  }
 
-  const totalItemsInCart = cartRecipes.reduce((total, recipe) => total + recipe.quantity, 0) + cartCocktails.reduce((total, cocktail) => total + cocktail.quantity, 0);
+    return ingredientsList;
+  };
+
+  const totalItemsInCart =
+    cartRecipes.reduce((total, recipe) => total + recipe.quantity, 0) +
+    cartCocktails.reduce((total, cocktail) => total + cocktail.quantity, 0);
   const totalRecipePrice = cartRecipes.reduce(
-    (accumulator, currentValue) => accumulator + currentValue.recipe.price * currentValue.quantity,
+    (accumulator, currentValue) =>
+      accumulator + currentValue.recipe.price * currentValue.quantity,
     0
   );
 
@@ -76,109 +77,129 @@ const CartComponent = () => {
   }
 
   return (
-    <div>
-      <h3>Total items: {totalItemsInCart}</h3>
-      <p>Total recipe cost: {totalRecipePrice} btc</p>
-      <div className="flex-box">
-        {/* Presents all recipes */}
-        <div className="v-flex-box">
-          {cartRecipes.map((cartItem, recipeIndex) => {
-            const { recipe, quantity } = cartItem;
-            return (
-              <div className="item-box" key={recipeIndex}>
+    <section className="standard-container">
+      <div className="centered-container">
+        <h2>Total items: {totalItemsInCart}</h2>
+        <p>
+          Total recipe cost: <strong>{totalRecipePrice}</strong> btc
+        </p>
+      </div>
+
+      <div className="card-grid">
+        {cartRecipes.map((cartItem, recipeIndex) => {
+          const { recipe, quantity } = cartItem;
+
+          return (
+            <div className="recipe-card" key={recipeIndex}>
+              <div className="first-card-div">
                 <img
                   src={recipe.imageUrl}
                   alt={recipe.title}
-                  className="cart-img"
+                  className="display-recipe-img"
                   onClick={() => recipeNavigate(recipe)}
                 />
 
-                <div className="item-info scroll-window">
-                  <b>{recipe.title}</b>
-                  <ul className="list-objects">
+                <div className="second-card-div">
+                  <div className="centered-container">
+                    <h3>{recipe.title}</h3>
+
+                    <span>{quantity}</span>
+
+                    <div className="flex-container">
+                      <button
+                        className="main-button"
+                        onClick={() => increaseRecipeQuantity(recipeIndex)}
+                      >
+                        +
+                      </button>
+
+                      <button
+                        className="main-button"
+                        onClick={() => decreaseRecipeQuantity(recipeIndex)}
+                      >
+                        -
+                      </button>
+                    </div>
+
+                    <div className="spacer-container">
+                      <button
+                        className="main-button"
+                        onClick={() => removeRecipeFromCart(recipeIndex)}
+                      >
+                        Delete from my list
+                      </button>
+                    </div>
+                  </div>
+                  <h4>You need:</h4>
+                  <ul className="centered-objects">
                     {recipe.ingredients.map((ingredient, indexKey) => (
-                      <li key={indexKey} className="ingredient-name">
-                        {ingredient.name}
+                      <li key={indexKey} className="cart-ingredient">
+                        {ingredient.name},
                       </li>
                     ))}
                   </ul>
                 </div>
-
-                <p className="cart-rating">
-                  <FontAwesomeIcon icon={faStar} className="star-icon" />{" "}
-                  {recipe.avgRating === null ? (
-                    <span>0</span>
-                  ) : (
-                    <span>{recipe.avgRating?.toFixed(1)}</span>
-                  )}
-                  /5
-                </p>
-                <button
-                  className="exit-button"
-                  onClick={() => removeRecipeFromCart(recipeIndex)}
-                >
-                  Delete
-                </button>
-                
-                <button 
-                    className="q-button" 
-                    onClick={() => increaseRecipeQuantity(recipeIndex)}>+</button>
-                    <span>{quantity}</span>
-                <button
-                  className="q-button" 
-                  onClick={() => decreaseRecipeQuantity(recipeIndex)}>-</button>
-                
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
 
-        {/* Presents all cocktails */}
-        <div className="v-flex-box">
-          {cartCocktails.map((cartItem, cocktailIndex) => {
-            const { cocktail, quantity } = cartItem;
-            return (
-              <div className="item-box" key={cocktailIndex}>
+        {cartCocktails.map((cartItem, cocktailIndex) => {
+          const { cocktail, quantity } = cartItem;
+
+          return (
+            <div className="recipe-card" key={cocktailIndex}>
+              <div className="first-card-div">
                 <img
                   src={cocktail.strDrinkThumb}
                   alt={cocktail.strDrink}
-                  className="cart-img"
+                  className="display-recipe-img"
                   onClick={() => cocktailNavigate(cocktail)}
                 />
-                <div className="item-info scroll-window">
-                  <b>{cocktail.strDrink}</b>
-                  <ul className="list-objects" >
-                    {generateIngredientsList(cocktail)}
-                  </ul>
 
-                </div>
-                <button
-                  className="exit-button"
-                  onClick={() => removeCocktailFromCart(cocktailIndex)}
-                >
-                  Delete
-                </button>
-                
-                <button
-                  className="q-button"
-                    onClick={() => increaseCocktailQuantity(cocktailIndex)}>+
-                </button>
+                <div className="second-card-div">
+                  <div className="centered-container">
+                    <h3>{cocktail.strDrink}</h3>
+
                     <span>{quantity}</span>
-                <button
-                    className="q-button"
-                    onClick={() => decreaseCocktailQuantity(cocktailIndex)}>-
-                </button>
-                
-                <b className="cart-rating">
-                  {cocktail.strAlcoholic}
-                </b>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </div>
 
+                    <div className="flex-container">
+                      <button
+                        className="main-button"
+                        onClick={() => increaseCocktailQuantity(cocktailIndex)}
+                      >
+                        +
+                      </button>
+
+                      <button
+                        className="main-button"
+                        onClick={() => decreaseCocktailQuantity(cocktailIndex)}
+                      >
+                        -
+                      </button>
+                    </div>
+
+                    <div className="spacer-container">
+                      <button
+                        className="main-button"
+                        onClick={() => removeCocktailFromCart(cocktailIndex)}
+                      >
+                        Delete from my list
+                      </button>
+                    </div>
+                  </div>
+
+                  <h4>You need:</h4>
+                  <ul className="list-objects">
+                    <li>{generateIngredientsList(cocktail)}</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
   );
 };
 

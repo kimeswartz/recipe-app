@@ -65,23 +65,21 @@ button,
   font-weight: 300;
 }
 
-.lightup-text:hover{
+.lightup-text:hover {
   color: #009e74;
 }
 
-.ingredient-desc{
+.ingredient-desc {
   max-height: 35rem;
   overflow-y: auto;
   scrollbar-width: none;
 }
 
-.ingredient-desc::-webkit-scrollbar{
+.ingredient-desc::-webkit-scrollbar {
   display: none;
 }
 
-
-
-.find-cocktails{
+.find-cocktails {
   padding-top: 0rem;
   padding-bottom: 0rem;
   margin-top: 0rem;
@@ -96,7 +94,7 @@ button,
   overflow: auto;
   border-radius: 4px;
   outline: none;
- width: 100%;
+  width: 100%;
 }
 
 /* Buttons */

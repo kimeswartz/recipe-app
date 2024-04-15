@@ -1,4 +1,3 @@
-
 .display-ingredient-container {
   max-width: 600px;
   margin: 0 auto;
@@ -20,13 +19,13 @@
 
 .display-ingredient-info .ingredient-name {
   font-weight: bold;
-  flex: 1; 
+  flex: 1;
 }
 
 .ingredient-description {
   font-style: italic;
   overflow: hidden;
-  font-weight: bolder; 
+  font-weight: bolder;
   text-overflow: ellipsis;
 }
 

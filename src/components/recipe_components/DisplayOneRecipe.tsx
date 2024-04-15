@@ -74,6 +74,7 @@ const DisplayOneRecipe = () => {
           </div>
         </section>
 
+
         {/* Section displaying ingredients */}
         <section className="standard-container green-background">
           <div className="upper">
