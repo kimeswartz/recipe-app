@@ -14,7 +14,9 @@ const FilterComponent = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchAllRecipes();
+    if (recipeList.length === 0) {
+      fetchAllRecipes();
+    }
   }, []);
 
   useEffect(() => {
@@ -79,33 +81,8 @@ const FilterComponent = () => {
   return (
     <>
       <section className="standard-container">
-        <div>
-          {searchIngredients.length > 0 && (
-            <div>
-              <p className="centered-container">
-                <strong>Selected Ingredients</strong>
-              </p>
-              {searchIngredients.map((ingredient, index) => (
-                <span key={index}>
-                  {ingredient}
-                  <div className="button-container">
-                    <button
-                      className="main-button"
-                      onClick={() => removeIngredient(ingredient)}
-                    >
-                      Remove
-                    </button>
-                  </div>
-                </span>
-              ))}
-            </div>
-          )}
-          {searchIngredients.length > 0 && filteredRecipes.length === 0 && (
-            <p>No recipes found matching the selected ingredients.</p>
-          )}
-        </div>
-
-        <div className="spacer-container">
+      <h3>Find recipes based on what you already have at home!</h3>
+        <div className="form-input" style={{ position: 'relative' }}>
           <input
             className="user-input"
             type="text"
@@ -113,14 +90,27 @@ const FilterComponent = () => {
             value={userInput}
             onChange={handleInputChange}
           />
+          <div className="suggestions">
+            {suggestions.map((suggestion, index) => (
+              <div className="suggestion" key={index} onClick={() => handleSuggestionClick(suggestion)}>
+                <b>{suggestion}</b>
+              </div>
+            ))}
+          </div>
         </div>
-        <ul className="filter-suggestions">
-          {suggestions.map((suggestion, index) => (
-            <li key={index} onClick={() => handleSuggestionClick(suggestion)}>
-              {suggestion}
-            </li>
-          ))}
-        </ul>
+
+        {searchIngredients.length > 0 && (
+          <div className="filter-grid">
+            {searchIngredients.map((ingredient, index) => (
+              <div className="filtered-box"> 
+                <p key={index} className="filtered-ingredient">{ingredient}<span className="filter-delete" onClick={() => removeIngredient(ingredient)}> X</span></p> 
+              </div>
+            ))}
+          </div>
+        )}
+        {searchIngredients.length > 0 && filteredRecipes.length === 0 && (
+          <p>No recipes found matching the selected ingredients.</p>
+        )}
       </section>
       <section className="standard-container">
         <div className="card-grid">

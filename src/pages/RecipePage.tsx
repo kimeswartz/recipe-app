@@ -6,10 +6,13 @@ import globalRecipeFunctions from "../store/RecipeAPICalls";
 
 const RecipePageContent = () => {
   
-  const { fetchAllRecipes } = globalRecipeFunctions();
+  const { fetchAllRecipes, recipeList } = globalRecipeFunctions();
 
   useEffect(() => {
-    fetchAllRecipes();
+    if(recipeList.length === 0){
+      console.log(recipeList)
+      fetchAllRecipes();
+    }
   }, [])
 
   return (

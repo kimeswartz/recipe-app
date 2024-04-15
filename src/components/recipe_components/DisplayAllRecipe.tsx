@@ -11,7 +11,7 @@ const DisplayRecipes = () => {
 
   const handleDelete = async (recipeId: string | undefined) => {
     if (recipeId) {
-      deleteRecipe(recipeId);
+      deleteRecipe(recipeId)
     }
   };
 
