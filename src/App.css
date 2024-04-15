@@ -65,17 +65,17 @@ button,
   font-weight: 300;
 }
 
-.lightup-text:hover{
+.lightup-text:hover {
   color: #009e74;
 }
 
-.ingredient-desc{
+.ingredient-desc {
   max-height: 35rem;
   overflow-y: auto;
   scrollbar-width: none;
 }
 
-.ingredient-desc::-webkit-scrollbar{
+.ingredient-desc::-webkit-scrollbar {
   display: none;
 }
 
@@ -103,19 +103,7 @@ button,
   margin-bottom: 0rem;
 }
 
-.modal-cart-window {
-  position: absolute;
-  inset: 100px;
-  border: 1px solid rgb(204, 204, 204);
-  background: rgb(255, 255, 255);
-  overflow: auto;
-  border-radius: 4px;
-  outline: none;
- width: 100%;
-}
-
 /* Buttons */
-
 .main-button {
   border-radius: 20px;
   border: none;
@@ -243,7 +231,7 @@ button,
   width: calc(100% - 20px);
   max-height: 200px;
   overflow-y: auto;
-  background-color: #ffffffdf;
+  background-color: #ffffff;
   border: none;
   border-radius: 20px;
   z-index: 1;
