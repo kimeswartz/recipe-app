@@ -222,7 +222,7 @@ button,
   width: calc(100% - 20px);
   max-height: 200px;
   overflow-y: auto;
-  background-color: #ffffffdf;
+  background-color: #ffffff;
   border: none;
   border-radius: 20px;
   z-index: 1;
