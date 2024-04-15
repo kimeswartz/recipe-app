@@ -33,12 +33,11 @@ function App() {
         >
           <div>
             <nav className="navbar">
-              <h2>Shopping List</h2>
               <button
-                className="main-button"
+                className="cart-close-btn"
                 onClick={() => toggleCart(displayCart)}
               >
-                Close
+                X
               </button>
             </nav>
             <CartComponent />

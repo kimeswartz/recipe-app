@@ -5,8 +5,6 @@ import { useNavigate } from "react-router-dom"
 import globalCartFunctions from "../store/GlobalCart"
 import '../styling/CartStyle.css'
 import globalRecipeFunctions from "../store/RecipeAPICalls"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
 import CocktailInterface from "../interfaces/CocktailInterface";
 import globalCocktailFunctions from "../store/CocktailAPICalls"
 
@@ -50,7 +48,7 @@ const CartComponent = () => {
       const ingredientKey = `strIngredient${i}`;
       if (cocktail[ingredientKey]) {
         ingredientsList.push(
-          <li key={i} className="ingredient-name">
+          <li key={i} className="cart-ingredient">
             {cocktail[ingredientKey]}
           </li>
         );
@@ -77,8 +75,12 @@ const CartComponent = () => {
 
   return (
     <div>
+
+      <div className="overall-cart-info">
       <h3>Total items: {totalItemsInCart}</h3>
-      <p>Total recipe cost: {totalRecipePrice} btc</p>
+      <p>Total recipe cost: {totalRecipePrice} KR</p>
+      </div>
+
       <div className="flex-box">
         {/* Presents all recipes */}
         <div className="v-flex-box">
@@ -97,37 +99,34 @@ const CartComponent = () => {
                   <b>{recipe.title}</b>
                   <ul className="list-objects">
                     {recipe.ingredients.map((ingredient, indexKey) => (
-                      <li key={indexKey} className="ingredient-name">
+                      <li key={indexKey} className="cart-ingredient">
                         {ingredient.name}
                       </li>
                     ))}
                   </ul>
                 </div>
 
-                <p className="cart-rating">
-                  <FontAwesomeIcon icon={faStar} className="star-icon" />{" "}
-                  {recipe.avgRating === null ? (
-                    <span>0</span>
-                  ) : (
-                    <span>{recipe.avgRating?.toFixed(1)}</span>
-                  )}
-                  /5
-                </p>
+                <div className="cart-delete-btn">
                 <button
                   className="exit-button"
                   onClick={() => removeRecipeFromCart(recipeIndex)}
                 >
                   Delete
                 </button>
-                
-                <button 
-                    className="q-button" 
-                    onClick={() => increaseRecipeQuantity(recipeIndex)}>+</button>
-                    <span>{quantity}</span>
+                </div>
+
+                <div className="quantity-btn-cart">
                 <button
                   className="q-button" 
-                  onClick={() => decreaseRecipeQuantity(recipeIndex)}>-</button>
-                
+                  onClick={() => decreaseRecipeQuantity(recipeIndex)}>-
+                </button>
+                    <span className="quantity-number">{quantity}</span>
+                <button 
+                    className="q-button" 
+                    onClick={() => increaseRecipeQuantity(recipeIndex)}>+                     
+                </button>
+                </div>
+
               </div>
             );
           })}
@@ -152,26 +151,28 @@ const CartComponent = () => {
                   </ul>
 
                 </div>
+
+                <div className="cart-delete-btn">
                 <button
                   className="exit-button"
                   onClick={() => removeCocktailFromCart(cocktailIndex)}
                 >
                   Delete
                 </button>
-                
-                <button
-                  className="q-button"
-                    onClick={() => increaseCocktailQuantity(cocktailIndex)}>+
-                </button>
-                    <span>{quantity}</span>
+                </div>
+
+                <div className="quantity-btn-cart">
                 <button
                     className="q-button"
                     onClick={() => decreaseCocktailQuantity(cocktailIndex)}>-
                 </button>
-                
-                <b className="cart-rating">
-                  {cocktail.strAlcoholic}
-                </b>
+                    <span className="quantity-number">{quantity}</span>
+                <button
+                  className="q-button"
+                    onClick={() => increaseCocktailQuantity(cocktailIndex)}>+
+                </button>
+                </div>
+
               </div>
             );
           })}
