@@ -68,10 +68,8 @@ const CartComponent = () => {
 
   if (totalItemsInCart === 0) {
     return (
-      <div className="centered-tags">
-        <div className="info-tag">
-          <h3>Nothing added yet!</h3>
-        </div>
+      <div className="centered-container">
+        <h3>Nothing added yet!</h3>
       </div>
     );
   }
