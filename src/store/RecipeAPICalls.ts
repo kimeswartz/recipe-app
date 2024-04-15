@@ -4,7 +4,7 @@ import { create } from "zustand";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
 import axios from "axios";
 import { CommentInterface } from "../interfaces/CommentInterface";
-import {recipeURL} from "../constants/ApiUrl";
+import { recipeURL } from "../constants/ApiUrl";
 
 interface recipeStateInterface {
   recipeList: RecipeInterface[];
@@ -22,7 +22,10 @@ interface recipeStateInterface {
   addRating: (rating: number, id: string | undefined) => Promise<void>;
   fetchComments: (id: string) => Promise<void>;
   addComment: (comments: string, id: string | undefined) => Promise<void>; //arash
-  updateRecipe: (updatedRecipe: RecipeInterface, id: string | undefined) => Promise<void>;
+  updateRecipe: (
+    updatedRecipe: RecipeInterface,
+    id: string | undefined
+  ) => Promise<void>;
   clearAPI: () => Promise<void>;
 }
 
@@ -34,16 +37,16 @@ const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
   categoryRecipeList: [],
 
   setOneRecipe: (recipe: RecipeInterface) => {
-    set({oneRecipe: recipe})
+    set({ oneRecipe: recipe });
   },
 
   fetchAllRecipes: async () => {
     try {
       const response = await axios.get(`${recipeURL}/recipes`);
       if (response.status === 200) {
-        const result = response.data.sort(() => Math.random() - 0.5).slice() 
+        const result = response.data.sort(() => Math.random() - 0.5).slice();
         set({ recipeList: result });
-        console.log('Fetched all recipes')
+        console.log("Fetched all recipes");
       }
     } catch (error) {
       console.error("Error fetching all recipes", error);
@@ -65,13 +68,14 @@ const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
     }
   },
 
-
   fetchAllCategories: async () => {
     try {
       const response = await axios.get(`${recipeURL}/categories`);
       if (response.status === 200) {
         console.log("Successfull get");
-        const categoryNames = response.data.map((category: any) => category.name)
+        const categoryNames = response.data.map(
+          (category: any) => category.name
+        );
         set({ categoryList: categoryNames });
       }
     } catch (error) {
@@ -95,16 +99,19 @@ const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
 
   addRecipe: async (newRecipe: RecipeInterface) => {
     try {
-      const response = await axios.post<RecipeInterface>(`${recipeURL}/recipes`,newRecipe);
+      const response = await axios.post<RecipeInterface>(
+        `${recipeURL}/recipes`,
+        newRecipe
+      );
 
       if (response.status === 200) {
         console.log("Successful post: ", response.data);
         console.log(response.status);
         set((prevState) => ({
           ...prevState,
-          recipeList: [...prevState.recipeList, response.data]
+          recipeList: [...prevState.recipeList, response.data],
         }));
-        console.log('Added recipe to recipeList')
+        console.log("Added recipe to recipeList");
       }
     } catch (error) {
       console.error("Error from post attempt:", error);
@@ -118,8 +125,8 @@ const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
         console.log("Recipe deleted successfully");
         set((state) => ({
           ...state,
-          recipeList: state.recipeList.filter(recipe => recipe._id !== id)
-        }))
+          recipeList: state.recipeList.filter((recipe) => recipe._id !== id),
+        }));
       }
     } catch (error) {
       console.error("Error deleting recipe:", error);
@@ -128,10 +135,9 @@ const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
 
   addRating: async (rating, id) => {
     try {
-      const response = await axios.post(
-        `${recipeURL}/recipes/${id}/ratings`,
-        { rating: rating }
-      );
+      const response = await axios.post(`${recipeURL}/recipes/${id}/ratings`, {
+        rating: rating,
+      });
       if (response.status === 200) {
         console.log(
           `Rating ${rating}/5 has been updated for recipe:${id} in the database`
@@ -148,55 +154,59 @@ const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
       const response = await axios.get(`${recipeURL}/recipes/${id}/comments`);
       if (response.status === 200) {
         console.log("Successfully fetched comments");
-        set ({recipeComment: response.data})
+        set({ recipeComment: response.data });
       }
     } catch (error) {
       console.error("Error fetching comments:", error);
     }
-  },  //arash
+  }, //arash
 
   addComment: async (comment, id) => {
     try {
-        const response = await axios.post(`${recipeURL}/recipes/${id}/comments`, { comment });
-        if (response.status === 200) {
-          console.log(`Comment ${comment} has been updated for recipe:${id} in the database`);
-          set((prevState) => ({
-            prevState,
-            recipeComment: [...prevState.recipeComment, response.data]
-          }))
-          alert("Thank you for the comment")
-          return response.data;
+      const response = await axios.post(`${recipeURL}/recipes/${id}/comments`, {
+        comment,
+      });
+      if (response.status === 200) {
+        console.log(
+          `Comment ${comment} has been updated for recipe:${id} in the database`
+        );
+        set((prevState) => ({
+          prevState,
+          recipeComment: [...prevState.recipeComment, response.data],
+        }));
+        alert("Thank you for the comment");
+        return response.data;
       }
     } catch (error) {
       console.error("Error adding comment:", error);
     }
   }, //arash
 
-  updateRecipe: async(updatedRecipe, id) => {
-    try{
+  updateRecipe: async (updatedRecipe, id) => {
+    try {
       const response = await axios.patch(
         `${recipeURL}/recipes/${id}`,
         updatedRecipe
       );
       if (response.status === 200) {
         //make something happen
-        alert('Recipe was updated')
+        alert("Recipe was updated");
       }
-    }catch(error){
+    } catch (error) {
       console.error("Error updating recipe:", error);
     }
   },
 
-  clearAPI: async() => {
-    try{
-      const response = await axios.get(`${recipeURL}/clear`)
-      if(response.status){
-        alert('You just removed everything. Congrats! :)')
+  clearAPI: async () => {
+    try {
+      const response = await axios.get(`${recipeURL}/clear`);
+      if (response.status) {
+        alert("You just removed everything. Congrats! :)");
       }
-    }catch(error){
-      console.log('Could not clear database', error);
+    } catch (error) {
+      console.log("Could not clear database", error);
     }
-  }
+  },
 }));
 
 export default globalRecipeFunctions;
