@@ -96,8 +96,8 @@
 }
 
 .quantity-number {
-  padding-left: 1%;
-  padding-right: 1%;
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 .cart-delete-btn {
@@ -239,5 +239,4 @@
     top: 40%;
     left: -1%;
   }
-  
 }
