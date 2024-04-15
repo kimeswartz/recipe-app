@@ -30,6 +30,8 @@
 
 .team-header {
   background-image: url("../assets/Team.jpg");
+  max-height: 600px;
+  height: 600px;
 }
 
 .header-content {
@@ -49,8 +51,6 @@
   text-align: center;
   color: white;
 }
-
-
 
 @media only screen and (max-width: 768px) {
   .headergit {
