@@ -30,7 +30,7 @@ const RecipesByCategory = () => {
         <CategorySuggestion />
 
         <section className="standard-container">
-        <h1>{categoryName} recipes</h1>
+          <h1>{categoryName} recipes</h1>
           <div className="card-grid">
             {categoryRecipeList.map((recipe) => (
               <div
