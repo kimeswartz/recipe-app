@@ -9,7 +9,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 const Navbar = () => {
   const navigate = useNavigate();
   const { emptyRecipe } = uploadUpdateRecipeState();
-  const { displayCart, toggleCart, cartRecipes, cartCocktails } =
+  const { cartRecipes, cartCocktails } =
     globalCartFunctions();
   const [isResponsive, setIsResponsive] = useState(false);
 
@@ -42,10 +42,7 @@ const Navbar = () => {
             Filter
           </a>
           <a onClick={() => handleNavigation("/recipes")}>Recipes</a>
-
-          <a onClick={() => toggleCart(displayCart)}>
-            📋 <strong> Your List</strong>
-          </a>
+          <a onClick={() => handleNavigation("/your-list")}>📋 <strong> Your List</strong></a>
           {totalItemsInCart > 0 && (
             <span className="item-count">{totalItemsInCart}</span>
           )}
