@@ -9,7 +9,7 @@ import { faBars } from "@fortawesome/free-solid-svg-icons";
 const Navbar = () => {
   const navigate = useNavigate();
   const { emptyRecipe } = uploadUpdateRecipeState();
-  const { displayCart, toggleCart, cartRecipes, cartCocktails } =
+  const { cartRecipes, cartCocktails } =
     globalCartFunctions();
   const [isResponsive, setIsResponsive] = useState(false);
 
