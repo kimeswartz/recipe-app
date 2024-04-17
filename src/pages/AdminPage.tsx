@@ -49,7 +49,7 @@ const AdminPage = () => {
       <div>
         <h1>Welcome, Admin!</h1>
 
-        <div className="standard-container pointer" id= "clickOpenUpload" onClick={toggleUpload}>
+        <div className="standard-container pointer" id="clickOpenUpload" onClick={toggleUpload}>
           {showUpload ? "Close Upload Recipe" : "Open Upload Recipe"}
         </div>
         {showUpload && <AdminUpload />}

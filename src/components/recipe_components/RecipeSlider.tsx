@@ -1,3 +1,5 @@
+//Bilge
+
 import { useEffect, useRef } from "react";
 import "../../styling/SliderStyle.css";
 import { useNavigate } from "react-router-dom";

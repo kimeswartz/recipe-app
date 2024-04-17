@@ -22,10 +22,7 @@ interface recipeStateInterface {
   addRating: (rating: number, id: string | undefined) => Promise<void>;
   fetchComments: (id: string) => Promise<void>;
   addComment: (comments: string, id: string | undefined) => Promise<void>; //arash
-  updateRecipe: (
-    updatedRecipe: RecipeInterface,
-    id: string | undefined
-  ) => Promise<void>;
+  updateRecipe: (updatedRecipe: RecipeInterface,id: string | undefined) => Promise<void>;
   clearAPI: () => Promise<void>;
 }
 

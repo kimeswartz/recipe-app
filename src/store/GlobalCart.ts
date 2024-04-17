@@ -1,4 +1,4 @@
-// Hampus
+// Hampus + Bilge
 
 import { create } from "zustand";
 import { RecipeInterface } from "../interfaces/RecipeInterface";
