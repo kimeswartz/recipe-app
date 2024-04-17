@@ -1,3 +1,5 @@
+//Pablo + Malcolm + Hampus
+
 import CocktailInterface from "../../interfaces/CocktailInterface";
 import "../../styling/CocktailGridStyle.css";
 import { useNavigate } from "react-router-dom";
