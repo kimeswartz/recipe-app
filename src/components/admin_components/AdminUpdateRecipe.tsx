@@ -21,7 +21,7 @@ const AdminUpdateRecipe = () => {
     emptyRecipe,
   } = uploadUpdateRecipeState();
 
-  const { recipeList, updateRecipe } = globalRecipeFunctions();
+  const { recipeList, updateRecipe, fetchAllRecipes } = globalRecipeFunctions();
   const [recipeId, setRecipeId] = useState<string | undefined>("");
   const [userInputInstructions, setUserInstructions] = useState("");
   const [searchTerms, setSearchTerms] = useState<string>("");
@@ -154,6 +154,7 @@ const AdminUpdateRecipe = () => {
             updateRecipe(recipe, recipeId);
             emptyRecipe();
             setSearchTerms("");
+            fetchAllRecipes();
           }}
         >
           <label className="form-input">
