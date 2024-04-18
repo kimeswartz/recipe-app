@@ -101,7 +101,7 @@ const DisplayOneRecipe = () => {
 
             <div className="instructions-wrapper">
               <div className="centered-mobile">
-                <h2>Instructions...</h2>
+                <h2>Instructions</h2>
                 <ol>
                   {/* Step-by-step Section */}
                   {oneRecipe.instructions?.map((instruction, index) => (

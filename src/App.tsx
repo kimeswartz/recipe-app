@@ -1,6 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/LandingPage";
+import Home from "./pages/HomePage";
 import RecipesByCategory from "./components/recipe_components/RecipesByCategory";
 import DisplayOneRecipe from "./components/recipe_components/DisplayOneRecipe";
 import AdminPage from "./pages/AdminPage";
