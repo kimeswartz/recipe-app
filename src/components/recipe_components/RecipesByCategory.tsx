@@ -3,8 +3,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import "../../styling/CardsStyle.css";
-import globalRecipeFunctions from "../../store/RecipeAPICalls";
-import { RecipeInterface } from "../../interfaces/RecipeInterface";
+import globalRecipeFunctions from "../../store/recipes_store/RecipeAPICalls";
+import { RecipeInterface } from "../../interfaces/recipe_interfaces/RecipeInterface";
 import CategorySuggestion from "./CategorySuggestion";
 
 const RecipesByCategory = () => {

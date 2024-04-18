@@ -1,4 +1,4 @@
-import CartComponent from "../components/CartComponent";
+import CartComponent from "../components/global_pages_components/CartComponent";
 
 const CartPage = () => {
   return (

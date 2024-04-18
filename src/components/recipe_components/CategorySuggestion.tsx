@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import globalRecipeFunctions from "../../store/RecipeAPICalls";
+import globalRecipeFunctions from "../../store/recipes_store/RecipeAPICalls";
 
 const CategorySuggestion = () => {
   const navigate = useNavigate();

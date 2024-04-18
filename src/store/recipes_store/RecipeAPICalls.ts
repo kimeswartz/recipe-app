@@ -1,10 +1,10 @@
 //Hampus + Alice + Arash
 
 import { create } from "zustand";
-import { RecipeInterface } from "../interfaces/RecipeInterface";
+import { RecipeInterface } from "../../interfaces/recipe_interfaces/RecipeInterface";
 import axios from "axios";
-import { CommentInterface } from "../interfaces/CommentInterface";
-import { recipeURL } from "../constants/ApiUrl";
+import { CommentInterface } from "../../interfaces/recipe_interfaces/CommentInterface";
+import { recipeURL } from "../../constants/api_URL/ApiUrl";
 
 interface recipeStateInterface {
   recipeList: RecipeInterface[];

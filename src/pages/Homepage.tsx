@@ -1,4 +1,4 @@
-import HeaderComponent from "../components/HeaderComponent";
+import HeaderComponent from "../components/global_pages_components/HeaderComponent";
 import RecipeSlider from "../components/recipe_components/RecipeSlider";
 
 const Home = () => {

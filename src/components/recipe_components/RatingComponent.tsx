@@ -1,6 +1,6 @@
 //Malcolm + Arash
 
-import globalRecipeFunctions from "../../store/RecipeAPICalls";
+import globalRecipeFunctions from "../../store/recipes_store/RecipeAPICalls";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";

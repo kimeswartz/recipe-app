@@ -1,8 +1,8 @@
 //Malmcolm + Kim + Hampus
 
 import { useEffect, useState } from "react";
-import globalRecipeFunctions from "../../store/RecipeAPICalls";
-import uploadUpdateRecipeState from "../../store/GlobalUpdateAndUpload";
+import globalRecipeFunctions from "../../store/recipes_store/RecipeAPICalls";
+import uploadUpdateRecipeState from "../../store/recipes_store/Recipes_Update_Upload";
 import { presetCategories, presetUnits } from "../../constants/RecipeConstants";
 
 const UploadRecipe = () => {

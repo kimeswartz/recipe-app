@@ -1,6 +1,4 @@
-//
-
-import "../styling/FooterStyle.css"; // Import your CSS file for styling
+import "../../styling/FooterStyle.css";
 import { To, useNavigate } from "react-router-dom";
 
 const Footer = () => {

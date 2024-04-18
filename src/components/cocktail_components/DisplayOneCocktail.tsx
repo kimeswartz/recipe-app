@@ -2,8 +2,8 @@
 
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import globalCartFunctions from "../../store/GlobalCart";
-import globalCocktailFunctions from "../../store/CocktailAPICalls";
+import globalCartFunctions from "../../store/global_cart/GlobalCart";
+import globalCocktailFunctions from "../../store/cocktails_store/CocktailAPICalls";
 import "../../styling/OneRecipePageStyle.css";
 
 const DisplayOneCocktail = () => {

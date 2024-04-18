@@ -1,8 +1,8 @@
 //Pablo + Hampus
 
 import { useEffect } from "react";
-import globalRecipeFunctions from "../../store/RecipeAPICalls";
-import globalCocktailFunctions from "../../store/CocktailAPICalls";
+import globalRecipeFunctions from "../../store/recipes_store/RecipeAPICalls";
+import globalCocktailFunctions from "../../store/cocktails_store/CocktailAPICalls";
 import { useNavigate } from "react-router-dom";
 
 const CocktailForRecipe = () => {

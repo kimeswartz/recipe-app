@@ -1,4 +1,4 @@
-import AboutUs from '../components/AboutUs'
+import AboutUs from '../components/about_us_components/AboutUs'
 
 const AboutUsPage = () => {
   return (

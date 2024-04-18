@@ -1,7 +1,7 @@
 //Malcolm + Hampus
 
-import uploadUpdateRecipeState from "../../store/GlobalUpdateAndUpload";
-import globalRecipeFunctions from "../../store/RecipeAPICalls";
+import uploadUpdateRecipeState from "../../store/recipes_store/Recipes_Update_Upload";
+import globalRecipeFunctions from "../../store/recipes_store/RecipeAPICalls";
 import { useState } from "react";
 import { presetCategories, presetUnits } from "../../constants/RecipeConstants";
 

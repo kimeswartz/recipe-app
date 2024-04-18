@@ -1,10 +1,7 @@
-/*Kim */
-
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
 * {
   font-family: "Poppins", sans-serif;
-  /* color: #1a1a1a; */
   box-sizing: border-box;
 }
 
@@ -81,7 +78,7 @@ button,
   display: none;
 }
 
-.filtered-box{
+.filtered-box {
   display: inline-block;
   border: solid gray;
   border-radius: 10px;
@@ -89,16 +86,15 @@ button,
   margin-right: 0.5rem;
 }
 
-.filtered-ingredient{
+.filtered-ingredient {
   margin: 3px;
 }
 
-.filtered-box:hover{
+.filtered-box:hover {
   background-color: gray;
 }
 
-
-.find-cocktails{
+.find-cocktails {
   padding-top: 0rem;
   padding-bottom: 0rem;
   margin-top: 0rem;
@@ -133,7 +129,7 @@ button,
   background-color: #1daf88;
 }
 
-.filter-delete{
+.filter-delete {
   cursor: pointer;
 }
 

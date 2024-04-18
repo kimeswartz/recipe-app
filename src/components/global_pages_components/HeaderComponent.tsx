@@ -1,7 +1,5 @@
-//Kim
-
-import "../styling/HeaderComponentStyle.css";
-import RecipeSearch from "../components/recipe_components/SearchRecipe";
+import "../../styling/HeaderComponentStyle.css";
+import RecipeSearch from "../recipe_components/SearchRecipe";
 
 const HeaderComponent = () => {
   return (

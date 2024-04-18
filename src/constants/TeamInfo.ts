@@ -1,4 +1,4 @@
-import "../interfaces/TeamMemberInterface";
+import "../interfaces/team_info_interfaces/TeamMemberInterface";
 import MalcolmImage from "../assets/team_member_images/Malcolm.jpg";
 import HampusImage from "../assets/team_member_images/Hampus.jpg";
 import PabloImage from "../assets/team_member_images/PabloDiaz.jpg";

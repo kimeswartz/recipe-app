@@ -2,7 +2,7 @@
 
 import "../../styling/CocktailAlphabetStyle.css";
 import { useState, useEffect } from "react";
-import globalCocktailFunctions from "../../store/CocktailAPICalls";
+import globalCocktailFunctions from "../../store/cocktails_store/CocktailAPICalls";
 
 const ListCocktailsAlphabet = () => {
   const { fetchCocktailsByLetter, emptyCocktailList } =

@@ -1,8 +1,8 @@
 //Hampus + Kim
 
-import globalRecipeFunctions from "../../store/RecipeAPICalls";
+import globalRecipeFunctions from "../../store/recipes_store/RecipeAPICalls";
 import { useNavigate, useLocation } from "react-router-dom";
-import { RecipeInterface } from "../../interfaces/RecipeInterface";
+import { RecipeInterface } from "../../interfaces/recipe_interfaces/RecipeInterface";
 import "../../styling/CardsStyle.css";
 
 const DisplayRecipes = () => {

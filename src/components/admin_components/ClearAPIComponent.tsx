@@ -1,7 +1,7 @@
 //Hampus
 
 import { useState } from "react";
-import globalRecipeFunctions from "../../store/RecipeAPICalls";
+import globalRecipeFunctions from "../../store/recipes_store/RecipeAPICalls";
 
 const ClearAPIComponent = () => {
   const [dangerButton, setDangerButton] = useState(true);

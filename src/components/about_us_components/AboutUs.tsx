@@ -1,9 +1,7 @@
-//Alice
-
 import { useEffect, useState } from "react";
-import "../styling/HeaderComponentStyle.css";
-import "../styling/AboutUsStyle.css";
-import teamMembers from "../constants/TeamInfo";
+import "../../styling/HeaderComponentStyle.css";
+import "../../styling/AboutUsStyle.css";
+import teamMembers from "../../constants/TeamInfo";
 
 const AboutUs = () => {
   // State to keep track of the selected team member

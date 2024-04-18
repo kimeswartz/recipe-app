@@ -1,10 +1,8 @@
-//Bilge
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import globalCartFunctions from "../store/GlobalCart";
-import uploadUpdateRecipeState from "../store/GlobalUpdateAndUpload";
-import "../styling/TopNavStyle.css";
+import globalCartFunctions from "../../store/global_cart/GlobalCart";
+import uploadUpdateRecipeState from "../../store/recipes_store/Recipes_Update_Upload";
+import "../../styling/TopNavStyle.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,7 +17,7 @@ const Navbar = () => {
     navigate(path);
     window.scrollTo(0,0)
     emptyRecipe();
-    setIsResponsive(false); // Close the responsive menu on navigation
+    setIsResponsive(false);
   };
 
   const toggleResponsive = () => {

@@ -1,9 +1,9 @@
 //Pablo + Malcolm + Hampus
 
-import CocktailInterface from "../../interfaces/CocktailInterface";
+import CocktailInterface from "../../interfaces/cocktails_interfaces/CocktailInterface";
 import "../../styling/CocktailGridStyle.css";
 import { useNavigate } from "react-router-dom";
-import globalCocktailFunctions from "../../store/CocktailAPICalls";
+import globalCocktailFunctions from "../../store/cocktails_store/CocktailAPICalls";
 
 const CocktailLetters = () => {
   const { setOneCocktail, cocktailList } = globalCocktailFunctions();

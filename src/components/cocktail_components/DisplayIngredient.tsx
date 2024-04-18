@@ -1,11 +1,11 @@
 //Bilge
 
 import { useEffect } from "react";
-import globalCocktailFunctions from "../../store/CocktailAPICalls";
+import globalCocktailFunctions from "../../store/cocktails_store/CocktailAPICalls";
 import "../../styling/CocktailGridStyle.css";
 import "../../styling/CocktailIngredientStyle.css";
 import { useNavigate, useParams } from "react-router-dom";
-import CocktailInterface from "../../interfaces/CocktailInterface";
+import CocktailInterface from "../../interfaces/cocktails_interfaces/CocktailInterface";
 
 const DisplayIngredient = () => {
   const {

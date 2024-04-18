@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 import "../../styling/SliderStyle.css";
 import { useNavigate } from "react-router-dom";
-import { RecipeInterface } from "../../interfaces/RecipeInterface";
-import globalRecipeFunctions from "../../store/RecipeAPICalls";
+import { RecipeInterface } from "../../interfaces/recipe_interfaces/RecipeInterface";
+import globalRecipeFunctions from "../../store/recipes_store/RecipeAPICalls";
 
 
 const RecipeSlider = () => {

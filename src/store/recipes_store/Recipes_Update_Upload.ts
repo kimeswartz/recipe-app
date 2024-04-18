@@ -1,9 +1,7 @@
-//Hampus
-
 import { create } from "zustand";
-import { RecipeInterface } from "../interfaces/RecipeInterface";
+import { RecipeInterface } from "../../interfaces/recipe_interfaces/RecipeInterface";
 
-interface globalRecipeState{
+interface globalRecipeState {
   recipe: RecipeInterface;
   setTitle: (newTitle: string) => void;
   setDescription: (newDescription: string) => void;
@@ -11,7 +9,11 @@ interface globalRecipeState{
   setTimeInMins: (newTimeInMins: number) => void;
   setCategories: (newCategories: string) => void;
   setInstructions: (newInstructions: string) => void;
-  setIngredients: (newIngredient: {name: string, amount: number, unit: string}) => void;
+  setIngredients: (newIngredient: {
+    name: string;
+    amount: number;
+    unit: string;
+  }) => void;
   removeInstruction: (position: number) => void;
   removeIngredient: (position: number) => void;
   setPrice: (newPrice: number) => void;
@@ -27,43 +29,61 @@ const initialRecipe: RecipeInterface = {
   categories: [],
   instructions: [],
   ingredients: [],
-}
+};
 
 const uploadUpdateRecipeState = create<globalRecipeState>((set) => ({
   recipe: { ...initialRecipe },
 
   setTitle: (newTitle) => {
-    set((state) => ({ recipe: { ...state.recipe, title: newTitle } }))
+    set((state) => ({ recipe: { ...state.recipe, title: newTitle } }));
   },
 
   setDescription: (newDescription) =>
-    set((state) => ({ recipe: { ...state.recipe, description: newDescription } })),
+    set((state) => ({
+      recipe: { ...state.recipe, description: newDescription },
+    })),
 
   setImageUrl: (newImageUrl) =>
     set((state) => ({ recipe: { ...state.recipe, imageUrl: newImageUrl } })),
 
   setTimeInMins: (newTimeInMins) =>
-    set((state) => ({ recipe: { ...state.recipe, timeInMins: newTimeInMins } })),
+    set((state) => ({
+      recipe: { ...state.recipe, timeInMins: newTimeInMins },
+    })),
 
   setPrice: (newPrice) => {
-    set((state) => ({recipe: {...state.recipe, price: newPrice}}))
+    set((state) => ({ recipe: { ...state.recipe, price: newPrice } }));
   },
 
   setCategories: (selectedCategory) => {
     set((state) => {
-      const updatedCategories = state.recipe.categories.includes(selectedCategory)
-        ? state.recipe.categories.filter((category) => category !== selectedCategory)
+      const updatedCategories = state.recipe.categories.includes(
+        selectedCategory
+      )
+        ? state.recipe.categories.filter(
+            (category) => category !== selectedCategory
+          )
         : [...state.recipe.categories, selectedCategory];
       return { recipe: { ...state.recipe, categories: updatedCategories } };
-    })
+    });
   },
-    
+
   setInstructions: (newInstructions) => {
-    set((state) => ({ recipe: { ...state.recipe, instructions: [...state.recipe.instructions, newInstructions] } }))
+    set((state) => ({
+      recipe: {
+        ...state.recipe,
+        instructions: [...state.recipe.instructions, newInstructions],
+      },
+    }));
   },
-    
+
   setIngredients: (newIngredients) => {
-    set((state) => ({ recipe: { ...state.recipe, ingredients: [...state.recipe.ingredients, newIngredients ] } }))
+    set((state) => ({
+      recipe: {
+        ...state.recipe,
+        ingredients: [...state.recipe.ingredients, newIngredients],
+      },
+    }));
   },
 
   removeInstruction: (position) => {
@@ -71,9 +91,11 @@ const uploadUpdateRecipeState = create<globalRecipeState>((set) => ({
       prevState,
       recipe: {
         ...prevState.recipe,
-        instructions: prevState.recipe.instructions.filter((_, index) => index !== position)
-      }
-    }))
+        instructions: prevState.recipe.instructions.filter(
+          (_, index) => index !== position
+        ),
+      },
+    }));
   },
 
   removeIngredient: (position) => {
@@ -81,12 +103,14 @@ const uploadUpdateRecipeState = create<globalRecipeState>((set) => ({
       prevState,
       recipe: {
         ...prevState.recipe,
-        ingredients: prevState.recipe.ingredients.filter((_, index) => index !== position)
-      }
-    }))
+        ingredients: prevState.recipe.ingredients.filter(
+          (_, index) => index !== position
+        ),
+      },
+    }));
   },
-    
+
   emptyRecipe: () => set({ recipe: { ...initialRecipe } }),
-}))
+}));
 
 export default uploadUpdateRecipeState;

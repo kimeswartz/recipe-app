@@ -1,8 +1,8 @@
 //Bilge
 
 import { useEffect, useState } from "react";
-import globalRecipeFunctions from "../../store/RecipeAPICalls";
-import { RecipeInterface } from "../../interfaces/RecipeInterface";
+import globalRecipeFunctions from "../../store/recipes_store/RecipeAPICalls";
+import { RecipeInterface } from "../../interfaces/recipe_interfaces/RecipeInterface";
 import { useNavigate } from "react-router-dom";
 import "../../styling/CardsStyle.css";
 
