@@ -5,6 +5,7 @@ import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import globalCocktailFunctions from "../../store/CocktailAPICalls";
 import { useNavigate } from "react-router-dom";
 
+
 const CocktailForRecipe = () => {
   const { oneRecipe } = globalRecipeFunctions();
   const {

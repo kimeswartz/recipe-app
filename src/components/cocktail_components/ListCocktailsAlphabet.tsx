@@ -1,6 +1,6 @@
-//Pablo + Malcolm + Hampus
+//Pablo + Malcolm + Hampus + Arash
 
-import "../../styling/CocktailAlphabetStyle.css";
+import "../../styling/cocktail_css/CocktailAlphabet.css";
 import { useState, useEffect } from "react";
 import globalCocktailFunctions from "../../store/CocktailAPICalls";
 

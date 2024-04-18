@@ -1,13 +1,12 @@
 //Hampus + Bilge
 
-import { RecipeInterface } from "../interfaces/RecipeInterface";
+import { RecipeInterface } from "../interfaces/recipe_interfaces/RecipeInterface";
 import { useNavigate } from "react-router-dom";
-import globalCartFunctions from "../store/GlobalCart";
+import globalCartFunctions from "../store/CartFunctions";
 import globalRecipeFunctions from "../store/RecipeAPICalls";
-import CocktailInterface from "../interfaces/CocktailInterface";
+import CocktailInterface from "../interfaces/cocktail_interfaces/CocktailInterface";
 import globalCocktailFunctions from "../store/CocktailAPICalls";
-
-import "../styling/CardsStyle.css";
+import "../styling/Cards.css";
 
 const CartComponent = () => {
   const {

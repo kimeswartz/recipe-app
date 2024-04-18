@@ -1,10 +1,10 @@
-//Pablo + Alice
+//Pablo + Alice + Malcolm
 
 import React, { useEffect, useState } from "react";
-import { RecipeInterface } from "../../interfaces/RecipeInterface";
+import { RecipeInterface } from "../../interfaces/recipe_interfaces/RecipeInterface";
 import { useNavigate } from "react-router-dom";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
-import "../../styling/CardsStyle.css";
+import "../../styling/Cards.css";
 
 const FilterComponent = () => {
   const [filteredRecipes, setFilteredRecipes] = useState<RecipeInterface[]>([]);
@@ -83,7 +83,7 @@ const FilterComponent = () => {
   return (
     <>
       <section className="standard-container">
-      <h3>Find recipes based on what you already have at home!</h3>
+        <h3>Find recipes based on what you already have at home!</h3>
         <div className="form-input" style={{ position: 'relative' }}>
           <input
             className="user-input"
@@ -104,8 +104,8 @@ const FilterComponent = () => {
         {searchIngredients.length > 0 && (
           <div className="filter-grid">
             {searchIngredients.map((ingredient, index) => (
-              <div className="filtered-box"> 
-                <p key={index} className="filtered-ingredient">{ingredient}<span className="filter-delete" onClick={() => removeIngredient(ingredient)}> X</span></p> 
+              <div className="filtered-box">
+                <p key={index} className="filtered-ingredient">{ingredient}<span className="filter-delete" onClick={() => removeIngredient(ingredient)}> X</span></p>
               </div>
             ))}
           </div>

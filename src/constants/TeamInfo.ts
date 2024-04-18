@@ -1,3 +1,5 @@
+//Alice
+
 import "../interfaces/TeamMemberInterface";
 import MalcolmImage from "../assets/team_member_images/Malcolm.jpg";
 import HampusImage from "../assets/team_member_images/Hampus.jpg";
@@ -8,7 +10,6 @@ import KimImage from "../assets/team_member_images/Kim.jpeg";
 import BilgeImage from "../assets/team_member_images/Bilge.jpg";
 import ChatGPTImage from "../assets/team_member_images/ChatGPTLogo.jpg";
 
-// Team members data/info
 const teamMembers: TeamMemberInterface[] = [
   {
     name: "Hampus",

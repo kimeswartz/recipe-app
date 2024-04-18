@@ -1,7 +1,7 @@
-//
+//Kim 
 
-import "../styling/FooterStyle.css"; // Import your CSS file for styling
 import { To, useNavigate } from "react-router-dom";
+import "../styling/Footer.css";
 
 const Footer = () => {
   const navigate = useNavigate();
@@ -12,7 +12,6 @@ const Footer = () => {
   };
 
   return (
-    
     <footer className="footer">
       <div className="footer-container">
         <nav className="footer-nav">

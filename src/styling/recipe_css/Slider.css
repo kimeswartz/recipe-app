@@ -1,3 +1,5 @@
+/*Bilge + Kim*/
+
 .recipe-slider {
   overflow-x: scroll;
   scroll-snap-type: x mandatory;
@@ -55,6 +57,7 @@
   opacity: 1;
 }
 
+/* Responsive design for smaller screens */
 @media (max-width: 600px) {
   .image-slide {
     width: 100%; /* On small screens, each slide takes full width, showing 1 item per slide */

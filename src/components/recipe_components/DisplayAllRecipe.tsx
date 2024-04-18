@@ -2,8 +2,8 @@
 
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import { useNavigate, useLocation } from "react-router-dom";
-import { RecipeInterface } from "../../interfaces/RecipeInterface";
-import "../../styling/CardsStyle.css";
+import { RecipeInterface } from "../../interfaces/recipe_interfaces/RecipeInterface";
+import "../../styling/Cards.css";
 
 const DisplayRecipes = () => {
   const { recipeList, setOneRecipe, deleteRecipe } = globalRecipeFunctions();
@@ -11,7 +11,7 @@ const DisplayRecipes = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const handleDelete = async (recipeId: string | undefined) => {
+  const handleDelete = (recipeId: string | undefined) => {
     if (recipeId) {
       deleteRecipe(recipeId)
     }
@@ -26,7 +26,7 @@ const DisplayRecipes = () => {
   return (
     <>
       <section className="standard-container">
-      <h2>All recipes</h2>
+        <h2>All recipes</h2>
         <div className="card-grid">
           {recipeList.map((recipe) => (
             <div
