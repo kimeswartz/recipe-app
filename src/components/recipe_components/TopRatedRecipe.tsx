@@ -1,10 +1,10 @@
-//Alice
+//Alice + Kim
 
 import { useEffect, useState } from "react";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import { useNavigate } from "react-router-dom";
-import { RecipeInterface } from "../../interfaces/RecipeInterface";
-import "../../styling/CardsStyle.css";
+import { RecipeInterface } from "../../interfaces/recipe_interfaces/RecipeInterface";
+import "../../styling/Cards.css";
 
 const TopRatedRecipes = () => {
   const { recipeList, setOneRecipe } = globalRecipeFunctions();
@@ -19,7 +19,6 @@ const TopRatedRecipes = () => {
     window.scrollTo(0, 0);
   };
 
-  // Load maximum 4 top-rated recipes
   useEffect(() => {
     const filteredSortedRecipes = recipeList
       .filter(

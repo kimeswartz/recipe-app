@@ -1,7 +1,7 @@
 //Pablo + Malcolm + Hampus
 
-import CocktailInterface from "../../interfaces/CocktailInterface";
-import "../../styling/CocktailGridStyle.css";
+import CocktailInterface from "../../interfaces/cocktail_interfaces/CocktailInterface";
+import "../../styling/cocktail_css/CocktailGrid.css";
 import { useNavigate } from "react-router-dom";
 import globalCocktailFunctions from "../../store/CocktailAPICalls";
 

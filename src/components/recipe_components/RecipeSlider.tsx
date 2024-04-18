@@ -1,11 +1,10 @@
-//Bilge
+//Bilge + Kim
 
 import { useEffect, useRef } from "react";
-import "../../styling/SliderStyle.css";
 import { useNavigate } from "react-router-dom";
-import { RecipeInterface } from "../../interfaces/RecipeInterface";
+import { RecipeInterface } from "../../interfaces/recipe_interfaces/RecipeInterface";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
-
+import "../../styling/recipe_css/Slider.css";
 
 const RecipeSlider = () => {
   const { setOneRecipe, recipeList } = globalRecipeFunctions();
@@ -15,7 +14,7 @@ const RecipeSlider = () => {
 
   useEffect(() => {
     const autoScroll = setInterval(() => {
-      
+
       sliderRef.current?.scrollBy({
         left: window.innerWidth,
         behavior: "smooth",
@@ -28,11 +27,11 @@ const RecipeSlider = () => {
   const handleNavigate = (recipe: RecipeInterface) => {
     setOneRecipe(recipe);
     navigate(`/recipe/${recipe._id}`);
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
   }
 
-  if(recipeList.length === 0){
-    return(
+  if (recipeList.length === 0) {
+    return (
       <div className="slider-section">
         <h1>loading slider...</h1>
       </div>

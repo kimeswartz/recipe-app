@@ -1,16 +1,14 @@
-//Alice
+//Alice + Kim
 
 import { useEffect, useState } from "react";
-import "../styling/HeaderComponentStyle.css";
-import "../styling/AboutUsStyle.css";
 import teamMembers from "../constants/TeamInfo";
+import "../styling/HeaderComponent.css";
+import "../styling/AboutUs.css";
 
 const AboutUs = () => {
-  // State to keep track of the selected team member
   const [selectedMember, setSelectedMember] =
     useState<TeamMemberInterface | null>(null);
 
-  // Function to handle clicking on a team member. Updates the state
   const handleMemberClick = (member: TeamMemberInterface) => {
     setSelectedMember(member);
   };

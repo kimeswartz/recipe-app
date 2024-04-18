@@ -2,9 +2,9 @@
 
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import globalCartFunctions from "../../store/GlobalCart";
+import globalCartFunctions from "../../store/CartFunctions";
 import globalCocktailFunctions from "../../store/CocktailAPICalls";
-import "../../styling/OneRecipePageStyle.css";
+import "../../styling/recipe_css/OneRecipePage.css";
 
 const DisplayOneCocktail = () => {
   const { oneCocktail, fetchCocktailById, fetchCocktailsByIngredient, fetchIngredient } = globalCocktailFunctions();
@@ -25,7 +25,7 @@ const DisplayOneCocktail = () => {
     })
     fetchCocktailsByIngredient(name.trim())
   };
-  
+
   const generateIngredientsList = (cocktail: {
     [ingredientName: string]: any;
   }) => {

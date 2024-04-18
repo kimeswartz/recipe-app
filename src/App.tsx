@@ -1,21 +1,18 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Homepage";
+import Home from "./pages/LandingPage";
 import RecipesByCategory from "./components/recipe_components/RecipesByCategory";
 import DisplayOneRecipe from "./components/recipe_components/DisplayOneRecipe";
 import AdminPage from "./pages/AdminPage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import RecipePageContent from "./pages/RecipePage";
-import FilterPage from "./pages/FilterPage";
-import Modal from "react-modal";
+import FilterPage from "./pages/RecipeFilterPage";
 import AboutUsPage from "./pages/AboutUsPage";
 import CocktailHomePage from "./pages/CocktailHomePage";
-import IngredientPage from "./pages/IngredientPage";
+import IngredientPage from "./pages/CocktailIngredientPage";
 import CartPage from "./pages/CartPage";
 import DisplayOneCocktail from "./components/cocktail_components/DisplayOneCocktail";
-
-Modal.setAppElement("#root");
 
 function App() {
   return (
@@ -29,7 +26,6 @@ function App() {
           />
           <Route path="/cocktails" element={<CocktailHomePage />} />
           <Route path="/cocktail/:id" element={<DisplayOneCocktail />} />{" "}
-          {/* arash, med hjälp från hampus */}
           <Route path="/filter" element={<FilterPage />} />
           <Route path="/" element={<Home />} />
           <Route

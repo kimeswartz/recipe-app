@@ -1,7 +1,7 @@
 //Hampus
 
 import { create } from "zustand";
-import { RecipeInterface } from "../interfaces/RecipeInterface";
+import { RecipeInterface } from "../interfaces/recipe_interfaces/RecipeInterface";
 
 interface globalRecipeState{
   recipe: RecipeInterface;

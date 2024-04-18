@@ -1,8 +1,8 @@
-//Arash
+//Arash + Hampus
 
 import { useState } from 'react';
 import globalRecipeFunctions from '../../store/RecipeAPICalls';
-import "../../styling/CommentSectionStyle.css"
+import "../../styling/recipe_css/CommentSection.css"
 
 const CommentComponent = () => {
   const [commentText, setCommentText] = useState("");
