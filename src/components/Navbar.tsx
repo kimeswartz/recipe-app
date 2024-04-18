@@ -1,3 +1,5 @@
+//Bilge
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import globalCartFunctions from "../store/GlobalCart";
@@ -15,6 +17,7 @@ const Navbar = () => {
 
   const handleNavigation = (path: string) => {
     navigate(path);
+    window.scrollTo(0,0)
     emptyRecipe();
     setIsResponsive(false); // Close the responsive menu on navigation
   };

@@ -1,3 +1,5 @@
+//Pablo + Malcolm + Hampus
+
 import "../../styling/CocktailAlphabetStyle.css";
 import { useState, useEffect } from "react";
 import globalCocktailFunctions from "../../store/CocktailAPICalls";
