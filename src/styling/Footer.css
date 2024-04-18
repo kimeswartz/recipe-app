@@ -1,4 +1,4 @@
-/* Basic styling for the footer */
+/*Kim*/
 
 .footer {
   display: flex;
@@ -57,6 +57,7 @@
   color: red;
 }
 
+/* Responsive design for smaller screens */
 @media (max-width: 768px) {
   .footer {
     width: 100%;

@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
-import { RecipeInterface } from "../../interfaces/RecipeInterface";
+import { RecipeInterface } from "../../interfaces/recipe_interfaces/RecipeInterface";
 import { useNavigate } from "react-router-dom";
-import "../../styling/CardsStyle.css";
+import "../../styling/Cards.css";
 
 const SearchRecipe = () => {
   const { recipeList, setOneRecipe, fetchAllRecipes } = globalRecipeFunctions();
@@ -14,7 +14,7 @@ const SearchRecipe = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if(recipeList.length === 0){
+    if (recipeList.length === 0) {
       fetchAllRecipes();
     }
   }, [])
@@ -54,8 +54,7 @@ const SearchRecipe = () => {
   const handleSuggestionClick = (value: string) => {
     setSearchTerms(value);
     setSuggestions([]);
-    performSearch(); // Perform search when suggestion is selected
-    // Navigate to the recipe page
+    performSearch();
     const selectedRecipe = recipeList.find(
       (recipe) => recipe.title.toLowerCase() === value.toLowerCase()
     );

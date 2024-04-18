@@ -1,3 +1,5 @@
+/*Kim + Hampus*/
+
 .recipe-container {
   margin: 0 auto;
   margin-bottom: 40px;
@@ -96,7 +98,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 100%; /* Ensures the container takes up full width of its parent */
+  width: 100%;
 }
 
 .list-objects {
@@ -148,6 +150,7 @@ p {
   border-bottom-left-radius: 15px;
 }
 
+/* Responsive design for smaller screens */
 @media screen and (max-width: 1037px) {
   .recipe-container {
     width: 100%;

@@ -1,11 +1,10 @@
-//Hampus
+//Hampus + Arash
 
 import { create } from "zustand";
-import CocktailInterface from "../interfaces/CocktailInterface";
+import CocktailInterface from "../interfaces/cocktail_interfaces/CocktailInterface";
 import axios from "axios";
 import { cocktailURL } from "../constants/ApiUrl";
-import IngredientInterface from "../interfaces/IngredientInterface";
-
+import IngredientInterface from "../interfaces/cocktail_interfaces/IngredientInterface";
 
 interface CocktailStateInterface {
   cocktailList: CocktailInterface[];
@@ -90,7 +89,7 @@ const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
   fetchCocktailsByLetter: async(letter) => {
     console.log(letter)
     try {
-      const response = await axios.get(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`);
+      const response = await axios.get(`${cocktailURL}/search.php?f=${letter}`);
       if(response.data.drinks === null){
         set({cocktailList: []})
       }else if (response.data.drinks) {
@@ -98,7 +97,6 @@ const globalCocktailFunctions = create<CocktailStateInterface>()((set) => ({
         set({cocktailList: response.data.drinks})
       } 
     } catch (error) {
-      // If no drinks found for the letter, set cocktails to an empty array
       console.error('Error fetching cocktails by letter:', error);
       set({cocktailList: []})
     }

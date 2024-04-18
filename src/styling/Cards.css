@@ -1,3 +1,5 @@
+/*Kim*/
+
 /* Base styles */
 .card-grid {
   display: flex;
@@ -118,9 +120,9 @@
 }
 
 .card-grid h2 {
-  width: 100%; /* Make the header span the full width of the grid */
-  text-align: center; /* Center the text */
-  margin: 20px 0; /* Add some margin around the header */
+  width: 100%; 
+  text-align: center; 
+  margin: 20px 0;
 }
 
 .tag-grid {
@@ -181,8 +183,8 @@
 
   .card-grid {
     flex-direction: column;
-    justify-content: center; /* Centers items vertically */
-    align-items: center; /* Centers items horizontally */
+    justify-content: center;
+    align-items: center;
   }
 
   .recipe-card {

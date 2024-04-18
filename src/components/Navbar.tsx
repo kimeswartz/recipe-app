@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import globalCartFunctions from "../store/GlobalCart";
-import uploadUpdateRecipeState from "../store/GlobalUpdateAndUpload";
-import "../styling/TopNavStyle.css";
+import globalCartFunctions from "../store/CartFunctions";
+import uploadUpdateRecipeState from "../store/UpdateAndUploadFunctions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import "../styling/TopNav.css";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -17,9 +17,9 @@ const Navbar = () => {
 
   const handleNavigation = (path: string) => {
     navigate(path);
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0)
     emptyRecipe();
-    setIsResponsive(false); // Close the responsive menu on navigation
+    setIsResponsive(false); // Close the hamburger menu on navigation
   };
 
   const toggleResponsive = () => {

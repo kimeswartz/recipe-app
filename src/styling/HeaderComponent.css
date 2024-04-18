@@ -1,4 +1,5 @@
-/* Base class for shared properties */
+/*Kim*/
+
 .header {
   display: flex;
   justify-content: center;
@@ -23,7 +24,6 @@
   transition: box-shadow 0.3s ease;
 }
 
-/* Specific classes for unique properties */
 .home-header {
   background-image: url("../assets/HeaderImage.jpg");
 }
@@ -52,6 +52,7 @@
   color: white;
 }
 
+/* Responsive design for smaller screens */
 @media only screen and (max-width: 768px) {
   .headergit {
     width: 100%;

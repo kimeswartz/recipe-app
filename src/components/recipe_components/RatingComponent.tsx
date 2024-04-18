@@ -1,4 +1,4 @@
-//Malcolm + Arash
+//Malcolm + Arash + Pablo
 
 import globalRecipeFunctions from "../../store/RecipeAPICalls";
 import { useState } from "react";
@@ -9,7 +9,6 @@ const RatingComponent = () => {
   const { oneRecipe, addRating, fetchOneRecipe, fetchAllRecipes } = globalRecipeFunctions();
   const [userRating, setUserRating] = useState<number>();
 
-  // This will send a review to database between 1-5
   const handleRatingChange = async (rating: number) => {
     addRating(rating, oneRecipe._id).then(() => {
       if (oneRecipe._id) {
@@ -37,7 +36,6 @@ const RatingComponent = () => {
         </p>
       </div>
       <div className="info-tag">
-        {/* Interaktiv ratingsystem */}
         <p>
           Rate this dish: {""}
           {[1, 2, 3, 4, 5].map((value) => (

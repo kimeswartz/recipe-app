@@ -1,4 +1,4 @@
-//Alice
+//Alice 
 
 import { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -10,16 +10,14 @@ const CategorySuggestion = () => {
   const { categoryList, fetchAllCategories, fetchOneCategory } =
     globalRecipeFunctions();
 
-  // To fetch all categories when component first loads or when the categoryList changes
   useEffect(() => {
     fetchAllCategories();
   }, []);
 
-  // Function to handle a click on a specific category
   const handleCategoryClick = async (categoryName: string) => {
     // Using await to fetch all recipies from specific category before navigating
     await fetchOneCategory(categoryName);
-    navigate(`/category/${categoryName}`); // Navigate to category page with selected category
+    navigate(`/category/${categoryName}`);
     if (location.pathname === "/recipes") {
       window.scrollTo(0, 0);
     }

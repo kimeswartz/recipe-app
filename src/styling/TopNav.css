@@ -1,3 +1,5 @@
+/*Bilge + Kim + Hampus*/
+
 .topnav {
   display: flex;
   justify-content: center;
@@ -39,6 +41,7 @@
   display: none;
 }
 
+/* Responsive design for smaller screens */
 @media screen and (max-width: 630px) {
   .topnav a:not(:first-child) {
     display: none;

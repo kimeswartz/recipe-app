@@ -1,8 +1,8 @@
 // Hampus + Bilge
 
 import { create } from "zustand";
-import { RecipeInterface } from "../interfaces/RecipeInterface";
-import CocktailInterface from "../interfaces/CocktailInterface";
+import { RecipeInterface } from "../interfaces/recipe_interfaces/RecipeInterface";
+import CocktailInterface from "../interfaces/cocktail_interfaces/CocktailInterface";
 
 interface GlobalCartInterface {
   cartRecipes: { recipe: RecipeInterface; quantity: number }[];

@@ -1,9 +1,11 @@
-//Hampus + Alice + Arash
+//Everyone has built a local version of one the API calls
+//but Hampus, Alice and Arash has changed to local gets to
+//a global state version
 
 import { create } from "zustand";
-import { RecipeInterface } from "../interfaces/RecipeInterface";
+import { RecipeInterface } from "../interfaces/recipe_interfaces/RecipeInterface";
 import axios from "axios";
-import { CommentInterface } from "../interfaces/CommentInterface";
+import { CommentInterface } from "../interfaces/recipe_interfaces/CommentInterface";
 import { recipeURL } from "../constants/ApiUrl";
 
 interface recipeStateInterface {
@@ -156,7 +158,7 @@ const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
     } catch (error) {
       console.error("Error fetching comments:", error);
     }
-  }, //arash
+  },
 
   addComment: async (comment, id) => {
     try {
@@ -177,7 +179,7 @@ const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
     } catch (error) {
       console.error("Error adding comment:", error);
     }
-  }, //arash
+  },
 
   updateRecipe: async (updatedRecipe, id) => {
     try {
@@ -186,7 +188,6 @@ const globalRecipeFunctions = create<recipeStateInterface>()((set) => ({
         updatedRecipe
       );
       if (response.status === 200) {
-        //make something happen
         alert("Recipe was updated");
       }
     } catch (error) {

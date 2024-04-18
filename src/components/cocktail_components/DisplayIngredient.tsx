@@ -2,10 +2,10 @@
 
 import { useEffect } from "react";
 import globalCocktailFunctions from "../../store/CocktailAPICalls";
-import "../../styling/CocktailGridStyle.css";
-import "../../styling/CocktailIngredientStyle.css";
+import "../../styling/cocktail_css/CocktailGrid.css";
+import "../../styling/cocktail_css/CocktailIngredient.css";
 import { useNavigate, useParams } from "react-router-dom";
-import CocktailInterface from "../../interfaces/CocktailInterface";
+import CocktailInterface from "../../interfaces/cocktail_interfaces/CocktailInterface";
 
 const DisplayIngredient = () => {
   const {
